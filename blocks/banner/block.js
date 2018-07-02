@@ -61,8 +61,8 @@
 				default: '#fff'
 			},
 			innerStrokeThickness: {
-				type: 'integer',
-				default: 2
+				type: 'number',
+				default: '2'
 			},
 			innerStrokeColor: {
 				type: 'string',
@@ -73,12 +73,12 @@
 				default: '#8393a7'
 			},
 			height: {
-				type: 'integer',
-				default: 300,
+				type: 'number',
+				default: '300',
 			},
 			separatorPadding: {
-				type: 'integer',
-				default: 5
+				type: 'number',
+				default: '5'
 			},
 			separatorColor: {
 				type: 'string',
@@ -106,6 +106,17 @@
 
 			var attributes = props.attributes;
 
+			var colors = [
+				{ name: 'red', 				color: '#d02e2e' },
+				{ name: 'orange', 			color: '#f76803' },
+				{ name: 'yellow', 			color: '#fbba00' },
+				{ name: 'green', 			color: '#43d182' },
+				{ name: 'blue', 			color: '#2594e3' },
+				{ name: 'light-gray', 		color: '#eeeeee' },
+				{ name: 'dark-gray', 		color: '#abb7c3' },
+				{ name: 'black', 			color: '#000' 	 },
+			];
+
 			return [
 				el(
 					InspectorControls,
@@ -118,6 +129,10 @@
 							key: 'banner-general-settings-panel',
 							title: 'General Settings',
 							initialOpen: false,
+							style:
+							{
+							    borderBottom: '1px solid #e2e4e7'
+							}
 						},
 						el(
 							TextControl,
@@ -148,6 +163,7 @@
 								key: "banner-height",
 								value: attributes.height,
 								allowReset: true,
+								initialPosition: 300,
 								min: 0,
 								max: 1000,
 								label: i18n.__( 'Height' ),
@@ -175,6 +191,7 @@
 								ColorPalette, 
 								{
 									key: 'banner-title-color-pallete',
+									colors: colors,
 									value: attributes.titleColor,
 									onChange: function( newColor) {
 										props.setAttributes( { titleColor: newColor } );
@@ -193,6 +210,7 @@
 								ColorPalette, 
 								{
 									key: 'banner-subtitle-color-palette',
+									colors: colors,
 									value: attributes.subtitleColor,
 									onChange: function( newColor) {
 										props.setAttributes( { subtitleColor: newColor } );
@@ -211,6 +229,7 @@
 								ColorPalette, 
 								{
 									key: 'banner-bg-color-palette',
+									colors: colors,
 									value: attributes.bgColor,
 									onChange: function( newColor) {
 										props.setAttributes( { bgColor: newColor } );
@@ -231,7 +250,8 @@
 							{
 								key: "banner-inner-stroke-thickness",
 								value: attributes.innerStrokeThickness,
-								allowReset: false,
+								initialPosition: '2',
+								allowReset: true,
 								label: i18n.__( 'Inner Stroke Thickness' ),
 								onChange: function( newNumber ) {
 									props.setAttributes( { innerStrokeThickness: newNumber } );
@@ -249,6 +269,7 @@
 								ColorPalette, 
 								{
 									key: 'banner-inner-stroke-color-palette',
+									colors: colors,
 									value: attributes.innerStrokeColor,
 									onChange: function( newColor) {
 										props.setAttributes( { innerStrokeColor: newColor } );
@@ -269,7 +290,8 @@
 							{
 								key: "banner-separator-padding",
 								value: attributes.separatorPadding,
-								allowReset: false,
+								initialPosition: '5',
+								allowReset: true,
 								label: i18n.__( 'Separator Padding' ),
 								onChange: function( newNumber ) {
 									props.setAttributes( { separatorPadding: newNumber } );
@@ -287,6 +309,7 @@
 								ColorPalette, 
 								{
 									key: 'banner-separator-color-palette',
+									colors: colors,
 									value: attributes.separatorColor,
 									onChange: function( newColor) {
 										props.setAttributes( { separatorColor: newColor } );
@@ -337,6 +360,7 @@
 									ColorPalette, 
 									{
 										key: 'banner-bullet-bg-color-palette',
+										colors: colors,
 										value: attributes.bulletBgColor,
 										onChange: function( newColor) {
 											props.setAttributes( { bulletBgColor: newColor } );
@@ -355,6 +379,7 @@
 									ColorPalette, 
 									{
 										key: 'banner-bullet-text-color-palette',
+										colors: colors,
 										value: attributes.bulletTextColor,
 										onChange: function( newColor) {
 											props.setAttributes( { bulletTextColor: newColor } );
