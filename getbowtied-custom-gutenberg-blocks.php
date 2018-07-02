@@ -20,11 +20,11 @@
 
 function gbt_blocks() {
 
-	require_once 'blocks/categories_grid/index.php';
-	require_once 'blocks/posts_slider/index.php';
+	// require_once 'blocks/categories_grid/index.php';
+	// require_once 'blocks/posts_slider/index.php';
 	require_once 'blocks/banner/index.php';
-	require_once 'blocks/portfolio/index.php';
-	require_once 'blocks/social-media-profiles/index.php';
-	require_once 'blocks/slider/index.php';
+	// require_once 'blocks/portfolio/index.php';
+	// require_once 'blocks/social-media-profiles/index.php';
+	// require_once 'blocks/slider/index.php';
 }
 add_action( 'init', 'gbt_blocks' );

@@ -1,23 +1,23 @@
-( function( blocks, i18n, element ) {
+( function( blocks, components, editor, i18n, element ) {
 
 	var el = element.createElement;
 
 	/* Blocks */
-	var registerBlockType   = wp.blocks.registerBlockType;
+	var registerBlockType   = blocks.registerBlockType;
 		
-	var InspectorControls 	= wp.editor.InspectorControls;
-	var RichText			= wp.editor.RichText;
-	var BlockControls		= wp.editor.BlockControls;
-	var MediaUpload			= wp.editor.MediaUpload;
+	var InspectorControls 	= editor.InspectorControls;
+	var RichText			= editor.RichText;
+	var BlockControls		= editor.BlockControls;
+	var MediaUpload			= editor.MediaUpload;
 
-	var TextControl 		= wp.components.TextControl;
-	var ToggleControl		= wp.components.ToggleControl;
-	var RangeControl		= wp.components.RangeControl;
-	var ColorPalette		= wp.components.ColorPalette;
-	var PanelBody			= wp.components.PanelBody;
-	var PanelRow			= wp.components.PanelRow;
-	var PanelColor			= wp.components.PanelColor;
-	var Button				= wp.components.Button;
+	var TextControl 		= components.TextControl;
+	var ToggleControl		= components.ToggleControl;
+	var RangeControl		= components.RangeControl;
+	var ColorPalette		= components.ColorPalette;
+	var PanelBody			= components.PanelBody;
+	var PanelRow			= components.PanelRow;
+	var PanelColor			= components.PanelColor;
+	var Button				= components.Button;
 
 	/* Register Block */
 	registerBlockType( 'getbowtied/banner', {
@@ -70,7 +70,7 @@
 			},
 			bgColor: {
 				type: 'string',
-				default: '#F0EFEF'
+				default: '#8393a7'
 			},
 			height: {
 				type: 'integer',
@@ -109,8 +109,16 @@
 			return [
 				el(
 					InspectorControls,
-					{ key: 'inspector' },
-					el( PanelBody, { key: 'general-settings-panel', title: 'General Settings', initialOpen: false },
+					{ 
+						key: 'banner-inspector'
+					},
+					el( 
+						PanelBody, 
+						{ 
+							key: 'banner-general-settings-panel',
+							title: 'General Settings',
+							initialOpen: false,
+						},
 						el(
 							TextControl,
 							{
@@ -126,7 +134,7 @@
 						el(
 							ToggleControl,
 							{
-								key: "blank-toggle",
+								key: "banner-blank-toggle",
 	              				label: i18n.__( 'Open link in new tab?' ),
 	              				checked: attributes.blank,
 	              				onChange: function() {
@@ -149,18 +157,24 @@
 							}
 						),
 					),
-					el( PanelBody, { key: 'colors-panel', title: 'Colors', initialOpen: false },
+					el( 
+						PanelBody,
+						{ 
+							key: 'banner-colors-panel',
+							title: 'Colors',
+							initialOpen: false
+						},
 						el(
 							PanelColor,
 							{
-								key: 'title-color-panel',
+								key: 'banner-title-color-panel',
 								title: i18n.__( 'Title Color' ),
 								colorValue: attributes.titleColor,
 							},
 							el(
 								ColorPalette, 
 								{
-									key: 'title-color-pallete',
+									key: 'banner-title-color-pallete',
 									value: attributes.titleColor,
 									onChange: function( newColor) {
 										props.setAttributes( { titleColor: newColor } );
@@ -171,14 +185,14 @@
 						el(
 							PanelColor,
 							{
-								key: 'subtitle-color-panel',
+								key: 'banner-subtitle-color-panel',
 								title: i18n.__( 'Subtitle Color' ),
 								colorValue: attributes.subtitleColor,
 							},
 							el(
 								ColorPalette, 
 								{
-									key: 'subtitle-color-palette',
+									key: 'banner-subtitle-color-palette',
 									value: attributes.subtitleColor,
 									onChange: function( newColor) {
 										props.setAttributes( { subtitleColor: newColor } );
@@ -189,14 +203,14 @@
 						el(
 							PanelColor,
 							{
-								key: 'bg-color-panel',
+								key: 'banner-bg-color-panel',
 								title: i18n.__( 'Background Color' ),
 								colorValue: attributes.bgColor,
 							},
 							el(
 								ColorPalette, 
 								{
-									key: 'bg-color-palette',
+									key: 'banner-bg-color-palette',
 									value: attributes.bgColor,
 									onChange: function( newColor) {
 										props.setAttributes( { bgColor: newColor } );
@@ -205,11 +219,17 @@
 							),
 						),
 					),
-					el( PanelBody, { key: 'inner-stroke-panel', title: 'Inner Stroke', initialOpen: false },
+					el(
+						PanelBody,
+						{ 
+							key: 'banner-inner-stroke-panel',
+							title: 'Inner Stroke',
+							initialOpen: false
+						},
 						el(
 							RangeControl,
 							{
-								key: "inner-stroke-thickness",
+								key: "banner-inner-stroke-thickness",
 								value: attributes.innerStrokeThickness,
 								allowReset: false,
 								label: i18n.__( 'Inner Stroke Thickness' ),
@@ -221,14 +241,14 @@
 						el(
 							PanelColor,
 							{
-								key: 'inner-stroke-color-panel',
+								key: 'banner-inner-stroke-color-panel',
 								title: i18n.__( 'Inner Stroke Color' ),
 								colorValue: attributes.innerStrokeColor,
 							},
 							el(
 								ColorPalette, 
 								{
-									key: 'inner-stroke-color-palette',
+									key: 'banner-inner-stroke-color-palette',
 									value: attributes.innerStrokeColor,
 									onChange: function( newColor) {
 										props.setAttributes( { innerStrokeColor: newColor } );
@@ -237,11 +257,17 @@
 							),
 						),
 					),
-					el( PanelBody, { key: 'separator-panel', title: 'Separator', initialOpen: false },
+					el(
+						PanelBody,
+						{ 
+							key: 'banner-separator-panel',
+							title: 'Separator',
+							initialOpen: false
+						},
 						el(
 							RangeControl,
 							{
-								key: "separator-padding",
+								key: "banner-separator-padding",
 								value: attributes.separatorPadding,
 								allowReset: false,
 								label: i18n.__( 'Separator Padding' ),
@@ -253,14 +279,14 @@
 						el(
 							PanelColor,
 							{
-								key: 'separator-color-panel',
+								key: 'banner-separator-color-panel',
 								title: i18n.__( 'Separator Color' ),
 								colorValue: attributes.separatorColor,
 							},
 							el(
 								ColorPalette, 
 								{
-									key: 'separator-color-palette',
+									key: 'banner-separator-color-palette',
 									value: attributes.separatorColor,
 									onChange: function( newColor) {
 										props.setAttributes( { separatorColor: newColor } );
@@ -269,11 +295,17 @@
 							),
 						),
 					),
-					el( PanelBody, { key: 'bullet-panel', title: 'Bullet', initialOpen: false },
+					el(
+						PanelBody,
+						{
+							key: 'banner-bullet-panel',
+							title: 'Bullet',
+							initialOpen: false
+						},
 						el(
 							ToggleControl,
 							{
-								key: "bullet-toggle",
+								key: "banner-bullet-toggle",
 	              				label: i18n.__( 'With bullet?' ),
 	              				checked: attributes.bullet,
 	              				onChange: function() {
@@ -282,9 +314,10 @@
 							}
 						),
 						!! attributes.bullet && [ 
-							el( TextControl,
+							el(
+								TextControl,
 								{
-									key: 'bullet-text',
+									key: 'banner-bullet-text',
 									type: 'string',
 									label: i18n.__( 'Bullet Text' ),
 									value: attributes.bulletText,
@@ -293,16 +326,17 @@
 									},
 								}
 							),
-							el( PanelColor,
+							el(
+								PanelColor,
 								{
-									key: 'bullet-bg-color-panel',
+									key: 'banner-bullet-bg-color-panel',
 									title: i18n.__( 'Bullet Background Color' ),
 									colorValue: attributes.bulletBgColor,
 								},
 								el(
 									ColorPalette, 
 									{
-										key: 'bullet-bg-color-palette',
+										key: 'banner-bullet-bg-color-palette',
 										value: attributes.bulletBgColor,
 										onChange: function( newColor) {
 											props.setAttributes( { bulletBgColor: newColor } );
@@ -310,16 +344,17 @@
 									} 
 								),
 							),
-							el( PanelColor,
+							el(
+								PanelColor,
 								{
-									key: 'bullet-text-color-panel',
+									key: 'banner-bullet-text-color-panel',
 									title: i18n.__( 'Bullet Text Color' ),
 									colorValue: attributes.bulletTextColor,
 								},
 								el(
 									ColorPalette, 
 									{
-										key: 'bullet-text-color-palette',
+										key: 'banner-bullet-text-color-palette',
 										value: attributes.bulletTextColor,
 										onChange: function( newColor) {
 											props.setAttributes( { bulletTextColor: newColor } );
@@ -330,15 +365,23 @@
 						]
 					),
 				),
-				el( 'h2', { key: 'block-title', className: 'block-title' }, i18n.__( 'Banner' ) ),
-				el( 'div', 
+				el(
+					'h2',
+					{
+						key: 'banner-block-title',
+					}, 
+					i18n.__( 'Banner' )
+				),
+				el(
+					'div', 
 					{ 
 						key: 'shortcode_banner_simple_height',
 						className: 'shortcode_banner_simple_height banner_with_img',
 					},
-					el( MediaUpload,
+					el(
+						MediaUpload,
 						{
-							key: 'banner-image',
+							key: 'banner-image-upload',
 							type: 'image',
 							buttonProps: { className: 'components-button button button-large' },
 	              			value: attributes.imgID,
@@ -351,17 +394,19 @@
 							},
 	              			render: function( img ) { 
 	              				return [
-		              				! attributes.imgID && el( Button, 
+		              				! attributes.imgID && el(
+		              					Button, 
 		              					{ 
-		              						key: 'add-image',
+		              						key: 'banner-add-image-button',
 		              						className: 'button add-image',
 		              						onClick: img.open
 		              					},
-		              					i18n.__( 'Upload Image' )
+		              					i18n.__( 'Add Image' )
 	              					), 
-	              					!! attributes.imgID && el( Button, 
+	              					!! attributes.imgID && el(
+	              						Button, 
 										{
-											key: 'remove-image',
+											key: 'banner-remove-image-button',
 											className: 'button remove-image',
 											onClick: function() {
 												img.close;
@@ -373,48 +418,69 @@
 											}
 										},
 										i18n.__( 'Remove Image' )
-									) 
-	              				]
+									), 
+	              				];
 	              			},
 						},
 					),
-					el( 'div',
+					el(
+						'div',
 						{
 							key: 'shortcode_banner_simple_height_inner',
 							className: 'shortcode_banner_simple_height_inner',
 						},
-						el( 'div',
+						el(
+							'div',
 							{
 								key: 'shortcode_banner_simple_height_bkg',
 								className: 'shortcode_banner_simple_height_bkg',
-								style: { backgroundColor: attributes.bgColor, backgroundImage: 'url(' + attributes.imgURL + ')' },
-							}),
-						el( 'div',
+								style:
+								{
+									backgroundColor: attributes.bgColor,
+									backgroundImage: 'url(' + attributes.imgURL + ')'
+								},
+							}
+						),
+						el(
+							'div',
 							{
 								key: 'shortcode_banner_simple_height_inside',
 								className: 'shortcode_banner_simple_height_inside',
-								style: { height: attributes.height + 'px', border: attributes.innerStrokeThickness + 'px solid ' + attributes.innerStrokeColor },
+								style:
+								{
+									height: attributes.height + 'px',
+									border: attributes.innerStrokeThickness + 'px solid ' + attributes.innerStrokeColor
+								},
 							},
-							el( 'div',
+							el(
+								'div',
 								{
 									key: 'shortcode_banner_simple_height_content',
 									className: 'shortcode_banner_simple_height_content',
 								},
-								el( 'div',
+								el(
+									'div',
 									{
 										key: 'shortcode_banner_simple_height_content_div',
 									},
-									el( 'h3',
+									el(
+										'h3',
 										{
 											key: 'shortcode_banner_simple_height_content_h3',
-											style: { color: attributes.titleColor },
+											style:
+											{
+												color: attributes.titleColor
+											},
 										},
-										el( RichText, 
+										el(
+											RichText, 
 											{
 												key: 'banner-title',
-												style: { color: attributes.titleColor },
+												style:
+												{ 
+													color: attributes.titleColor
+												},
 												className: 'banner-title',
-												tagName: 'h3',
 												value: attributes.title,
 												placeholder: i18n.__( 'Add Title' ),
 												onChange: function( newTitle) {
@@ -424,28 +490,41 @@
 										),
 									),
 								),
-								el( 'div', 
+								el(
+									'div', 
 									{
 										key: 'shortcode_banner_simple_height_sep',
 										className: 'shortcode_banner_simple_height_sep',
-										style: { margin: attributes.separatorPadding + 'px auto', backgroundColor: attributes.separatorColor },
+										style:
+										{
+											margin: attributes.separatorPadding + 'px auto',
+											backgroundColor: attributes.separatorColor
+										},
 									},
 								),
-								el( 'div',
+								el(
+									'div',
 									{
 										key: 'shortcode_banner_simple_height_content_div2',
 									},
-									el( 'h4', 
+									el(
+										'h4', 
 										{
 											key: 'shortcode_banner_simple_height_content_h4',
-											style: { color: attributes.subtitleColor },
+											style:
+											{
+												color: attributes.subtitleColor
+											},
 										},
-										el( RichText, 
+										el(
+											RichText, 
 											{
 												key: 'banner-subtitle',
-												style: { color: attributes.subtitleColor },
+												style:
+												{
+													color: attributes.subtitleColor
+												},
 												className: 'banner-subtitle',
-												tagName: 'div',
 												value: attributes.subtitle,
 												placeholder: i18n.__( 'Add Subtitle' ),
 												onChange: function( newSubtitle) {
@@ -461,13 +540,15 @@
 				),
 			];
 		},
-		save: function( props ) {
+		save: function() {
 			return '';
 		},
 	} );
 
 } )(
 	window.wp.blocks,
+	window.wp.components,
+	window.wp.editor,
 	window.wp.i18n,
 	window.wp.element,
 );
