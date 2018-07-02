@@ -1,46 +1,30 @@
 <?php
-/**
- * GetBowtied Categories Grid
- *
- * @package   getbowtied
- * @author    GetBowtied
- * @license   @@pkg.license
- */
 
-// Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+// Categories Grid
 
-/**
- * Enqueue the block's assets for the editor.
- *
- * `wp-blocks`: includes block type registration and related functions.
- * `wp-element`: includes the WordPress Element abstraction for describing the structure of your blocks.
- * `wp-i18n`: To internationalize the block's text.
- *
- * @since 1.0.0
- */
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+
 add_action( 'enqueue_block_editor_assets', 'getbowtied_categories_grid_editor_assets' );
-function getbowtied_categories_grid_editor_assets() {
-	// Scripts.
-	wp_enqueue_script(
-		'getbowtied-categories-grid',
-		plugins_url( 'block.js', __FILE__ ),
-		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'jquery' ),
-		filemtime( plugin_dir_path( __FILE__ ) . 'block.js' )
-	);
 
-	wp_localize_script( 'getbowtied-categories-grid', 'ajax_object',
-            array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+if ( ! function_exists( 'getbowtied_categories_grid_editor_assets' ) ) {
+	function getbowtied_categories_grid_editor_assets() {
 
-	// Styles.
-	wp_enqueue_style(
-		'getbowtied-categories-grid',
-		plugins_url( 'css/editor.css', __FILE__ ),
-		array( 'wp-edit-blocks' ),
-		filemtime( plugin_dir_path( __FILE__ ) . 'css/editor.css' )
-	);
+		wp_enqueue_script(
+			'getbowtied-categories-grid',
+			plugins_url( 'block.js', __FILE__ ),
+			array( 'wp-blocks', 'wp-components', 'wp-editor', 'wp-i18n', 'wp-element', 'jquery' )
+		);
+
+		wp_enqueue_style(
+			'getbowtied-categories-grid-css',
+			plugins_url( 'css/editor.css', __FILE__ ),
+			array( 'wp-edit-blocks' )
+		);
+
+		wp_localize_script( 'getbowtied-categories-grid', 'ajax_object',
+	            array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+	}
 }
 
 register_block_type( 'getbowtied/categories-grid', array(
@@ -74,13 +58,6 @@ register_block_type( 'getbowtied/categories-grid', array(
 	'render_callback' => 'getbowtied_render_frontend_categories_grid',
 ) );
 
-/**
- * Renders the `getbowtied/categories_grid` block on server.
- *
- * @param array $attributes The block attributes.
- *
- * @return string Returns product categories grid.
- */
 function getbowtied_render_frontend_categories_grid( $attributes ) {
 
 	extract( shortcode_atts( array(
@@ -88,7 +65,7 @@ function getbowtied_render_frontend_categories_grid( $attributes ) {
 		'ids'							=> '',
 		'number'     					=> 12,
 		'order'      					=> 'asc',
-		'hide_empty'				 	=> 1,
+		'hide_empty'				 	=> true,
 		'parent'     					=> '0'
 	), $attributes ) );
 
@@ -98,8 +75,6 @@ function getbowtied_render_frontend_categories_grid( $attributes ) {
 	} else {
 		$ids = array();
 	}
-
-	$hide_empty = ( $hide_empty == true || $hide_empty == 1 ) ? 1 : 0;
 
 	if ($product_categories_selection == "auto") {
 
@@ -229,8 +204,6 @@ function getbowtied_render_backend_categories_grid() {
 		$ids = array();
 	}
 
-	$hide_empty = ( $hide_empty == true || $hide_empty == 1 ) ? 1 : 0;
-
 	if ($product_categories_selection == "auto") {
 
 		$args = array(
@@ -267,8 +240,6 @@ function getbowtied_render_backend_categories_grid() {
 			}
 		}
 	}
-
-	ob_start();
 
 	$cat_counter = 0;
 
@@ -309,7 +280,7 @@ function getbowtied_render_backend_categories_grid() {
 			}
 
 			$output .= 'el("div",{className:"category_'.$cat_class.'", key:"category_'.$cat_class.'_'.$cat_counter.'"},el("div",{className:"category_grid_box", key:"category_grid_box_'.$cat_counter.'"},
-		el("span",{className:"category_item_bkg",key:"category_item_bkg_'.$cat_counter.'",style:{backgroundImage:"url('.esc_url($image).')"}},),el("a",{className:"category_item",key:"category_item_'.$cat_counter.'"},el("span",{className:"category_name",key:"category_item_'.$cat_counter.'"},"'.esc_html($category->name).'")))),';
+		el("span",{className:"category_item_bkg",key:"category_item_bkg_'.$cat_counter.'",style:{backgroundImage:"url('.esc_url($image).')"}},),el("a",{className:"category_item",key:"category_item_'.$cat_counter.'"},el("span",{className:"category_name",key:"category_item_'.$cat_counter.'"},"'.htmlspecialchars_decode($category->name).'")))),';
 
 		}
 
