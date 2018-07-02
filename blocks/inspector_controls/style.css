@@ -1,0 +1,25 @@
+.output-div {
+	border: 5px solid #BF7B58;
+	border-radius: 10px;
+	text-align: center;
+	padding: 20px;
+	margin: 0 auto 30px;
+}
+
+.blocks-range-control .blocks-base-control__label {
+	width: auto;
+}
+
+.output-div a,
+.content {
+	margin-top: 20px !important;
+}
+
+.quote {
+	font-size: 13px;
+    color: #7d7777;
+}
+
+.output-div.boxed {
+    width: 50%;
+}
