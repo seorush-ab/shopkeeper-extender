@@ -64,8 +64,14 @@
 			return [
 				el(
 					InspectorControls,
-					{ key: 'inspector' },
-					el( 'div', { className: 'components-block-description' }, // A brief description of our block in the inspector.
+					{
+						key: 'posts-slider-inspector'
+					},
+					el(
+						'div',
+						{ 
+							className: 'posts-slider-components-block-description'
+						},
 						el( 'hr', {}, ),
 						el( 'b', {}, i18n.__( 'Display the latest posts in the blog' ) ),
 						el( 'hr', {}, ),
@@ -73,7 +79,7 @@
 					el(
 						RangeControl,
 						{
-							id: "posts-number",
+							key: "posts-slider-number",
 							value: attributes.number,
 							allowReset: false,
 							label: i18n.__( 'Number of Posts' ),
@@ -85,7 +91,7 @@
 					el(
 						SelectControl,
 						{
-							id: "category",
+							key: "posts-slider-category",
 							options: attributes.categories,
               				label: i18n.__( 'Category' ),
               				value: attributes.category,
@@ -95,7 +101,12 @@
 						}
 					),
 				),
-				el( 'h2', { className: 'widget-title', key: "title" }, i18n.__( 'Posts Slider' ) ),
+				el( 'h2',
+					{
+						className: 'widget-title', 
+						key: "title"
+					}, i18n.__( 'Posts Slider' ) 
+				),
 			];
 		},
 

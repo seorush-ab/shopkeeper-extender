@@ -1,35 +1,22 @@
 <?php
-/**
- * GetBowtied Posts Slider
- *
- * @package   getbowtied
- * @author    GetBowtied
- * @license   @@pkg.license
- */
 
-// Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+// Posts Slider
 
-/**
- * Enqueue the block's assets for the editor.
- *
- * `wp-blocks`: includes block type registration and related functions.
- * `wp-element`: includes the WordPress Element abstraction for describing the structure of your blocks.
- * `wp-i18n`: To internationalize the block's text.
- *
- * @since 1.0.0
- */
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+
 add_action( 'enqueue_block_editor_assets', 'getbowtied_posts_slider_editor_assets' );
-function getbowtied_posts_slider_editor_assets() {
-	// Scripts.
-	wp_enqueue_script(
-		'getbowtied-posts-slider',
-		plugins_url( 'block.js', __FILE__ ),
-		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'jquery' ),
-		filemtime( plugin_dir_path( __FILE__ ) . 'block.js' )
-	);
+
+if ( ! function_exists( 'getbowtied_posts_slider_editor_assets' ) ) {
+	function getbowtied_posts_slider_editor_assets() {
+		
+		wp_enqueue_script(
+			'getbowtied-posts-slider',
+			plugins_url( 'block.js', __FILE__ ),
+			array( 'wp-blocks', 'wp-i18n', 'wp-element', 'jquery' ),
+			filemtime( plugin_dir_path( __FILE__ ) . 'block.js' )
+		);
+	}
 }
 
 register_block_type( 'getbowtied/posts-slider', array(
@@ -47,13 +34,6 @@ register_block_type( 'getbowtied/posts-slider', array(
 	'render_callback' => 'getbowtied_render_posts_slider',
 ) );
 
-/**
- * Renders the `getbowtied/posts_slider` block on server.
- *
- * @param array $attributes The block attributes.
- *
- * @return string Returns posts_slider.
- */
 function getbowtied_render_posts_slider( $attributes ) {
 
 	$sliderrandomid = rand();
