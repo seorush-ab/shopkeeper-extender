@@ -42,7 +42,7 @@
 			},
 			category: {
 				type: 'string',
-				default: 'All',
+				default: '',
 			},
 			showFilters: {
 				type: 'boolean',
@@ -67,7 +67,11 @@
 			categories : {
 				type: 'array',
 				default: []
-			}
+			},
+			render_portfolio: {
+				type: 'string',
+				default: '',
+			},
 		},
 
 		edit: function( props ) {
@@ -76,6 +80,33 @@
 			setTimeout(function(){ 
 				props.setAttributes( { categories: categories_list } );
 			}, 1000 );
+
+			function getPortfolioGrid( itemsNumber, category, orderBy, order, grid, itemsPerRow ) {
+
+				itemsNumber 	= itemsNumber 	|| attributes.itemsNumber;
+				category 		= category 		|| attributes.category;
+				orderBy 		= orderBy 	 	|| attributes.orderBy;
+				order 			= order 	 	|| attributes.order;
+				grid 			= grid 	 		|| attributes.grid;
+				itemsPerRow 	= itemsPerRow 	|| attributes.itemsPerRow;
+
+				var data = {
+					action 		: 'getbowtied_render_backend_portfolio',
+					attributes  : {
+						'itemsNumber' 		: itemsNumber,
+						'category'			: category,
+						'orderBy'			: orderBy,
+						'order'				: order,
+						'grid'				: grid,
+						'itemsPerRow' 		: itemsPerRow
+					}
+				};
+
+				jQuery.post( 'admin-ajax.php', data, function(response) { 
+					response = jQuery.parseJSON(response);
+					props.setAttributes( { render_portfolio: response } );
+				});	
+			}
 
 			var grid_layouts =
 			[
@@ -99,6 +130,7 @@
 							value: attributes.itemsNumber,
 							onChange: function( newNumber ) {
 								props.setAttributes( { itemsNumber: newNumber } );
+								getPortfolioGrid( newNumber, null, null, null, null, null );
 							},
 						}
 					),
@@ -111,10 +143,11 @@
               				value: attributes.category,
               				onChange: function( newCategory ) {
               					props.setAttributes( { category: newCategory } );
+              					getPortfolioGrid( null, newCategory, null, null, null, null );
 							},
 						}
 					),
-					attributes.category == 'all' && el(
+					attributes.category == '' && el(
 						ToggleControl,
 						{
 							key: "portfolio-filters-toggle",
@@ -134,6 +167,7 @@
               				value: attributes.orderBy,
               				onChange: function( newOrderBy ) {
               					props.setAttributes( { orderBy: newOrderBy } );
+              					getPortfolioGrid( null, null, newOrderBy, null, null, null );
 							},
 						}
 					),
@@ -146,6 +180,7 @@
               				value: attributes.order,
               				onChange: function( newOrder ) {
               					props.setAttributes( { order: newOrder } );
+              					getPortfolioGrid( null, null, null, newOrder, null, null );
 							},
 						}
 					),
@@ -158,6 +193,7 @@
               				value: attributes.grid,
               				onChange: function( newGrid ) {
               					props.setAttributes( { grid: newGrid } );
+              					getPortfolioGrid( null, null, null, null, newGrid, null );
 							},
 						}
 					),
@@ -170,12 +206,14 @@
 							value: attributes.itemsPerRow,
 							onChange: function( newNumber ) {
 								props.setAttributes( { itemsPerRow: newNumber } );
+								getPortfolioGrid( null, null, null, null, null, newNumber );
 							},
 						}
 					),
 				),
 				el( 'h2', { key: 'block-title', className: 'block-title' }, i18n.__( 'Portfolio' ) ),
-				
+				eval( attributes.render_portfolio ),
+				attributes.render_portfolio == '' && getPortfolioGrid( null, null, null, null, null, null )		
 			];
 		},
 		save: function( props ) {
