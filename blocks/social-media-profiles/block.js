@@ -17,7 +17,7 @@
 		category: 'common',
 		attributes: {
 			items_align: {
-				type: 'string',
+				type: 	 'string',
 				default: 'left'
 			},
 		},
@@ -29,14 +29,24 @@
 			return [
 				el(
 					InspectorControls,
-					{ key: 'inspector' },
-					el( 'div', { key: 'socials-block-description', className: 'socials-block-description' },
-						el( 'hr', { key: 'socials-block-description-hr' }, ),
+					{ 
+						key: 'social-media-inspector'
+					},
+					el( 'div',
+						{ 
+							key: 'social-media-block-description',
+							className: 'socials-block-description'
+						},
+						el( 'hr',
+							{ 
+								key: 'social-media-block-description-hr' 
+							},
+						),
 					),
 					el(
 						AlignmentToolbar, 
 						{
-							key: 'socials-alignment',
+							key: 'social-media-alignment',
 							value: attributes.items_align,
 							onChange: function( newAlignment ) {
 								props.setAttributes( { items_align: newAlignment } )
@@ -44,12 +54,22 @@
 						} 
 					),
 				),
-				el( 'h2', { key: 'socials-title', className: 'widget-title' }, i18n.__( 'Social Media Profiles' ) ),
-				el( 'div', { key: 'socials-desc-image', className: 'social-image' } ),
+				el( 'h2',
+					{
+						key: 'socials-title',
+						className: 'widget-title'
+					}, i18n.__( 'Social Media Profiles' )
+				),
+				el( 'div',
+					{
+						key: 'socials-desc-image',
+						className: 'social-image'
+					}
+				),
 			];
 		},
 
-		save: function( props ) {
+		save: function() {
 			return '';
 		},
 	} );
