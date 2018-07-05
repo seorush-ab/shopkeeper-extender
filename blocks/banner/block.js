@@ -395,7 +395,7 @@
 					{
 						key: 'banner-block-title',
 					}, 
-					i18n.__( 'Banner' )
+					i18n.__( 'Banner11' )
 				),
 				el(
 					'div', 
