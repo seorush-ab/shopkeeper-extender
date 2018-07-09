@@ -20,11 +20,30 @@
 				type: 	 'string',
 				default: 'left'
 			},
+			render_socials: {
+				type: 'string',
+				default: '',
+			},
 		},
 
 		edit: function( props ) {
 
 			var attributes = props.attributes;
+
+			function getSocialMediaIcons( items_align ) {
+
+				items_align = items_align || attributes.items_align;
+
+				var data = {
+					action 		: 'getbowtied_render_backend_socials',
+					attributes  : { 'items_align' : items_align	}
+				};
+
+				jQuery.post( 'admin-ajax.php', data, function(response) { 
+					response = jQuery.parseJSON(response);
+					props.setAttributes( { render_socials: response } );
+				});	
+			}
 
 			return [
 				el(
@@ -49,23 +68,14 @@
 							key: 'social-media-alignment',
 							value: attributes.items_align,
 							onChange: function( newAlignment ) {
-								props.setAttributes( { items_align: newAlignment } )
+								props.setAttributes( { items_align: newAlignment } );
+								getSocialMediaIcons( newAlignment );
 							}
 						} 
 					),
 				),
-				el( 'h2',
-					{
-						key: 'socials-title',
-						className: 'widget-title'
-					}, i18n.__( 'Social Media Profiles' )
-				),
-				el( 'div',
-					{
-						key: 'socials-desc-image',
-						className: 'social-image'
-					}
-				),
+				eval( attributes.render_socials ),
+				attributes.render_socials == '' && getSocialMediaIcons( 'left' )	
 			];
 		},
 

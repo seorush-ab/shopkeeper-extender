@@ -18,13 +18,29 @@
  * Load getbowtied blocks.
  */
 
-function gbt_blocks() {
+function gbt_gutenberg_blocks() {
 
-	require_once 'blocks/categories_grid/index.php';
-	require_once 'blocks/posts_slider/index.php';
-	require_once 'blocks/banner/index.php';
-	require_once 'blocks/portfolio/index.php';
-	require_once 'blocks/social-media-profiles/index.php';
-	require_once 'blocks/slider/index.php';
+	switch( get_current_theme() ) {
+
+		case 'Shopkeeper':
+			require_once 'shopkeeper/index.php';
+			break;
+		case 'Mr. Tailor':
+			break;
+		case 'The Retailer':
+			break;
+		case 'Merchandiser':
+			break;
+		default:
+			add_action( 'admin_notices', 'theme_warning' );
+			break;
+	}
 }
-add_action( 'init', 'gbt_blocks' );
+add_action( 'init', 'gbt_gutenberg_blocks' );
+
+function theme_warning() {
+
+	echo '<div class="message error woocommerce-admin-notice woocommerce-st-inactive woocommerce-not-configured">';
+	echo '<p>' . esc_html( 'GetBowtied Custom Gutenberg Blocks is enabled but not effective. Please activate a GetBowtied theme in order to work.', 'gbt-blocks' ) . '</p>';
+	echo '</div>';
+}
