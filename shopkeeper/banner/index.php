@@ -27,12 +27,12 @@ if ( ! function_exists( 'getbowtied_banner_editor_assets' ) ) {
 register_block_type( 'getbowtied/banner', array(
 	'attributes'      	=> array(
 		'title'							=> array(
-			'type'						=> 'string',
-			'default'					=> '',
+			'type'						=> 'array',
+			'default'					=> array('Banner Title'),
 		),
 		'subtitle'						=> array(
-			'type'						=> 'string',
-			'default'					=> '',
+			'type'						=> 'array',
+			'default'					=> array('Banner Subtitle'),
 		),
 		'imgURL'						=> array(
 			'type'						=> 'string',
@@ -78,22 +78,6 @@ register_block_type( 'getbowtied/banner', array(
 			'type'						=> 'string',
 			'default'					=> '#fff',
 		),
-		'bullet'						=> array(
-			'type'						=> 'boolean',
-			'default'					=> true,
-		),
-		'bulletText'					=> array(
-			'type'						=> 'string',
-			'default'					=> '',
-		),
-		'bulletBgColor'					=> array(
-			'type'						=> 'string',
-			'default'					=> '#fff',
-		),
-		'bulletTextColor'				=> array(
-			'type'						=> 'string',
-			'default'					=> '#000',
-		),
 	),
 
 	'render_callback' => 'getbowtied_render_banner',
@@ -102,8 +86,8 @@ register_block_type( 'getbowtied/banner', array(
 function getbowtied_render_banner( $attributes ) {
 
 	extract( shortcode_atts( array(
-		'title' 				=> '',
-		'subtitle' 				=> '',
+		'title' 				=> array('Banner Title'),
+		'subtitle' 				=> array('Banner Subtitle'),
 		'url' 					=> '#',
 		'blank' 				=> '',
 		'titleColor' 			=> '#fff',
@@ -114,13 +98,9 @@ function getbowtied_render_banner( $attributes ) {
 		'imgURL' 				=> '',
 		'height' 				=> 'auto',
 		'separatorPadding' 		=> '5px',
-		'separatorColor' 		=> '#fff',
-		'bullet' 				=> true,
-		'bulletText' 			=> '',
-		'bulletBgColor' 		=> '#fff',
-		'bulletTextColor' 		=> '#000'
+		'separatorColor' 		=> '#fff'
 	), $attributes));
-	
+
 	$banner_with_img = '';
 	
 	if (!empty($imgURL)) {
@@ -145,16 +125,12 @@ function getbowtied_render_banner( $attributes ) {
 			
 				<div class="shortcode_banner_simple_height_inside" style="height:'.$height.'px; border: '.$innerStrokeThickness.'px solid '.$innerStrokeColor.'">
 					<div class="shortcode_banner_simple_height_content">
-						<div><h3 style="color:'.$titleColor.' !important">'.$title.'</h3></div>
+						<div><h3 style="color:'.$titleColor.' !important">'. $title[0] .'</h3></div>
 						<div class="shortcode_banner_simple_height_sep" style="margin:'.$separatorPadding.'px auto; background-color:'.$separatorColor.';"></div>
-						<div><h4 style="color:'.$subtitleColor.' !important">'.$subtitle.'</h4></div>
+						<div><h4 style="color:'.$subtitleColor.' !important">'. $subtitle[0] .'</h4></div>
 					</div>
 				</div>
 			</div>';
-	
-	if ( $bullet ) {
-		$banner_simple_height .= '<div class="shortcode_banner_simple_height_bullet" style="background-color:'.$bulletBgColor.'; color:'.$bulletTextColor.'"><span>'.$bulletText.'</span></div>';
-	}
 	
 	$banner_simple_height .= '</div>';
 	

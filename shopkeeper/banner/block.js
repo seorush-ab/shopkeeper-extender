@@ -27,11 +27,11 @@
 		attributes: {
 			title: {
 				type: 'string',
-				default: '',
+				default: 'Banner Title',
 			},
 			subtitle: {
 				type: 'string',
-				default: ''
+				default: 'Banner Subtitle'
 			},
 		    imgURL: {
 	            type: 'string',
@@ -70,7 +70,7 @@
 			},
 			bgColor: {
 				type: 'string',
-				default: '#8393a7'
+				default: '#F0EFEF'
 			},
 			height: {
 				type: 'number',
@@ -81,22 +81,6 @@
 				default: '5'
 			},
 			separatorColor: {
-				type: 'string',
-				default: '#fff'
-			},
-			bullet: {
-	        	type: 'boolean',
-	        	default: true
-	        },
-	        bulletText: {
-	        	type: 'string',
-	        	default: '',
-	        },
-	        bulletBgColor: {
-				type: 'string',
-				default: '#fff'
-			},
-	        bulletTextColor: {
 				type: 'string',
 				default: '#fff'
 			},
@@ -318,84 +302,6 @@
 							),
 						),
 					),
-					el(
-						PanelBody,
-						{
-							key: 'banner-bullet-panel',
-							title: 'Bullet',
-							initialOpen: false
-						},
-						el(
-							ToggleControl,
-							{
-								key: "banner-bullet-toggle",
-	              				label: i18n.__( 'With bullet?' ),
-	              				checked: attributes.bullet,
-	              				onChange: function() {
-									props.setAttributes( { bullet: ! attributes.bullet } );
-								},
-							}
-						),
-						!! attributes.bullet && [ 
-							el(
-								TextControl,
-								{
-									key: 'banner-bullet-text',
-									type: 'string',
-									label: i18n.__( 'Bullet Text' ),
-									value: attributes.bulletText,
-									onChange: function( newText ) {
-										props.setAttributes( { bulletText: newText } );
-									},
-								}
-							),
-							el(
-								PanelColor,
-								{
-									key: 'banner-bullet-bg-color-panel',
-									title: i18n.__( 'Bullet Background Color' ),
-									colorValue: attributes.bulletBgColor,
-								},
-								el(
-									ColorPalette, 
-									{
-										key: 'banner-bullet-bg-color-palette',
-										colors: colors,
-										value: attributes.bulletBgColor,
-										onChange: function( newColor) {
-											props.setAttributes( { bulletBgColor: newColor } );
-										},
-									} 
-								),
-							),
-							el(
-								PanelColor,
-								{
-									key: 'banner-bullet-text-color-panel',
-									title: i18n.__( 'Bullet Text Color' ),
-									colorValue: attributes.bulletTextColor,
-								},
-								el(
-									ColorPalette, 
-									{
-										key: 'banner-bullet-text-color-palette',
-										colors: colors,
-										value: attributes.bulletTextColor,
-										onChange: function( newColor) {
-											props.setAttributes( { bulletTextColor: newColor } );
-										},
-									} 
-								),
-							),
-						]
-					),
-				),
-				el(
-					'h2',
-					{
-						key: 'banner-block-title',
-					}, 
-					i18n.__( 'Banner11' )
 				),
 				el(
 					'div', 
@@ -489,30 +395,22 @@
 										key: 'shortcode_banner_simple_height_content_div',
 									},
 									el(
-										'h3',
+										RichText, 
 										{
-											key: 'shortcode_banner_simple_height_content_h3',
+											key: 'banner-title',
 											style:
-											{
+											{ 
 												color: attributes.titleColor
 											},
-										},
-										el(
-											RichText, 
-											{
-												key: 'banner-title',
-												style:
-												{ 
-													color: attributes.titleColor
-												},
-												className: 'banner-title',
-												value: attributes.title,
-												placeholder: i18n.__( 'Add Title' ),
-												onChange: function( newTitle) {
-													props.setAttributes( { title: newTitle } );
-												}
+											className: 'banner-title',
+											formattingControls: [],
+											tagName: 'h3',
+											value: attributes.title,
+											placeholder: i18n.__( 'Add Title' ),
+											onChange: function( newTitle) {
+												props.setAttributes( { title: newTitle } );
 											}
-										),
+										}
 									),
 								),
 								el(
@@ -533,31 +431,24 @@
 										key: 'shortcode_banner_simple_height_content_div2',
 									},
 									el(
-										'h4', 
+										RichText, 
 										{
-											key: 'shortcode_banner_simple_height_content_h4',
+											key: 'banner-subtitle',
 											style:
 											{
 												color: attributes.subtitleColor
 											},
-										},
-										el(
-											RichText, 
-											{
-												key: 'banner-subtitle',
-												style:
-												{
-													color: attributes.subtitleColor
-												},
-												className: 'banner-subtitle',
-												value: attributes.subtitle,
-												placeholder: i18n.__( 'Add Subtitle' ),
-												onChange: function( newSubtitle) {
-													props.setAttributes( { subtitle: newSubtitle } );
-												}
+											className: 'banner-subtitle',
+											tagName: 'h4',
+											value: attributes.subtitle,
+											formattingControls: [],
+											placeholder: i18n.__( 'Add Subtitle' ),
+											onChange: function( newSubtitle) {
+												props.setAttributes( { subtitle: newSubtitle } );
 											}
-										),
+										}
 									),
+
 								),
 							),
 						),
