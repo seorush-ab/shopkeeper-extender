@@ -19,6 +19,9 @@
 	var PanelColor			= components.PanelColor;
 	var Button				= components.Button;
 
+	// var AlignmentToolbar    = editor.AlignmentToolbar;
+	// var BlockControls       = editor.BlockControls;
+
 	/* Register Block */
 	registerBlockType( 'getbowtied/banner', {
 		title: i18n.__( 'Banner' ),
@@ -84,6 +87,10 @@
 				type: 'string',
 				default: '#fff'
 			},
+			// alignment: {
+			// 	type: 'string',
+			// 	default: 'left'
+			// }
 		},
 
 		edit: function( props ) {
@@ -102,6 +109,21 @@
 			];
 
 			return [
+				// el(
+				// 	BlockControls,
+				// 	{
+				// 		key: 'banner-controls',
+				// 	},
+				// 	el(
+				// 		AlignmentToolbar,
+				// 		{
+				// 			value: attributes.alignment,
+				// 			onChange: function( newAlignment ) {
+				// 				props.setAttributes( { alignment: newAlignment } );
+				// 			}
+				// 		}
+				// 	)
+				// ),
 				el(
 					InspectorControls,
 					{ 
