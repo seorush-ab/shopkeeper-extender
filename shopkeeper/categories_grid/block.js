@@ -36,7 +36,7 @@
 			},
 			hide_empty: {
 				type: 'boolean',
-				default: true
+				default: false
 			},
 			parent: {
 				type: 'string',
@@ -194,14 +194,6 @@
 							},
 						}
 					),
-				),
-				el(
-					'h2',
-					{
-						className: 'categories-grid-title',
-						key: 'categories-grid-title',
-					}, 
-					i18n.__( 'Product Categories - Grid' )
 				),
 				eval( attributes.grid ),
 				attributes.grid == '' && getCategoriesGrid( null, null, null, null, attributes.hide_empty, null )

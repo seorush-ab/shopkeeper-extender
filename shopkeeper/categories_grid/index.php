@@ -43,7 +43,7 @@ register_block_type( 'getbowtied/categories-grid', array(
 		),
 		'hide_empty'  					=> array(
 			'type'    					=> 'boolean',
-			'default' 					=> true,
+			'default' 					=> false,
 		),
 		'order'		  					=> array(
 			'type'	  					=> 'string',
@@ -65,7 +65,7 @@ function getbowtied_render_frontend_categories_grid( $attributes ) {
 		'ids'							=> '',
 		'number'     					=> 12,
 		'order'      					=> 'asc',
-		'hide_empty'				 	=> true,
+		'hide_empty'				 	=> false,
 		'parent'     					=> '0'
 	), $attributes ) );
 
@@ -193,7 +193,7 @@ function getbowtied_render_backend_categories_grid() {
 		'ids'							=> '',
 		'number'     					=> 12,
 		'order'      					=> 'asc',
-		'hide_empty'				 	=> true,
+		'hide_empty'				 	=> false,
 		'parent'     					=> '0'
 	), $attributes ) );
 
