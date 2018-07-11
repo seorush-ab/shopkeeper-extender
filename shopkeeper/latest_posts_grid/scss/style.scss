@@ -29,12 +29,22 @@
 	{
 		.latest_posts_grid_item
 		{
-			width: 50%;
-			float: left;
 
-			&:nth-child(2n+1)
+			@media all and (min-width: 640px)
 			{
-				clear: both;
+				width: 50%;
+				float: left;
+
+				&:nth-child(2n+1)
+				{
+					clear: both;
+				}
+			}
+
+			@media all and (max-width: 639px)
+			{
+				width: 100%;
+				float: left;
 			}
 		}
 	}
@@ -43,12 +53,32 @@
 	{
 		.latest_posts_grid_item
 		{
-			width: 33.333333%;
-			float: left;
-
-			&:nth-child(3n+1)
+			@media all and (min-width: 1024px)
 			{
-				clear: both;
+				width: 33.333333%;
+				float: left;
+
+				&:nth-child(3n+1)
+				{
+					clear: both;
+				}
+			}
+
+			@media all and (min-width: 640px) and (max-width: 1023px)
+			{
+				width: 50%;
+				float: left;
+
+				&:nth-child(2n+1)
+				{
+					clear: both;
+				}
+			}
+
+			@media all and (max-width: 639px)
+			{
+				width: 100%;
+				float: left;
 			}
 		}
 	}
@@ -57,12 +87,43 @@
 	{
 		.latest_posts_grid_item
 		{
-			width: 25%;
-			float: left;
-
-			&:nth-child(4n+1)
+			@media all and (min-width: 1240px)
 			{
-				clear: both;
+				width: 25%;
+				float: left;
+
+				&:nth-child(4n+1)
+				{
+					clear: both;
+				}
+			}
+
+			@media all and (min-width: 1024px) and (max-width: 1239px)
+			{
+				width: 33.333333%;
+				float: left;
+
+				&:nth-child(3n+1)
+				{
+					clear: both;
+				}
+			}
+
+			@media all and (min-width: 640px) and (max-width: 1023px)
+			{
+				width: 50%;
+				float: left;
+
+				&:nth-child(2n+1)
+				{
+					clear: both;
+				}
+			}
+
+			@media all and (max-width: 639px)
+			{
+				width: 100%;
+				float: left;
 			}
 		}
 	}
