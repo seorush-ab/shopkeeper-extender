@@ -13,7 +13,7 @@ if ( ! function_exists( 'getbowtied_socials_editor_assets' ) ) {
         wp_enqueue_script(
             'getbowtied-socials',
             plugins_url( 'block.js', __FILE__ ),
-            array( 'wp-blocks', 'wp-i18n', 'wp-element', 'jquery' )
+            array( 'wp-blocks', 'wp-components', 'wp-editor', 'wp-i18n', 'wp-element', 'jquery' )
         );
 
         wp_enqueue_style(
@@ -189,47 +189,4 @@ function getbowtied_render_frontend_socials($attributes) {
 	ob_end_clean();
 
 	return $output;
-}
-
-add_action('wp_ajax_getbowtied_render_backend_socials', 'getbowtied_render_backend_socials');
-function getbowtied_render_backend_socials() {
-    
-    $attributes = $_POST['attributes'];
-    $output = '';
-    $counter = 0;
-    
-    extract(shortcode_atts(array(
-        "items_align" => 'left',
-    ), $attributes));
-
-    $socials = get_sk_social_media_icons();
-
-    $output = 'el( "div", { key: "site-social-icons", className: "site-social-icons-shortcode" },';
-
-        $output .= 'el( "ul", { key: "site-social-icons-ul", className: "' . esc_html($items_align) . '" },';
-
-            foreach($socials as $social) {
-
-                if ( get_theme_mod($social['link']) && (get_theme_mod($social['link']) != "" ) ) {
-
-                    $output .= 'el( "li", { key: "site-social-icons-ul-li-' . $counter . '"},';
-
-                        $output .= 'el( "a", { key: "site-social-icons-ul-a-' . $counter . '", className: "social_media" },';
-                        
-                            $output .= 'el( "i", { key: "site-social-icons-ul-i-' . $counter . '", className: "' . $social['icon'] . '"}, ),';
-
-                        $output .= '),';
-
-                    $output .= '),';
-                }
-
-                $counter++;
-            }
-
-        $output .= '),';
-
-    $output .= ')';
-
-    echo json_encode($output);
-    exit;
 }

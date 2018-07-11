@@ -1,149 +1,49 @@
-.site-social-icons-shortcode {
-	vertical-align: middle;
-	clear:both;
-	margin: 5px -15px 15px -15px;
-	display: block;
-}
-
-.site-social-icons-shortcode ul {
-	list-style:none;
-	margin:0 !important;
-	padding:0 !important;
-    line-height: 1em;
-	font-size:24px !important;
-}
-
-.site-social-icons-shortcode ul.left {
-	text-align:left;
-}
-
-.site-social-icons-shortcode ul.center {
-	text-align:center;
-}
-
-.site-social-icons-shortcode ul.right {
-	text-align:right;
-}
-
-.site-social-icons-shortcode:before,
-.site-social-icons-shortcode:after,
-.site-social-icons-shortcode ul:before,
-.site-social-icons-shortcode ul:after
+.socials-wrapper-div
 {
-	content:" ";
-	display:table;
-	clear:both;
+	background-color: #f3f3f4;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    min-height: 170px;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
 }
 
-.site-social-icons-shortcode ul li {
-	padding: 5px 15px;
-	display:inline-block;
+.socials-wrapper-h4,
+.socials-wrapper-p
+{
+	font-family: BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif !important;
 }
 
-.site-social-icons-shortcode ul li a {
-    color: #222;
+.socials-wrapper-h4
+{
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    margin-bottom: 1em;
+    margin-top: 0;
 }
 
-.site-social-icons-shortcode ul li a i {
-    transition: opacity .2s;
+.dashicon.dashicons-share
+{
+    margin-right: 1ch;
+    margin-top: -6px;
 }
 
-.site-social-icons-shortcode ul li a:hover i {
-	opacity:.7;
+.dashicon.dashicons-share:before
+{
+	font-family: "dashicons";
+    font-size: 20px;
 }
 
-@font-face {
-  font-family: 'Shopkeeper-Icon-Font';
-  src:
-    url('shopkeeper-icon-font/Shopkeeper-Icon-Font.woff2?5z6oga') format('woff2'),
-    url('shopkeeper-icon-font/Shopkeeper-Icon-Font.woff?5z6oga') format('woff'),
-    url('shopkeeper-icon-font/Shopkeeper-Icon-Font.ttf?5z6oga') format('truetype'),
-    url('shopkeeper-icon-font/Shopkeeper-Icon-Font.svg?5z6oga#Shopkeeper-Icon-Font') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-[class^="spk-icon-"], [class*=" spk-icon-"] {
-  font-family: 'Shopkeeper-Icon-Font' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}s
-
-.spk-icon-naver-line-logo:before {
-  content: "\e91f";
-}
-.spk-icon-wechat:before {
-  content: "\e924";
-}
-.spk-icon-rss:before {
-  content: "\e989";
-}
-.spk-icon-twitter:before {
-  content: "\e979";
-}
-.spk-icon-facebook-f:before {
-  content: "\e970";
-}
-.spk-icon-instagram:before {
-  content: "\e97b";
-}
-.spk-icon-tripadvisor:before {
-  content: "\e966";
-}
-.spk-icon-youtube:before {
-  content: "\e968";
-}
-.spk-icon-houzz:before {
-  content: "\e96b";
-}
-.spk-icon-google-plus:before {
-  content: "\e96c";
-}
-.spk-icon-foursquare:before {
-  content: "\e96f";
-}
-.spk-icon-behance:before {
-  content: "\e971";
-}
-.spk-icon-foursquare2:before {
-  content: "\e972";
-}
-.spk-icon-sina-weibo:before {
-  content: "\e973";
-}
-.spk-icon-skype:before {
-  content: "\e974";
-}
-.spk-icon-soundcloud:before {
-  content: "\e975";
-}
-.spk-icon-vk:before {
-  content: "\e97a";
-}
-.spk-icon-dribbble:before {
-  content: "\e97e";
-}
-.spk-icon-flickr:before {
-  content: "\e980";
-}
-.spk-icon-github:before {
-  content: "\e981";
-}
-.spk-icon-linkedin:before {
-  content: "\e985";
-}
-.spk-icon-pinterest:before {
-  content: "\e986";
-}
-.spk-icon-tumblr:before {
-  content: "\e988";
-}
-.spk-icon-vimeo:before {
-  content: "\e98a";
+.socials-wrapper-p
+{
+	overflow-wrap: break-word;
+	font-size: 13px !important;
+	margin-bottom: 0;
+    margin-top: 0;
+    color: #5d5d5d !important;
 }

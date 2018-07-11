@@ -1,14 +1,14 @@
-( function( blocks, i18n, element ) {
+( function( blocks, components, editor, i18n, element ) {
 
 	var el = element.createElement;
 
 	/* Blocks */
-	var registerBlockType   = wp.blocks.registerBlockType;
+	var registerBlockType   = blocks.registerBlockType;
 
-	var InspectorControls 	= wp.editor.InspectorControls;
-	var AlignmentToolbar	= wp.editor.AlignmentToolbar;
+	var AlignmentToolbar	= editor.AlignmentToolbar;
+	var BlockControls       = editor.BlockControls;
 
-	var TextControl 		= wp.components.TextControl;
+	var TextControl 		= components.TextControl;
 
 	/* Register Block */
 	registerBlockType( 'getbowtied/socials', {
@@ -20,48 +20,18 @@
 				type: 	 'string',
 				default: 'left'
 			},
-			render_socials: {
-				type: 'string',
-				default: '',
-			},
 		},
 
 		edit: function( props ) {
 
 			var attributes = props.attributes;
 
-			function getSocialMediaIcons( items_align ) {
-
-				items_align = items_align || attributes.items_align;
-
-				var data = {
-					action 		: 'getbowtied_render_backend_socials',
-					attributes  : { 'items_align' : items_align	}
-				};
-
-				jQuery.post( 'admin-ajax.php', data, function(response) { 
-					response = jQuery.parseJSON(response);
-					props.setAttributes( { render_socials: response } );
-				});	
-			}
-
 			return [
 				el(
-					InspectorControls,
+					BlockControls,
 					{ 
-						key: 'social-media-inspector'
+						key: 'social-media-controls'
 					},
-					el( 'div',
-						{ 
-							key: 'social-media-block-description',
-							className: 'socials-block-description'
-						},
-						el( 'hr',
-							{ 
-								key: 'social-media-block-description-hr' 
-							},
-						),
-					),
 					el(
 						AlignmentToolbar, 
 						{
@@ -69,13 +39,39 @@
 							value: attributes.items_align,
 							onChange: function( newAlignment ) {
 								props.setAttributes( { items_align: newAlignment } );
-								getSocialMediaIcons( newAlignment );
 							}
 						} 
 					),
 				),
-				eval( attributes.render_socials ),
-				attributes.render_socials == '' && getSocialMediaIcons( 'left' )	
+				el( 
+					'div',
+					{ 
+						key: 'socials-wrapper-div',
+						className: 'socials-wrapper-div'
+					},
+					el(
+						'h4',
+						{
+							key: 'socials-wrapper-h4',
+							className: 'socials-wrapper-h4',
+						},
+						el(
+							'span',
+							{
+								className: 'dashicon dashicons-share',
+							},
+						),
+						i18n.__('Social Media Icons')
+					),
+					el(
+						'p',
+						{
+							key: 'socials-wrapper-p',
+							className: 'socials-wrapper-p',
+						},
+						i18n.__('Setup profile links under Appearance > Customize > Social Media')
+					),
+				),
 			];
 		},
 
@@ -86,6 +82,8 @@
 
 } )(
 	window.wp.blocks,
+	window.wp.components,
+	window.wp.editor,
 	window.wp.i18n,
 	window.wp.element,
 	jQuery
