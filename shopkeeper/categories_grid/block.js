@@ -34,6 +34,10 @@
 				type: 'string',
 				default: 'asc'
 			},
+			size: {
+				type: 'string',
+				default: 'default'
+			},
 			hide_empty: {
 				type: 'boolean',
 				default: false
@@ -96,6 +100,23 @@
 								key: 'categories-grid-hr'
 							},
 						),
+					),
+					el(
+						SelectControl,
+						{
+							key: 'categories-grid-size',
+							options:
+								[
+									{ value: 'default',  label: 'Default' },
+									{ value: 'full', 	 label: 'Full' 	  },
+									{ value: 'wide',  	 label: 'Wide'	  },
+								],
+              				label: i18n.__( 'Grid Size' ),
+              				value: attributes.size,
+              				onChange: function( newSize ) {
+              					props.setAttributes( { size: newSize } );
+							},
+						}
 					),
 					el(
 						SelectControl,
