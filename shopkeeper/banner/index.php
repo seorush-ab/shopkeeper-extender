@@ -64,7 +64,7 @@ register_block_type( 'getbowtied/banner', array(
 		),
 		'bgColor'						=> array(
 			'type'						=> 'string',
-			'default'					=> '#F0EFEF',
+			'default'					=> '#f3f3f4',
 		),
 		'height'						=> array(
 			'type'						=> 'integer',
@@ -94,7 +94,7 @@ function getbowtied_render_banner( $attributes ) {
 		'subtitleColor' 		=> '#fff',
 		'innerStrokeThickness' 	=> '2px',
 		'innerStrokeColor' 		=> '#fff',
-		'bgColor' 				=> '#000',
+		'bgColor' 				=> '#f3f3f4',
 		'imgURL' 				=> '',
 		'height' 				=> 'auto',
 		'separatorPadding' 		=> '5px',
