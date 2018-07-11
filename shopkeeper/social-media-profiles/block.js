@@ -13,7 +13,7 @@
 	/* Register Block */
 	registerBlockType( 'getbowtied/socials', {
 		title: i18n.__( 'Social Media Profiles' ),
-		icon: 'groups',
+		icon: 'share',
 		category: 'common',
 		attributes: {
 			items_align: {
