@@ -10,6 +10,7 @@
 	var BlockControls		= editor.BlockControls;
 	var MediaUpload			= editor.MediaUpload;
 
+	var SelectControl		= components.SelectControl;
 	var TextControl 		= components.TextControl;
 	var ToggleControl		= components.ToggleControl;
 	var RangeControl		= components.RangeControl;
@@ -78,6 +79,10 @@
 			height: {
 				type: 'number',
 				default: '300',
+			},
+			size: {
+				type: 'string',
+				default: 'default'
 			},
 			separatorPadding: {
 				type: 'number',
@@ -160,6 +165,23 @@
 	              				checked: attributes.blank,
 	              				onChange: function() {
 									props.setAttributes( { blank: ! attributes.blank } );
+								},
+							}
+						),
+						el(
+							SelectControl,
+							{
+								key: 'banner-size',
+								options:
+									[
+										{ value: 'default',  label: 'Default' },
+										{ value: 'full', 	 label: 'Full' 	  },
+										{ value: 'wide',  	 label: 'Wide'	  },
+									],
+	              				label: i18n.__( 'Banner Size' ),
+	              				value: attributes.size,
+	              				onChange: function( newSize ) {
+	              					props.setAttributes( { size: newSize } );
 								},
 							}
 						),
@@ -329,13 +351,15 @@
 					'div', 
 					{ 
 						key: 'shortcode_banner_simple_height',
-						className: 'shortcode_banner_simple_height banner_with_img',
+						id: 'banner-wrapper',
+						className: 'shortcode_banner_simple_height banner_with_img ' + attributes.size,
 					},
 					el(
 						MediaUpload,
 						{
 							key: 'banner-image-upload',
 							type: 'image',
+							formattingControls: [ 'align' ],
 							buttonProps: { className: 'components-button button button-large' },
 	              			value: attributes.imgID,
 							onSelect: function( img ) {
