@@ -169,21 +169,25 @@ function getbowtied_render_frontend_socials($attributes) {
 
     $socials = get_sk_social_media_icons();
 
-    $output = '<div class="site-social-icons-shortcode">';
-    $output .= '<ul class="' . esc_html($items_align) . '">';
+    $output = '<div class="wp-block-gtb-social-media">';
 
-    foreach($socials as $social) {
+        $output .= '<div class="site-social-icons-shortcode">';
+        $output .= '<ul class="' . esc_html($items_align) . '">';
 
-    	if ( (isset($shopkeeper_theme_options[$social['link']])) && (trim($shopkeeper_theme_options[$social['link']]) != "" ) ) {
-    		$output .= '<li>';
-    		$output .= '<a class="social_media" target="_blank" href="' . esc_url($shopkeeper_theme_options[$social['link']]) . '">';
-            $output .= '<i class="' . $social['icon'] . '"></i>';
-    		$output .= '<span class="' . $social['icon'] . '"></span>';
-    		$output .= '</a></li>';
-    	}
-    }
+        foreach($socials as $social) {
 
-    $output .= '</ul>';
+        	if ( (isset($shopkeeper_theme_options[$social['link']])) && (trim($shopkeeper_theme_options[$social['link']]) != "" ) ) {
+        		$output .= '<li>';
+        		$output .= '<a class="social_media" target="_blank" href="' . esc_url($shopkeeper_theme_options[$social['link']]) . '">';
+                $output .= '<i class="' . $social['icon'] . '"></i>';
+        		$output .= '<span class="' . $social['icon'] . '"></span>';
+        		$output .= '</a></li>';
+        	}
+        }
+
+        $output .= '</ul>';
+        $output .= '</div>';
+
     $output .= '</div>';
 
 	ob_end_clean();

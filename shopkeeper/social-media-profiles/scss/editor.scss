@@ -1,4 +1,4 @@
-.socials-wrapper-div
+.wp-block-gtb-social-media
 {
 	background-color: #f3f3f4;
 	display: flex;
@@ -17,13 +17,13 @@
 	    margin-top: -6px;
 	}
 
-	.socials-wrapper-h4,
-	.socials-wrapper-p
+	.wp-block-gtb-social-media-h4,
+	.wp-block-gtb-social-media-p
 	{
 		font-family: BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif !important;
 	}
 
-	.socials-wrapper-h4
+	.wp-block-gtb-social-media-h4
 	{
 	    display: flex;
 	    justify-content: center;
@@ -38,7 +38,7 @@
 	    font-size: 20px;
 	}
 
-	.socials-wrapper-p
+	.wp-block-gtb-social-media-p
 	{
 		overflow-wrap: break-word;
 		font-size: 13px !important;

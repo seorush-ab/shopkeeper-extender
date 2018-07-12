@@ -46,14 +46,14 @@
 				el( 
 					'div',
 					{ 
-						key: 'socials-wrapper-div',
-						className: 'socials-wrapper-div'
+						key: 'wp-block-gtb-social-media',
+						className: 'wp-block-gtb-social-media'
 					},
 					el(
 						'h4',
 						{
-							key: 'socials-wrapper-h4',
-							className: 'socials-wrapper-h4',
+							key: 'wp-block-gtb-social-media-h4',
+							className: 'wp-block-gtb-social-media-h4',
 						},
 						el(
 							'span',
@@ -66,8 +66,8 @@
 					el(
 						'p',
 						{
-							key: 'socials-wrapper-p',
-							className: 'socials-wrapper-p',
+							key: 'wp-block-gtb-social-media-p',
+							className: 'wp-block-gtb-social-media-p',
 						},
 						i18n.__('Setup profile links under Appearance > Customize > Social Media')
 					),
