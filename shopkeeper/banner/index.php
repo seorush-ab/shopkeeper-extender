@@ -124,20 +124,21 @@ function getbowtied_render_banner( $attributes ) {
 	}
 	
 	$banner_simple_height = '
-		<div class="shortcode_banner_simple_height '.$banner_with_img.' ' . $align . '" '.$link_tab.'>
-			<div class="shortcode_banner_simple_height_inner">
-				<div class="shortcode_banner_simple_height_bkg" style="background-color:'.$bgColor.'; background-image:url('.$imgURL.')"></div>
-			
-				<div class="shortcode_banner_simple_height_inside" style="height:'.$height.'px; border: '.$innerStrokeThickness.'px solid '.$innerStrokeColor.'">
-					<div class="shortcode_banner_simple_height_content">
-						<div><h3 style="color:'.$titleColor.' !important">'. $title[0] .'</h3></div>
-						<div class="shortcode_banner_simple_height_sep" style="margin:'.$separatorPadding.'px auto; background-color:'.$separatorColor.';"></div>
-						<div><h4 style="color:'.$subtitleColor.' !important">'. $subtitle[0] .'</h4></div>
+		<div class="wp-block-gbt-banner">
+			<div class="shortcode_banner_simple_height '.$banner_with_img.' '.$align.'" '.$link_tab.'>
+				<div class="shortcode_banner_simple_height_inner">
+					<div class="shortcode_banner_simple_height_bkg" style="background-color:'.$bgColor.'; background-image:url('.$imgURL.')"></div>
+				
+					<div class="shortcode_banner_simple_height_inside" style="height:'.$height.'px; border: '.$innerStrokeThickness.'px solid '.$innerStrokeColor.'">
+						<div class="shortcode_banner_simple_height_content">
+							<div><h3 style="color:'.$titleColor.' !important">'. $title[0] .'</h3></div>
+							<div class="shortcode_banner_simple_height_sep" style="margin:'.$separatorPadding.'px auto; background-color:'.$separatorColor.';"></div>
+							<div><h4 style="color:'.$subtitleColor.' !important">'. $subtitle[0] .'</h4></div>
+						</div>
 					</div>
 				</div>
-			</div>';
-	
-	$banner_simple_height .= '</div>';
+			</div>
+		</div>';
 	
 	return $banner_simple_height;
 }

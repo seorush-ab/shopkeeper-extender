@@ -312,151 +312,158 @@
 				el(
 					'div', 
 					{ 
-						key: 'shortcode_banner_simple_height',
-						id: 'banner-wrapper',
-						className: 'shortcode_banner_simple_height banner_with_img ' + attributes.size,
+						key: 'wp-block-gbt-banner',
+						className: 'wp-block-gbt-banner',
 					},
 					el(
-						MediaUpload,
-						{
-							key: 'banner-image-upload',
-							type: 'image',
-							formattingControls: [ 'align' ],
-							buttonProps: { className: 'components-button button button-large' },
-	              			value: attributes.imgID,
-							onSelect: function( img ) {
-								props.setAttributes( {
-									imgID: img.id,
-									imgURL: img.url,
-									imgAlt: img.alt,
-								} );
-							},
-	              			render: function( img ) { 
-	              				return [
-		              				! attributes.imgID && el(
-		              					Button, 
-		              					{ 
-		              						key: 'banner-add-image-button',
-		              						className: 'button add-image',
-		              						onClick: img.open
-		              					},
-		              					i18n.__( 'Add Image' )
-	              					), 
-	              					!! attributes.imgID && el(
-	              						Button, 
-										{
-											key: 'banner-remove-image-button',
-											className: 'button remove-image',
-											onClick: function() {
-												img.close;
-												props.setAttributes({
-									            	imgID: null,
-									            	imgURL: null,
-									            	imgAlt: null,
-									            });
-											}
-										},
-										i18n.__( 'Remove Image' )
-									), 
-	              				];
-	              			},
-						},
-					),
-					el(
-						'div',
-						{
-							key: 'shortcode_banner_simple_height_inner',
-							className: 'shortcode_banner_simple_height_inner',
+						'div', 
+						{ 
+							key: 'shortcode_banner_simple_height',
+							id: 'banner-wrapper',
+							className: 'shortcode_banner_simple_height banner_with_img ' + attributes.size,
 						},
 						el(
-							'div',
+							MediaUpload,
 							{
-								key: 'shortcode_banner_simple_height_bkg',
-								className: 'shortcode_banner_simple_height_bkg',
-								style:
-								{
-									backgroundColor: attributes.bgColor,
-									backgroundImage: 'url(' + attributes.imgURL + ')'
+								key: 'banner-image-upload',
+								type: 'image',
+								formattingControls: [ 'align' ],
+								buttonProps: { className: 'components-button button button-large' },
+		              			value: attributes.imgID,
+								onSelect: function( img ) {
+									props.setAttributes( {
+										imgID: img.id,
+										imgURL: img.url,
+										imgAlt: img.alt,
+									} );
 								},
-							}
+		              			render: function( img ) { 
+		              				return [
+			              				! attributes.imgID && el(
+			              					Button, 
+			              					{ 
+			              						key: 'banner-add-image-button',
+			              						className: 'button add-image',
+			              						onClick: img.open
+			              					},
+			              					i18n.__( 'Add Image' )
+		              					), 
+		              					!! attributes.imgID && el(
+		              						Button, 
+											{
+												key: 'banner-remove-image-button',
+												className: 'button remove-image',
+												onClick: function() {
+													img.close;
+													props.setAttributes({
+										            	imgID: null,
+										            	imgURL: null,
+										            	imgAlt: null,
+										            });
+												}
+											},
+											i18n.__( 'Remove Image' )
+										), 
+		              				];
+		              			},
+							},
 						),
 						el(
 							'div',
 							{
-								key: 'shortcode_banner_simple_height_inside',
-								className: 'shortcode_banner_simple_height_inside',
-								style:
-								{
-									height: attributes.height + 'px',
-									border: attributes.innerStrokeThickness + 'px solid ' + attributes.innerStrokeColor
-								},
+								key: 'shortcode_banner_simple_height_inner',
+								className: 'shortcode_banner_simple_height_inner',
 							},
 							el(
 								'div',
 								{
-									key: 'shortcode_banner_simple_height_content',
-									className: 'shortcode_banner_simple_height_content',
+									key: 'shortcode_banner_simple_height_bkg',
+									className: 'shortcode_banner_simple_height_bkg',
+									style:
+									{
+										backgroundColor: attributes.bgColor,
+										backgroundImage: 'url(' + attributes.imgURL + ')'
+									},
+								}
+							),
+							el(
+								'div',
+								{
+									key: 'shortcode_banner_simple_height_inside',
+									className: 'shortcode_banner_simple_height_inside',
+									style:
+									{
+										height: attributes.height + 'px',
+										border: attributes.innerStrokeThickness + 'px solid ' + attributes.innerStrokeColor
+									},
 								},
 								el(
 									'div',
 									{
-										key: 'shortcode_banner_simple_height_content_div',
+										key: 'shortcode_banner_simple_height_content',
+										className: 'shortcode_banner_simple_height_content',
 									},
 									el(
-										RichText, 
+										'div',
 										{
-											key: 'banner-title',
-											style:
-											{ 
-												color: attributes.titleColor
-											},
-											className: 'banner-title',
-											formattingControls: [],
-											tagName: 'h3',
-											value: attributes.title,
-											placeholder: i18n.__( 'Add Title' ),
-											onChange: function( newTitle) {
-												props.setAttributes( { title: newTitle } );
-											}
-										}
-									),
-								),
-								el(
-									'div', 
-									{
-										key: 'shortcode_banner_simple_height_sep',
-										className: 'shortcode_banner_simple_height_sep',
-										style:
-										{
-											margin: attributes.separatorPadding + 'px auto',
-											backgroundColor: attributes.separatorColor
+											key: 'shortcode_banner_simple_height_content_div',
 										},
-									},
-								),
-								el(
-									'div',
-									{
-										key: 'shortcode_banner_simple_height_content_div2',
-									},
+										el(
+											RichText, 
+											{
+												key: 'banner-title',
+												style:
+												{ 
+													color: attributes.titleColor
+												},
+												className: 'banner-title',
+												formattingControls: [],
+												tagName: 'h3',
+												value: attributes.title,
+												placeholder: i18n.__( 'Add Title' ),
+												onChange: function( newTitle) {
+													props.setAttributes( { title: newTitle } );
+												}
+											}
+										),
+									),
 									el(
-										RichText, 
+										'div', 
 										{
-											key: 'banner-subtitle',
+											key: 'shortcode_banner_simple_height_sep',
+											className: 'shortcode_banner_simple_height_sep',
 											style:
 											{
-												color: attributes.subtitleColor
+												margin: attributes.separatorPadding + 'px auto',
+												backgroundColor: attributes.separatorColor
 											},
-											className: 'banner-subtitle',
-											tagName: 'h4',
-											value: attributes.subtitle,
-											formattingControls: [],
-											placeholder: i18n.__( 'Add Subtitle' ),
-											onChange: function( newSubtitle) {
-												props.setAttributes( { subtitle: newSubtitle } );
-											}
-										}
+										},
 									),
+									el(
+										'div',
+										{
+											key: 'shortcode_banner_simple_height_content_div2',
+										},
+										el(
+											RichText, 
+											{
+												key: 'banner-subtitle',
+												style:
+												{
+													color: attributes.subtitleColor
+												},
+												className: 'banner-subtitle',
+												tagName: 'h4',
+												value: attributes.subtitle,
+												formattingControls: [],
+												placeholder: i18n.__( 'Add Subtitle' ),
+												onChange: function( newSubtitle) {
+													props.setAttributes( { subtitle: newSubtitle } );
+												}
+											}
+										),
 
+									),
 								),
 							),
 						),
