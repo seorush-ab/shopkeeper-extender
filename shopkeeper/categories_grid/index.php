@@ -37,10 +37,6 @@ register_block_type( 'getbowtied/categories-grid', array(
 			'type'						=> 'string',
 			'default'					=> '',
 		),
-		'size'							=> array(
-			'type'						=> 'string',
-			'default'					=> 'default',
-		),
 		'number'						=> array(
 			'type'						=> 'integer',
 			'default'					=> 12,
@@ -57,6 +53,10 @@ register_block_type( 'getbowtied/categories-grid', array(
 			'type'						=> 'string',
 			'default'					=> '0',
 		),
+		'align'							=> array(
+			'type'						=> 'string',
+			'default'					=> 'center',
+		),
 	),
 
 	'render_callback' => 'getbowtied_render_frontend_categories_grid',
@@ -67,11 +67,11 @@ function getbowtied_render_frontend_categories_grid( $attributes ) {
 	extract( shortcode_atts( array(
 		'product_categories_selection'	=> 'auto',
 		'ids'							=> '',
-		'size'							=> 'default',
 		'number'     					=> 12,
 		'order'      					=> 'asc',
 		'hide_empty'				 	=> false,
-		'parent'     					=> '0'
+		'parent'     					=> '0',
+		'align'							=> 'center'
 	), $attributes ) );
 
 	if ( isset( $attributes[ 'ids' ] ) ) {
@@ -184,7 +184,7 @@ function getbowtied_render_frontend_categories_grid( $attributes ) {
 
 	woocommerce_reset_loop();
 
-	return '<div class="row"><div class="categories_grid ' . $size . '">' . ob_get_clean() . '</div></div>';
+	return '<div class="row"><div class="categories_grid ' . $align . '">' . ob_get_clean() . '</div></div>';
 }
 
 add_action('wp_ajax_getbowtied_render_frontend_categories_grid', 'getbowtied_render_backend_categories_grid');
