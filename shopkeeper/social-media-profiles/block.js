@@ -14,7 +14,7 @@
 	registerBlockType( 'getbowtied/socials', {
 		title: i18n.__( 'Social Media Profiles' ),
 		icon: 'share',
-		category: 'common',
+		category: 'shopkeeper',
 		attributes: {
 			items_align: {
 				type: 	 'string',

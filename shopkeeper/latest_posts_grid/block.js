@@ -41,7 +41,7 @@
 	registerBlockType( 'getbowtied/latest-posts-grid', {
 		title: i18n.__( 'Latest Posts Grid' ),
 		icon: 'media-document',
-		category: 'common',
+		category: 'shopkeeper',
 		attributes: {
 			number: {
 				type: 'number',

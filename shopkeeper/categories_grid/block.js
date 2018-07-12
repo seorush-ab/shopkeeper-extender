@@ -16,7 +16,7 @@
 	registerBlockType( 'getbowtied/categories-grid', {
 		title: i18n.__( 'Product Categories - Grid' ),
 		icon: 'grid-view',
-		category: 'common',
+		category: 'shopkeeper',
 		attributes: {
 			product_categories_selection: {
 				type: 'string',

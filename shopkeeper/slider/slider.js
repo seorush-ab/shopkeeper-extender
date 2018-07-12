@@ -20,7 +20,7 @@
 	registerBlockType( 'getbowtied/slider', {
 		title: i18n.__( 'Slider' ),
 		icon: 'slides',
-		category: 'common',
+		category: 'shopkeeper',
 		attributes: {
 			full_height: {
 				type: 'string',

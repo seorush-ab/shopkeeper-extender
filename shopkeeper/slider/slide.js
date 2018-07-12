@@ -20,7 +20,7 @@
 	registerBlockType( 'getbowtied/slide', {
 		title: i18n.__( 'Slide' ),
 		icon: 'slides',
-		category: 'common',
+		category: 'shopkeeper',
 		parent: [ 'getbowtied/slider' ],
 		attributes: {
 		    imgURL: {

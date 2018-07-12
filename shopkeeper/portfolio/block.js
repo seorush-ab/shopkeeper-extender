@@ -34,7 +34,7 @@
 	registerBlockType( 'getbowtied/portfolio', {
 		title: i18n.__( 'Portfolio' ),
 		icon: 'format-gallery',
-		category: 'common',
+		category: 'shopkeeper',
 		attributes: {
 			itemsNumber: {
 				type: 'integer',

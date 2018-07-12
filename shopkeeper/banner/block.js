@@ -27,7 +27,7 @@
 	registerBlockType( 'getbowtied/banner', {
 		title: i18n.__( 'Banner' ),
 		icon: 'format-image',
-		category: 'common',
+		category: 'shopkeeper',
 		attributes: {
 			title: {
 				type: 'string',
