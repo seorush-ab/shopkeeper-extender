@@ -18,7 +18,10 @@
 			margin-left: 50%;
 			transform: translateX(-50%);
 		}
+	}
 
+	&:not(.full)
+	{
 		&.columns-2
 		{
 			.latest_posts_grid_item
