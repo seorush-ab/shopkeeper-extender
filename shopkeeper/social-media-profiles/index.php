@@ -169,7 +169,7 @@ function getbowtied_render_frontend_socials($attributes) {
 
     $socials = get_sk_social_media_icons();
 
-    $output = '<div class="wp-block-gtb-social-media">';
+    $output = '<div class="wp-block-gbt-social-media">';
 
         $output .= '<div class="site-social-icons-shortcode">';
         $output .= '<ul class="' . esc_html($items_align) . '">';

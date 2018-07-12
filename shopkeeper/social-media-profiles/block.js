@@ -46,14 +46,14 @@
 				el( 
 					'div',
 					{ 
-						key: 'wp-block-gtb-social-media',
-						className: 'wp-block-gtb-social-media'
+						key: 'wp-block-gbt-social-media',
+						className: 'wp-block-gbt-social-media'
 					},
 					el(
 						'h4',
 						{
-							key: 'wp-block-gtb-social-media-h4',
-							className: 'wp-block-gtb-social-media-h4',
+							key: 'wp-block-gbt-social-media-h4',
+							className: 'wp-block-gbt-social-media-h4',
 						},
 						el(
 							'span',
@@ -66,8 +66,8 @@
 					el(
 						'p',
 						{
-							key: 'wp-block-gtb-social-media-p',
-							className: 'wp-block-gtb-social-media-p',
+							key: 'wp-block-gbt-social-media-p',
+							className: 'wp-block-gbt-social-media-p',
 						},
 						i18n.__('Setup profile links under Appearance > Customize > Social Media')
 					),
