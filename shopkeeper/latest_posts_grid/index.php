@@ -48,9 +48,9 @@ register_block_type( 'getbowtied/latest-posts-grid', array(
 			'type'						=> 'string',
 			'default'					=> '',
 		),
-		'size'							=> array(
+		'align'							=> array(
 			'type'						=> 'string',
-			'default'					=> 'default',
+			'default'					=> 'center',
 		),
 		'columns'						=> array(
 			'type'						=> 'number',
@@ -66,14 +66,14 @@ function getbowtied_render_frontend_latest_posts_grid( $attributes ) {
 	extract( shortcode_atts( array(
 		'number'	=> '12',
 		'category'	=> 'All Categories',
-		'size'		=> 'default',
+		'align'		=> 'center',
 		'columns'	=> '3'
 	), $attributes ) );
 
 	ob_start();
 	?> 
     
-    <div class="latest_posts_grid_wrapper columns-<?php echo $columns; ?> <?php echo $size; ?>">
+    <div class="latest_posts_grid_wrapper columns-<?php echo $columns; ?> <?php echo $align; ?>">
 						
 		<?php
 

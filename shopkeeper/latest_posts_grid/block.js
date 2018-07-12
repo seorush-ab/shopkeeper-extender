@@ -42,6 +42,9 @@
 		title: i18n.__( 'Latest Posts Grid' ),
 		icon: 'media-document',
 		category: 'shopkeeper',
+		supports: {
+			align: [ 'center', 'wide', 'full' ],
+		},
 		attributes: {
 			number: {
 				type: 'number',
@@ -54,10 +57,6 @@
 			categories : {
 				type: 'array',
 				default: categories_list
-			},
-			size: {
-				type: 'string',
-				default: 'default'
 			},
 			columns: {
 				type: 'number',
@@ -101,23 +100,6 @@
 						key: 'latest-posts-inspector'
 					},
 					el('hr', {} ),
-					el(
-						SelectControl,
-						{
-							key: 'latest-posts-size',
-							options:
-								[
-									{ value: 'default',  label: 'Default' },
-									{ value: 'full', 	 label: 'Full' 	  },
-									{ value: 'wide',  	 label: 'Wide'	  },
-								],
-              				label: i18n.__( 'Size' ),
-              				value: attributes.size,
-              				onChange: function( newSize ) {
-              					props.setAttributes( { size: newSize } );
-							},
-						}
-					),
 					el(
 						RangeControl,
 						{
