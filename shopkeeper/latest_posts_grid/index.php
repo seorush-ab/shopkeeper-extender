@@ -72,54 +72,58 @@ function getbowtied_render_frontend_latest_posts_grid( $attributes ) {
 
 	ob_start();
 	?> 
+
+	<div class="wp-block-gbt-posts-grid">
     
-    <div class="latest_posts_grid_wrapper columns-<?php echo $columns; ?> <?php echo $align; ?>">
-						
-		<?php
-
-        $args = array(
-            'post_status' 		=> 'publish',
-            'post_type' 		=> 'post',
-            'category' 			=> $category,
-            'posts_per_page' 	=> $number
-        );
-        
-        $recentPosts = get_posts( $args );
-        
-        if ( !empty($recentPosts) ) : ?>
-                    
-            <?php foreach($recentPosts as $post) : ?>
-        
-                <?php $post_format = get_post_format($post->ID); ?>
-
-                <div class="latest_posts_grid_item <?php echo $post_format ? $post_format: 'standard'; ?> <?php if ( !has_post_thumbnail($post->ID)) : ?>no_thumb<?php endif; ?>">
-                    
-					<a class="latest_posts_grid_link" href="<?php echo get_post_permalink($post->ID); ?>">
-						<span class="latest_posts_grid_img_container">
-							<span class="latest_posts_grid_overlay"></span>
+	    <div class="latest_posts_grid_wrapper columns-<?php echo $columns; ?> <?php echo $align; ?>">
 							
-							<?php if ( has_post_thumbnail($post->ID)) :
-								$image_id = get_post_thumbnail_id($post->ID);
-								$image_url = wp_get_attachment_image_src($image_id,'large', true);
-							?>
-								<span class="latest_posts_grid_img" style="background-image: url(<?php echo esc_url($image_url[0]); ?> );"></span>
-							<?php else : ?>
-								<span class="latest_posts_grid_noimg"></span>
-							<?php endif;  ?>
+			<?php
 
-						</span><!--.from_the_blog_img_container-->
-						<span class="latest_posts_grid_title" href="<?php echo get_post_permalink($post->ID); ?>"><?php echo $post->post_title; ?></span>
-					</a>
-                    
-                </div>
-    
-            <?php endforeach; // end of the loop. ?>
-            
-        <?php
+	        $args = array(
+	            'post_status' 		=> 'publish',
+	            'post_type' 		=> 'post',
+	            'category' 			=> $category,
+	            'posts_per_page' 	=> $number
+	        );
+	        
+	        $recentPosts = get_posts( $args );
+	        
+	        if ( !empty($recentPosts) ) : ?>
+	                    
+	            <?php foreach($recentPosts as $post) : ?>
+	        
+	                <?php $post_format = get_post_format($post->ID); ?>
 
-        endif;
-        
-        ?> 
+	                <div class="latest_posts_grid_item <?php echo $post_format ? $post_format: 'standard'; ?> <?php if ( !has_post_thumbnail($post->ID)) : ?>no_thumb<?php endif; ?>">
+	                    
+						<a class="latest_posts_grid_link" href="<?php echo get_post_permalink($post->ID); ?>">
+							<span class="latest_posts_grid_img_container">
+								<span class="latest_posts_grid_overlay"></span>
+								
+								<?php if ( has_post_thumbnail($post->ID)) :
+									$image_id = get_post_thumbnail_id($post->ID);
+									$image_url = wp_get_attachment_image_src($image_id,'large', true);
+								?>
+									<span class="latest_posts_grid_img" style="background-image: url(<?php echo esc_url($image_url[0]); ?> );"></span>
+								<?php else : ?>
+									<span class="latest_posts_grid_noimg"></span>
+								<?php endif;  ?>
+
+							</span><!--.from_the_blog_img_container-->
+							<span class="latest_posts_grid_title" href="<?php echo get_post_permalink($post->ID); ?>"><?php echo $post->post_title; ?></span>
+						</a>
+	                    
+	                </div>
+	    
+	            <?php endforeach; // end of the loop. ?>
+	            
+	        <?php
+
+	        endif;
+	        
+	        ?> 
+
+		</div>
 
 	</div>
 	
@@ -144,54 +148,58 @@ function getbowtied_render_backend_latest_posts_grid() {
 		'columns'	=> '3'
 	), $attributes ) );
 
-	$output = 'el( "div", { key: "latest_posts_grid_wrapper", className: "latest_posts_grid_wrapper columns-' . $columns . '"},';
+	$output = 'el( "div", { key: "wp-block-gbt-posts-grid", className: "wp-block-gbt-posts-grid"},';
 
-		$args = array(
-            'post_status' 		=> 'publish',
-            'post_type' 		=> 'post',
-            'category' 			=> $category,
-            'posts_per_page' 	=> $number
-        );
-        
-        $recentPosts = get_posts( $args );
+		$output .= 'el( "div", { key: "latest_posts_grid_wrapper", className: "latest_posts_grid_wrapper columns-' . $columns . '"},';
 
-        if ( !empty($recentPosts) ) :
-                    
-            foreach($recentPosts as $post) :
-        
-                $output .= 'el( "div", { key: "latest_posts_grid_item_' . $counter . '", className: "latest_posts_grid_item" },';
+			$args = array(
+	            'post_status' 		=> 'publish',
+	            'post_type' 		=> 'post',
+	            'category' 			=> $category,
+	            'posts_per_page' 	=> $number
+	        );
+	        
+	        $recentPosts = get_posts( $args );
 
-                	$output .= 'el( "a", { key: "latest_posts_grid_link_' . $counter . '", className: "latest_posts_grid_link" },';
+	        if ( !empty($recentPosts) ) :
+	                    
+	            foreach($recentPosts as $post) :
+	        
+	                $output .= 'el( "div", { key: "latest_posts_grid_item_' . $counter . '", className: "latest_posts_grid_item" },';
 
-                		$output .= 'el( "span", { key: "latest_posts_grid_img_container_' . $counter . '", className: "latest_posts_grid_img_container"},';
-                		
-                			$output .= 'el( "span", { key: "latest_posts_grid_overlay_' . $counter . '", className: "latest_posts_grid_overlay" }, ),';
+	                	$output .= 'el( "a", { key: "latest_posts_grid_link_' . $counter . '", className: "latest_posts_grid_link" },';
 
-                			if ( has_post_thumbnail($post->ID)) :
-                				$image_id = get_post_thumbnail_id($post->ID);
-								$image_url = wp_get_attachment_image_src($image_id,'large', true);
+	                		$output .= 'el( "span", { key: "latest_posts_grid_img_container_' . $counter . '", className: "latest_posts_grid_img_container"},';
+	                		
+	                			$output .= 'el( "span", { key: "latest_posts_grid_overlay_' . $counter . '", className: "latest_posts_grid_overlay" }, ),';
 
-								$output .= 'el( "span", { key: "latest_posts_grid_img_' . $counter . '", className: "latest_posts_grid_img", style: { backgroundImage: "url(' . esc_url($image_url[0]) . ')" } } )';
+	                			if ( has_post_thumbnail($post->ID)) :
+	                				$image_id = get_post_thumbnail_id($post->ID);
+									$image_url = wp_get_attachment_image_src($image_id,'large', true);
 
-							else :
+									$output .= 'el( "span", { key: "latest_posts_grid_img_' . $counter . '", className: "latest_posts_grid_img", style: { backgroundImage: "url(' . esc_url($image_url[0]) . ')" } } )';
 
-								$output .= 'el( "span", { key: "latest_posts_grid_noimg_' . $counter . '", className: "latest_posts_grid_noimg"} )';
+								else :
 
-							endif;
+									$output .= 'el( "span", { key: "latest_posts_grid_noimg_' . $counter . '", className: "latest_posts_grid_noimg"} )';
 
-                		$output .= '),';
+								endif;
 
-						$output .= 'el( "span", { key: "latest_posts_grid_title_' . $counter . '", className: "latest_posts_grid_title"}, "' . $post->post_title . '" )';
+	                		$output .= '),';
 
-                	$output .= '),';
+							$output .= 'el( "span", { key: "latest_posts_grid_title_' . $counter . '", className: "latest_posts_grid_title"}, "' . $post->post_title . '" )';
 
-            	$output .= '),';
+	                	$output .= '),';
 
-				$counter++;
+	            	$output .= '),';
 
-			endforeach; 
+					$counter++;
 
-        endif;
+				endforeach; 
+
+	        endif;
+
+		$output .= ')';
 
 	$output .= ')';
 

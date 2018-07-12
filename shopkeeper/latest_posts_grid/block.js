@@ -40,7 +40,7 @@
 	/* Register Block */
 	registerBlockType( 'getbowtied/latest-posts-grid', {
 		title: i18n.__( 'Latest Posts Grid' ),
-		icon: 'media-document',
+		icon: 'grid-view',
 		category: 'shopkeeper',
 		supports: {
 			align: [ 'center', 'wide', 'full' ],
