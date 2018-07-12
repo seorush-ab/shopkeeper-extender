@@ -184,7 +184,7 @@ function getbowtied_render_frontend_categories_grid( $attributes ) {
 
 	woocommerce_reset_loop();
 
-	return '<div class="row"><div class="categories_grid ' . $align . '">' . ob_get_clean() . '</div></div>';
+	return '<div class="wp-block-gbt-categories-grid"><div class="categories_grid ' . $align . '">' . ob_get_clean() . '</div></div>';
 }
 
 add_action('wp_ajax_getbowtied_render_frontend_categories_grid', 'getbowtied_render_backend_categories_grid');
@@ -289,9 +289,9 @@ function getbowtied_render_backend_categories_grid() {
 
 		}
 
-	}
+	} 
 
-	$output_final = 'el("div",{className:"categories_grid",key:"categories_grid"},'.$output.'el("div",{className:"clearfix",key:"clearfix"}))'; 
+	$output_final = 'el("div",{key:"wp-block-gbt-categories-grid",className:"wp-block-gbt-categories-grid"},el("div",{className:"categories_grid",key:"categories_grid"},'.$output.'el("div",{className:"clearfix",key:"clearfix"})))'; 
 
 	woocommerce_reset_loop();
 

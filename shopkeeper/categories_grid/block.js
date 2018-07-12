@@ -15,7 +15,7 @@
 	/* Register Block */
 	registerBlockType( 'getbowtied/categories-grid', {
 		title: i18n.__( 'Product Categories - Grid' ),
-		icon: 'grid-view',
+		icon: 'layout',
 		category: 'shopkeeper',
 		supports: {
 			align: [ 'center', 'wide', 'full' ],
