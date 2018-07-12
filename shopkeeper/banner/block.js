@@ -10,7 +10,6 @@
 	var BlockControls		= editor.BlockControls;
 	var MediaUpload			= editor.MediaUpload;
 
-	var SelectControl		= components.SelectControl;
 	var TextControl 		= components.TextControl;
 	var ToggleControl		= components.ToggleControl;
 	var RangeControl		= components.RangeControl;
@@ -28,6 +27,9 @@
 		title: i18n.__( 'Banner' ),
 		icon: 'format-image',
 		category: 'shopkeeper',
+		supports: {
+			align: [ 'center', 'wide', 'full' ],
+		},
 		attributes: {
 			title: {
 				type: 'string',
@@ -80,10 +82,6 @@
 				type: 'number',
 				default: '300',
 			},
-			size: {
-				type: 'string',
-				default: 'default'
-			},
 			separatorPadding: {
 				type: 'number',
 				default: '5'
@@ -92,10 +90,6 @@
 				type: 'string',
 				default: '#fff'
 			},
-			// alignment: {
-			// 	type: 'string',
-			// 	default: 'left'
-			// }
 		},
 
 		edit: function( props ) {
@@ -114,21 +108,6 @@
 			];
 
 			return [
-				// el(
-				// 	BlockControls,
-				// 	{
-				// 		key: 'banner-controls',
-				// 	},
-				// 	el(
-				// 		AlignmentToolbar,
-				// 		{
-				// 			value: attributes.alignment,
-				// 			onChange: function( newAlignment ) {
-				// 				props.setAttributes( { alignment: newAlignment } );
-				// 			}
-				// 		}
-				// 	)
-				// ),
 				el(
 					InspectorControls,
 					{ 
@@ -165,23 +144,6 @@
 	              				checked: attributes.blank,
 	              				onChange: function() {
 									props.setAttributes( { blank: ! attributes.blank } );
-								},
-							}
-						),
-						el(
-							SelectControl,
-							{
-								key: 'banner-size',
-								options:
-									[
-										{ value: 'default',  label: 'Default' },
-										{ value: 'full', 	 label: 'Full' 	  },
-										{ value: 'wide',  	 label: 'Wide'	  },
-									],
-	              				label: i18n.__( 'Banner Size' ),
-	              				value: attributes.size,
-	              				onChange: function( newSize ) {
-	              					props.setAttributes( { size: newSize } );
 								},
 							}
 						),

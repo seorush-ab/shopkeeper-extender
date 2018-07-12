@@ -70,10 +70,6 @@ register_block_type( 'getbowtied/banner', array(
 			'type'						=> 'integer',
 			'default'					=> 300,
 		),
-		'size'							=> array(
-			'type'						=> 'string',
-			'default'					=> 'default',
-		),
 		'separatorPadding'				=> array(
 			'type'						=> 'integer',
 			'default'					=> 5,
@@ -81,6 +77,10 @@ register_block_type( 'getbowtied/banner', array(
 		'separatorColor'				=> array(
 			'type'						=> 'string',
 			'default'					=> '#fff',
+		),
+		'align'							=> array(
+			'type'						=> 'string',
+			'default'					=> 'center',
 		),
 	),
 
@@ -101,9 +101,9 @@ function getbowtied_render_banner( $attributes ) {
 		'bgColor' 				=> '#f3f3f4',
 		'imgURL' 				=> '',
 		'height' 				=> 'auto',
-		'size'					=> 'default',
 		'separatorPadding' 		=> '5px',
-		'separatorColor' 		=> '#fff'
+		'separatorColor' 		=> '#fff',
+		'align'					=> 'center'
 	), $attributes));
 
 	$banner_with_img = '';
@@ -124,7 +124,7 @@ function getbowtied_render_banner( $attributes ) {
 	}
 	
 	$banner_simple_height = '
-		<div class="shortcode_banner_simple_height '.$banner_with_img.' ' . $size .'" '.$link_tab.'>
+		<div class="shortcode_banner_simple_height '.$banner_with_img.' ' . $align . '" '.$link_tab.'>
 			<div class="shortcode_banner_simple_height_inner">
 				<div class="shortcode_banner_simple_height_bkg" style="background-color:'.$bgColor.'; background-image:url('.$imgURL.')"></div>
 			
