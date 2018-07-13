@@ -20,6 +20,12 @@ if ( ! function_exists( 'getbowtied_slider_editor_assets' ) ) {
 			plugins_url( 'slider.js', __FILE__ ),
 			array( 'wp-blocks', 'wp-i18n', 'wp-element' )
 		);
+
+		wp_enqueue_style(
+			'getbowtied-slider',
+			plugins_url( 'css/editor.css', __FILE__ ),
+			array( 'wp-edit-blocks' )
+		);
 	}
 }
 
