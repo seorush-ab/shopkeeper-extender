@@ -4,7 +4,7 @@
 
 // Register Shopkeeper Block Category  
 add_filter( 'block_categories', function( $categories, $post ) {
-	if ( $post->post_type !== 'post' && $post->post_type !== 'page' ) {
+	if ( $post->post_type !== 'post' && $post->post_type !== 'page' && $post->post_type !== 'portfolio' ) {
 		return $categories;
 	}
 	return array_merge(
