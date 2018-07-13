@@ -8,6 +8,7 @@
 	var InspectorControls 	= wp.editor.InspectorControls;
 	var InnerBlock 			= wp.editor.InnerBlocks;
 	var MediaUpload			= wp.editor.MediaUpload;
+	var RichText			= wp.editor.RichText;
 
 	var TextControl 		= wp.components.TextControl;
 	var SelectControl		= wp.components.SelectControl;
@@ -16,6 +17,7 @@
 	var Button 				= wp.components.Button;
 	var PanelColor			= wp.components.PanelColor;
 	var ColorPalette		= wp.components.ColorPalette;
+	var Tooltip				= wp.components.Tooltip;
 
 	/* Register Block */
 	registerBlockType( 'getbowtied/slide', {
@@ -84,42 +86,6 @@
 					{ 
 						key: 'slide-inspector'
 					},
-					el( 
-						PanelBody, 
-						{ 
-							key: 'slide-text-settings-panel',
-							title: 'Title & Description',
-							initialOpen: false,
-							style:
-							{
-							    borderBottom: '1px solid #e2e4e7'
-							}
-						},
-						el(
-							TextControl,
-							{
-								key: "slide-title-option",
-	              				label: i18n.__( 'Slide Title' ),
-	              				type: 'text',
-	              				value: attributes.title,
-	              				onChange: function( newTitle ) {
-									props.setAttributes( { title: newTitle } );
-								},
-							},
-						),
-						el(
-							TextControl,
-							{
-								key: "slide-description-option",
-	              				label: i18n.__( 'Slide Description' ),
-	              				type: 'text',
-	              				value: attributes.description,
-	              				onChange: function( newDescription ) {
-									props.setAttributes( { description: newDescription } );
-								},
-							},
-						),
-					),
 					el( 
 						PanelBody, 
 						{ 
@@ -207,6 +173,28 @@
 						),
 					),
 				),
+				el( 
+					'div',
+					{ 
+						key: 'wp-block-slide-title-wrapper',
+						className: 'wp-block-slide-title-wrapper'
+					},
+					el(
+						'h4',
+						{
+							key: 'wp-block-slide-title',
+							className: 'wp-block-slide-title',
+						},
+						el(
+							'span',
+							{
+								key: 'wp-block-slide-title-dashicon',
+								className: 'dashicon dashicons-slides',
+							},
+						),
+						i18n.__('Slide')
+					),
+				),
 				el(
 					MediaUpload,
 					{
@@ -223,40 +211,146 @@
 						},
               			render: function( img ) { 
               				return [
-	              				! attributes.imgID && el( Button, 
-	              					{ 
-	              						key: 'slide-add-image',
-	              						className: 'button add-image',
-	              						onClick: img.open
-	              					},
-	              					i18n.__( 'Upload Image' )
-              					), 
-              					!! attributes.imgID && el( Button, 
-									{
-										key: 'slide-remove-image',
-										className: 'button remove-image',
-										onClick: function() {
-											img.close;
-											props.setAttributes({
-								            	imgID: null,
-								            	imgURL: null,
-								            	imgAlt: null,
-								            });
-										}
+	              				! attributes.imgID && el( 
+									'div',
+									{ 
+										key: 'slide-add-media-button-wrapper',
+										className: 'slide-add-media-button-wrapper'
 									},
-									i18n.__( 'Remove Image' )
-								) 
+									el(
+										'h4',
+										{
+											key: 'slide-add-media-button-h4',
+											className: 'slide-add-media-button-h4',
+										},
+										el(
+											'span',
+											{
+												key: 'slide-add-media-button-dashicon',
+												className: 'dashicon dashicons-format-image',
+											},
+										),
+										i18n.__('Image')
+									),
+									el(
+										'p',
+										{
+											key: 'slide-add-media-button-p',
+											className: 'slide-add-media-button-p',
+										},
+										i18n.__('Upload an image or select a file from your library.')
+									),
+									el( Button, 
+		              					{ 
+		              						key: 'slide-add-image',
+		              						className: 'button add-image',
+		              						onClick: img.open
+		              					},
+		              					i18n.__( 'Add Image' )
+	              					),
+								),
+              					!! attributes.imgID && el( Tooltip,
+	              					{
+	              						key: 'slide-remove-media-button-wrapper',
+	              						className: 'slide-remove-media-button-wrapper',
+	              						text: 'Remove Image'
+	              					},
+              						el( Button, 
+										{
+											key: 'slide-remove-image',
+											className: 'button slide-remove-image dashicon dashicons-dismiss',
+											onClick: function() {
+												img.close;
+												props.setAttributes({
+									            	imgID: null,
+									            	imgURL: null,
+									            	imgAlt: null,
+									            });
+											}
+										},
+										i18n.__( '' )
+									),
+								),
               				]
               			},
 					},
 				),
-				!! attributes.imgID && el( 'img', 
+				!! attributes.imgID && el(
+					'div',
 					{
-						key: 'slide-render-image',
-						src: attributes.imgURL,
-						alt: attributes.imgAlt,
-					}
-				)
+						key: 'editor-slide-wrapper',
+						className: 'editor-slide-wrapper',
+						style:
+						{
+							backgroundColor: attributes.bg_color,
+							backgroundImage: 'url(' + attributes.imgURL + ')'
+						},
+					},
+					el(
+						'div',
+						{
+							key: 'editor-slide-container',
+							className: 'editor-slide-container',
+						},
+						el(
+							'div',
+							{
+								key: 'editor-slide-title',
+								className: 'editor-slide-title',
+							},
+							el(
+								RichText, 
+								{
+									key: 'slide-title',
+									style:
+									{ 
+										color: attributes.text_color
+									},
+									className: 'slide-title',
+									formattingControls: [],
+									tagName: 'h3',
+									value: attributes.title,
+									placeholder: i18n.__( 'Add Title' ),
+									onChange: function( newTitle) {
+										props.setAttributes( { title: newTitle } );
+									}
+								}
+							),
+						),
+						el(
+							'div',
+							{
+								key: 'editor-slide-description',
+								className: 'editor-slide-description',
+							},
+							el(
+								RichText, 
+								{
+									key: 'slide-description',
+									style:
+									{
+										color: attributes.text_color
+									},
+									className: 'slide-description',
+									tagName: 'h4',
+									value: attributes.description,
+									formattingControls: [],
+									placeholder: i18n.__( 'Add Subtitle' ),
+									onChange: function( newSubtitle) {
+										props.setAttributes( { description: newSubtitle } );
+									}
+								}
+							),
+						),
+					),
+				),
+				// !! attributes.imgID && el( 'img', 
+				// 	{
+				// 		key: 'slide-render-image',
+				// 		src: attributes.imgURL,
+				// 		alt: attributes.imgAlt,
+				// 	}
+				// )
 			];
 		},
 

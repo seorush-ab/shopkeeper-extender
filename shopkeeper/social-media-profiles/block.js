@@ -58,6 +58,7 @@
 						el(
 							'span',
 							{
+								key: 'wp-block-gbt-social-media-dashicon',
 								className: 'dashicon dashicons-share',
 							},
 						),

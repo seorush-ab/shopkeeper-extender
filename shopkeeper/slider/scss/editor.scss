@@ -13,3 +13,234 @@
 		max-width: 100%;
 	}
 }
+
+.wp-block-slider-title-wrapper
+{
+	background-color: #f8f9f9;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.7em 1em 1em;
+    min-height: 70px;
+    height: 70px;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    border-bottom: 1px solid #e6e6e6;
+
+    .dashicon.dashicons-slides
+	{
+	    margin-right: 1ch;
+	    margin-top: -6px;
+	}
+
+	.wp-block-slider-title
+	{
+		font-family: BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif !important;
+	    display: flex;
+	    justify-content: center;
+	    font-weight: 600;
+	    margin-bottom: 0;
+	    margin-top: 0;
+	}
+
+	.dashicon.dashicons-slides:before
+	{
+		font-family: "dashicons";
+	    font-size: 20px;
+	}
+}
+
+.slide-add-media-button-wrapper,
+.slide-remove-media-button-wrapper
+{
+	background-color: #f8f9f9;
+	text-align: left;
+
+	.button
+	{
+		margin: 1rem;
+	}
+}
+
+.wp-block-slide-title-wrapper
+{
+	background-color: #f8f9f9;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.3em 1em 1em;
+    min-height: 55px;
+    height: 55px;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    border-bottom: 1px solid #e6e6e6;
+
+	.wp-block-slide-title
+	{
+		font-family: BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif !important;
+	    display: flex;
+	    justify-content: center;
+	    font-weight: 600;
+	    margin-bottom: 1em;
+	    margin-top: 0;
+	}
+
+	.dashicon.dashicons-slides
+	{
+	    margin-right: 1ch;
+	    margin-top: -7px;
+	}
+
+	.dashicon.dashicons-slides:before
+	{
+		font-family: "dashicons";
+	    font-size: 20px;
+	}
+}
+
+.slide-add-media-button-wrapper
+{
+	background-color: #f8f9f9;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5em 1em 1em;
+    min-height: 170px;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+
+    .dashicon.dashicons-format-image
+	{
+	    margin-right: 1ch;
+	    margin-top: -6px;
+	}
+
+	.slide-add-media-button-h4,
+	.slide-add-media-button-p
+	{
+		font-family: BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif !important;
+	}
+
+	.slide-add-media-button-h4
+	{
+	    display: flex;
+	    justify-content: center;
+	    font-weight: 600;
+	    margin-bottom: 1em;
+	    margin-top: 0;
+	}
+
+	.dashicon.dashicons-format-image:before
+	{
+		font-family: "dashicons";
+	    font-size: 20px;
+	}
+
+	.slide-add-media-button-p
+	{
+		overflow-wrap: break-word;
+		font-size: 13px !important;
+		margin-bottom: 0;
+	    margin-top: 0;
+	    color: #5d5d5d !important;
+	}
+}
+
+.slide-remove-image
+{
+	z-index: 999;
+
+	&.dashicon.dashicons-dismiss
+	{
+	    margin-right: 1ch;
+	    margin-top: -6px;
+	}
+
+	&.dashicon.dashicons-dismiss:before
+	{
+		font-family: "dashicons";
+	    font-size: 20px;
+	}
+
+	background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    position: absolute;
+    right: 0;
+    top: 75px;
+    color: #f8f9f9 !important;
+}
+
+.editor-slide-wrapper
+{
+    height: 300px;
+    background-size: cover;
+    display: table;
+    width: 100%;
+
+    .editor-slide-container
+	{
+		display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+
+		position: relative;
+	}
+
+	.editor-slide-title
+	{
+		margin-bottom: 10px;
+
+		h3
+		{
+			font-family: BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif !important;
+			font-size: 14px;
+			font-weight: normal;
+		}
+	}
+
+	.editor-slide-description h4
+	{
+		font-family: BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif !important;
+		font-size: 24px;
+	}
+}
+
+.editor-block-list__block[data-type="getbowtied/slider"]
+{
+	.editor-inner-blocks
+	{
+		.editor-block-list__block
+		{
+			.slide-remove-image,
+			.slide-add-media-button-wrapper,
+			.editor-slide-wrapper
+			{
+				display: none;
+			}
+		}
+	}
+
+	.editor-inner-blocks
+	{
+		.editor-block-list__block.is-selected
+		{
+			.slide-remove-image,
+			.slide-add-media-button-wrapper
+			{
+				display: block;
+			}
+
+			.editor-slide-wrapper
+			{
+				display: table;
+			}
+		}
+	}
+}

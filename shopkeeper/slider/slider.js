@@ -169,8 +169,27 @@
 						),
 					),
 				),
-				el( 'div', { key: 'block-description', className: 'components-block-description' }, // A brief description of our block in the inspector.
-					el( 'b', { key: 'block-description-b', className: 'components-block-description' }, i18n.__( 'Slider' ) ),
+				el( 
+					'div',
+					{ 
+						key: 'wp-block-slider-title-wrapper',
+						className: 'wp-block-slider-title-wrapper'
+					},
+					el(
+						'h4',
+						{
+							key: 'wp-block-slider-title',
+							className: 'wp-block-slider-title',
+						},
+						el(
+							'span',
+							{
+								key: 'wp-block-slider-dashicon',
+								className: 'dashicon dashicons-slides',
+							},
+						),
+						i18n.__('Slider')
+					),
 				),
 				el(
 					InnerBlock,

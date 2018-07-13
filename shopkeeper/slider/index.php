@@ -54,12 +54,12 @@ register_block_type( 'getbowtied/slide', array(
             'type'			=> 'string',
 	    ),
 		'title' 			=> array(
-			'type'			=> 'string',
-			'default'		=> 'Slide Title',
+			'type'			=> 'array',
+			'default'		=> array('Slide Title'),
 		),
 		'description'		=> array(
-			'type'			=> 'string',
-			'default'		=> 'Slide Description',
+			'type'			=> 'array',
+			'default'		=> array('Slide Description'),
 		),
 		'text_color'		=> array(
 			'type'			=> 'string',
@@ -87,8 +87,8 @@ function getbowtied_render_slide( $attributes ) {
 		'imgURL'					=> '',
        	'imgID' 					=> null,
 	    'imgAlt'					=> '',
-		'title' 					=> '',
-		'description' 				=> '',
+		'title' 					=> array('Slide Title'),
+		'description' 				=> array('Slide Description'),
 		'text_color'				=> '#000',
 		'button_text' 				=> '',
 		'button_url'				=> '',
@@ -97,7 +97,7 @@ function getbowtied_render_slide( $attributes ) {
 
 	if (!empty($title))
 	{
-		$title = '<p class="slide-title" style="color:'.$text_color.';">'.$title.'</p>';
+		$title = '<p class="slide-title" style="color:'.$text_color.';">'.$title[0].'</p>';
 	} else {
 		$title = "";
 	}
@@ -111,7 +111,7 @@ function getbowtied_render_slide( $attributes ) {
 
 	if (!empty($description))
 	{
-		$description = '<h2 class="slide-description" style="color:'.$text_color.';">'.$description.'</h2>';
+		$description = '<h2 class="slide-description" style="color:'.$text_color.';">'.$description[0].'</h2>';
 	} else {
 		$description = "";
 	}
