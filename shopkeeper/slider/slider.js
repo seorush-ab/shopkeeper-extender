@@ -7,12 +7,12 @@
 
 	var InspectorControls 	= wp.editor.InspectorControls;
 	var InnerBlock 			= wp.editor.InnerBlocks;
-	var MediaUpload			= wp.editor.MediaUpload;
 
-	var TextControl 		= wp.components.TextControl;
 	var SelectControl		= wp.components.SelectControl;
 	var ToggleControl		= wp.components.ToggleControl;
 	var Button 				= wp.components.Button;
+	var RangeControl		= wp.components.RangeControl;
+	var PanelBody			= wp.components.PanelBody;
 	var PanelColor			= wp.components.PanelColor;
 	var ColorPalette		= wp.components.ColorPalette;
 
@@ -21,18 +21,21 @@
 		title: i18n.__( 'Slider' ),
 		icon: 'slides',
 		category: 'shopkeeper',
+		supports: {
+			align: [ 'center', 'wide', 'full' ],
+		},
 		attributes: {
 			full_height: {
 				type: 'string',
-				default: 'no'
+				default: 'custom'
 			},
 			custom_desktop_height: {
-				type: 'string',
-				default: '800px',
+				type: 'number',
+				default: '800',
 			},
 			custom_mobile_height: {
-				type: 'string',
-				default: '600px'
+				type: 'number',
+				default: '600'
 			},
 			slide_numbers: {
 				type: 'boolean',
@@ -48,75 +51,122 @@
 
 			var attributes = props.attributes;
 
+			var colors = [
+				{ name: 'red', 				color: '#d02e2e' },
+				{ name: 'orange', 			color: '#f76803' },
+				{ name: 'yellow', 			color: '#fbba00' },
+				{ name: 'green', 			color: '#43d182' },
+				{ name: 'blue', 			color: '#2594e3' },
+				{ name: 'light-gray', 		color: '#eeeeee' },
+				{ name: 'dark-gray', 		color: '#abb7c3' },
+				{ name: 'black', 			color: '#000' 	 },
+			];
+
 			return [
 				el(
 					InspectorControls,
-					{ key: 'inspector' },
-					el( 'div', { key: 'slider-block-description', className: 'components-block-description' }, // A brief description of our block in the inspector.
-						el( 'b', { key: 'slider-block-description-b' }, i18n.__( 'Slider - Settings' ) ),
-					),
-					el(
-						SelectControl,
-						{
-							key: "full-height-option",
-							options: [{value: 'no', label: 'Custom Height'}, {value: 'yes', label: 'Full Height'}],
-							label: i18n.__( 'Height' ),
-							value: attributes.full_height,
-							onChange: function( newSelection ) {
-								props.setAttributes( { full_height: newSelection } );
-							},
-						}
-					),
-					attributes.full_height == 'no' &&
-					el( 'div', { key: "custom-height-option", },
-						el(
-							TextControl,
+					{ 
+						key: 'slider-inspector'
+					},
+					el( 
+						PanelBody, 
+						{ 
+							key: 'slider-height-settings-panel',
+							title: 'Slider Height',
+							initialOpen: false,
+							style:
 							{
-								key: "desktop-height-option",
-	              				label: i18n.__( 'Custom Desktop Height' ),
-	              				type: 'text',
-	              				value: attributes.custom_desktop_height,
-	              				onChange: function( newNumber ) {
-									props.setAttributes( { custom_desktop_height: newNumber } );
-								},
-							},
-						),
-						el(
-							TextControl,
-							{
-								key: "mobile-height-option",
-	              				label: i18n.__( 'Custom Mobile Height' ),
-	              				type: 'text',
-	              				value: attributes.custom_mobile_height,
-	              				onChange: function( newNumber ) {
-									props.setAttributes( { custom_mobile_height: newNumber } );
-								},
-							},
-						),
-					),
-					el(
-						ToggleControl,
-						{
-							key: "slide-numbers-toggle",
-              				label: i18n.__( 'Slide Numbers' ),
-              				checked: attributes.slide_numbers,
-              				onChange: function() {
-								props.setAttributes( { slide_numbers: ! attributes.slide_numbers } );
-							},
-						}
-					),
-					attributes.slide_numbers == true &&
-					el(
-						TextControl,
-						{
-							key: "slide-numbers-color-option",
-              				label: i18n.__( 'Color Slide Numbers' ),
-              				type: 'text',
-              				value: attributes.slide_numbers_color,
-              				onChange: function( newNumber ) {
-								props.setAttributes( { slide_numbers_color: newNumber } );
-							},
+							    borderBottom: '1px solid #e2e4e7'
+							}
 						},
+						el(
+							SelectControl,
+							{
+								key: "full-height-option",
+								options: [{value: 'custom', label: 'Custom Height'}, {value: 'full_height', label: 'Full Height'}],
+								label: i18n.__( 'Height' ),
+								value: attributes.full_height,
+								onChange: function( newSelection ) {
+									props.setAttributes( { full_height: newSelection } );
+								},
+							}
+						),
+						attributes.full_height == 'custom' &&
+						el( 'div', { key: "custom-height-option", },
+							el(
+								RangeControl,
+								{
+									key: "slider-desktop-height",
+									value: attributes.custom_desktop_height,
+									allowReset: true,
+									initialPosition: 800,
+									min: 100,
+									max: 1000,
+									label: i18n.__( 'Custom Desktop Height' ),
+									onChange: function( newNumber ) {
+										props.setAttributes( { custom_desktop_height: newNumber } );
+									},
+								}
+							),
+							el(
+								RangeControl,
+								{
+									key: "slider-mobile-height",
+									value: attributes.custom_mobile_height,
+									allowReset: true,
+									initialPosition: 600,
+									min: 100,
+									max: 1000,
+									label: i18n.__( 'Custom Mobile Height' ),
+									onChange: function( newNumber ) {
+										props.setAttributes( { custom_mobile_height: newNumber } );
+									},
+								}
+							),
+						),
+					),
+					el( 
+						PanelBody, 
+						{ 
+							key: 'slider-numbers-settings-panel',
+							title: 'Slider Numbers',
+							initialOpen: false,
+							style:
+							{
+							    borderBottom: '1px solid #e2e4e7'
+							}
+						},
+						el(
+							ToggleControl,
+							{
+								key: "slide-numbers-toggle",
+	              				label: i18n.__( 'Slide Numbers' ),
+	              				checked: attributes.slide_numbers,
+	              				onChange: function() {
+									props.setAttributes( { slide_numbers: ! attributes.slide_numbers } );
+								},
+							}
+						),
+						attributes.slide_numbers == true &&
+						el(
+							PanelColor,
+							{
+								key: 'slider-numbers-color-panel',
+								title: i18n.__( 'Slide Numbers Color' ),
+								colorValue: attributes.slide_numbers_color,
+							},
+							el(
+								ColorPalette, 
+								{
+									key: 'slider-numbers-color-pallete',
+									colors: colors,
+									value: attributes.slide_numbers_color,
+									onChange: function( newColor) {
+										props.setAttributes( { slide_numbers_color: newColor } );
+									},
+								} 
+							),
+						),
 					),
 				),
 				el( 'div', { key: 'block-description', className: 'components-block-description' }, // A brief description of our block in the inspector.
@@ -126,21 +176,51 @@
 					InnerBlock,
 					{
 						key: 'inner-block',
-						allowedBlockNames: [ 'getbowtied/slide' ],
-					},
-				),
-				el(
-					InnerBlock,
-					{
-						key: 'inner-block',
-						allowedBlockNames: [ 'getbowtied/slide' ],
+						allowedBlocksNames: [ 'getbowtied/slide' ],
 					},
 				),
 			];
 		},
 
 		save: function( props ) {
-			return '';//InnerBlock.Content;
+			attributes = props.attributes;
+			return el( 
+					'div',
+					{
+						key: 'wp-block-gbt-slider',
+						className: 'wp-block-gbt-slider'
+					},
+					el( 
+						'div',
+						{
+							key: 'shortcode_getbowtied_slider',
+							className: 'shortcode_getbowtied_slider swiper-container ' + attributes.full_height,
+							style:
+							{
+								height: attributes.custom_desktop_height + 'px'
+							}
+						},
+						el(
+							'div',
+							{
+								key: 'swiper-wrapper',
+								className: 'swiper-wrapper'
+							},
+							el( InnerBlock.Content, { key: 'slide-content' } )
+						),
+						!! attributes.slide_numbers && el(
+							'div',
+							{
+								key: 'shortcode-slider-pagination',
+								className: 'quickview-pagination shortcode-slider-pagination',
+								style:
+								{
+									color: attributes.slide_numbers_color
+								}
+							}
+						)
+					)
+				);
 		},
 	} );
 

@@ -15,7 +15,6 @@
 	var RangeControl		= components.RangeControl;
 	var ColorPalette		= components.ColorPalette;
 	var PanelBody			= components.PanelBody;
-	var PanelRow			= components.PanelRow;
 	var PanelColor			= components.PanelColor;
 	var Button				= components.Button;
 
