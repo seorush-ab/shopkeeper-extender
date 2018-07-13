@@ -229,7 +229,8 @@
 
 	.editor-inner-blocks
 	{
-		.editor-block-list__block.is-selected
+		.editor-block-list__block.is-selected,
+		.editor-block-list__block.is-typing
 		{
 			.slide-remove-image,
 			.slide-add-media-button-wrapper

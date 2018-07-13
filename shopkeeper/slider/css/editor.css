@@ -181,8 +181,11 @@
   display: none; }
 
 .editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-block-list__block.is-selected .slide-remove-image,
-.editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-block-list__block.is-selected .slide-add-media-button-wrapper {
+.editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-block-list__block.is-selected .slide-add-media-button-wrapper,
+.editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-block-list__block.is-typing .slide-remove-image,
+.editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-block-list__block.is-typing .slide-add-media-button-wrapper {
   display: block; }
 
-.editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-block-list__block.is-selected .editor-slide-wrapper {
+.editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-block-list__block.is-selected .editor-slide-wrapper,
+.editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-block-list__block.is-typing .editor-slide-wrapper {
   display: table; }
