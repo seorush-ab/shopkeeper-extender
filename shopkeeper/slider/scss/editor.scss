@@ -342,7 +342,8 @@
 			}
 		}
 
-		.editor-rich-text p
+		.editor-rich-text p,
+		.editor-default-block-appender__content
 		{
 			opacity: 0;
 		}

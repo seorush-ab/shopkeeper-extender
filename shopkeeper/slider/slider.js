@@ -108,21 +108,21 @@
 									},
 								}
 							),
-							el(
-								RangeControl,
-								{
-									key: "slider-mobile-height",
-									value: attributes.custom_mobile_height,
-									allowReset: true,
-									initialPosition: 600,
-									min: 100,
-									max: 1000,
-									label: i18n.__( 'Custom Mobile Height' ),
-									onChange: function( newNumber ) {
-										props.setAttributes( { custom_mobile_height: newNumber } );
-									},
-								}
-							),
+							// el(
+							// 	RangeControl,
+							// 	{
+							// 		key: "slider-mobile-height",
+							// 		value: attributes.custom_mobile_height,
+							// 		allowReset: true,
+							// 		initialPosition: 600,
+							// 		min: 100,
+							// 		max: 1000,
+							// 		label: i18n.__( 'Custom Mobile Height' ),
+							// 		onChange: function( newNumber ) {
+							// 			props.setAttributes( { custom_mobile_height: newNumber } );
+							// 		},
+							// 	}
+							// ),
 						),
 					),
 					el( 
