@@ -220,6 +220,10 @@
 .editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-block-list__block .slide-remove-image {
   display: none; }
 
+.editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-block-list__block:focus .editor-block-list__block-edit {
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+
 .editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-block-list__block.is-selected .slide-add-media-button-wrapper,
 .editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-block-list__block.is-selected .editor-slide-wrapper,
 .editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-block-list__block.is-typing .slide-add-media-button-wrapper,
@@ -260,6 +264,25 @@
 .editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-block-list__block.is-typing .slide-remove-image {
   display: block; }
 
+.editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-rich-text p {
+  opacity: 0; }
+
+.editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-block-list__empty-block-inserter {
+  left: 49%;
+  right: 50%;
+  top: 7px;
+  opacity: 1 !important;
+  display: block !important; }
+  .editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-block-list__empty-block-inserter button {
+    margin: 0; }
+
+.editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-default-block-appender {
+  max-width: 100%; }
+  .editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-default-block-appender > .editor-inserter {
+    display: none; }
+  .editor-block-list__block[data-type="getbowtied/slider"] .editor-inner-blocks .editor-default-block-appender .editor-default-block-appender__content {
+    margin-top: 0; }
+
 .editor-block-list__block[data-type="getbowtied/slide"] .editor-block-list__block-edit,
 .editor-block-list__block[data-type="getbowtied/slide"] .editor-block-list__block-edit:before {
   right: 0px !important;
@@ -275,4 +298,7 @@
   box-shadow: none !important; }
 
 .editor-block-list__block[data-type="getbowtied/slide"].is-selected .dashicon.dashicons-arrow-down:before {
+  content: '\f142'; }
+
+.editor-block-list__block[data-type="getbowtied/slide"].is-typing .dashicon.dashicons-arrow-down:before {
   content: '\f142'; }

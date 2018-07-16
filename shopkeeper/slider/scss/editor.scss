@@ -289,6 +289,14 @@
 
 	.editor-inner-blocks
 	{
+		.editor-block-list__block:focus
+		{
+			.editor-block-list__block-edit
+			{
+				box-shadow: none;
+			}
+		}
+
 		.editor-block-list__block.is-selected,
 		.editor-block-list__block.is-typing
 		{
@@ -329,6 +337,40 @@
 				display: block;
 			}
 		}
+
+		.editor-rich-text p
+		{
+			opacity: 0;
+		}
+
+		.editor-block-list__empty-block-inserter
+		{
+			left: 49%;
+			right: 50%;
+			top: 7px;
+			opacity: 1 !important;
+			display: block !important;
+
+			button
+			{
+				margin: 0;
+			}
+		}
+
+		.editor-default-block-appender
+		{
+			max-width:100%;
+
+			> .editor-inserter
+			{
+				display: none;
+			}
+
+			.editor-default-block-appender__content
+			{
+			    margin-top: 0;
+			}
+		}
 	}
 }
 
@@ -357,6 +399,14 @@
 	}
 
 	&.is-selected
+	{
+		.dashicon.dashicons-arrow-down:before
+		{
+			content: '\f142';
+	    }
+	}
+
+	&.is-typing
 	{
 		.dashicon.dashicons-arrow-down:before
 		{
