@@ -194,6 +194,13 @@
 						),
 						i18n.__('Slide')
 					),
+					el(
+						'span',
+						{
+							key: 'slide-add-media-button-dashicon',
+							className: 'dashicon dashicons-arrow-down',
+						},
+					),
 				),
 				el(
 					MediaUpload,
@@ -289,68 +296,68 @@
 					el(
 						'div',
 						{
-							key: 'editor-slide-container',
-							className: 'editor-slide-container',
+							key: 'editor-slide-content',
+							className: 'editor-slide-content',
 						},
 						el(
 							'div',
 							{
-								key: 'editor-slide-title',
-								className: 'editor-slide-title',
+								key: 'editor-slide-container',
+								className: 'editor-slide-container',
 							},
 							el(
-								RichText, 
+								'div',
 								{
-									key: 'slide-title',
-									style:
-									{ 
-										color: attributes.text_color
-									},
-									className: 'slide-title',
-									formattingControls: [],
-									tagName: 'h3',
-									value: attributes.title,
-									placeholder: i18n.__( 'Add Title' ),
-									onChange: function( newTitle) {
-										props.setAttributes( { title: newTitle } );
-									}
-								}
-							),
-						),
-						el(
-							'div',
-							{
-								key: 'editor-slide-description',
-								className: 'editor-slide-description',
-							},
-							el(
-								RichText, 
-								{
-									key: 'slide-description',
-									style:
+									key: 'editor-slide-title',
+									className: 'editor-slide-title',
+								},
+								el(
+									RichText, 
 									{
-										color: attributes.text_color
-									},
-									className: 'slide-description',
-									tagName: 'h4',
-									value: attributes.description,
-									formattingControls: [],
-									placeholder: i18n.__( 'Add Subtitle' ),
-									onChange: function( newSubtitle) {
-										props.setAttributes( { description: newSubtitle } );
+										key: 'slide-title',
+										style:
+										{ 
+											color: attributes.text_color
+										},
+										className: 'slide-title',
+										formattingControls: [],
+										tagName: 'h3',
+										value: attributes.title,
+										placeholder: i18n.__( 'Add Title' ),
+										onChange: function( newTitle) {
+											props.setAttributes( { title: newTitle } );
+										}
 									}
-								}
+								),
+							),
+							el(
+								'div',
+								{
+									key: 'editor-slide-description',
+									className: 'editor-slide-description',
+								},
+								el(
+									RichText, 
+									{
+										key: 'slide-description',
+										style:
+										{
+											color: attributes.text_color
+										},
+										className: 'slide-description',
+										tagName: 'h4',
+										value: attributes.description,
+										formattingControls: [],
+										placeholder: i18n.__( 'Add Subtitle' ),
+										onChange: function( newSubtitle) {
+											props.setAttributes( { description: newSubtitle } );
+										}
+									}
+								),
 							),
 						),
 					),
 				),
-				// !! attributes.imgID && el( 'img', 
-				// 	{
-				// 		key: 'slide-render-image',
-				// 		src: attributes.imgURL,
-				// 		alt: attributes.imgAlt,
-				// 	}
-				// )
 			];
 		},
 
