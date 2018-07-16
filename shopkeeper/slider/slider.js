@@ -1,4 +1,4 @@
-( function( blocks, i18n, element ) {
+( function( blocks, i18n, element, $ ) {
 
 	var el = element.createElement;
 

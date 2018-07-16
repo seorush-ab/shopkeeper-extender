@@ -16,7 +16,7 @@
 
 .wp-block-slider-title-wrapper
 {
-	background-color: #f8f9f9;
+	background-color: #f3f3f3;
 	display: flex;
     flex-direction: column;
     align-items: center;
@@ -298,6 +298,13 @@
 			}
 		}
 
+		.editor-block-list__layout .editor-block-list__block .editor-block-list__block-edit,
+		.editor-block-list__layout .editor-block-list__block .editor-block-list__block-edit:before
+		{
+			outline: 0 !important;
+			box-shadow: none !important;
+		}
+
 		.editor-block-list__block.is-selected,
 		.editor-block-list__block.is-typing
 		{
@@ -373,6 +380,22 @@
 
 .editor-block-list__block[data-type="getbowtied/slide"]
 {
+
+	>.editor-block-settings-menu
+	{	
+		right: -15px;
+	}
+
+	>.editor-block-mover
+	{
+		left: -15px;
+	}
+
+	>.editor-block-list__breadcrumb
+	{
+		right: 14px;
+	}
+
 	.editor-block-list__block-edit,
 	.editor-block-list__block-edit:before
 	{
