@@ -232,6 +232,10 @@
 
 .editor-block-list__block[data-type="getbowtied/slider"]
 {
+	> .editor-block-list__block-edit
+	{
+		margin-bottom: 65px;
+	}
 
 	.editor-inner-blocks
 	{
@@ -259,7 +263,8 @@
 		.editor-block-list__block
 		{
 			.slide-add-media-button-wrapper,
-			.editor-slide-wrapper
+			.editor-slide-wrapper,
+			.slide-remove-image
 			{
 				opacity: 0;
 				visibility: hidden;
@@ -275,14 +280,10 @@
 				}
 			}
 
-			.slide-add-media-button-wrapper
+			.slide-add-media-button-wrapper,
+			.editor-slide-wrapper
 			{
 				padding: 0;
-			}
-
-			.slide-remove-image
-			{
-				display: none;
 			}
 		}
 	}
@@ -301,7 +302,8 @@
 		.editor-block-list__block.is-typing
 		{
 			.slide-add-media-button-wrapper,
-			.editor-slide-wrapper
+			.editor-slide-wrapper,
+			.slide-remove-image
 			{
 				opacity: 1;
 			  	visibility: visible;
@@ -323,18 +325,13 @@
 
 			.editor-slide-wrapper
 			{
-				max-height: 300px;
-				height: 300px;
+				max-height: 310px;
+   				padding: 125px 0;
 			}
 
 			.slide-add-media-button-wrapper
 			{
 				max-height: 170px;
-			}
-
-			.slide-remove-image
-			{
-				display: block;
 			}
 		}
 
