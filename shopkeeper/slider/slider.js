@@ -33,17 +33,21 @@
 				type: 'number',
 				default: '800',
 			},
-			custom_mobile_height: {
-				type: 'number',
-				default: '600'
-			},
 			slide_numbers: {
 				type: 'boolean',
 				default: true
 			},
 			slide_numbers_color: {
 				type: 'string',
-				default: '#000'
+				default: '#fff'
+			},
+			nav_arrows: {
+				type: 'boolean',
+				default: true
+			},
+			nav_arrows_color: {
+				type: 'string',
+				default: '#fff'
 			},
 		},
 
@@ -72,7 +76,7 @@
 						PanelBody, 
 						{ 
 							key: 'slider-height-settings-panel',
-							title: 'Slider Height',
+							title: 'Height',
 							initialOpen: false,
 							style:
 							{
@@ -108,28 +112,13 @@
 									},
 								}
 							),
-							// el(
-							// 	RangeControl,
-							// 	{
-							// 		key: "slider-mobile-height",
-							// 		value: attributes.custom_mobile_height,
-							// 		allowReset: true,
-							// 		initialPosition: 600,
-							// 		min: 100,
-							// 		max: 1000,
-							// 		label: i18n.__( 'Custom Mobile Height' ),
-							// 		onChange: function( newNumber ) {
-							// 			props.setAttributes( { custom_mobile_height: newNumber } );
-							// 		},
-							// 	}
-							// ),
 						),
 					),
 					el( 
 						PanelBody, 
 						{ 
 							key: 'slider-numbers-settings-panel',
-							title: 'Slider Numbers',
+							title: 'Pagination',
 							initialOpen: false,
 							style:
 							{
@@ -140,7 +129,7 @@
 							ToggleControl,
 							{
 								key: "slide-numbers-toggle",
-	              				label: i18n.__( 'Slide Numbers' ),
+	              				label: i18n.__( 'Pagination Bullets' ),
 	              				checked: attributes.slide_numbers,
 	              				onChange: function() {
 									props.setAttributes( { slide_numbers: ! attributes.slide_numbers } );
@@ -152,7 +141,7 @@
 							PanelColor,
 							{
 								key: 'slider-numbers-color-panel',
-								title: i18n.__( 'Slide Numbers Color' ),
+								title: i18n.__( 'Pagination Bullets Color' ),
 								colorValue: attributes.slide_numbers_color,
 							},
 							el(
@@ -163,6 +152,49 @@
 									value: attributes.slide_numbers_color,
 									onChange: function( newColor) {
 										props.setAttributes( { slide_numbers_color: newColor } );
+									},
+								} 
+							),
+						),
+					),
+					el( 
+						PanelBody, 
+						{ 
+							key: 'slider-nav-arrows-settings-panel',
+							title: 'Navigation Arrows',
+							initialOpen: false,
+							style:
+							{
+							    borderBottom: '1px solid #e2e4e7'
+							}
+						},
+						el(
+							ToggleControl,
+							{
+								key: "slide-nav-arrows-toggle",
+	              				label: i18n.__( 'Navigation Arrows' ),
+	              				checked: attributes.nav_arrows,
+	              				onChange: function() {
+									props.setAttributes( { nav_arrows: ! attributes.nav_arrows } );
+								},
+							}
+						),
+						attributes.nav_arrows == true &&
+						el(
+							PanelColor,
+							{
+								key: 'slider-nav-arrows-color-panel',
+								title: i18n.__( 'Navigation Arrows Color' ),
+								colorValue: attributes.nav_arrows_color,
+							},
+							el(
+								ColorPalette, 
+								{
+									key: 'slider-nav-arrows-color-pallete',
+									colors: colors,
+									value: attributes.nav_arrows_color,
+									onChange: function( newColor) {
+										props.setAttributes( { nav_arrows_color: newColor } );
 									},
 								} 
 							),
@@ -226,6 +258,42 @@
 								className: 'swiper-wrapper'
 							},
 							el( InnerBlock.Content, { key: 'slide-content' } )
+						),
+						!! attributes.nav_arrows && el(
+							'div',
+							{
+								key: 'swiper-button-prev',
+								className: 'swiper-button-prev',
+								style:
+								{
+									color: attributes.nav_arrows_color
+								}
+							},
+							el(
+								'i',
+								{
+									key: 'spk-icon-left-arrow-thin-large',
+									className: 'spk-icon spk-icon-left-arrow-thin-large',
+								}
+							)
+						),
+						!! attributes.nav_arrows && el(
+							'div',
+							{
+								key: 'swiper-button-next',
+								className: 'swiper-button-next',
+								style:
+								{
+									color: attributes.nav_arrows_color
+								}
+							},
+							el(
+								'i',
+								{
+									key: 'spk-icon-right-arrow-thin-large',
+									className: 'spk-icon spk-icon-right-arrow-thin-large',
+								}
+							)
 						),
 						!! attributes.slide_numbers && el(
 							'div',

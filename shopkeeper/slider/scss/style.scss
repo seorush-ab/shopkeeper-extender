@@ -26,8 +26,25 @@
 		}
 	}
 
-	.swiper-pagination-bullet-active:after
+	.shortcode_getbowtied_slider .shortcode-slider-pagination
 	{
-		background-color: #000
+		.swiper-pagination-bullet
+		{
+			font-size: 15px;
+		}
+
+		.swiper-pagination-bullet:after,
+		.swiper-pagination-bullet-active:after
+		{
+			display: none !important;
+			content: none;
+			width: 0;
+			height: 0;
+		}
+
+		.swiper-pagination-bullet:before
+		{
+			content: '●';
+		}
 	}
 }

@@ -69,7 +69,7 @@ register_block_type( 'getbowtied/slide', array(
 		),
 		'text_color'		=> array(
 			'type'			=> 'string',
-			'default'		=> '#000',
+			'default'		=> '#fff',
 		),
 		'button_text'  		=> array(
 			'type'    		=> 'string',
@@ -81,7 +81,7 @@ register_block_type( 'getbowtied/slide', array(
 		),
 		'bg_color'			=> array(
 			'type'			=> 'string',
-			'default'		=> '#fff',
+			'default'		=> '#24282e',
 		),
 	),
 
