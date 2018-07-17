@@ -213,7 +213,7 @@
 	}
 }
 
-.editor-block-list__block[data-type="getbowtied/slider"]:not(.is-selected-parent)
+.editor-block-list__block[data-type="getbowtied/slider"]:not(.is-selected-parent):not(.is-typing)
 {
 	.editor-inner-blocks .editor-block-list__layout .editor-block-list__block:first-child
 	{
