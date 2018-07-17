@@ -110,6 +110,10 @@ register_block_type( 'getbowtied/slide', array(
 		'alignment'			=> array(
 			'type'			=> 'string',
 			'default'		=> 'center'
+		),
+		'button_toggle'  	=> array(
+			'type'			=> 'boolean',
+			'default'		=> true
 		)
 	),
 
@@ -133,7 +137,8 @@ function getbowtied_render_slide( $attributes ) {
 		'button_text_color'			=> '#fff',
 		'button_bg_color'			=> '#000',
 		'bg_color'					=> '#fff',
-		'alignment'					=> 'center'
+		'alignment'					=> 'center',
+		'button_toggle'				=> true
 	), $attributes));
 
 	switch ($alignment)
@@ -176,6 +181,15 @@ function getbowtied_render_slide( $attributes ) {
 		$button = "";
 	}
 
+	if (!$button_toggle && !empty($button_url))
+	{
+		$slide_link = '<a href="'.$button_url.'" class="fullslidelink"></a>';
+	}
+	else 
+	{
+		$slide_link = '';
+	}
+
 	$getbowtied_image_slide = '
 		
 		<div class="swiper-slide '.$class.'" 
@@ -185,6 +199,7 @@ function getbowtied_render_slide( $attributes ) {
 				-o-background-size: cover;
 				background-size: cover;
 				color: '.$text_color.'">
+			'.$slide_link.'
 			<div class="slider-content" data-swiper-parallax="-1000">
 				<div class="slider-content-wrapper">
 					'.$title.'

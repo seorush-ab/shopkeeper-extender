@@ -97,7 +97,7 @@
 	        alignment: {
 	        	type: 'string',
 	        	default: 'center'
-	        }
+	        },
 		},
 
 		edit: function( props ) {
@@ -152,7 +152,7 @@
 							{
 								key: "slide-title-font-family",
 								options: [{value: 'primary_font', label: 'Primary Font'}, {value: 'secondary_font', label: 'Secondary Font'}],
-								label: i18n.__( 'Title Font Family' ),
+								label: i18n.__( 'Title Font Family (preview in frontend)' ),
 								value: attributes.title_font,
 								onChange: function( newSelection ) {
 									props.setAttributes( { title_font: newSelection } );
@@ -179,7 +179,7 @@
 							{
 								key: "slide-description-font-family",
 								options: [{value: 'primary_font', label: 'Primary Font'}, {value: 'secondary_font', label: 'Secondary Font'}],
-								label: i18n.__( 'Description Font Family' ),
+								label: i18n.__( 'Description Font Family (preview in frontend)' ),
 								value: attributes.description_font,
 								onChange: function( newSelection ) {
 									props.setAttributes( { description_font: newSelection } );
@@ -249,6 +249,18 @@
 							}
 						},
 						el(
+							TextControl,
+							{
+								key: "slide-button-url-option",
+	              				label: i18n.__( 'URL' ),
+	              				type: 'text',
+	              				value: attributes.button_url,
+	              				onChange: function( newText ) {
+									props.setAttributes( { button_url: newText } );
+								},
+							},
+						),
+						el(
 							ToggleControl,
 							{
 								key: "slide-button-toggle",
@@ -259,19 +271,7 @@
 								},
 							}
 						),
-						el(
-							TextControl,
-							{
-								key: "slide-button-url-option",
-	              				label: i18n.__( 'Button URL' ),
-	              				type: 'text',
-	              				value: attributes.button_url,
-	              				onChange: function( newText ) {
-									props.setAttributes( { button_url: newText } );
-								},
-							},
-						),
-						el(
+						!! attributes.button_toggle && el(
 							PanelColor,
 							{
 								key: 'slide-button-text-color-panel',
@@ -290,7 +290,7 @@
 								} 
 							),
 						),
-						el(
+						!! attributes.button_toggle && el(
 							PanelColor,
 							{
 								key: 'slide-button-bg-color-panel',
@@ -452,7 +452,8 @@
 										key: 'slide-title',
 										style:
 										{ 
-											color: attributes.text_color
+											color: attributes.text_color,
+											fontSize: attributes.title_size + 'px'
 										},
 										className: 'slide-title',
 										formattingControls: [],
@@ -477,7 +478,8 @@
 										key: 'slide-description',
 										style:
 										{
-											color: attributes.text_color
+											color: attributes.text_color,
+											fontSize: attributes.description_size + 'px'
 										},
 										className: 'slide-description',
 										tagName: 'h5',
