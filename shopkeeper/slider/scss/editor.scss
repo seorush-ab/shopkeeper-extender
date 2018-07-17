@@ -29,10 +29,15 @@
     font-size: 13px;
     border-bottom: 1px solid #e6e6e6;
 
+    &:hover
+    {
+    	cursor: pointer;
+    }
+
     .dashicon.dashicons-slides
 	{
 	    margin-right: 1ch;
-	    margin-top: -6px;
+	    margin-top: -10px;
 	}
 
 	.wp-block-slider-title
@@ -42,13 +47,14 @@
 	    justify-content: center;
 	    font-weight: 600;
 	    margin-bottom: 0;
-	    margin-top: 0;
+	    margin-top: 3px;
+	    margin-left: -3px;
 	}
 
 	.dashicon.dashicons-slides:before
 	{
 		font-family: "dashicons";
-	    font-size: 20px;
+	    font-size: 26px;
 	}
 }
 
@@ -79,6 +85,11 @@
     font-size: 13px;
     border-bottom: 1px solid #e6e6e6;
 
+    &:hover
+    {
+    	cursor: pointer;
+    }
+
     .dashicon.dashicons-arrow-down
 	{
 		position: absolute;
@@ -103,13 +114,13 @@
 	    margin-top: 0;
 	}
 
-	.dashicon.dashicons-slides
+	.dashicon.dashicons-format-image
 	{
 	    margin-right: 1ch;
 	    margin-top: -7px;
 	}
 
-	.dashicon.dashicons-slides:before
+	.dashicon.dashicons-format-image:before
 	{
 		font-family: "dashicons";
 	    font-size: 20px;
@@ -118,13 +129,11 @@
 
 .slide-add-media-button-wrapper
 {
-	background-color: #f3f3f3;
-	display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5em 1em 1em;
-    width: 100%;
+	background: transparent;
+	position: absolute;
+	width: auto;
+    padding: 0.9rem 1rem;
+    max-height: 100px;
     text-align: center;
     font-size: 13px;
 
@@ -132,36 +141,6 @@
 	{
 	    margin-right: 1ch;
 	    margin-top: -6px;
-	}
-
-	.slide-add-media-button-h4,
-	.slide-add-media-button-p
-	{
-		font-family: BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif !important;
-	}
-
-	.slide-add-media-button-h4
-	{
-	    display: flex;
-	    justify-content: center;
-	    font-weight: 600;
-	    margin-bottom: 1em;
-	    margin-top: 0;
-	}
-
-	.dashicon.dashicons-format-image:before
-	{
-		font-family: "dashicons";
-	    font-size: 20px;
-	}
-
-	.slide-add-media-button-p
-	{
-		overflow-wrap: break-word;
-		font-size: 13px !important;
-		margin-bottom: 0;
-	    margin-top: 0;
-	    color: #5d5d5d !important;
 	}
 }
 
@@ -192,8 +171,11 @@
 
 .editor-slide-wrapper
 {
+	max-height: 325px;
+	padding: 125px 0;
     background-size: cover;
     width: 100%;
+    background-position: center center;
 
     .editor-slide-content
     {
@@ -227,6 +209,41 @@
 	{
 		font-family: BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif !important;
 		font-size: 24px;
+	}
+}
+
+.editor-block-list__block[data-type="getbowtied/slider"]:not(.is-selected-parent)
+{
+	.editor-inner-blocks .editor-block-list__layout .editor-block-list__block:first-child
+	{
+		.slide-add-media-button-wrapper,
+		.editor-slide-wrapper,
+		.slide-remove-image
+		{
+			opacity: 1;
+		  	visibility: visible;
+		  	transition: all 0.3s ease-in-out;
+
+		  	h3, h4
+			{
+				opacity: 1;
+		  		visibility: visible;
+		  		transition: all 0.3s ease-in-out;
+		  		max-height: 300px;
+			}
+		}
+
+		.editor-slide-wrapper
+		{
+			max-height: 325px;
+				padding: 125px 0;
+		    background-position: center center;
+		}
+
+		.slide-add-media-button-wrapper
+		{
+			max-height: 100px;
+		}
 	}
 }
 
@@ -280,7 +297,6 @@
 				}
 			}
 
-			.slide-add-media-button-wrapper,
 			.editor-slide-wrapper
 			{
 				padding: 0;
@@ -325,20 +341,16 @@
 				}
 			}
 
-			.slide-add-media-button-wrapper
-			{
-				padding: 1.5em 1em 1em;
-			}
-
 			.editor-slide-wrapper
 			{
-				max-height: 310px;
+				max-height: 325px;
    				padding: 125px 0;
+			    background-position: center center;
 			}
 
 			.slide-add-media-button-wrapper
 			{
-				max-height: 170px;
+				max-height: 100px;
 			}
 		}
 

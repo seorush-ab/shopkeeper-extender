@@ -49,7 +49,7 @@
 	        },
 	        text_color: {
 	        	type: 'string',
-	        	default: '#000'
+	        	default: '#fff'
 	        },
 	        button_text: {
 	        	type: 'string',
@@ -61,7 +61,7 @@
 	        },
 	        bg_color: {
 	        	type: 'string',
-	        	default: '#fff'
+	        	default: '#24282e'
 	        },
 		},
 
@@ -189,10 +189,10 @@
 							'span',
 							{
 								key: 'wp-block-slide-title-dashicon',
-								className: 'dashicon dashicons-slides',
+								className: 'dashicon dashicons-format-image',
 							},
 						),
-						i18n.__('Slide')
+						i18n.__('Image Slide')
 					),
 					el(
 						'span',
@@ -224,29 +224,6 @@
 										key: 'slide-add-media-button-wrapper',
 										className: 'slide-add-media-button-wrapper'
 									},
-									el(
-										'h4',
-										{
-											key: 'slide-add-media-button-h4',
-											className: 'slide-add-media-button-h4',
-										},
-										el(
-											'span',
-											{
-												key: 'slide-add-media-button-dashicon',
-												className: 'dashicon dashicons-format-image',
-											},
-										),
-										i18n.__('Image')
-									),
-									el(
-										'p',
-										{
-											key: 'slide-add-media-button-p',
-											className: 'slide-add-media-button-p',
-										},
-										i18n.__('Upload an image or select a file from your library.')
-									),
 									el( Button, 
 		              					{ 
 		              						key: 'slide-add-image',
@@ -282,7 +259,7 @@
               			},
 					},
 				),
-				!! attributes.imgID && el(
+				el(
 					'div',
 					{
 						key: 'editor-slide-wrapper',
