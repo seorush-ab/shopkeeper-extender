@@ -1,3 +1,77 @@
+.editor-block-list__block[data-type="getbowtied/categories-grid"][data-align="wide"],
+{
+  .categories_grid .category_1 .category_item,
+  .categories_grid .category_2 .category_item,
+  .categories_grid .category_4 .category_item,
+  .categories_grid .category_five_cat_1 .category_item,    
+  .categories_grid .category_five_cat_3 .category_item,
+  .categories_grid .category_five_cat_4 .category_item,
+  .categories_grid .category_four_cat_1 .category_item,
+  .categories_grid .category_three_cat_1 .category_item,
+  .categories_grid .category_two_cat_1 .category_item,
+  .categories_grid .category_two_cat_2 .category_item,
+  .categories_grid .category_one_cat_1 .category_item
+  {
+    height: 18.5rem;
+  }
+  
+  .categories_grid .category_3 .category_item,
+  .categories_grid .category_5 .category_item,
+  .categories_grid .category_6 .category_item,
+  .categories_grid .category_more_than_6 .category_item,
+  .categories_grid .category_five_cat_2 .category_item, 
+  .categories_grid .category_five_cat_5 .category_item,
+  .categories_grid .category_four_cat_2 .category_item,
+  .categories_grid .category_four_cat_3 .category_item,
+  .categories_grid .category_four_cat_4 .category_item,
+  .categories_grid .category_three_cat_2 .category_item,
+  .categories_grid .category_three_cat_3 .category_item
+  {
+    height: 8.4rem;
+  }
+  
+  .categories_grid .category_original_grid .category_item {
+    height: 3.6rem;
+  }
+}
+
+.editor-block-list__block[data-type="getbowtied/categories-grid"][data-align="full"]
+{
+  .categories_grid .category_1 .category_item,
+  .categories_grid .category_2 .category_item,
+  .categories_grid .category_4 .category_item,
+  .categories_grid .category_five_cat_1 .category_item,    
+  .categories_grid .category_five_cat_3 .category_item,
+  .categories_grid .category_five_cat_4 .category_item,
+  .categories_grid .category_four_cat_1 .category_item,
+  .categories_grid .category_three_cat_1 .category_item,
+  .categories_grid .category_two_cat_1 .category_item,
+  .categories_grid .category_two_cat_2 .category_item,
+  .categories_grid .category_one_cat_1 .category_item
+  {
+    height: 27.75rem;
+  }
+  
+  .categories_grid .category_3 .category_item,
+  .categories_grid .category_5 .category_item,
+  .categories_grid .category_6 .category_item,
+  .categories_grid .category_more_than_6 .category_item,
+  .categories_grid .category_five_cat_2 .category_item, 
+  .categories_grid .category_five_cat_5 .category_item,
+  .categories_grid .category_four_cat_2 .category_item,
+  .categories_grid .category_four_cat_3 .category_item,
+  .categories_grid .category_four_cat_4 .category_item,
+  .categories_grid .category_three_cat_2 .category_item,
+  .categories_grid .category_three_cat_3 .category_item
+  {
+    height: 12.6rem;
+  }
+  
+  .categories_grid .category_original_grid .category_item {
+    height: 5.4rem;
+  }
+}
+
 .wp-block-gbt-categories-grid
 {
   .categories_grid

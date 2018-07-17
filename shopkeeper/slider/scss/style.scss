@@ -4,4 +4,30 @@
 	{
 	    height: 100vh !important;
 	}
+
+	.shortcode_getbowtied_slider .swiper-slide .slider-content-wrapper
+	{
+		width: 90%;
+	}
+
+	&.alignwide
+	{
+		.shortcode_getbowtied_slider .swiper-slide .slider-content-wrapper
+		{
+    		width: 50%;
+		}
+	}
+
+	&.alignfull
+	{
+		.shortcode_getbowtied_slider .swiper-slide .slider-content-wrapper
+		{
+    		width: 50%;
+		}
+	}
+
+	.swiper-pagination-bullet-active:after
+	{
+		background-color: #000
+	}
 }
