@@ -63,6 +63,22 @@ register_block_type( 'getbowtied/slide', array(
 			'type'			=> 'array',
 			'default'		=> array('Slide Title'),
 		),
+		'title_font' 		=> array(
+			'type'			=> 'string',
+			'default'		=> 'primary_font',
+		),
+		'title_size' 		=> array(
+			'type'			=> 'integer',
+			'default'		=> '32',
+		),
+		'description_font' 	=> array(
+			'type'			=> 'string',
+			'default'		=> 'primary_font',
+		),
+		'description_size' 	=> array(
+			'type'			=> 'integer',
+			'default'		=> '14',
+		),
 		'description'		=> array(
 			'type'			=> 'array',
 			'default'		=> array('Slide Description'),
@@ -72,17 +88,29 @@ register_block_type( 'getbowtied/slide', array(
 			'default'		=> '#fff',
 		),
 		'button_text'  		=> array(
-			'type'    		=> 'string',
-			'default' 		=> '',
+			'type'    		=> 'array',
+			'default' 		=> array('Button Text'),
 		),
 		'button_url'		=> array(
 			'type'	  		=> 'string',
 			'default' 		=> '',
 		),
+		'button_text_color' => array(
+			'type'	  		=> 'string',
+			'default' 		=> '#fff',
+		),
+		'button_bg_color'   => array(
+			'type'	  		=> 'string',
+			'default' 		=> '#000',
+		),
 		'bg_color'			=> array(
 			'type'			=> 'string',
 			'default'		=> '#24282e',
 		),
+		'alignment'			=> array(
+			'type'			=> 'string',
+			'default'		=> 'center'
+		)
 	),
 
 	'render_callback' => 'getbowtied_render_slide',
@@ -95,15 +123,34 @@ function getbowtied_render_slide( $attributes ) {
 	    'imgAlt'					=> '',
 		'title' 					=> array('Slide Title'),
 		'description' 				=> array('Slide Description'),
+		'title_font'				=> 'primary_font',
+		'title_size'				=> '32',
+		'description_font'			=> 'primary_font',
+		'description_size'			=> '14',
 		'text_color'				=> '#000',
-		'button_text' 				=> '',
+		'button_text' 				=> array('Button Text'),
 		'button_url'				=> '',
+		'button_text_color'			=> '#fff',
+		'button_bg_color'			=> '#000',
 		'bg_color'					=> '#fff',
+		'alignment'					=> 'center'
 	), $attributes));
+
+	switch ($alignment)
+	{
+		case 'left':
+			$class = 'left-align';
+			break;
+		case 'right':
+			$class = 'right-align';
+			break;
+		case 'center':
+			$class = 'center-align';
+	}
 
 	if (!empty($title))
 	{
-		$title = '<p class="slide-title" style="color:'.$text_color.';">'.$title[0].'</p>';
+		$title = '<h1 class="slide-title '.$title_font.'" style="font-size:'.$title_size.'px;color:'.$text_color.';">'.$title[0].'</h1>';
 	} else {
 		$title = "";
 	}
@@ -117,21 +164,21 @@ function getbowtied_render_slide( $attributes ) {
 
 	if (!empty($description))
 	{
-		$description = '<h2 class="slide-description" style="color:'.$text_color.';">'.$description[0].'</h2>';
+		$description = '<p class="slide-description '.$description_font.'" style="font-size:'.$description_size.'px;color:'.$text_color.';">'.$description[0].'</p>';
 	} else {
 		$description = "";
 	}
 
 	if (!empty($button_text))
 	{
-		$button = '<a class="slide-button" style="border-color:rgb('.$text_color.'); color:rgb('.$text_color.');" href="'.$button_url.'">'.$button_text.'</a>';
+		$button = '<a class="slide-button" style="background-color:'.$button_bg_color.'; color:'.$button_text_color.';" href="'.$button_url.'">'.$button_text[0].'</a>';
 	} else {
 		$button = "";
 	}
 
 	$getbowtied_image_slide = '
 		
-		<div class="swiper-slide" 
+		<div class="swiper-slide '.$class.'" 
 		style=	"background: '.$bg_color.' url('.$imgURL.') center center no-repeat ;
 				-webkit-background-size: cover;
 				-moz-background-size: cover;

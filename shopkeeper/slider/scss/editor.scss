@@ -171,7 +171,7 @@
 
 .editor-slide-wrapper
 {
-	max-height: 325px;
+	max-height: 375px;
 	padding: 125px 0;
     background-size: cover;
     width: 100%;
@@ -180,7 +180,8 @@
     .editor-slide-content
     {
     	display: table;
-    	width: 100%;
+    	width: 80%;
+    	margin: auto;
     	height: 100%;
     }
 
@@ -195,7 +196,7 @@
 
 	.editor-slide-title
 	{
-		margin-bottom: 10px;
+		margin-bottom: 15px;
 
 		h3
 		{
@@ -218,7 +219,8 @@
 	{
 		.slide-add-media-button-wrapper,
 		.editor-slide-wrapper,
-		.slide-remove-image
+		.slide-remove-image,
+		.editor-slide-button
 		{
 			opacity: 1;
 		  	visibility: visible;
@@ -235,8 +237,8 @@
 
 		.editor-slide-wrapper
 		{
-			max-height: 325px;
-				padding: 125px 0;
+			max-height: 375px;
+			padding: 125px 0;
 		    background-position: center center;
 		}
 
@@ -279,9 +281,16 @@
 	{
 		.editor-block-list__block
 		{
+			.editor-block-toolbar
+			{
+    			left: 15px;
+				top: 69px;
+			}
+
 			.slide-add-media-button-wrapper,
 			.editor-slide-wrapper,
-			.slide-remove-image
+			.slide-remove-image,
+			.editor-slide-button
 			{
 				opacity: 0;
 				visibility: hidden;
@@ -326,7 +335,8 @@
 		{
 			.slide-add-media-button-wrapper,
 			.editor-slide-wrapper,
-			.slide-remove-image
+			.slide-remove-image,
+			.editor-slide-button
 			{
 				opacity: 1;
 			  	visibility: visible;
@@ -343,7 +353,7 @@
 
 			.editor-slide-wrapper
 			{
-				max-height: 325px;
+				max-height: 375px;
    				padding: 125px 0;
 			    background-position: center center;
 			}
@@ -407,6 +417,13 @@
 	>.editor-block-list__breadcrumb
 	{
 		right: 14px;
+	}
+
+	.slide-button-text
+	{
+		padding: 1rem;
+    	width: fit-content;
+    	margin: 20px auto 0 auto;
 	}
 
 	.editor-block-list__block-edit,

@@ -9,6 +9,8 @@
 	var InnerBlock 			= wp.editor.InnerBlocks;
 	var MediaUpload			= wp.editor.MediaUpload;
 	var RichText			= wp.editor.RichText;
+	var AlignmentToolbar	= wp.editor.AlignmentToolbar;
+    var BlockControls       = wp.editor.BlockControls;
 
 	var TextControl 		= wp.components.TextControl;
 	var SelectControl		= wp.components.SelectControl;
@@ -17,6 +19,7 @@
 	var Button 				= wp.components.Button;
 	var PanelColor			= wp.components.PanelColor;
 	var ColorPalette		= wp.components.ColorPalette;
+	var RangeControl		= wp.components.RangeControl;
 	var Tooltip				= wp.components.Tooltip;
 
 	/* Register Block */
@@ -43,9 +46,25 @@
 	        	type: 'string',
 	        	default: 'Slide Title',
 	        },
+	        title_size: {
+	        	type: 'number',
+	        	default: 32,
+	        },
+	        title_font: {
+	        	type: 'string',
+	        	default: 'primary_font',
+	        },
 	        description: {
 	        	type: 'string',
 	        	default: 'Slide Description'
+	        },
+	        description_size: {
+	        	type: 'number',
+	        	default: 14,
+	        },
+	        description_font: {
+	        	type: 'string',
+	        	default: 'primary_font',
 	        },
 	        text_color: {
 	        	type: 'string',
@@ -53,16 +72,32 @@
 	        },
 	        button_text: {
 	        	type: 'string',
-	        	default: ''
+	        	default: 'Button Text'
 	        },
 	        button_url: {
 	        	type: 'string',
-	        	default: ''
+	        	default: '#'
+	        },
+	        button_toggle: {
+	        	type: 'boolean',
+	        	default: true
+	        },
+	        button_text_color: {
+	        	type: 'string',
+	        	default: '#fff'
+	        },
+	        button_bg_color: {
+	        	type: 'string',
+	        	default: '#000'
 	        },
 	        bg_color: {
 	        	type: 'string',
 	        	default: '#24282e'
 	        },
+	        alignment: {
+	        	type: 'string',
+	        	default: 'center'
+	        }
 		},
 
 		edit: function( props ) {
@@ -86,6 +121,72 @@
 					{ 
 						key: 'slide-inspector'
 					},
+					el( 
+						PanelBody, 
+						{ 
+							key: 'slide-text-settings-panel',
+							title: 'Title & Description',
+							initialOpen: false,
+							style:
+							{
+							    borderBottom: '1px solid #e2e4e7'
+							}
+						},
+						el(
+							RangeControl,
+							{
+								key: "slide-title-font-size",
+								value: attributes.title_size,
+								allowReset: true,
+								initialPosition: 32,
+								min: 10,
+								max: 72,
+								label: i18n.__( 'Title Font Size' ),
+								onChange: function( newNumber ) {
+									props.setAttributes( { title_size: newNumber } );
+								},
+							}
+						),
+						el(
+							SelectControl,
+							{
+								key: "slide-title-font-family",
+								options: [{value: 'primary_font', label: 'Primary Font'}, {value: 'secondary_font', label: 'Secondary Font'}],
+								label: i18n.__( 'Title Font Family' ),
+								value: attributes.title_font,
+								onChange: function( newSelection ) {
+									props.setAttributes( { title_font: newSelection } );
+								},
+							}
+						),
+						el(
+							RangeControl,
+							{
+								key: "slide-description-font-size",
+								value: attributes.description_size,
+								allowReset: true,
+								initialPosition: 14,
+								min: 10,
+								max: 72,
+								label: i18n.__( 'Description Font Size' ),
+								onChange: function( newNumber ) {
+									props.setAttributes( { description_size: newNumber } );
+								},
+							}
+						),
+						el(
+							SelectControl,
+							{
+								key: "slide-description-font-family",
+								options: [{value: 'primary_font', label: 'Primary Font'}, {value: 'secondary_font', label: 'Secondary Font'}],
+								label: i18n.__( 'Description Font Family' ),
+								value: attributes.description_font,
+								onChange: function( newSelection ) {
+									props.setAttributes( { description_font: newSelection } );
+								},
+							}
+						),
+					),
 					el( 
 						PanelBody, 
 						{ 
@@ -148,16 +249,15 @@
 							}
 						},
 						el(
-							TextControl,
+							ToggleControl,
 							{
-								key: "slide-button-text-option",
-	              				label: i18n.__( 'Button Text' ),
-	              				type: 'text',
-	              				value: attributes.button_text,
-	              				onChange: function( newText ) {
-									props.setAttributes( { button_text: newText } );
+								key: "slide-button-toggle",
+	              				label: i18n.__( 'Slide Button' ),
+	              				checked: attributes.button_toggle,
+	              				onChange: function() {
+									props.setAttributes( { button_toggle: ! attributes.button_toggle } );
 								},
-							},
+							}
 						),
 						el(
 							TextControl,
@@ -170,6 +270,44 @@
 									props.setAttributes( { button_url: newText } );
 								},
 							},
+						),
+						el(
+							PanelColor,
+							{
+								key: 'slide-button-text-color-panel',
+								title: i18n.__( 'Button Text Color' ),
+								colorValue: attributes.text_color,
+							},
+							el(
+								ColorPalette, 
+								{
+									key: 'slide-button-text-color-palette',
+									colors: colors,
+									value: attributes.button_text_color,
+									onChange: function( newColor) {
+										props.setAttributes( { button_text_color: newColor } );
+									},
+								} 
+							),
+						),
+						el(
+							PanelColor,
+							{
+								key: 'slide-button-bg-color-panel',
+								title: i18n.__( 'Button Background Color' ),
+								colorValue: attributes.text_color,
+							},
+							el(
+								ColorPalette, 
+								{
+									key: 'slide-button-bg-color-palette',
+									colors: colors,
+									value: attributes.button_bg_color,
+									onChange: function( newColor) {
+										props.setAttributes( { button_bg_color: newColor } );
+									},
+								} 
+							),
 						),
 					),
 				),
@@ -260,6 +398,22 @@
 					},
 				),
 				el(
+					BlockControls,
+					{ 
+						key: 'slide-controls'
+					},
+					el(
+						AlignmentToolbar, 
+						{
+							key: 'slide-alignment',
+							value: attributes.alignment,
+							onChange: function( newAlignment ) {
+								props.setAttributes( { alignment: newAlignment } );
+							}
+						} 
+					),
+				),
+				el(
 					'div',
 					{
 						key: 'editor-slide-wrapper',
@@ -281,6 +435,10 @@
 							{
 								key: 'editor-slide-container',
 								className: 'editor-slide-container',
+								style:
+								{
+									textAlign: attributes.alignment
+								}
 							},
 							el(
 								'div',
@@ -298,7 +456,7 @@
 										},
 										className: 'slide-title',
 										formattingControls: [],
-										tagName: 'h3',
+										tagName: 'h1',
 										value: attributes.title,
 										placeholder: i18n.__( 'Add Title' ),
 										onChange: function( newTitle) {
@@ -322,12 +480,39 @@
 											color: attributes.text_color
 										},
 										className: 'slide-description',
-										tagName: 'h4',
+										tagName: 'h5',
 										value: attributes.description,
 										formattingControls: [],
 										placeholder: i18n.__( 'Add Subtitle' ),
 										onChange: function( newSubtitle) {
 											props.setAttributes( { description: newSubtitle } );
+										}
+									}
+								),
+							),
+							!! attributes.button_toggle && el(
+								'div',
+								{
+									key: 'editor-slide-button',
+									className: 'editor-slide-button',
+								},
+								el(
+									RichText, 
+									{
+										key: 'slide-button-text',
+										style:
+										{
+											color: attributes.button_text_color,
+											backgroundColor: attributes.button_bg_color,
+											float: attributes.alignment
+										},
+										className: 'slide-button-text',
+										tagName: 'h5',
+										value: attributes.button_text,
+										formattingControls: [],
+										placeholder: i18n.__( 'Button Text' ),
+										onChange: function( newText) {
+											props.setAttributes( { button_text: newText } );
 										}
 									}
 								),
