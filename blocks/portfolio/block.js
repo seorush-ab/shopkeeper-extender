@@ -35,6 +35,9 @@
 		title: i18n.__( 'Portfolio' ),
 		icon: 'format-gallery',
 		category: 'shopkeeper',
+		supports: {
+			align: [ 'center', 'wide', 'full' ],
+		},
 		attributes: {
 			itemsNumber: {
 				type: 'integer',
@@ -46,7 +49,7 @@
 			},
 			showFilters: {
 				type: 'boolean',
-				default: true,
+				default: false,
 			},
 			orderBy: {
 				type: 'string',
@@ -68,7 +71,7 @@
 				type: 'array',
 				default: []
 			},
-			render_portfolio: {
+			preview_grid: {
 				type: 'string',
 				default: '',
 			},
@@ -81,30 +84,18 @@
 				props.setAttributes( { categories: categories_list } );
 			}, 1000 );
 
-			function getPortfolioGrid( itemsNumber, category, orderBy, order, grid, itemsPerRow ) {
+			function getPreviewGrid( grid ) {
 
-				itemsNumber 	= itemsNumber 	|| attributes.itemsNumber;
-				category 		= category 		|| attributes.category;
-				orderBy 		= orderBy 	 	|| attributes.orderBy;
-				order 			= order 	 	|| attributes.order;
-				grid 			= grid 	 		|| attributes.grid;
-				itemsPerRow 	= itemsPerRow 	|| attributes.itemsPerRow;
+				grid = grid || attributes.grid;
 
 				var data = {
-					action 		: 'getbowtied_render_backend_portfolio',
-					attributes  : {
-						'itemsNumber' 		: itemsNumber,
-						'category'			: category,
-						'orderBy'			: orderBy,
-						'order'				: order,
-						'grid'				: grid,
-						'itemsPerRow' 		: itemsPerRow
-					}
+					action 		: 'getbowtied_get_preview_grid',
+					attributes  : { 'grid' : grid }
 				};
 
 				jQuery.post( 'admin-ajax.php', data, function(response) { 
 					response = jQuery.parseJSON(response);
-					props.setAttributes( { render_portfolio: response } );
+					props.setAttributes( { preview_grid: response } );
 				});	
 			}
 
@@ -130,7 +121,6 @@
 							value: attributes.itemsNumber,
 							onChange: function( newNumber ) {
 								props.setAttributes( { itemsNumber: newNumber } );
-								getPortfolioGrid( newNumber, null, null, null, null, null );
 							},
 						}
 					),
@@ -143,7 +133,6 @@
               				value: attributes.category,
               				onChange: function( newCategory ) {
               					props.setAttributes( { category: newCategory } );
-              					getPortfolioGrid( null, newCategory, null, null, null, null );
 							},
 						}
 					),
@@ -167,7 +156,6 @@
               				value: attributes.orderBy,
               				onChange: function( newOrderBy ) {
               					props.setAttributes( { orderBy: newOrderBy } );
-              					getPortfolioGrid( null, null, newOrderBy, null, null, null );
 							},
 						}
 					),
@@ -180,7 +168,6 @@
               				value: attributes.order,
               				onChange: function( newOrder ) {
               					props.setAttributes( { order: newOrder } );
-              					getPortfolioGrid( null, null, null, newOrder, null, null );
 							},
 						}
 					),
@@ -193,7 +180,7 @@
               				value: attributes.grid,
               				onChange: function( newGrid ) {
               					props.setAttributes( { grid: newGrid } );
-              					getPortfolioGrid( null, null, null, null, newGrid, null );
+              					getPreviewGrid( newGrid );
 							},
 						}
 					),
@@ -206,14 +193,26 @@
 							value: attributes.itemsPerRow,
 							onChange: function( newNumber ) {
 								props.setAttributes( { itemsPerRow: newNumber } );
-								getPortfolioGrid( null, null, null, null, null, newNumber );
 							},
 						}
 					),
 				),
-				el( 'h2', { key: 'block-title', className: 'block-title' }, i18n.__( 'Portfolio' ) ),
-				eval( attributes.render_portfolio ),
-				attributes.render_portfolio == '' && getPortfolioGrid( null, null, null, null, null, null )		
+				el(
+					'div',
+					{
+						key: 'wp-block-gbt-portfolio',
+						className: 'wp-block-gbt-portfolio',
+					},
+					el( 
+						'div',
+						{
+							key: 'portfolio-preview',
+							className: 'portfolio-preview ' + attributes.grid
+						},
+						eval( attributes.preview_grid ),
+						attributes.preview_grid == '' && getPreviewGrid( 'default' )
+					)
+				)
 			];
 		},
 		save: function( props ) {
