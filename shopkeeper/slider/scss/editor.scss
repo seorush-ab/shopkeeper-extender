@@ -171,28 +171,57 @@
 
 .editor-slide-wrapper
 {
-	max-height: 500px;
-	padding: 165px 0 175px;
+	max-height: 1000px;
     background-size: cover;
     width: 100%;
     background-position: center center;
 
     .editor-slide-content
     {
-    	display: table;
     	width: 80%;
+    	word-break: break-word;
     	margin: auto;
     	height: 100%;
+    	padding: 125px 0;
+
+    	h1, h5
+    	{
+    		line-height: 1;
+    	}
+
+    	.editor-slide-container
+    	{
+    		width: 70%;
+
+    		&.align-center
+    		{
+    			margin: auto; 
+
+    			.editor-slide-button .slide-button-text
+    			{
+    				margin: 20px auto 0;
+    			}
+    		}
+
+    		&.align-right
+    		{
+    			margin: 0 0 0 auto; 
+
+    			.editor-slide-button .slide-button-text
+    			{
+    				margin: 20px 0 0 auto;
+    			}
+    		}
+
+    		.editor-slide-description
+    		{
+    			h5
+    			{
+				    font-weight: normal;
+    			}
+    		}
+    	}
     }
-
-    .editor-slide-container
-	{
-		display: table-cell;
-		vertical-align: middle;
-		text-align: center;
-
-		position: relative;
-	}
 
 	.editor-slide-title
 	{
@@ -225,21 +254,11 @@
 			opacity: 1;
 		  	visibility: visible;
 		  	transition: all 0.3s ease-in-out;
-
-		  	h3, h4
-			{
-				opacity: 1;
-		  		visibility: visible;
-		  		transition: all 0.3s ease-in-out;
-		  		max-height: 300px;
-			}
 		}
 
 		.editor-slide-wrapper
 		{
-			max-height: 500px;
-			padding: 165px 0 175px;
-		    background-position: center center;
+			max-height: 1000px;
 		}
 
 		.slide-add-media-button-wrapper
@@ -296,19 +315,6 @@
 				visibility: hidden;
 				max-height: 0;
 				transition: all 0.3s ease-in-out;
-
-				h3, h4
-				{
-					opacity: 0;
-					visibility: hidden;
-					max-height: 0;
-					transition: all 0.3s ease-in-out;
-				}
-			}
-
-			.editor-slide-wrapper
-			{
-				padding: 0;
 			}
 		}
 	}
@@ -341,21 +347,11 @@
 				opacity: 1;
 			  	visibility: visible;
 			  	transition: all 0.3s ease-in-out;
-
-			  	h3, h4
-				{
-					opacity: 1;
-			  		visibility: visible;
-			  		transition: all 0.3s ease-in-out;
-			  		max-height: 300px;
-				}
 			}
 
 			.editor-slide-wrapper
 			{
-				max-height: 500px;
-   				padding: 165px 0 175px;
-			    background-position: center center;
+				max-height: 1000px;
 			}
 
 			.slide-add-media-button-wrapper
@@ -423,7 +419,7 @@
 	{
 		padding: 1rem;
     	width: fit-content;
-    	margin: 20px auto 30px auto;
+    	margin-top: 20px;
 	}
 
 	.editor-block-list__block-edit,

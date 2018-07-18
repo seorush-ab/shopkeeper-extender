@@ -434,7 +434,7 @@
 							'div',
 							{
 								key: 'editor-slide-container',
-								className: 'editor-slide-container',
+								className: 'editor-slide-container align-' + attributes.alignment,
 								style:
 								{
 									textAlign: attributes.alignment
@@ -506,7 +506,6 @@
 										{
 											color: attributes.button_text_color,
 											backgroundColor: attributes.button_bg_color,
-											float: attributes.alignment
 										},
 										className: 'slide-button-text',
 										tagName: 'h5',
