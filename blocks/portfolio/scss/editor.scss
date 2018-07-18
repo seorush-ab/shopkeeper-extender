@@ -6,3 +6,15 @@
     	width: 100%;
 	}
 }
+
+.editor-block-list__block[data-type="getbowtied/portfolio"][data-align="wide"],
+.editor-block-list__block[data-type="getbowtied/portfolio"][data-align="full"]
+{
+	.portfolio-preview
+	{
+		height: 100%;
+    	width: 75%;
+    	margin: auto;
+	}
+}
+
