@@ -24,6 +24,19 @@ if ( ! function_exists( 'getbowtied_socials_editor_assets' ) ) {
     }
 }
 
+add_action( 'enqueue_block_assets', 'getbowtied_socials_assets' );
+
+if ( ! function_exists( 'getbowtied_socials_assets' ) ) {
+    function getbowtied_socials_assets() {
+        
+        wp_enqueue_style(
+            'getbowtied-socials-css',
+            plugins_url( 'css/style.css', __FILE__ ),
+            array()
+        );
+    }
+}
+
 register_block_type( 'getbowtied/socials', array(
 	'attributes'     			=> array(
 		'items_align'			=> array(
