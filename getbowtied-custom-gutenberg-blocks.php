@@ -14,26 +14,24 @@
  * @author    GetBowtied
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+} // Exit if accessed directly
+
+if ( ! function_exists( 'is_plugin_active' ) ) {
+    require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+}
+
 /**
  * Load getbowtied blocks.
  */
 
 function gbt_gutenberg_blocks() {
 
-	switch( get_current_theme() ) {
-
-		case 'Shopkeeper':
-			require_once 'shopkeeper/index.php';
-			break;
-		case 'Mr. Tailor':
-			break;
-		case 'The Retailer':
-			break;
-		case 'Merchandiser':
-			break;
-		default:
-			add_action( 'admin_notices', 'theme_warning' );
-			break;
+	if( is_plugin_active( 'gutenberg/gutenberg.php' ) ) {
+		require_once 'blocks/index.php';
+	} else {
+		add_action( 'admin_notices', 'theme_warning' );
 	}
 }
 add_action( 'init', 'gbt_gutenberg_blocks' );
@@ -41,6 +39,6 @@ add_action( 'init', 'gbt_gutenberg_blocks' );
 function theme_warning() {
 
 	echo '<div class="message error woocommerce-admin-notice woocommerce-st-inactive woocommerce-not-configured">';
-	echo '<p>' . esc_html( 'GetBowtied Custom Gutenberg Blocks is enabled but not effective. Please activate a GetBowtied theme in order to work.', 'gbt-blocks' ) . '</p>';
+	echo '<p>' . esc_html( 'GetBowtied Custom Gutenberg Blocks is enabled but not effective. Please activate Gutenberg plugin in order to work.', 'gbt-blocks' ) . '</p>';
 	echo '</div>';
 }
