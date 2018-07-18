@@ -24,6 +24,19 @@ if ( ! function_exists( 'getbowtied_banner_editor_assets' ) ) {
 	}
 }
 
+add_action( 'enqueue_block_assets', 'getbowtied_banner_assets' );
+
+if ( ! function_exists( 'getbowtied_banner_assets' ) ) {
+	function getbowtied_banner_assets() {
+		
+		wp_enqueue_style(
+			'getbowtied-banner-css',
+			plugins_url( 'css/style.css', __FILE__ ),
+			array()
+		);
+	}
+}
+
 register_block_type( 'getbowtied/banner', array(
 	'attributes'      	=> array(
 		'title'							=> array(

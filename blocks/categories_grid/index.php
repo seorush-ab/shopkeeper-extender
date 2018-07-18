@@ -27,6 +27,19 @@ if ( ! function_exists( 'getbowtied_categories_grid_editor_assets' ) ) {
 	}
 }
 
+add_action( 'enqueue_block_assets', 'getbowtied_categories_grid_assets' );
+
+if ( ! function_exists( 'getbowtied_categories_grid_assets' ) ) {
+	function getbowtied_categories_grid_assets() {
+		
+		wp_enqueue_style(
+			'getbowtied-categories-grid-css',
+			plugins_url( 'css/style.css', __FILE__ ),
+			array()
+		);
+	}
+}
+
 register_block_type( 'getbowtied/categories-grid', array(
 	'attributes'      => array(
 		'product_categories_selection' 	=> array(
