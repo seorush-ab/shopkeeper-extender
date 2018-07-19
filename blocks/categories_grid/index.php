@@ -17,7 +17,7 @@ if ( ! function_exists( 'getbowtied_categories_grid_editor_assets' ) ) {
 		);
 
 		wp_enqueue_style(
-			'getbowtied-categories-grid-css',
+			'getbowtied-categories-grid-styles',
 			plugins_url( 'css/editor.css', __FILE__ ),
 			array( 'wp-edit-blocks' )
 		);

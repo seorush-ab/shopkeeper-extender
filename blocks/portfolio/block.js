@@ -36,7 +36,7 @@
 		icon: 'format-gallery',
 		category: 'shopkeeper',
 		supports: {
-			align: [ 'wide', 'full' ],
+			align: [ 'center', 'wide', 'full' ],
 		},
 		attributes: {
 			itemsNumber: {

@@ -17,7 +17,7 @@ if ( ! function_exists( 'getbowtied_socials_editor_assets' ) ) {
         );
 
         wp_enqueue_style(
-            'getbowtied-socials-css',
+            'getbowtied-socials-styles',
             plugins_url( 'css/editor.css', __FILE__ ),
             array( 'wp-edit-blocks' )
         );
