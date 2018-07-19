@@ -64,7 +64,7 @@
 				default: 'default',
 			},
 			itemsPerRow: {
-				type: 'integer',
+				type: 'number',
 				default: 3,
 			},
 			categories : {
@@ -189,6 +189,8 @@
 						{
 							key: 'portfolio-items-per-row',
 							type: 'number',
+							min: 2,
+							max: 5,
 							label: i18n.__( 'Items per Row' ),
 							value: attributes.itemsPerRow,
 							onChange: function( newNumber ) {

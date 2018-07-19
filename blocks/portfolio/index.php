@@ -62,11 +62,11 @@ register_block_type( 'getbowtied/portfolio', array(
 		),
 		'grid'							=> array(
 			'type'						=> 'string',
-			'default'					=> '',
+			'default'					=> 'default',
 		),
 		'itemsPerRow'					=> array(
-			'type'						=> 'integer',
-			'default'					=> 3,
+			'type'						=> 'number',
+			'default'					=> '3',
 		),
 		'align'							=> array(
 			'type'						=> 'string',
@@ -88,7 +88,7 @@ function getbowtied_render_frontend_portfolio( $attributes ) {
 		"orderBy" 					=> 'date',
 		"order" 					=> 'desc',
 		"grid" 						=> 'default',
-		"itemsPerRow" 				=> 3,
+		"itemsPerRow" 				=> '3',
 		"align"						=> 'center'
 	), $attributes));
 	ob_start();
@@ -138,7 +138,7 @@ function getbowtied_render_frontend_portfolio( $attributes ) {
 		?>
 	    
 	    <div class="wp-block-gbt-portfolio <?php echo $align; ?>">
-			<div class="portfolio-isotope-container<?php echo esc_html($items_per_row_class);?>">
+			<div class="portfolio-isotope-container<?php echo $items_per_row_class ;?>">
 		                
 		        <?php if ($category == "") : ?>
 		        <?php if ($showFilters) : ?>
