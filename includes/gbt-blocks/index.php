@@ -1,8 +1,7 @@
 <?php
 
-// Shopkeeper Custom Blocks
-
-// Register Shopkeeper Block Category  
+// Shopkeeper Custom Gutenberg Blocks
+ 
 add_filter( 'block_categories', function( $categories, $post ) {
 	if ( $post->post_type !== 'post' && $post->post_type !== 'page' && $post->post_type !== 'portfolio' ) {
 		return $categories;
