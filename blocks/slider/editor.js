@@ -13,7 +13,6 @@
 			}
 			block.addClass('clicked');
 		});
-
     }); 
 
 } )( jQuery );

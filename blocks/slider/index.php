@@ -23,7 +23,7 @@ if ( ! function_exists( 'getbowtied_slider_editor_assets' ) ) {
 
 		wp_enqueue_script(
 			'getbowtied-slider-settings',
-			plugins_url( 'settings.js', __FILE__ ),
+			plugins_url( 'editor.js', __FILE__ ),
 			array( 'jquery' )
 		);
 
@@ -44,6 +44,12 @@ if ( ! function_exists( 'getbowtied_slider_assets' ) ) {
 			'getbowtied-slider-css',
 			plugins_url( 'css/style.css', __FILE__ ),
 			array()
+		);
+
+		wp_enqueue_script(
+			'getbowtied-slider-js',
+			plugins_url( 'frontend.js', __FILE__ ),
+			array( 'jquery' )
 		);
 	}
 }

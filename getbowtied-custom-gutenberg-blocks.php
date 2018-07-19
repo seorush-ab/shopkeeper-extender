@@ -28,7 +28,12 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
 
 function gbt_gutenberg_blocks() {
 
-	if( is_plugin_active( 'gutenberg/gutenberg.php' ) ) {
+	$theme = wp_get_theme();
+	if ( $theme->template != 'shopkeeper') {
+		return;
+	}
+
+	if( is_plugin_active( 'gutenberg/gutenberg.php' ) || is_wp_version('>=', '5.0') ) {
 		require_once 'blocks/index.php';
 	} else {
 		add_action( 'admin_notices', 'theme_warning' );
@@ -41,4 +46,11 @@ function theme_warning() {
 	echo '<div class="message error woocommerce-admin-notice woocommerce-st-inactive woocommerce-not-configured">';
 	echo '<p>' . esc_html( 'GetBowtied Custom Gutenberg Blocks is enabled but not effective. Please activate Gutenberg plugin in order to work.', 'gbt-blocks' ) . '</p>';
 	echo '</div>';
+}
+
+function is_wp_version( $operator = '>', $version = '4.0' ) {
+
+	global $wp_version;
+
+	return version_compare( $wp_version, $version, $operator );
 }
