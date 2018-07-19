@@ -69,7 +69,7 @@ register_block_type( 'getbowtied/slide', array(
 		),
 		'title_size' 		=> array(
 			'type'			=> 'integer',
-			'default'		=> '32',
+			'default'		=> '73',
 		),
 		'description_font' 	=> array(
 			'type'			=> 'string',
@@ -77,7 +77,7 @@ register_block_type( 'getbowtied/slide', array(
 		),
 		'description_size' 	=> array(
 			'type'			=> 'integer',
-			'default'		=> '14',
+			'default'		=> '16',
 		),
 		'description'		=> array(
 			'type'			=> 'array',

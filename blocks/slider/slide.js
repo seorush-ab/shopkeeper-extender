@@ -48,7 +48,7 @@
 	        },
 	        title_size: {
 	        	type: 'number',
-	        	default: 32,
+	        	default: 73,
 	        },
 	        title_font: {
 	        	type: 'string',
@@ -60,11 +60,11 @@
 	        },
 	        description_size: {
 	        	type: 'number',
-	        	default: 14,
+	        	default: 16,
 	        },
 	        description_font: {
 	        	type: 'string',
-	        	default: 'primary_font',
+	        	default: 'secondary_font',
 	        },
 	        text_color: {
 	        	type: 'string',
