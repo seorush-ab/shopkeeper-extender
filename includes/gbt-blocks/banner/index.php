@@ -40,12 +40,12 @@ if ( ! function_exists( 'getbowtied_banner_assets' ) ) {
 register_block_type( 'getbowtied/banner', array(
 	'attributes'      	=> array(
 		'title'							=> array(
-			'type'						=> 'array',
-			'default'					=> array('Banner Title'),
+			'type'						=> 'string',
+			'default'					=> 'Banner Title',
 		),
 		'subtitle'						=> array(
-			'type'						=> 'array',
-			'default'					=> array('Banner Subtitle'),
+			'type'						=> 'string',
+			'default'					=> 'Banner Subtitle',
 		),
 		'imgURL'						=> array(
 			'type'						=> 'string',
@@ -103,8 +103,8 @@ register_block_type( 'getbowtied/banner', array(
 function getbowtied_render_banner( $attributes ) {
 
 	extract( shortcode_atts( array(
-		'title' 				=> array('Banner Title'),
-		'subtitle' 				=> array('Banner Subtitle'),
+		'title' 				=> 'Banner Title',
+		'subtitle' 				=> 'Banner Subtitle',
 		'url' 					=> '#',
 		'blank' 				=> '',
 		'titleColor' 			=> '#fff',
@@ -142,9 +142,9 @@ function getbowtied_render_banner( $attributes ) {
 				
 					<div class="shortcode_banner_simple_height_inside" style="height:'.$height.'px; border: '.$innerStrokeThickness.'px solid '.$innerStrokeColor.'">
 						<div class="shortcode_banner_simple_height_content">
-							<div><h3 style="color:'.$titleColor.' !important">'. $title[0] .'</h3></div>
+							<div><h3 style="color:'.$titleColor.' !important">'. $title .'</h3></div>
 							<div class="shortcode_banner_simple_height_sep" style="margin:'.$separatorPadding.'px auto; background-color:'.$separatorColor.';"></div>
-							<div><h4 style="color:'.$subtitleColor.' !important">'. $subtitle[0] .'</h4></div>
+							<div><h4 style="color:'.$subtitleColor.' !important">'. $subtitle .'</h4></div>
 						</div>
 					</div>
 				</div>
