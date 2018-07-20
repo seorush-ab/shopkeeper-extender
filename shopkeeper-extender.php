@@ -4,7 +4,7 @@
  * Plugin Name:       		Shopkeeper Extender
  * Plugin URI:        		https://github.com/getbowtied/shopkeeper-extender
  * Description:       		Extends the functionality of Shopkeeper with Gutenberg elements.
- * Version:           		1.1
+ * Version:           		1.0
  * Author:            		GetBowtied
  * Author URI:        		https://getbowtied.com
  * Requires at least: 		4.9
@@ -32,7 +32,7 @@ function github_plugin_updater() {
 	if ( is_admin() ) {
 
 		$config = array(
-			'slug' 				 => 'shopkeeper-extender',
+			'slug' 				 => plugin_basename(__FILE__),
 			'proper_folder_name' => 'shopkeeper-extender',
 			'api_url' 			 => 'https://api.github.com/repos/getbowtied/shopkeeper-extender',
 			'raw_url' 			 => 'https://raw.github.com/getbowtied/shopkeeper-extender/master',
@@ -41,7 +41,7 @@ function github_plugin_updater() {
 			'sslverify'			 => true,
 			'requires'			 => '4.9',
 			'tested'			 => '4.9.7',
-			'readme'			 => 'README.txt',
+			'readme'			 => 'README.md',
 			'access_token'		 => '',
 		);
 
