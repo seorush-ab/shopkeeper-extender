@@ -10,17 +10,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Extends the functionality of Shopkeeper with Gutenberg elements.
 
-== Description ==
-
-Extends the functionality of Shopkeeper with Gutenberg elements.
-
-== Installation ==
-
-The easiest way:
-* In your WordPress admin dashboard navigate to the **Plugins** > **Add New**.
-* Search for “HookMeUp”
-* Click the “Install” button.
-
 == Changelog ==
 
 = 1.0 =

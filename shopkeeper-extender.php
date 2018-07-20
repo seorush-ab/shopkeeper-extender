@@ -32,7 +32,7 @@ function github_plugin_updater() {
 	if ( is_admin() ) {
 
 		$config = array(
-			'slug' 				 => plugin_basename( __FILE__ ),
+			'slug' 				 => 'shopkeeper-extender',
 			'proper_folder_name' => 'shopkeeper-extender',
 			'api_url' 			 => 'https://api.github.com/repos/getbowtied/shopkeeper-extender',
 			'raw_url' 			 => 'https://raw.github.com/getbowtied/shopkeeper-extender/master',
