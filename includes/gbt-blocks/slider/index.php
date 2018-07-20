@@ -160,13 +160,6 @@ function getbowtied_render_slide( $attributes ) {
 		$title = "";
 	}
 
-	if (is_numeric($bg_image)) 
-	{
-		$bg_image = wp_get_attachment_url($bg_image);
-	} else {
-		$bg_image = "";
-	}
-
 	if (!empty($description))
 	{
 		$description = '<p class="slide-description '.$description_font.'" style="font-size:'.$description_size.'px;color:'.$text_color.';">'.$description[0].'</p>';

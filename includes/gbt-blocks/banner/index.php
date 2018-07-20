@@ -124,8 +124,6 @@ function getbowtied_render_banner( $attributes ) {
 	if (!empty($imgURL)) {
 		$banner_with_img = 'banner_with_img';
 	}
-	
-	$content = do_shortcode($content);
 
 	if ($blank == 'true')
 	{
