@@ -137,7 +137,7 @@
 							{
 								key: "slide-title-font-size",
 								value: attributes.title_size,
-								allowReset: true,
+								allowReset: false,
 								initialPosition: 32,
 								min: 10,
 								max: 72,
@@ -164,7 +164,7 @@
 							{
 								key: "slide-description-font-size",
 								value: attributes.description_size,
-								allowReset: true,
+								allowReset: false,
 								initialPosition: 14,
 								min: 10,
 								max: 72,

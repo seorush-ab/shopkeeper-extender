@@ -151,7 +151,7 @@
 							{
 								key: "banner-height",
 								value: attributes.height,
-								allowReset: true,
+								allowReset: false,
 								initialPosition: 300,
 								min: 0,
 								max: 1000,
@@ -240,7 +240,7 @@
 								key: "banner-inner-stroke-thickness",
 								value: attributes.innerStrokeThickness,
 								initialPosition: '2',
-								allowReset: true,
+								allowReset: false,
 								label: i18n.__( 'Inner Stroke Thickness' ),
 								onChange: function( newNumber ) {
 									props.setAttributes( { innerStrokeThickness: newNumber } );
@@ -280,7 +280,7 @@
 								key: "banner-separator-padding",
 								value: attributes.separatorPadding,
 								initialPosition: '5',
-								allowReset: true,
+								allowReset: false,
 								label: i18n.__( 'Separator Padding' ),
 								onChange: function( newNumber ) {
 									props.setAttributes( { separatorPadding: newNumber } );

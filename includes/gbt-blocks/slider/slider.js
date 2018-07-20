@@ -102,7 +102,7 @@
 								{
 									key: "slider-desktop-height",
 									value: attributes.custom_desktop_height,
-									allowReset: true,
+									allowReset: false,
 									initialPosition: 800,
 									min: 100,
 									max: 1000,

@@ -105,7 +105,7 @@
 						{
 							key: "latest-posts-columns",
 							value: attributes.columns,
-							allowReset: true,
+							allowReset: false,
 							initialPosition: 3,
 							min: 1,
 							max: 4,
