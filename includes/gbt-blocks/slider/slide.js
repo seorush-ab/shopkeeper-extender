@@ -455,6 +455,7 @@
 											color: attributes.text_color,
 											fontSize: attributes.title_size + 'px'
 										},
+										format: 'string',
 										className: 'slide-title',
 										formattingControls: [],
 										tagName: 'h1',
@@ -482,6 +483,7 @@
 											fontSize: attributes.description_size + 'px'
 										},
 										className: 'slide-description',
+										format: 'string',
 										tagName: 'h5',
 										value: attributes.description,
 										formattingControls: [],
@@ -508,6 +510,7 @@
 											backgroundColor: attributes.button_bg_color,
 										},
 										className: 'slide-button-text',
+										format: 'string',
 										tagName: 'h5',
 										value: attributes.button_text,
 										formattingControls: [],

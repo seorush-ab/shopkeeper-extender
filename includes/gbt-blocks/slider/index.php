@@ -155,21 +155,21 @@ function getbowtied_render_slide( $attributes ) {
 
 	if (!empty($title))
 	{
-		$title = '<h1 class="slide-title '.$title_font.'" style="font-size:'.$title_size.'px;color:'.$text_color.';">'.$title[0].'</h1>';
+		$title = '<h1 class="slide-title '.$title_font.'" style="font-size:'.$title_size.'px;color:'.$text_color.';">'.$title.'</h1>';
 	} else {
 		$title = "";
 	}
 
 	if (!empty($description))
 	{
-		$description = '<p class="slide-description '.$description_font.'" style="font-size:'.$description_size.'px;color:'.$text_color.';">'.$description[0].'</p>';
+		$description = '<p class="slide-description '.$description_font.'" style="font-size:'.$description_size.'px;color:'.$text_color.';">'.$description.'</p>';
 	} else {
 		$description = "";
 	}
 
 	if (!empty($button_text))
 	{
-		$button = '<a class="slide-button" style="background-color:'.$button_bg_color.'; color:'.$button_text_color.';" href="'.$button_url.'">'.$button_text[0].'</a>';
+		$button = '<a class="slide-button" style="background-color:'.$button_bg_color.'; color:'.$button_text_color.';" href="'.$button_url.'">'.$button_text.'</a>';
 	} else {
 		$button = "";
 	}

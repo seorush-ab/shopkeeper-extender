@@ -18,9 +18,6 @@
 	var PanelColor			= components.PanelColor;
 	var Button				= components.Button;
 
-	// var AlignmentToolbar    = editor.AlignmentToolbar;
-	// var BlockControls       = editor.BlockControls;
-
 	/* Register Block */
 	registerBlockType( 'getbowtied/banner', {
 		title: i18n.__( 'Banner' ),
@@ -36,7 +33,7 @@
 			},
 			subtitle: {
 				type: 'string',
-				default: 'Banner Subtitle'
+				default: 'Banner Subtitle',
 			},
 		    imgURL: {
 	            type: 'string',
@@ -418,6 +415,7 @@
 												className: 'banner-title',
 												formattingControls: [],
 												tagName: 'h3',
+												format: 'string',
 												value: attributes.title,
 												placeholder: i18n.__( 'Add Title' ),
 												onChange: function( newTitle) {
@@ -453,6 +451,7 @@
 												},
 												className: 'banner-subtitle',
 												tagName: 'h4',
+												format: 'string',
 												value: attributes.subtitle,
 												formattingControls: [],
 												placeholder: i18n.__( 'Add Subtitle' ),
