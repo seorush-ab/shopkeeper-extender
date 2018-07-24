@@ -167,7 +167,7 @@ function getbowtied_render_slide( $attributes ) {
 		$description = "";
 	}
 
-	if (!empty($button_text))
+	if ($button_toggle && !empty($button_text))
 	{
 		$button = '<a class="slide-button" style="background-color:'.$button_bg_color.'; color:'.$button_text_color.';" href="'.$button_url.'">'.$button_text.'</a>';
 	} else {
