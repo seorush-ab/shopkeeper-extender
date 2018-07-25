@@ -68,7 +68,7 @@ add_action( 'init', 'gbt_gutenberg_blocks' );
 function theme_warning() {
 
 	echo '<div class="message error woocommerce-admin-notice woocommerce-st-inactive woocommerce-not-configured">';
-	echo '<p>GetBowtied Custom Gutenberg Blocks is enabled but not effective. Please activate Gutenberg plugin in order to work.</p>';
+	echo '<p>Shopkeeper Extender is enabled but not effective. Please activate Gutenberg plugin in order to work.</p>';
 	echo '</div>';
 }
 
