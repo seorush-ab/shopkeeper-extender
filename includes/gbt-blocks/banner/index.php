@@ -69,7 +69,7 @@ register_block_type( 'getbowtied/banner', array(
 		),
 		'innerStrokeThickness'			=> array(
 			'type'						=> 'integer',
-			'default'					=> 2,
+			'default'					=> '2',
 		),
 		'innerStrokeColor'				=> array(
 			'type'						=> 'string',
@@ -81,11 +81,11 @@ register_block_type( 'getbowtied/banner', array(
 		),
 		'height'						=> array(
 			'type'						=> 'integer',
-			'default'					=> 300,
+			'default'					=> '300',
 		),
 		'separatorPadding'				=> array(
 			'type'						=> 'integer',
-			'default'					=> 5,
+			'default'					=> '5',
 		),
 		'separatorColor'				=> array(
 			'type'						=> 'string',
@@ -113,8 +113,8 @@ function getbowtied_render_banner( $attributes ) {
 		'innerStrokeColor' 		=> '#fff',
 		'bgColor' 				=> '#f3f3f4',
 		'imgURL' 				=> '',
-		'height' 				=> 'auto',
-		'separatorPadding' 		=> '5px',
+		'height' 				=> '300',
+		'separatorPadding' 		=> '5',
 		'separatorColor' 		=> '#fff',
 		'align'					=> 'center'
 	), $attributes));
