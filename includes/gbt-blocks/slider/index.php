@@ -73,7 +73,7 @@ register_block_type( 'getbowtied/slide', array(
 		),
 		'description_font' 	=> array(
 			'type'			=> 'string',
-			'default'		=> 'primary_font',
+			'default'		=> 'secondary_font',
 		),
 		'description_size' 	=> array(
 			'type'			=> 'integer',
@@ -129,7 +129,7 @@ function getbowtied_render_slide( $attributes ) {
 		'description' 				=> 'Slide Description',
 		'title_font'				=> 'primary_font',
 		'title_size'				=> '73',
-		'description_font'			=> 'primary_font',
+		'description_font'			=> 'secondary_font',
 		'description_size'			=> '16',
 		'text_color'				=> '#000',
 		'button_text' 				=> 'Button Text',
