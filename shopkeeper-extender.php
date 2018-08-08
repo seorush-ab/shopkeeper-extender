@@ -8,7 +8,7 @@
  * Author:            		GetBowtied
  * Author URI:        		https://getbowtied.com
  * Requires at least: 		4.9
- * Tested up to: 			4.9.7
+ * Tested up to: 			4.9.8
  *
  * @package  Shopkeeper Extender
  * @author   GetBowtied
