@@ -155,7 +155,7 @@ function getbowtied_render_slide( $attributes ) {
 
 	if (!empty($title))
 	{
-		$title = '<h1 class="slide-title '.$title_font.'" style="font-size:'.$title_size.'px;color:'.$text_color.';">'.$title.'</h1>';
+		$title = '<h2 class="slide-title '.$title_font.'" style="font-size:'.$title_size.'px;color:'.$text_color.';">'.$title.'</h2>';
 	} else {
 		$title = "";
 	}
