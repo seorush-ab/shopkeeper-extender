@@ -43,6 +43,14 @@ register_block_type( 'getbowtied/socials', array(
 			'type'				=> 'string',
 			'default'			=> 'left',
 		),
+        'fontSize'              => array(
+            'type'              => 'number',
+            'default'           => '24',
+        ),
+        'fontColor'             => array(
+            'type'              => 'string',
+            'default'           => '#000',
+        ),
 	),
 
 	'render_callback' => 'getbowtied_render_frontend_socials',
@@ -176,7 +184,9 @@ function getbowtied_render_frontend_socials($attributes) {
 
 	extract(shortcode_atts(
 		array(
-			"items_align" => 'left'
+			"items_align" => 'left',
+            'fontSize'    => '24',
+            'fontColor'   => '#000',
 		), $attributes));
     ob_start();
 
@@ -191,7 +201,7 @@ function getbowtied_render_frontend_socials($attributes) {
 
         	if ( (isset($shopkeeper_theme_options[$social['link']])) && (trim($shopkeeper_theme_options[$social['link']]) != "" ) ) {
         		$output .= '<li>';
-        		$output .= '<a class="social_media" target="_blank" href="' . esc_url($shopkeeper_theme_options[$social['link']]) . '">';
+        		$output .= '<a class="social_media" target="_blank" style="color:'.$fontColor.';font-size:'.$fontSize.'px" href="' . esc_url($shopkeeper_theme_options[$social['link']]) . '">';
                 $output .= '<i class="' . $social['icon'] . '"></i>';
         		$output .= '<span class="' . $social['icon'] . '"></span>';
         		$output .= '</a></li>';

@@ -7,8 +7,12 @@
 
 	var AlignmentToolbar	= editor.AlignmentToolbar;
 	var BlockControls       = editor.BlockControls;
+	var InspectorControls   = editor.InspectorControls;
 
 	var TextControl 		= components.TextControl;
+	var ColorPalette	    = components.ColorPalette;
+	var PanelColor			= components.PanelColor;
+	var RangeControl		= components.RangeControl;
 
 	/* Register Block */
 	registerBlockType( 'getbowtied/socials', {
@@ -16,6 +20,14 @@
 		icon: 'share',
 		category: 'shopkeeper',
 		attributes: {
+			fontSize: {
+				type: 	 'number',
+				default: '24'
+			},
+			fontColor: {
+				type: 	 'string',
+				default: '#000'
+			},
 			items_align: {
 				type: 	 'string',
 				default: 'left'
@@ -26,7 +38,58 @@
 
 			var attributes = props.attributes;
 
+			var colors = [
+				{ name: 'red', 				color: '#d02e2e' },
+				{ name: 'orange', 			color: '#f76803' },
+				{ name: 'yellow', 			color: '#fbba00' },
+				{ name: 'green', 			color: '#43d182' },
+				{ name: 'blue', 			color: '#2594e3' },
+				{ name: 'white', 			color: '#ffffff' },
+				{ name: 'dark-gray', 		color: '#abb7c3' },
+				{ name: 'black', 			color: '#000' 	 },
+			];
+
 			return [
+				el( 
+					InspectorControls, 
+					{ 
+						key: 'th-socials-settings'
+					},
+					el(
+						RangeControl,
+						{
+							key: "th-socials-font-size",
+							value: attributes.fontSize,
+							allowReset: false,
+							initialPosition: 24,
+							min: 10,
+							max: 36,
+							label: i18n.__( 'Icons Font Size' ),
+							onChange: function( newNumber ) {
+								props.setAttributes( { fontSize: newNumber } );
+							},
+						}
+					),
+					el(
+						PanelColor,
+						{
+							key: 'th-socials-color-panel',
+							title: i18n.__( 'Icons Color' ),
+							colorValue: attributes.fontColor,
+						},
+						el(
+							ColorPalette, 
+							{
+								key: 'th-socials-color-pallete',
+								colors: colors,
+								value: attributes.fontColor,
+								onChange: function( newColor) {
+									props.setAttributes( { fontColor: newColor } );
+								},
+							} 
+						),
+					),
+				),
 				el(
 					BlockControls,
 					{ 
