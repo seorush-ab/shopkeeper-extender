@@ -40,7 +40,7 @@ function github_plugin_updater() {
 			'zip_url' 			 => 'https://github.com/getbowtied/shopkeeper-extender/zipball/master',
 			'sslverify'			 => true,
 			'requires'			 => '4.9',
-			'tested'			 => '4.9.7',
+			'tested'			 => '4.9.8',
 			'readme'			 => 'README.txt',
 			'access_token'		 => '',
 		);
@@ -50,7 +50,7 @@ function github_plugin_updater() {
 	}
 }
 
-function gbt_gutenberg_blocks() {
+function gbt_sk_gutenberg_blocks() {
 
 	$theme = wp_get_theme();
 	if ( $theme->template != 'shopkeeper') {
@@ -63,18 +63,22 @@ function gbt_gutenberg_blocks() {
 		add_action( 'admin_notices', 'theme_warning' );
 	}
 }
-add_action( 'init', 'gbt_gutenberg_blocks' );
+add_action( 'init', 'gbt_sk_gutenberg_blocks' );
 
-function theme_warning() {
+if( !function_exists('theme_warning') ) {
+	function theme_warning() {
 
-	echo '<div class="message error woocommerce-admin-notice woocommerce-st-inactive woocommerce-not-configured">';
-	echo '<p>Shopkeeper Extender is enabled but not effective. Please activate Gutenberg plugin in order to work.</p>';
-	echo '</div>';
+		echo '<div class="message error woocommerce-admin-notice woocommerce-st-inactive woocommerce-not-configured">';
+		echo '<p>Shopkeeper Extender is enabled but not effective. Please activate Gutenberg plugin in order to work.</p>';
+		echo '</div>';
+	}
 }
 
-function is_wp_version( $operator = '>', $version = '4.0' ) {
+if( !function_exists('is_wp_version') ) {
+	function is_wp_version( $operator = '>', $version = '4.0' ) {
 
-	global $wp_version;
+		global $wp_version;
 
-	return version_compare( $wp_version, $version, $operator );
+		return version_compare( $wp_version, $version, $operator );
+	}
 }
