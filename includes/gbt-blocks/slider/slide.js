@@ -110,7 +110,7 @@
 				{ name: 'yellow', 			color: '#fbba00' },
 				{ name: 'green', 			color: '#43d182' },
 				{ name: 'blue', 			color: '#2594e3' },
-				{ name: 'light-gray', 		color: '#eeeeee' },
+				{ name: 'white', 			color: '#ffffff' },
 				{ name: 'dark-gray', 		color: '#abb7c3' },
 				{ name: 'black', 			color: '#000' 	 },
 			];
