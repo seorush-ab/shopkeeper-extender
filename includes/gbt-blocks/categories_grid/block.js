@@ -41,6 +41,10 @@
 				type: 'boolean',
 				default: false
 			},
+			product_count: {
+				type: 'boolean',
+				default: false
+			},
 			parent: {
 				type: 'string',
 				default: '0'
@@ -55,7 +59,7 @@
 
 			var attributes = props.attributes;
 
-			function getCategoriesGrid( categories, ids, number, order, hide_empty, parent ) {
+			function getCategoriesGrid( categories, ids, number, order, hide_empty, parent, product_count ) {
 
 				categories 	= categories || attributes.product_categories_selection;
 				ids 		= ids 		 || attributes.ids;
@@ -71,7 +75,8 @@
 						'number'					   : number,
 						'order'						   : order,
 						'hide_empty'				   : Number(hide_empty),
-						'parent'					   : parent
+						'parent'					   : parent,
+						'product_count'				   : Number(product_count),
 					}
 				};
 
@@ -113,7 +118,7 @@
               				value: attributes.product_categories_selection,
               				onChange: function( newSelection ) {
               					props.setAttributes( { product_categories_selection: newSelection } );
-								getCategoriesGrid( newSelection, null, null, null, attributes.hide_empty, null );
+								getCategoriesGrid( newSelection, null, null, null, attributes.hide_empty, null, attributes.product_count );
 							},
 						}
 					),
@@ -128,7 +133,7 @@
               				value: attributes.ids,
               				onChange: function( newIds ) {
               					props.setAttributes( { ids: newIds } );
-								getCategoriesGrid( null, newIds, null, null, attributes.hide_empty, null );
+								getCategoriesGrid( null, newIds, null, null, attributes.hide_empty, null, attributes.product_count );
 							},
 						},
 					),
@@ -148,7 +153,7 @@
 	              				value: attributes.parent,
 	              				onChange: function( newParent ) {
 	              					props.setAttributes( { parent: newParent } );
-									getCategoriesGrid( null, null, null, null, attributes.hide_empty, newParent);
+									getCategoriesGrid( null, null, null, null, attributes.hide_empty, newParent, attributes.product_count);
 								},
 							}
 						),
@@ -162,7 +167,7 @@
 	              				onChange: function( newNumber ) {
 	              					props.setAttributes( { number: newNumber } );
 	              					setTimeout(function() {
-	              						getCategoriesGrid( null, null, newNumber, null, attributes.hide_empty, null );
+	              						getCategoriesGrid( null, null, newNumber, null, attributes.hide_empty, null, attributes.product_count );
 	              					}, 500);
 								},
 							},
@@ -180,7 +185,7 @@
 	              				value: attributes.order,
 	              				onChange: function( newOrder ) {
 	              					props.setAttributes( { order: newOrder } );
-									getCategoriesGrid( null, null, null, newOrder, attributes.hide_empty, null );
+									getCategoriesGrid( null, null, null, newOrder, attributes.hide_empty, null, attributes.product_count );
 								},
 							}
 						),
@@ -193,13 +198,25 @@
               				checked: attributes.hide_empty,
               				onChange: function() {
               					props.setAttributes( { hide_empty: ! attributes.hide_empty } );
-								getCategoriesGrid( null, null, null, null, !attributes.hide_empty, null );
+								getCategoriesGrid( null, null, null, null, !attributes.hide_empty, null, attributes.product_count );
+							},
+						}
+					),
+					el(
+						ToggleControl,
+						{
+							key: "categories-grid-product-count",
+              				label: i18n.__( 'Show Product Count' ),
+              				checked: attributes.product_count,
+              				onChange: function() {
+              					props.setAttributes( { product_count: ! attributes.product_count } );
+								getCategoriesGrid( null, null, null, null, attributes.hide_empty, null, !attributes.product_count );
 							},
 						}
 					),
 				),
 				eval( attributes.grid ),
-				attributes.grid == '' && getCategoriesGrid( null, null, null, null, attributes.hide_empty, null )
+				attributes.grid == '' && getCategoriesGrid( null, null, null, null, attributes.hide_empty, null, attributes.product_count )
 			];
 		},
 
