@@ -58,6 +58,10 @@ register_block_type( 'getbowtied/categories-grid', array(
 			'type'    					=> 'boolean',
 			'default' 					=> false,
 		),
+		'product_count'  				=> array(
+			'type'    					=> 'boolean',
+			'default' 					=> false,
+		),
 		'order'		  					=> array(
 			'type'	  					=> 'string',
 			'default' 					=> 'asc',
@@ -83,6 +87,7 @@ function getbowtied_render_frontend_categories_grid( $attributes ) {
 		'number'     					=> 12,
 		'order'      					=> 'asc',
 		'hide_empty'				 	=> false,
+		'product_count'				 	=> false,
 		'parent'     					=> '0',
 		'align'							=> 'center'
 	), $attributes ) );
@@ -178,7 +183,11 @@ function getbowtied_render_frontend_categories_grid( $attributes ) {
 				<div class="category_grid_box">
 					<span class="category_item_bkg" style="background-image:url(<?php echo esc_url($image); ?>)"></span> 
 					<a href="<?php echo get_term_link( $category->slug, 'product_cat' ); ?>" class="category_item" >
-						<span class="category_name"><?php echo esc_html($category->name); ?></span>
+						<span class="category_name"><?php echo esc_html($category->name); ?>
+							<?php if ( $product_count ) { ?>
+								<span class="category_count"><?php echo esc_html($category->count); ?></span>
+							<?php } ?>
+						</span>
 					</a>
 				</div>
 			</div>
@@ -212,6 +221,7 @@ function getbowtied_render_backend_categories_grid() {
 		'number'     					=> 12,
 		'order'      					=> 'asc',
 		'hide_empty'				 	=> false,
+		'product_count'				 	=> false,
 		'parent'     					=> '0'
 	), $attributes ) );
 
@@ -298,7 +308,14 @@ function getbowtied_render_backend_categories_grid() {
 			}
 
 			$output .= 'el("div",{className:"category_'.$cat_class.'", key:"category_'.$cat_class.'_'.$cat_counter.'"},el("div",{className:"category_grid_box", key:"category_grid_box_'.$cat_counter.'"},
-		el("span",{className:"category_item_bkg",key:"category_item_bkg_'.$cat_counter.'",style:{backgroundImage:"url('.esc_url($image).')"}},),el("a",{className:"category_item",key:"category_item_'.$cat_counter.'"},el("span",{className:"category_name",key:"category_item_'.$cat_counter.'"},"'.htmlspecialchars_decode($category->name).'")))),';
+				el("span",{className:"category_item_bkg",key:"category_item_bkg_'.$cat_counter.'",style:{backgroundImage:"url('.esc_url($image).')"}},),el("a",{className:"category_item",key:"category_item_'.$cat_counter.'"},
+				el("span",{className:"category_name",key:"category_item_'.$cat_counter.'"},"'.htmlspecialchars_decode($category->name).'"';
+
+			if( $product_count ) {
+				$output .= ',el("span",{className:"category_count",key:"category_item_count_'.$cat_counter.'"},"'.$category->count.'")';
+			}
+
+			$output .= ')))),';
 
 		}
 
