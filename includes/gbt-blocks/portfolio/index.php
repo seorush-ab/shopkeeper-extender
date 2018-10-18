@@ -125,7 +125,7 @@ function getbowtied_render_frontend_portfolio( $attributes ) {
 
 	endif;
 
-	if ( count($portfolio_categories_queried) > 0 ) :
+	if ( $portfolio_categories_queried && count($portfolio_categories_queried) > 0 ) :
 	
 		$portfolio_categories_queried = array_unique($portfolio_categories_queried);
 		

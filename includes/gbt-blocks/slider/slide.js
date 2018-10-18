@@ -33,6 +33,7 @@
 	            type: 'string',
 	            attribute: 'src',
 	            selector: 'img',
+	            default: '',
 	        },
 	        imgID: {
 	            type: 'number',
@@ -127,10 +128,6 @@
 							key: 'slide-text-settings-panel',
 							title: 'Title & Description',
 							initialOpen: false,
-							style:
-							{
-							    borderBottom: '1px solid #e2e4e7'
-							}
 						},
 						el(
 							RangeControl,
@@ -193,10 +190,6 @@
 							key: 'slide-colors-settings-panel',
 							title: 'Colors',
 							initialOpen: false,
-							style:
-							{
-							    borderBottom: '1px solid #e2e4e7'
-							}
 						},
 						el(
 							PanelColor,
@@ -243,10 +236,6 @@
 							key: 'slide-button-settings-panel',
 							title: 'Button',
 							initialOpen: false,
-							style:
-							{
-							    borderBottom: '1px solid #e2e4e7'
-							}
 						},
 						el(
 							TextControl,
@@ -344,7 +333,7 @@
 					MediaUpload,
 					{
 						key: 'slide-image',
-						type: 'image',
+						allowedTypes: [ 'image' ],
 						buttonProps: { className: 'components-button button button-large' },
               			value: attributes.imgID,
 						onSelect: function( img ) {

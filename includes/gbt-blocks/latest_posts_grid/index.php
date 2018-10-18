@@ -13,7 +13,7 @@ if ( ! function_exists( 'getbowtied_latest_posts_editor_assets' ) ) {
 		wp_enqueue_script(
 			'getbowtied-latest-posts',
 			plugins_url( 'block.js', __FILE__ ),
-			array( 'wp-blocks', 'wp-i18n', 'wp-element', 'jquery' ),
+			array( 'wp-api-request', 'wp-blocks', 'wp-i18n', 'wp-element', 'jquery' ),
 			filemtime( plugin_dir_path( __FILE__ ) . 'block.js' )
 		);
 

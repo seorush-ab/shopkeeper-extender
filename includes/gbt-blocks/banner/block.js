@@ -38,6 +38,7 @@
 		    imgURL: {
 	            type: 'string',
 	            attribute: 'src',
+	            default: '',
 	        },
 	        imgID: {
 	            type: 'number',
@@ -115,10 +116,6 @@
 							key: 'banner-general-settings-panel',
 							title: 'General Settings',
 							initialOpen: false,
-							style:
-							{
-							    borderBottom: '1px solid #e2e4e7'
-							}
 						},
 						el(
 							TextControl,
@@ -322,7 +319,7 @@
 							MediaUpload,
 							{
 								key: 'banner-image-upload',
-								type: 'image',
+								allowedTypes: [ 'image' ],
 								formattingControls: [ 'align' ],
 								buttonProps: { className: 'components-button button button-large' },
 		              			value: attributes.imgID,

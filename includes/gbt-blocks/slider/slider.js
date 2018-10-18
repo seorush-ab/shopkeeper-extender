@@ -78,10 +78,6 @@
 							key: 'slider-height-settings-panel',
 							title: 'Height',
 							initialOpen: false,
-							style:
-							{
-							    borderBottom: '1px solid #e2e4e7'
-							}
 						},
 						el(
 							SelectControl,
@@ -120,10 +116,6 @@
 							key: 'slider-numbers-settings-panel',
 							title: 'Pagination',
 							initialOpen: false,
-							style:
-							{
-							    borderBottom: '1px solid #e2e4e7'
-							}
 						},
 						el(
 							ToggleControl,
@@ -163,10 +155,6 @@
 							key: 'slider-nav-arrows-settings-panel',
 							title: 'Navigation Arrows',
 							initialOpen: false,
-							style:
-							{
-							    borderBottom: '1px solid #e2e4e7'
-							}
 						},
 						el(
 							ToggleControl,
