@@ -13,6 +13,9 @@ Extends the functionality of Shopkeeper with Gutenberg elements.
 
 == Changelog ==
 
+= 1.2 =
+- Improvement: Compatibility updates for Gutenberg 4.0.0
+
 = 1.1 =
 - New: Product Count on Product Categories Grid
 
