@@ -38,28 +38,30 @@ if ( ! function_exists( 'getbowtied_latest_posts_assets' ) ) {
 	}
 }
 
-register_block_type( 'getbowtied/latest-posts-grid', array(
-	'attributes'      					=> array(
-		'number'						=> array(
-			'type'						=> 'number',
-			'default'					=> '12',
+if ( function_exists( 'register_block_type' ) ) {
+	register_block_type( 'getbowtied/latest-posts-grid', array(
+		'attributes'      					=> array(
+			'number'						=> array(
+				'type'						=> 'number',
+				'default'					=> '12',
+			),
+			'category'						=> array(
+				'type'						=> 'string',
+				'default'					=> '',
+			),
+			'align'							=> array(
+				'type'						=> 'string',
+				'default'					=> 'center',
+			),
+			'columns'						=> array(
+				'type'						=> 'number',
+				'default'					=> '3'
+			),
 		),
-		'category'						=> array(
-			'type'						=> 'string',
-			'default'					=> '',
-		),
-		'align'							=> array(
-			'type'						=> 'string',
-			'default'					=> 'center',
-		),
-		'columns'						=> array(
-			'type'						=> 'number',
-			'default'					=> '3'
-		),
-	),
 
-	'render_callback' => 'getbowtied_render_frontend_latest_posts_grid',
-) );
+		'render_callback' => 'getbowtied_render_frontend_latest_posts_grid',
+	) );
+}
 
 function getbowtied_render_frontend_latest_posts_grid( $attributes ) {
 

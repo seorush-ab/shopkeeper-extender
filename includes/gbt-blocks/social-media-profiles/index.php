@@ -37,24 +37,26 @@ if ( ! function_exists( 'getbowtied_socials_assets' ) ) {
     }
 }
 
-register_block_type( 'getbowtied/socials', array(
-	'attributes'     			=> array(
-		'items_align'			=> array(
-			'type'				=> 'string',
-			'default'			=> 'left',
-		),
-        'fontSize'              => array(
-            'type'              => 'number',
-            'default'           => '24',
-        ),
-        'fontColor'             => array(
-            'type'              => 'string',
-            'default'           => '#000',
-        ),
-	),
+if ( function_exists( 'register_block_type' ) ) {
+    register_block_type( 'getbowtied/socials', array(
+    	'attributes'     			=> array(
+    		'items_align'			=> array(
+    			'type'				=> 'string',
+    			'default'			=> 'left',
+    		),
+            'fontSize'              => array(
+                'type'              => 'number',
+                'default'           => '24',
+            ),
+            'fontColor'             => array(
+                'type'              => 'string',
+                'default'           => '#000',
+            ),
+    	),
 
-	'render_callback' => 'getbowtied_render_frontend_socials',
-) );
+    	'render_callback' => 'getbowtied_render_frontend_socials',
+    ) );
+}
 
 function get_sk_social_media_icons() {
     $socials = array(

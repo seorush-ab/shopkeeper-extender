@@ -38,44 +38,46 @@ if ( ! function_exists( 'getbowtied_portfolio_assets' ) ) {
 	}
 }
 
-register_block_type( 'getbowtied/portfolio', array(
-	'attributes'      => array(
-		'itemsNumber'					=> array(
-			'type'						=> 'integer',
-			'default'					=> 6,
+if ( function_exists( 'register_block_type' ) ) {
+	register_block_type( 'getbowtied/portfolio', array(
+		'attributes'      => array(
+			'itemsNumber'					=> array(
+				'type'						=> 'integer',
+				'default'					=> 6,
+			),
+			'category'						=> array(
+				'type'						=> 'string',
+				'default'					=> '',
+			),
+			'showFilters'					=> array(
+				'type'						=> 'boolean',
+				'default'					=> false,
+			),
+			'orderBy'						=> array(
+				'type'						=> 'string',
+				'default'					=> 'date',
+			),
+			'order'							=> array(
+				'type'						=> 'string',
+				'default'					=> 'asc',
+			),
+			'grid'							=> array(
+				'type'						=> 'string',
+				'default'					=> 'default',
+			),
+			'itemsPerRow'					=> array(
+				'type'						=> 'number',
+				'default'					=> '3',
+			),
+			'align'							=> array(
+				'type'						=> 'string',
+				'default'					=> 'center',
+			),
 		),
-		'category'						=> array(
-			'type'						=> 'string',
-			'default'					=> '',
-		),
-		'showFilters'					=> array(
-			'type'						=> 'boolean',
-			'default'					=> false,
-		),
-		'orderBy'						=> array(
-			'type'						=> 'string',
-			'default'					=> 'date',
-		),
-		'order'							=> array(
-			'type'						=> 'string',
-			'default'					=> 'asc',
-		),
-		'grid'							=> array(
-			'type'						=> 'string',
-			'default'					=> 'default',
-		),
-		'itemsPerRow'					=> array(
-			'type'						=> 'number',
-			'default'					=> '3',
-		),
-		'align'							=> array(
-			'type'						=> 'string',
-			'default'					=> 'center',
-		),
-	),
 
-	'render_callback' => 'getbowtied_render_frontend_portfolio',
-) );
+		'render_callback' => 'getbowtied_render_frontend_portfolio',
+	) );
+}
 
 function getbowtied_render_frontend_portfolio( $attributes ) {
 	

@@ -40,44 +40,46 @@ if ( ! function_exists( 'getbowtied_categories_grid_assets' ) ) {
 	}
 }
 
-register_block_type( 'getbowtied/categories-grid', array(
-	'attributes'      => array(
-		'product_categories_selection' 	=> array(
-			'type'						=> 'string',
-			'default'					=> 'auto',
+if ( function_exists( 'register_block_type' ) ) {
+	register_block_type( 'getbowtied/categories-grid', array(
+		'attributes'      => array(
+			'product_categories_selection' 	=> array(
+				'type'						=> 'string',
+				'default'					=> 'auto',
+			),
+			'ids'							=> array(
+				'type'						=> 'string',
+				'default'					=> '',
+			),
+			'number'						=> array(
+				'type'						=> 'integer',
+				'default'					=> 12,
+			),
+			'hide_empty'  					=> array(
+				'type'    					=> 'boolean',
+				'default' 					=> false,
+			),
+			'product_count'  				=> array(
+				'type'    					=> 'boolean',
+				'default' 					=> false,
+			),
+			'order'		  					=> array(
+				'type'	  					=> 'string',
+				'default' 					=> 'asc',
+			),
+			'parent'						=> array(
+				'type'						=> 'string',
+				'default'					=> '0',
+			),
+			'align'							=> array(
+				'type'						=> 'string',
+				'default'					=> 'center',
+			),
 		),
-		'ids'							=> array(
-			'type'						=> 'string',
-			'default'					=> '',
-		),
-		'number'						=> array(
-			'type'						=> 'integer',
-			'default'					=> 12,
-		),
-		'hide_empty'  					=> array(
-			'type'    					=> 'boolean',
-			'default' 					=> false,
-		),
-		'product_count'  				=> array(
-			'type'    					=> 'boolean',
-			'default' 					=> false,
-		),
-		'order'		  					=> array(
-			'type'	  					=> 'string',
-			'default' 					=> 'asc',
-		),
-		'parent'						=> array(
-			'type'						=> 'string',
-			'default'					=> '0',
-		),
-		'align'							=> array(
-			'type'						=> 'string',
-			'default'					=> 'center',
-		),
-	),
 
-	'render_callback' => 'getbowtied_render_frontend_categories_grid',
-) );
+		'render_callback' => 'getbowtied_render_frontend_categories_grid',
+	) );
+}
 
 function getbowtied_render_frontend_categories_grid( $attributes ) {
 

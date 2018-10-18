@@ -48,77 +48,79 @@ if ( ! function_exists( 'getbowtied_slider_assets' ) ) {
 	}
 }
 
-register_block_type( 'getbowtied/slide', array(
-	'attributes'      => array(
-		'imgURL' 			=> array(
-            'type' 			=> 'string',
-        ),
-	    'imgID' 			=> array(
-			'type'			=> 'number',
+if ( function_exists( 'register_block_type' ) ) {
+	register_block_type( 'getbowtied/slide', array(
+		'attributes'      => array(
+			'imgURL' 			=> array(
+	            'type' 			=> 'string',
+	        ),
+		    'imgID' 			=> array(
+				'type'			=> 'number',
+			),
+		    'imgAlt'			=> array(
+	            'type'			=> 'string',
+		    ),
+			'title' 			=> array(
+				'type'			=> 'string',
+				'default'		=> 'Slide Title',
+			),
+			'title_font' 		=> array(
+				'type'			=> 'string',
+				'default'		=> 'primary_font',
+			),
+			'title_size' 		=> array(
+				'type'			=> 'integer',
+				'default'		=> '73',
+			),
+			'description_font' 	=> array(
+				'type'			=> 'string',
+				'default'		=> 'secondary_font',
+			),
+			'description_size' 	=> array(
+				'type'			=> 'integer',
+				'default'		=> '16',
+			),
+			'description'		=> array(
+				'type'			=> 'string',
+				'default'		=> 'Slide Description',
+			),
+			'text_color'		=> array(
+				'type'			=> 'string',
+				'default'		=> '#fff',
+			),
+			'button_text'  		=> array(
+				'type'    		=> 'string',
+				'default' 		=> 'Button Text',
+			),
+			'button_url'		=> array(
+				'type'	  		=> 'string',
+				'default' 		=> '',
+			),
+			'button_text_color' => array(
+				'type'	  		=> 'string',
+				'default' 		=> '#fff',
+			),
+			'button_bg_color'   => array(
+				'type'	  		=> 'string',
+				'default' 		=> '#000',
+			),
+			'bg_color'			=> array(
+				'type'			=> 'string',
+				'default'		=> '#24282e',
+			),
+			'alignment'			=> array(
+				'type'			=> 'string',
+				'default'		=> 'center'
+			),
+			'button_toggle'  	=> array(
+				'type'			=> 'boolean',
+				'default'		=> true
+			)
 		),
-	    'imgAlt'			=> array(
-            'type'			=> 'string',
-	    ),
-		'title' 			=> array(
-			'type'			=> 'string',
-			'default'		=> 'Slide Title',
-		),
-		'title_font' 		=> array(
-			'type'			=> 'string',
-			'default'		=> 'primary_font',
-		),
-		'title_size' 		=> array(
-			'type'			=> 'integer',
-			'default'		=> '73',
-		),
-		'description_font' 	=> array(
-			'type'			=> 'string',
-			'default'		=> 'secondary_font',
-		),
-		'description_size' 	=> array(
-			'type'			=> 'integer',
-			'default'		=> '16',
-		),
-		'description'		=> array(
-			'type'			=> 'string',
-			'default'		=> 'Slide Description',
-		),
-		'text_color'		=> array(
-			'type'			=> 'string',
-			'default'		=> '#fff',
-		),
-		'button_text'  		=> array(
-			'type'    		=> 'string',
-			'default' 		=> 'Button Text',
-		),
-		'button_url'		=> array(
-			'type'	  		=> 'string',
-			'default' 		=> '',
-		),
-		'button_text_color' => array(
-			'type'	  		=> 'string',
-			'default' 		=> '#fff',
-		),
-		'button_bg_color'   => array(
-			'type'	  		=> 'string',
-			'default' 		=> '#000',
-		),
-		'bg_color'			=> array(
-			'type'			=> 'string',
-			'default'		=> '#24282e',
-		),
-		'alignment'			=> array(
-			'type'			=> 'string',
-			'default'		=> 'center'
-		),
-		'button_toggle'  	=> array(
-			'type'			=> 'boolean',
-			'default'		=> true
-		)
-	),
 
-	'render_callback' => 'getbowtied_render_slide',
-) );
+		'render_callback' => 'getbowtied_render_slide',
+	) );
+}
 
 function getbowtied_render_slide( $attributes ) {
 	extract(shortcode_atts(array(
