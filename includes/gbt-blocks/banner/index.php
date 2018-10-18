@@ -37,68 +37,70 @@ if ( ! function_exists( 'getbowtied_banner_assets' ) ) {
 	}
 }
 
-register_block_type( 'getbowtied/banner', array(
-	'attributes'      	=> array(
-		'title'							=> array(
-			'type'						=> 'string',
-			'default'					=> 'Banner Title',
+if ( function_exists( 'register_block_type' ) ) {
+	register_block_type( 'getbowtied/banner', array(
+		'attributes'      	=> array(
+			'title'							=> array(
+				'type'						=> 'string',
+				'default'					=> 'Banner Title',
+			),
+			'subtitle'						=> array(
+				'type'						=> 'string',
+				'default'					=> 'Banner Subtitle',
+			),
+			'imgURL'						=> array(
+				'type'						=> 'string',
+				'default'					=> '',
+			),
+			'url'							=> array(
+				'type'						=> 'string',
+				'default'					=> '#',
+			),
+			'blank'							=> array(
+				'type'						=> 'boolean',
+				'default'					=> true,
+			),
+			'titleColor'					=> array(
+				'type'						=> 'string',
+				'default'					=> '#fff',
+			),
+			'subtitleColor'					=> array(
+				'type'						=> 'string',
+				'default'					=> '#fff',
+			),
+			'innerStrokeThickness'			=> array(
+				'type'						=> 'integer',
+				'default'					=> '2',
+			),
+			'innerStrokeColor'				=> array(
+				'type'						=> 'string',
+				'default'					=> '#fff',
+			),
+			'bgColor'						=> array(
+				'type'						=> 'string',
+				'default'					=> '#f3f3f4',
+			),
+			'height'						=> array(
+				'type'						=> 'integer',
+				'default'					=> '300',
+			),
+			'separatorPadding'				=> array(
+				'type'						=> 'integer',
+				'default'					=> '5',
+			),
+			'separatorColor'				=> array(
+				'type'						=> 'string',
+				'default'					=> '#fff',
+			),
+			'align'							=> array(
+				'type'						=> 'string',
+				'default'					=> 'center',
+			),
 		),
-		'subtitle'						=> array(
-			'type'						=> 'string',
-			'default'					=> 'Banner Subtitle',
-		),
-		'imgURL'						=> array(
-			'type'						=> 'string',
-			'default'					=> '',
-		),
-		'url'							=> array(
-			'type'						=> 'string',
-			'default'					=> '#',
-		),
-		'blank'							=> array(
-			'type'						=> 'boolean',
-			'default'					=> true,
-		),
-		'titleColor'					=> array(
-			'type'						=> 'string',
-			'default'					=> '#fff',
-		),
-		'subtitleColor'					=> array(
-			'type'						=> 'string',
-			'default'					=> '#fff',
-		),
-		'innerStrokeThickness'			=> array(
-			'type'						=> 'integer',
-			'default'					=> '2',
-		),
-		'innerStrokeColor'				=> array(
-			'type'						=> 'string',
-			'default'					=> '#fff',
-		),
-		'bgColor'						=> array(
-			'type'						=> 'string',
-			'default'					=> '#f3f3f4',
-		),
-		'height'						=> array(
-			'type'						=> 'integer',
-			'default'					=> '300',
-		),
-		'separatorPadding'				=> array(
-			'type'						=> 'integer',
-			'default'					=> '5',
-		),
-		'separatorColor'				=> array(
-			'type'						=> 'string',
-			'default'					=> '#fff',
-		),
-		'align'							=> array(
-			'type'						=> 'string',
-			'default'					=> 'center',
-		),
-	),
 
-	'render_callback' => 'getbowtied_render_banner',
-) );
+		'render_callback' => 'getbowtied_render_banner',
+	) );
+}
 
 function getbowtied_render_banner( $attributes ) {
 

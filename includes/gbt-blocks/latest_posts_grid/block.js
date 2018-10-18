@@ -1,4 +1,4 @@
-( function( blocks, i18n, element ) {
+( function( wp, blocks, i18n, element ) {
 
 	var el = element.createElement;
 
@@ -154,6 +154,7 @@
 	} );
 
 } )(
+	window.wp,
 	window.wp.blocks,
 	window.wp.i18n,
 	window.wp.element,
