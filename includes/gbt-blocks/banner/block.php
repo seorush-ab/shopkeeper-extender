@@ -4,6 +4,9 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+//==============================================================================
+//	Enqueue Editor Assets
+//==============================================================================
 add_action( 'enqueue_block_editor_assets', 'gbt_18_sk_banner_editor_assets' );
 if ( ! function_exists( 'gbt_18_sk_banner_editor_assets' ) ) {
 	function gbt_18_sk_banner_editor_assets() {
@@ -22,6 +25,9 @@ if ( ! function_exists( 'gbt_18_sk_banner_editor_assets' ) ) {
 	}
 }
 
+//==============================================================================
+//	Enqueue Frontend Assets
+//==============================================================================
 add_action( 'enqueue_block_assets', 'gbt_18_sk_banner_assets' );
 if ( ! function_exists( 'gbt_18_sk_banner_assets' ) ) {
 	function gbt_18_sk_banner_assets() {

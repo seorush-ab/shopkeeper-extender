@@ -222,6 +222,7 @@
           .products-main-inspector-wrapper .products-selected-results-wrapper .products-selected-results .single-result.selected .dashicons {
             opacity: 1; }
   .products-main-inspector-wrapper .category-result-wrapper {
+    margin-top: 15px;
     max-height: 157px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -281,5 +282,6 @@
       box-shadow: none;
       text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
       pointer-events: none; }
-  .products-main-inspector-wrapper .orderby-wrapper {
+  .products-main-inspector-wrapper .orderby-wrapper,
+  .products-main-inspector-wrapper .range-wrapper {
     margin-top: 10px; }

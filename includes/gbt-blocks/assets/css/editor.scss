@@ -270,6 +270,7 @@
         }
     }
     .category-result-wrapper {
+        margin-top: 15px;
         max-height: 157px;
         overflow-y: auto;
         overflow-x: hidden;
@@ -350,7 +351,8 @@
         }
     }
 
-    .orderby-wrapper {
+    .orderby-wrapper,
+    .range-wrapper {
         margin-top: 10px;
     }
 }
