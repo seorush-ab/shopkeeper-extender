@@ -240,7 +240,7 @@
 							{
 								key: "gbt_18_sk_banner_inner_stroke_thickness",
 								value: attributes.innerStrokeThickness,
-								min: '1',
+								min: '0',
 								max: '30',
 								initialPosition: '2',
 								allowReset: false,
