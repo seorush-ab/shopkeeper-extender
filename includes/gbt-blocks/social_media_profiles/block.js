@@ -37,17 +37,6 @@
 
 			let attributes = props.attributes;
 
-			const colors = [
-				{ name: 'red', 				color: '#d02e2e' },
-				{ name: 'orange', 			color: '#f76803' },
-				{ name: 'yellow', 			color: '#fbba00' },
-				{ name: 'green', 			color: '#43d182' },
-				{ name: 'blue', 			color: '#2594e3' },
-				{ name: 'white', 			color: '#ffffff' },
-				{ name: 'dark-gray', 		color: '#abb7c3' },
-				{ name: 'black', 			color: '#000' 	 },
-			];
-
 			return [
 				el( 
 					InspectorControls, 
@@ -79,7 +68,6 @@
 							{
 								key: 'gbt_18_sk_socials_icons_color',
 								title: i18n.__( 'Icons Color' ),
-								colors: colors,
 								colorSettings: [
 									{ 
 										label: i18n.__( 'Icons Color' ),

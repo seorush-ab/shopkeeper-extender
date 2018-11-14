@@ -96,17 +96,6 @@
 
 			let attributes = props.attributes;
 
-			let colors = [
-				{ name: 'red', 				color: '#d02e2e' },
-				{ name: 'orange', 			color: '#f76803' },
-				{ name: 'yellow', 			color: '#fbba00' },
-				{ name: 'green', 			color: '#43d182' },
-				{ name: 'blue', 			color: '#2594e3' },
-				{ name: 'white', 			color: '#ffffff' },
-				{ name: 'dark-gray', 		color: '#abb7c3' },
-				{ name: 'black', 			color: '#000' 	 },
-			];
-
 			return [
 				el(
 					InspectorControls,
@@ -202,7 +191,7 @@
 						{
 							key: 'gbt_18_sk_banner_color_settings',
 							title: i18n.__( 'Colors' ),
-							colors: colors,
+							initialOpen: false,
 							colorSettings: [
 								{ 
 									label: i18n.__( 'Title Color' ),
@@ -255,7 +244,7 @@
 							{
 								key: 'gbt_18_sk_banner_inner_stroke_color',
 								title: i18n.__( 'Inner Stroke Color' ),
-								colors: colors,
+								initialOpen: false,
 								colorSettings: [
 									{ 
 										label: i18n.__( 'Inner Stroke Color' ),
