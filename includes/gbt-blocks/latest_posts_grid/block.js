@@ -514,7 +514,7 @@
 				return postElements;
 			}
 
-			return el(	'div',
+			return el( 'div',
 				{
 					key: 		'gbt_18_sk_latest_posts',
 					className: 	'gbt_18_sk_latest_posts'
