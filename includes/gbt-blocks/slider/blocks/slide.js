@@ -97,6 +97,9 @@
 	        	type: 'string',
 	        	default: 'center'
 	        },
+	        tabNumber: {
+                type: "number"
+            }
 		},
 
 		edit: function( props ) {
@@ -253,202 +256,179 @@
 						),
 					),
 				),
-				el( 
-					'div',
+				el( 'div', 
 					{ 
-						key: 'gbt_18_sk_editor_slide_topbar_wrapper',
-						className: 'gbt_18_sk_editor_slide_topbar_wrapper'
+						key: 		'gbt_18_sk_editor_slide_wrapper',
+						className : 'gbt_18_sk_editor_slide_wrapper'
 					},
 					el(
-						'h4',
+						MediaUpload,
 						{
-							key: 'gbt_18_sk_editor_slide_topbar_title',
-							className: 'gbt_18_sk_editor_slide_topbar_title',
+							key: 'gbt_18_sk_editor_slide_image',
+							allowedTypes: [ 'image' ],
+							buttonProps: { className: 'components-button button button-large' },
+	              			value: attributes.imgID,
+							onSelect: function( img ) {
+								props.setAttributes( {
+									imgID: img.id,
+									imgURL: img.url,
+									imgAlt: img.alt,
+								} );
+							},
+	              			render: function( img ) { 
+	              				return [
+		              				! attributes.imgID && el(
+		              					Button, 
+		              					{ 
+		              						key: 'gbt_18_sk_slide_add_image_button',
+		              						className: 'gbt_18_sk_slide_add_image_button button add_image',
+		              						onClick: img.open
+		              					},
+		              					i18n.__( 'Add Image' )
+	              					), 
+	              					!! attributes.imgID && el(
+	              						Button, 
+										{
+											key: 'gbt_18_sk_slide_remove_image_button',
+											className: 'gbt_18_sk_slide_remove_image_button button remove_image',
+											onClick: function() {
+												img.close;
+												props.setAttributes({
+									            	imgID: null,
+									            	imgURL: null,
+									            	imgAlt: null,
+									            });
+											}
+										},
+										i18n.__( 'Remove Image' )
+									), 
+	              				];
+	              			},
+						},
+					),
+					el(
+						BlockControls,
+						{ 
+							key: 'gbt_18_sk_editor_slide_alignment'
 						},
 						el(
-							'span',
+							AlignmentToolbar, 
 							{
-								key: 'gbt_18_sk_editor_slide_topbar_title_img_icon',
-								className: 'gbt_18_sk_editor_slide_topbar_title_img_icon dashicon dashicons-format-image',
-							},
+								key: 'gbt_18_sk_editor_slide_alignment_control',
+								value: attributes.alignment,
+								onChange: function( newAlignment ) {
+									props.setAttributes( { alignment: newAlignment } );
+								}
+							} 
 						),
-						i18n.__('Image Slide')
 					),
-					el(
-						'span',
-						{
-							key: 'gbt_18_sk_editor_slide_title_topbar_arrow_icon',
-							className: 'gbt_18_sk_editor_slide_topbar_title_arrow_icon dashicon dashicons-arrow-down',
-						},
-					),
-				),
-				el(
-					MediaUpload,
-					{
-						key: 'gbt_18_sk_editor_slide_image',
-						allowedTypes: [ 'image' ],
-						buttonProps: { className: 'components-button button button-large' },
-              			value: attributes.imgID,
-						onSelect: function( img ) {
-							props.setAttributes( {
-								imgID: img.id,
-								imgURL: img.url,
-								imgAlt: img.alt,
-							} );
-						},
-              			render: function( img ) { 
-              				return [
-	              				! attributes.imgID && el(
-	              					Button, 
-	              					{ 
-	              						key: 'gbt_18_sk_slide_add_image_button',
-	              						className: 'gbt_18_sk_slide_add_image_button button add_image',
-	              						onClick: img.open
-	              					},
-	              					i18n.__( 'Add Image' )
-              					), 
-              					!! attributes.imgID && el(
-              						Button, 
-									{
-										key: 'gbt_18_sk_slide_remove_image_button',
-										className: 'gbt_18_sk_slide_remove_image_button button remove_image',
-										onClick: function() {
-											img.close;
-											props.setAttributes({
-								            	imgID: null,
-								            	imgURL: null,
-								            	imgAlt: null,
-								            });
-										}
-									},
-									i18n.__( 'Remove Image' )
-								), 
-              				];
-              			},
-					},
-				),
-				el(
-					BlockControls,
-					{ 
-						key: 'gbt_18_sk_editor_slide_alignment'
-					},
-					el(
-						AlignmentToolbar, 
-						{
-							key: 'gbt_18_sk_editor_slide_alignment_control',
-							value: attributes.alignment,
-							onChange: function( newAlignment ) {
-								props.setAttributes( { alignment: newAlignment } );
-							}
-						} 
-					),
-				),
-				el(
-					'div',
-					{
-						key: 		'gbt_18_sk_editor_slide_wrapper',
-						className: 	'gbt_18_sk_editor_slide_wrapper',
-						style:
-						{
-							backgroundColor: attributes.backgroundColor,
-							backgroundImage: 'url(' + attributes.imgURL + ')'
-						},
-					},
 					el(
 						'div',
 						{
-							key: 		'gbt_18_sk_editor_slide_content',
-							className: 	'gbt_18_sk_editor_slide_content',
+							key: 		'gbt_18_sk_editor_slide_wrapper',
+							className: 	'gbt_18_sk_editor_slide_wrapper',
+							style:
+							{
+								backgroundColor: attributes.backgroundColor,
+								backgroundImage: 'url(' + attributes.imgURL + ')'
+							},
 						},
 						el(
 							'div',
 							{
-								key: 		'gbt_18_sk_editor_slide_container',
-								className: 	'gbt_18_sk_editor_slide_container align-' + attributes.alignment,
-								style:
-								{
-									textAlign: attributes.alignment
-								}
+								key: 		'gbt_18_sk_editor_slide_content',
+								className: 	'gbt_18_sk_editor_slide_content',
 							},
 							el(
 								'div',
 								{
-									key: 		'gbt_18_sk_editor_slide_title',
-									className: 	'gbt_18_sk_editor_slide_title',
-								},
-								el(
-									RichText, 
+									key: 		'gbt_18_sk_editor_slide_container',
+									className: 	'gbt_18_sk_editor_slide_container align-' + attributes.alignment,
+									style:
 									{
-										key: 'gbt_18_sk_editor_slide_title_input',
-										style:
-										{ 
-											color: attributes.textColor,
-											fontSize: attributes.titleSize + 'px'
-										},
-										format: 'string',
-										className: 'gbt_18_sk_editor_slide_title_input',
-										formattingControls: [],
-										tagName: 'h1',
-										value: attributes.title,
-										placeholder: i18n.__( 'Add Title' ),
-										onChange: function( newTitle) {
-											props.setAttributes( { title: newTitle } );
-										}
+										textAlign: attributes.alignment
 									}
-								),
-							),
-							el(
-								'div',
-								{
-									key: 		'gbt_18_sk_editor_slide_description',
-									className: 	'gbt_18_sk_editor_slide_description',
 								},
 								el(
-									RichText, 
+									'div',
 									{
-										key: 'gbt_18_sk_editor_slide_description_input',
-										style:
+										key: 		'gbt_18_sk_editor_slide_title',
+										className: 	'gbt_18_sk_editor_slide_title',
+									},
+									el(
+										RichText, 
 										{
-											color: attributes.textColor,
-											fontSize: attributes.descriptionSize + 'px'
-										},
-										className: 'gbt_18_sk_editor_slide_description_input',
-										format: 'string',
-										tagName: 'h5',
-										value: attributes.description,
-										formattingControls: [],
-										placeholder: i18n.__( 'Add Subtitle' ),
-										onChange: function( newSubtitle) {
-											props.setAttributes( { description: newSubtitle } );
+											key: 'gbt_18_sk_editor_slide_title_input',
+											style:
+											{ 
+												color: attributes.textColor,
+												fontSize: attributes.titleSize + 'px'
+											},
+											format: 'string',
+											className: 'gbt_18_sk_editor_slide_title_input',
+											formattingControls: [],
+											tagName: 'h1',
+											value: attributes.title,
+											placeholder: i18n.__( 'Add Title' ),
+											onChange: function( newTitle) {
+												props.setAttributes( { title: newTitle } );
+											}
 										}
-									}
+									),
 								),
-							),
-							!! attributes.slideButton && el(
-								'div',
-								{
-									key: 		'gbt_18_sk_editor_slide_button',
-									className: 	'gbt_18_sk_editor_slide_button',
-								},
 								el(
-									RichText, 
+									'div',
 									{
-										key: 'gbt_18_sk_editor_slide_button_input',
-										style:
+										key: 		'gbt_18_sk_editor_slide_description',
+										className: 	'gbt_18_sk_editor_slide_description',
+									},
+									el(
+										RichText, 
 										{
-											color: attributes.buttonTextColor,
-											backgroundColor: attributes.buttonBgColor,
-										},
-										className: 'gbt_18_sk_editor_slide_button_input',
-										format: 'string',
-										tagName: 'h5',
-										value: attributes.buttonText,
-										formattingControls: [],
-										placeholder: i18n.__( 'Button Text' ),
-										onChange: function( newText) {
-											props.setAttributes( { buttonText: newText } );
+											key: 'gbt_18_sk_editor_slide_description_input',
+											style:
+											{
+												color: attributes.textColor,
+												fontSize: attributes.descriptionSize + 'px'
+											},
+											className: 'gbt_18_sk_editor_slide_description_input',
+											format: 'string',
+											tagName: 'h5',
+											value: attributes.description,
+											formattingControls: [],
+											placeholder: i18n.__( 'Add Subtitle' ),
+											onChange: function( newSubtitle) {
+												props.setAttributes( { description: newSubtitle } );
+											}
 										}
-									}
+									),
+								),
+								!! attributes.slideButton && el(
+									'div',
+									{
+										key: 		'gbt_18_sk_editor_slide_button',
+										className: 	'gbt_18_sk_editor_slide_button',
+									},
+									el(
+										RichText, 
+										{
+											key: 'gbt_18_sk_editor_slide_button_input',
+											style:
+											{
+												color: attributes.buttonTextColor,
+												backgroundColor: attributes.buttonBgColor,
+											},
+											className: 'gbt_18_sk_editor_slide_button_input',
+											format: 'string',
+											tagName: 'h5',
+											value: attributes.buttonText,
+											formattingControls: [],
+											placeholder: i18n.__( 'Button Text' ),
+											onChange: function( newText) {
+												props.setAttributes( { buttonText: newText } );
+											}
+										}
+									),
 								),
 							),
 						),
@@ -456,7 +436,11 @@
 				),
 			];
 		},
-
+		getEditWrapperProps: function( attributes ) {
+            return { 
+            	'data-tab': attributes.tabNumber 
+            };
+        },
 		save: function( props ) {
 
 			let attributes = props.attributes;
