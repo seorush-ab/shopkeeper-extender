@@ -57,11 +57,11 @@ function gbt_sk_gutenberg_blocks() {
 		return;
 	}
 
-	if( is_plugin_active( 'gutenberg/gutenberg.php' ) || is_wp_version('>=', '5.0') ) {
+	//if( is_plugin_active( 'gutenberg/gutenberg.php' ) || is_wp_version('>=', '5.0') ) {
 		include_once 'includes/gbt-blocks/index.php';
-	} else {
-		add_action( 'admin_notices', 'theme_warning' );
-	}
+	// } else {
+	// 	add_action( 'admin_notices', 'theme_warning' );
+	// }
 }
 add_action( 'init', 'gbt_sk_gutenberg_blocks' );
 
