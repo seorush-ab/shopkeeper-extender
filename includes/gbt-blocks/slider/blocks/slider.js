@@ -205,6 +205,7 @@
 								label: i18n.__( 'Number of Slides' ),
 								onChange: function( newNumber ) {
 									props.setAttributes( { slides: newNumber } );
+									props.setAttributes( { activeTab: '1' } );
 								},
 							}
 						),
