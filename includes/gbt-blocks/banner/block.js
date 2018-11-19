@@ -385,7 +385,7 @@
 												fontSize: attributes.subtitleSize + 'px'
 											},
 											className: 'gbt_18_sk_editor_banner_subtitle',
-											tagName: 'h4',
+											tagName: 'p',
 											format: 'string',
 											value: attributes.subtitle,
 											formattingControls: [],
@@ -465,7 +465,7 @@
 									},
 									attributes.title
 								),
-								el( 'h4',
+								el( 'p',
 									{
 										key: 'gbt_18_sk_banner_subtitle',
 										className: 'gbt_18_sk_banner_subtitle',
