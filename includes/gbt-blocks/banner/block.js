@@ -96,6 +96,47 @@
 
 			let attributes = props.attributes;
 
+			function getColors() {
+
+				let colors = [
+					{ 
+						label: i18n.__( 'Title Color' ),
+						value: attributes.titleColor,
+						onChange: function( newColor) {
+							props.setAttributes( { titleColor: newColor } );
+						},
+					},
+					{ 
+						label: i18n.__( 'Subtitle Color' ),
+						value: attributes.subtitleColor,
+						onChange: function( newColor) {
+							props.setAttributes( { subtitleColor: newColor } );
+						},
+					},
+					{ 
+						label: i18n.__( 'Background Color' ),
+						value: attributes.backgroundColor,
+						onChange: function( newColor) {
+							props.setAttributes( { backgroundColor: newColor } );
+						},
+					}
+				];
+
+				if( attributes.innerStrokeThickness > 0 ) {
+					colors.push(
+						{ 
+							label: i18n.__( 'Inner Stroke Color' ),
+							value: attributes.innerStrokeColor,
+							onChange: function( newColor) {
+								props.setAttributes( { innerStrokeColor: newColor } );
+							},
+						}
+					);
+				}
+
+				return colors;
+			}
+
 			return [
 				el(
 					InspectorControls,
@@ -187,37 +228,6 @@
 						),
 					),
 					el(
-						ColorSettings,
-						{
-							key: 'gbt_18_sk_banner_color_settings',
-							title: i18n.__( 'Colors' ),
-							initialOpen: false,
-							colorSettings: [
-								{ 
-									label: i18n.__( 'Title Color' ),
-									value: attributes.titleColor,
-									onChange: function( newColor) {
-										props.setAttributes( { titleColor: newColor } );
-									},
-								},
-								{ 
-									label: i18n.__( 'Subtitle Color' ),
-									value: attributes.subtitleColor,
-									onChange: function( newColor) {
-										props.setAttributes( { subtitleColor: newColor } );
-									},
-								},
-								{ 
-									label: i18n.__( 'Background Color' ),
-									value: attributes.backgroundColor,
-									onChange: function( newColor) {
-										props.setAttributes( { backgroundColor: newColor } );
-									},
-								},
-							]
-						},
-					),
-					el(
 						PanelBody,
 						{ 
 							key: 'gbt_18_sk_banner_immer_stroke_settings',
@@ -239,23 +249,15 @@
 								},
 							}
 						),
-						el(
-							ColorSettings,
-							{
-								key: 'gbt_18_sk_banner_inner_stroke_color',
-								title: i18n.__( 'Inner Stroke Color' ),
-								initialOpen: false,
-								colorSettings: [
-									{ 
-										label: i18n.__( 'Inner Stroke Color' ),
-										value: attributes.innerStrokeColor,
-										onChange: function( newColor) {
-											props.setAttributes( { innerStrokeColor: newColor } );
-										},
-									},
-								]
-							},
-						),
+					),
+					el(
+						ColorSettings,
+						{
+							key: 'gbt_18_sk_banner_color_settings',
+							title: i18n.__( 'Colors' ),
+							initialOpen: false,
+							colorSettings: getColors()
+						},
 					),
 				),
 				el(
@@ -279,12 +281,18 @@
 							{
 								key: 'gbt_18_sk_editor_banner_wrapper_inner',
 								className: 'gbt_18_sk_editor_banner_wrapper_inner',
-								style:
-								{
-									backgroundColor: attributes.backgroundColor,
-									backgroundImage: 'url(' + attributes.imgURL + ')'
-								},
 							},
+							el( 'div',
+								{
+									key: 'gbt_18_sk_editor_banner_background',
+									className: 'gbt_18_sk_editor_banner_background',
+									style:
+									{
+										backgroundColor: attributes.backgroundColor,
+										backgroundImage: 'url(' + attributes.imgURL + ')'
+									},
+								}
+							),
 							el(
 								MediaUpload,
 								{
@@ -419,12 +427,18 @@
 						{
 							key: 'gbt_18_sk_banner_wrapper_inner',
 							className: 'gbt_18_sk_banner_wrapper_inner',
-							style:
-							{
-								backgroundColor: attributes.backgroundColor,
-								backgroundImage: 'url(' + attributes.imgURL + ')'
-							},
 						},
+						el( 'div',
+							{
+								key: 'gbt_18_sk_banner_background',
+								className: 'gbt_18_sk_banner_background',
+								style:
+								{
+									backgroundColor: attributes.backgroundColor,
+									backgroundImage: 'url(' + attributes.imgURL + ')'
+								},
+							}
+						),
 						el( 'div',
 							{
 								key: 'gbt_18_sk_banner_content',
