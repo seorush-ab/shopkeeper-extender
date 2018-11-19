@@ -97,8 +97,10 @@ function gbt_18_sk_get_rest_portfolio_categories( $object, $field_name, $request
 }
 
 function gbt_18_sk_get_rest_portfolio_color_meta_box( $object, $field_name, $request ) {
-    $color = get_post_meta( $object['id'], 'portfolio_color_meta_box' )[0];
-    if( $color == '' ) $color = '#000';
+    $color = get_post_meta( $object['id'], 'portfolio_color_meta_box' ) || '';
+    if( $color[0] && $color[0] != '' ) {
+        return $color;
+    }
 
-    return $color;
+    return '#000';
 }

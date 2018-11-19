@@ -159,11 +159,6 @@
 				}
 			}
 
-			function _destroyTempAtts() {
-				props.setAttributes({ querySearchString: ''});
-				props.setAttributes({ querySearchResults: []});
-			}
-
 			//==============================================================================
 			//	Show portfolio items functions
 			//==============================================================================
@@ -307,7 +302,7 @@
 				if ( catArr.length > 0 )
 				{
 					for ( let i = 0; i < catArr.length; i++ ) {
-						 if ( catArr[i].parent !=  parent ) { continue; };
+						if ( catArr[i].parent !=  parent ) { continue; };
 						categoryElements.push(
 							el(
 								'li',
@@ -440,7 +435,6 @@
 								disabled: _isDonePossible(),
 								onClick: function onChange(e) {
 									props.setAttributes({ isLoading: true });
-									_destroyTempAtts();
 									getPortfolioItems();
 								},
 							},
