@@ -106,9 +106,9 @@
 
 			function getWrapperClass() {
 				if( className.indexOf('is-style-default') >= 0 ) {
-					return 'portfolio-isotope-container gbt_18_sk_portfolio_container default_grid items_per_row_' + attributes.columns;
+					return 'gbt_18_sk_editor_portfolio_wrapper items_per_row_' + attributes.columns;
 				}
-				return 'portfolio-isotope-container gbt_18_sk_portfolio_container';
+				return 'gbt_18_sk_editor_portfolio_wrapper';
 			}
 
 			function _sortCategories( index, arr, newarr = [], level = 0) {
@@ -214,8 +214,8 @@
 							portfolio_image.push(
 								el( 'span',
 									{
-										key: 		'portfolio-thumb',
-										className: 	'portfolio-thumb hover-effect-thumb',
+										key: 		'gbt_18_sk_editor_portfolio_item_thumbnail',
+										className: 	'gbt_18_sk_editor_portfolio_item_thumbnail',
 										style:
 										{
 											backgroundImage: 'url(' + portfolio_items[i]['fimg_url'] + ')'
@@ -228,13 +228,13 @@
 						postElements.push(
 							el( "div", 
 								{
-									key: 		'portfolio-box_' + portfolio_items[i].id, 
-									className: 	'portfolio-box'
+									key: 		'gbt_18_sk_editor_portfolio_item_box_' + portfolio_items[i].id, 
+									className: 	'gbt_18_sk_editor_portfolio_item_box'
 								},
 								el( 'a',
 									{
-										key: 		'portfolio-box-inner-link',
-										className: 	'portfolio-box-inner hover-effect-link',
+										key: 		'gbt_18_sk_editor_portfolio_item_link',
+										className: 	'gbt_18_sk_editor_portfolio_item_link',
 										style:
 										{
 											backgroundColor: portfolio_items[i]['color_meta_box']
@@ -242,14 +242,14 @@
 									},
 									el( "div", 
 										{
-											key: 		'portfolio-content-wrapper', 
-											className: 	'portfolio-content-wrapper hover-effect-content'
+											key: 		'gbt_18_sk_editor_portfolio_item_content', 
+											className: 	'gbt_18_sk_editor_portfolio_item_content'
 										},
 										portfolio_image,
 										el( 'h2',
 											{
-												key: 'portfolio-title',
-												className: 'portfolio-title hover-effect-title',
+												key: 'gbt_18_sk_editor_portfolio_item_title',
+												className: 'gbt_18_sk_editor_portfolio_item_title',
 												dangerouslySetInnerHTML: { __html: portfolio_items[i]['title']['rendered'] }
 											}
 										),
@@ -263,22 +263,10 @@
 				wrapper.push(
 					el( 'div',
 						{
-							key: 		'portfolio-isotope',
-							className: 	'portfolio-isotope',
-						},
-						el( 'div',
-							{
-								key: 		'portfolio-grid-sizer',
-								className: 	'portfolio-grid-sizer'
-							}
-						),
-						el( 'div',
-						{
-							key: 		'portfolio-grid-items',
-							className: 	'portfolio-grid-items'
+							key: 		'gbt_18_sk_editor_portfolio_items',
+							className: 	'gbt_18_sk_editor_portfolio_items'
 						},
 						postElements
-						)
 					)
 				);
 
@@ -458,7 +446,18 @@
 							},
 							_isLoadingText(),
 						),
-						props.className.indexOf('is-style-default') !== -1 && el( 'hr', {} ),
+						el( 'hr', {} ),
+						el(
+							ToggleControl,
+							{
+								key: "portfolio-filters-toggle",
+	              				label: i18n.__( 'Show Filters?' ),
+	              				checked: attributes.showFilters,
+	              				onChange: function() {
+									props.setAttributes( { showFilters: ! attributes.showFilters } );
+								},
+							}
+						),
 						props.className.indexOf('is-style-default') !== -1 && el(
 							RangeControl,
 							{
@@ -474,27 +473,16 @@
 								},
 							}
 						),
-						el(
-							ToggleControl,
-							{
-								key: "portfolio-filters-toggle",
-	              				label: i18n.__( 'Show Filters?' ),
-	              				checked: attributes.showFilters,
-	              				onChange: function() {
-									props.setAttributes( { showFilters: ! attributes.showFilters } );
-								},
-							}
-						)
 					),
 				),
 				el( 'div',
 					{
-						key: 		'gbt_18_sk_portfolio',
-						className: 	'gbt_18_sk_portfolio wp-block-gbt-portfolio ' + className
+						key: 		'gbt_18_sk_editor_portfolio',
+						className: 	'gbt_18_sk_editor_portfolio ' + className
 					},
 					el( 'div',
 						{
-							key: 		'gbt_18_sk_portfolio_wrapper',
+							key: 		'gbt_18_sk_editor_portfolio_wrapper',
 							className: 	getWrapperClass(),
 						},
 						renderResults(),
