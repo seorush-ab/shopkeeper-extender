@@ -86,7 +86,7 @@
 	}
 }
 
-.editor-block-list__block[data-type="getbowtied/slide"] {
+.editor-block-list__block[data-type="getbowtied/sk-slide"] {
 
 	&.is-selected,
 	&.is-hovered,
@@ -100,8 +100,8 @@
 	}
 }
 
-.editor-block-list__block[data-type="getbowtied/slider"][data-align="wide"],
-.editor-block-list__block[data-type="getbowtied/slider"][data-align="full"] {
+.editor-block-list__block[data-type="getbowtied/sk-slider"][data-align="wide"],
+.editor-block-list__block[data-type="getbowtied/sk-slider"][data-align="full"] {
 	.editor-block-list__block {
 		max-width: 100%;
 	}
