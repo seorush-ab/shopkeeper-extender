@@ -21,7 +21,7 @@ if ( ! function_exists( 'gbt_18_sk_latest_posts_editor_assets' ) ) {
 		wp_enqueue_style(
 			'gbt_18_sk_latest_posts_editor_styles',
 			plugins_url( 'assets/css/editor.css', __FILE__ ),
-			array( 'wp-blocks' )
+			array( 'wp-edit-blocks' )
 		);
 	}
 }
