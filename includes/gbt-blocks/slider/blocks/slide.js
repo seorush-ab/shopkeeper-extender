@@ -485,7 +485,7 @@
 							},
 							attributes.title
 						),
-						attributes.description != '' && el( 'h2',
+						attributes.description != '' && el( 'p',
 							{
 								key: 		'gbt_18_sk_slide_description',
 								className: 	'gbt_18_sk_slide_description slide-description ' + attributes.descriptionFont,
