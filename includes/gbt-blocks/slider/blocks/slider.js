@@ -20,7 +20,7 @@
 	const Path 					= wp.components.Path;
 
 	/* Register Block */
-	registerBlockType( 'getbowtied/slider', {
+	registerBlockType( 'getbowtied/sk-slider', {
 		title: i18n.__( 'Slider' ),
 		icon: 'slides',
 		category: 'shopkeeper',

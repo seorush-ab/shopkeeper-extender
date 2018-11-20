@@ -21,7 +21,7 @@
 	const RangeControl			= wp.components.RangeControl;
 
 	/* Register Block */
-	registerBlockType( 'getbowtied/slide', {
+	registerBlockType( 'getbowtied/sk-slide', {
 		title: i18n.__( 'Slide' ),
 		icon: 'slides',
 		category: 'shopkeeper',
