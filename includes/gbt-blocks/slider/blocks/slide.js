@@ -367,7 +367,7 @@
 											format: 'string',
 											className: 'gbt_18_sk_editor_slide_title_input',
 											formattingControls: [],
-											tagName: 'h1',
+											tagName: 'h2',
 											value: attributes.title,
 											placeholder: i18n.__( 'Add Title' ),
 											onChange: function( newTitle) {
@@ -393,7 +393,7 @@
 											},
 											className: 'gbt_18_sk_editor_slide_description_input',
 											format: 'string',
-											tagName: 'h5',
+											tagName: 'p',
 											value: attributes.description,
 											formattingControls: [],
 											placeholder: i18n.__( 'Add Subtitle' ),
