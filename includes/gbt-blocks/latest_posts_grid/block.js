@@ -18,7 +18,7 @@
 	const apiFetch 				= wp.apiFetch;
 
 	/* Register Block */
-	registerBlockType( 'getbowtied/latest-posts-grid', {
+	registerBlockType( 'getbowtied/sk-latest-posts', {
 		title: i18n.__( 'Latest Posts Grid' ),
 		icon: el( SVG, { xmlns:'http://www.w3.org/2000/svg', viewBox:'0 0 24 24' },
 				el( Path, { d:'M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12zM10 9h8v2h-8zm0 3h4v2h-4zm0-6h8v2h-8z' } ) 
@@ -28,20 +28,12 @@
 			align: [ 'center', 'wide', 'full' ],
 		},
 		attributes: {
-			productIDs: {
+			/* posts source */
+			queryPosts: {
 				type: 'string',
 				default: '',
 			},
-			/* Products source */
-			result: {
-				type: 'array',
-				default: [],
-			},
-			queryProducts: {
-				type: 'string',
-				default: '',
-			},
-			queryProductsLast: {
+			queryPostsLast: {
 				type: 'string',
 				default: '',
 			},
@@ -51,20 +43,12 @@
 				default: false,
 			},
 			/* Display by category */
-			queryCategoryOptions: {
-				type: 'array',
-				default: [],
-			},
-			queryCategorySelected: {
-				type: 'array',
-				default: [],
+			categoriesIDs: {
+				type: 'string',
+				default: '',
 			},
 			/* First Load */
 			firstLoad: {
-				type: 'boolean',
-				default: true
-			},
-			firstLoad1: {
 				type: 'boolean',
 				default: true
 			},
@@ -84,6 +68,11 @@
 
 			var attributes = props.attributes;
 
+			attributes.doneFirstLoad 		= attributes.doneFirstLoad || false;
+			attributes.categoryOptions 		= attributes.categoryOptions || [];
+			attributes.doneFirstPostsLoad 	= attributes.doneFirstPostsLoad || false;
+			attributes.result 				= attributes.result || [];
+
 			//==============================================================================
 			//	Helper functions
 			//==============================================================================
@@ -102,7 +91,7 @@
 
 			function _isChecked( needle, haystack ) {
 				let idx = haystack.indexOf(needle.toString());
-				if ( idx != - 1) {
+				if ( idx > - 1) {
 					return true;
 				}
 				return false;
@@ -125,7 +114,7 @@
 			}
 
 			function _isDonePossible() {
-				return ( (attributes.queryProducts.length == 0) || (attributes.queryProducts === attributes.queryProductsLast) );
+				return ( (attributes.queryPosts.length == 0) || (attributes.queryPosts === attributes.queryPostsLast) );
 			}
 
 			function _isLoading() {
@@ -136,45 +125,31 @@
 				}
 			}
 
-			function _destroyTempAtts() {
-				props.setAttributes({ querySearchString: ''});
-				props.setAttributes({ querySearchResults: []});
-			}
-
 			//==============================================================================
 			//	Show posts functions
 			//==============================================================================
 
 			function getPosts() {
-				let query = attributes.queryProducts;
-				props.setAttributes({ queryProductsLast: query});
+				let query = attributes.queryPosts;
+				props.setAttributes({ queryPostsLast: query});
 
 				if (query != '') {
-					apiFetch({ path: query }).then(function (products) {
-						props.setAttributes({ result: products});
+					apiFetch({ path: query }).then(function (posts) {
+						props.setAttributes({ result: posts});
 						props.setAttributes({ isLoading: false});
-						let IDs = '';
-						for ( let i = 0; i < products.length; i++) {
-							IDs += products[i].id + ',';
-						}
-						props.setAttributes({ productIDs: IDs});
+						props.setAttributes({ doneFirstPostsLoad: true});
 					});
 				}
 			}
 
 			function renderResults() {
-				if ( attributes.firstLoad1 === true ) {
+				if ( attributes.firstLoad === true ) {
 					apiFetch({ path: '/wp/v2/posts?per_page=12' }).then(function (posts) {
 						props.setAttributes({ result: posts });
-						props.setAttributes({ firstLoad1: false });
+						props.setAttributes({ firstLoad: false });
 						let query = '/wp/v2/posts?per_page=12';
-						props.setAttributes({queryProducts: query});
-						props.setAttributes({ queryProductsLast: query});
-						let IDs = '';
-						for ( let i = 0; i < posts.length; i++) {
-							IDs += posts[i].id + ',';
-						}
-						props.setAttributes({ productIDs: IDs});
+						props.setAttributes({queryPosts: query});
+						props.setAttributes({ queryPostsLast: query});
 					});
 				}
 
@@ -242,31 +217,25 @@
 
 			function getCategories() {
 
-				if( attributes.firstLoad == true) {
+				let categories_list = [];
+				let options = [];
+				let sorted = [];
+			
+				apiFetch({ path: '/wp/v2/categories?per_page=-1' }).then(function (categories) {
 
-					let categories_list = [];
-					let options = [];
-					let sorted = [];
-				
-					apiFetch({ path: '/wp/v2/categories?per_page=-1' }).then(function (categories) {
+				 	for( let i = 0; i < categories.length; i++) {
+	        			options[i] = {'label': categories[i].name.replace(/&amp;/g, '&'), 'value': categories[i].id, 'parent': categories[i].parent, 'count': categories[i].count };
+				 	}
 
-					 	for( let i = 0; i < categories.length; i++) {
-		        			options[i] = {'label': categories[i].name.replace(/&amp;/g, '&'), 'value': categories[i].id, 'parent': categories[i].parent, 'count': categories[i].count };
-					 	}
-
-					 	sorted = _sortCategories(0, options);
-			        	props.setAttributes({queryCategoryOptions: sorted });
-			        	props.setAttributes({firstLoad: false });
-					});
-				}
+				 	sorted = _sortCategories(0, options);
+		        	props.setAttributes({categoryOptions: sorted });
+		        	props.setAttributes({ doneFirstLoad: true});
+				});
 			}
 
 			function renderCategories( parent = 0, level = 0 ) {
-
-				getCategories();
-
 				let categoryElements = [];
-				let catArr = attributes.queryCategoryOptions;
+				let catArr = attributes.categoryOptions;
 				if ( catArr.length > 0 )
 				{
 					for ( let i = 0; i < catArr.length; i++ ) {
@@ -290,49 +259,28 @@
 											value: catArr[i].value,
 											'data-index': i,
 											'data-parent': catArr[i].parent,
-											checked: _isChecked(catArr[i].value, attributes.queryCategorySelected),
+											checked: _isChecked(catArr[i].value+',', attributes.categoriesIDs),
 											onChange: function onChange(evt){
-												let idx = Number(evt.target.dataset.index);
+												let newCategoriesSelected = attributes.categoriesIDs;
+												let index = newCategoriesSelected.indexOf(evt.target.value+',');
 												if (evt.target.checked === true) {
-													let qCS = attributes.queryCategorySelected;
-													let index = qCS.indexOf(evt.target.value);
 													if (index == -1) {
-														qCS.push(evt.target.value);
+														newCategoriesSelected += evt.target.value + ',';
 													}
-													for (let j = idx + 1; j < catArr.length - 1; j++) {
-														if ( catArr[idx].level < catArr[j].level) {
-															let index2 = qCS.indexOf(catArr[j].value.toString());
-															if (index2 == -1) {
-																qCS.push(catArr[j].value.toString());
-															}
-														} else {
-															break;
-														}
-													}
-													props.setAttributes({ queryCategorySelected: qCS });
 												} else {
-													let qCS = attributes.queryCategorySelected;
-													let index = qCS.indexOf(evt.target.value);
 													if (index > -1) {
-													  qCS.splice(index, 1);
+														newCategoriesSelected = newCategoriesSelected.replace(evt.target.value + ',', '');
 													}
-													for (let j = idx + 1; j < catArr.length - 1; j++) {
-														if ( catArr[idx].level < catArr[j].level) {
-															let index2 = qCS.indexOf(catArr[j].value.toString());
-															if (index2 > -1) {
-																qCS.splice(index2, 1);
-															}
-															} else {
-															break;
-														}
+												}
+												props.setAttributes({ categoriesIDs: newCategoriesSelected });
+												if ( newCategoriesSelected != '' ) {
+													if( newCategoriesSelected.substr(newCategoriesSelected.length - 1) == ',' ) {
+														newCategoriesSelected = newCategoriesSelected.substring(0, newCategoriesSelected.length - 1);
 													}
-													props.setAttributes({ queryCategorySelected: qCS });
-												};
-												if ( attributes.queryCategorySelected.length > 0 ) {
-													let query = '/wp/v2/posts?categories=' + attributes.queryCategorySelected.join(',') + '&per_page=' + attributes.number;
-													props.setAttributes({ queryProducts: query});
+													let query = '/wp/v2/posts?categories=' + newCategoriesSelected + '&per_page=' + attributes.number;
+													props.setAttributes({ queryPosts: query});
 												} else {
-													props.setAttributes({ queryProducts: '' });
+													props.setAttributes({ queryPosts: '' });
 												}
 											},
 										}, 
@@ -340,9 +288,7 @@
 									catArr[i].label,
 									el(
 										'sup',
-										{
-											className: 'category-count',
-										},
+										{},
 										catArr[i].count,
 									),
 								),
@@ -368,7 +314,7 @@
 					el(
 						'div',
 						{
-							className: 'products-main-inspector-wrapper',
+							className: 'main-inspector-wrapper',
 						},
 						el( 'label', { className: 'components-base-control__label' }, i18n.__('Categories:') ),
 						el(
@@ -376,6 +322,7 @@
 							{
 								className: 'category-result-wrapper',
 							},
+							attributes.categoryOptions.length < 1 && attributes.doneFirstLoad === false && getCategories(),
 							renderCategories(),
 						),
 						el(
@@ -391,8 +338,12 @@
 								label: i18n.__( 'Number of Posts' ),
 								onChange: function onChange(newNumber){
 									props.setAttributes( { number: newNumber } );
-									let query = '/wp/v2/posts?categories=' + attributes.queryCategorySelected.join(',') + '&per_page=' + newNumber;
-									props.setAttributes({ queryProducts: query});
+									let newCategoriesSelected = attributes.categoriesIDs;
+									if( newCategoriesSelected.substr(newCategoriesSelected.length - 1) == ',' ) {
+										newCategoriesSelected = newCategoriesSelected.substring(0, newCategoriesSelected.length - 1);
+									}
+									let query = '/wp/v2/posts?categories=' + newCategoriesSelected + '&per_page=' + newNumber;
+									props.setAttributes({ queryPosts: query});
 								},
 							}
 						),
@@ -403,7 +354,6 @@
 								disabled: _isDonePossible(),
 								onClick: function onChange(e) {
 									props.setAttributes({ isLoading: true });
-									_destroyTempAtts();
 									getPosts();
 								},
 							},
@@ -438,95 +388,15 @@
 							key: 		'gbt_18_sk_editor_latest_posts_wrapper',
 							className: 	'gbt_18_sk_editor_latest_posts_wrapper columns-' + attributes.columns,
 						},
+						attributes.result.length < 1 && attributes.doneFirstPostsLoad === false && getPosts(),
 						renderResults()
 					),
 				),
 			];
 		},
 
-		save: function( props ) {
-
-			let attributes = props.attributes;
-
-			function renderFrontend() {
-
-				let posts = attributes.result;
-				let postElements = [];
-
-				if( posts.length > 0) {
-
-					for ( let i = 0; i < posts.length; i++ ) {
-
-						let img = '';
-						let img_class = 'gbt_18_sk_latest_posts_noimg';
-
-						if ( posts[i]['fimg_url'] ) { 
-							img = posts[i]['fimg_url']; 
-							img_class = 'gbt_18_sk_latest_posts_with_img'; 
-						} else { 
-							img_class = 'gbt_18_sk_latest_posts_noimg'; 
-							img = ''; 
-						};
-
-						postElements.push(
-							el( "div", 
-								{
-									key: 		'gbt_18_sk_latest_posts_item_' + posts[i].id, 
-									className: 	'gbt_18_sk_latest_posts_item'
-								},
-								el( "a", 
-									{
-										key: 		'gbt_18_sk_latest_posts_item_link',
-										className: 	'gbt_18_sk_latest_posts_item_link'
-									},
-									el( "span", 
-										{ 
-											key: 		'gbt_18_sk_latest_posts_img_container',
-											className: 	'gbt_18_sk_latest_posts_img_container'
-										},
-										el( "span", 
-											{
-												key: 'gbt_18_sk_latest_posts_img_overlay',
-												className: 'gbt_18_sk_latest_posts_img_overlay'
-											}
-										),
-										el( "span", 
-											{
-												key: 		'gbt_18_sk_latest_posts_img',
-												className: 	'gbt_18_sk_latest_posts_img ' + img_class,
-												style: 		{ backgroundImage: 'url(' + img + ')' }
-											}
-										)
-									),
-									el( "span", 
-										{
-											key: 		'gbt_18_sk_latest_posts_title',
-											className:  'gbt_18_sk_latest_posts_title',
-											dangerouslySetInnerHTML: { __html: posts[i]['title']['rendered'] }
-										}
-									)
-								)
-							)
-						);
-					}
-				} 
-				
-				return postElements;
-			}
-
-			return el( 'div',
-				{
-					key: 		'gbt_18_sk_latest_posts',
-					className: 	'gbt_18_sk_latest_posts'
-				},
-				el( 'div',
-					{
-						key: 		'gbt_18_sk_latest_posts_wrapper',
-						className: 	'gbt_18_sk_latest_posts_wrapper columns-' + attributes.columns
-					},
-					renderFrontend(),
-				),
-			);
+		save: function(props) {
+			return null;
 		},
 	} );
 
