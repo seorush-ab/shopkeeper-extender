@@ -25,7 +25,7 @@
 		title: i18n.__( 'Slide' ),
 		icon: 'slides',
 		category: 'shopkeeper',
-		parent: [ 'getbowtied/slider' ],
+		parent: [ 'getbowtied/sk-slider' ],
 		attributes: {
 		    imgURL: {
 	            type: 'string',

@@ -116,7 +116,7 @@
 				let n = [];
 
                 for ( let i = 1; i <= attributes.slides; i++ ) {
-                	n.push(["getbowtied/slide", {
+                	n.push(["getbowtied/sk-slide", {
                         tabNumber: i
                     }]);
                 }
@@ -261,7 +261,7 @@
 							key: 'gbt_18_sk_editor_slider_inner_blocks ',
 							template: getTemplates(),
 	                        templateLock: "all",
-	            			allowedBlocksNames: ["getbowtied/slide"]
+	            			allowedBlocksNames: ["getbowtied/sk-slide"]
 						},
 					),
 				),
