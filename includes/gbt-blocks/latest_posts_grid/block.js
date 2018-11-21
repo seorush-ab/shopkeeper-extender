@@ -47,6 +47,10 @@
 				type: 'string',
 				default: ',',
 			},
+			categoriesSavedIDs: {
+				type: 'string',
+				default: '',
+			},
 			/* First Load */
 			firstLoad: {
 				type: 'boolean',
@@ -89,6 +93,36 @@
 				return newarr;
 			}
 
+			function _verifyCatIDs( optionsIDs ) {
+
+				let catArr = attributes.categoriesIDs;
+				let categoriesIDs = attributes.categoriesIDs;
+
+				if( catArr.substr(0,1) == ',' ) {
+					catArr = catArr.substr(1);
+				}
+				if( catArr.substr(catArr.length - 1) == ',' ) {
+					catArr = catArr.substring(0, catArr.length - 1);
+				}
+
+				if( catArr != ',' && catArr != '' ) {
+
+					let newCatArr = catArr.split(',');
+					let newArr = [];
+					for (let i = 0; i < newCatArr.length; i++) {
+						if( optionsIDs.indexOf(newCatArr[i]) == -1 ) {
+							categoriesIDs = categoriesIDs.replace(',' + newCatArr[i].toString() + ',', ',');
+						}
+					}
+				}
+
+				if( attributes.categoriesIDs != categoriesIDs ) {
+					props.setAttributes({ queryPosts: _buildQuery(categoriesIDs, attributes.number) });
+				}
+
+				props.setAttributes({ categoriesIDs: categoriesIDs });
+			}
+
 			function _buildQuery( arr, nr ) {
 				let query = '';
 
@@ -98,6 +132,7 @@
 				if( arr.substr(arr.length - 1) == ',' ) {
 					arr = arr.substring(0, arr.length - 1);
 				}
+
 				if( arr != ',' && arr != '' ) {
 					query = '/wp/v2/posts?categories=' + arr + '&per_page=' + nr;
 				}
@@ -235,16 +270,19 @@
 
 				let categories_list = [];
 				let options = [];
+				let optionsIDs = [];
 				let sorted = [];
 			
 				apiFetch({ path: '/wp/v2/categories?per_page=-1' }).then(function (categories) {
 
 				 	for( let i = 0; i < categories.length; i++) {
 	        			options[i] = {'label': categories[i].name.replace(/&amp;/g, '&'), 'value': categories[i].id, 'parent': categories[i].parent, 'count': categories[i].count };
+				 		optionsIDs[i] = categories[i].id.toString();
 				 	}
 
 				 	sorted = _sortCategories(0, options);
 		        	props.setAttributes({categoryOptions: sorted });
+		        	_verifyCatIDs(optionsIDs);
 		        	props.setAttributes({ doneFirstLoad: true});
 				});
 			}
@@ -275,10 +313,10 @@
 											value: catArr[i].value,
 											'data-index': i,
 											'data-parent': catArr[i].parent,
-											checked: _isChecked(catArr[i].value+',', attributes.categoriesIDs),
+											checked: _isChecked(','+catArr[i].value+',', attributes.categoriesIDs),
 											onChange: function onChange(evt){
 												let newCategoriesSelected = attributes.categoriesIDs;
-												let index = newCategoriesSelected.indexOf(evt.target.value+',');
+												let index = newCategoriesSelected.indexOf(',' + evt.target.value + ',');
 												if (evt.target.checked === true) {
 													if (index == -1) {
 														newCategoriesSelected += evt.target.value + ',';
@@ -358,6 +396,7 @@
 								disabled: _isDonePossible(),
 								onClick: function onChange(e) {
 									props.setAttributes({ isLoading: true });
+									props.setAttributes({ categoriesSavedIDs: attributes.categoriesIDs });
 									getPosts();
 								},
 							},

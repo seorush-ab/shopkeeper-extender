@@ -48,7 +48,7 @@ if ( function_exists( 'register_block_type' ) ) {
 				'type'						=> 'number',
 				'default'					=> '12',
 			),
-			'categoriesIDs'					=> array(
+			'categoriesSavedIDs'			=> array(
 				'type'						=> 'string',
 				'default'					=> '',
 			),
@@ -72,10 +72,10 @@ if ( function_exists( 'register_block_type' ) ) {
 function getbowtied_render_frontend_latest_posts_grid( $attributes ) {
 
 	extract( shortcode_atts( array(
-		'number'		=> '12',
-		'categoriesIDs'	=> '',
-		'align'			=> 'center',
-		'columns'		=> '3'
+		'number'				=> '12',
+		'categoriesSavedIDs'	=> '',
+		'align'					=> 'center',
+		'columns'				=> '3'
 	), $attributes ) );
 
 	$args = array(
@@ -84,11 +84,15 @@ function getbowtied_render_frontend_latest_posts_grid( $attributes ) {
         'posts_per_page' 	=> $number
     );
 
-    if( substr($categoriesIDs, - 1) == ',' ) {
-		$categoriesIDs = substr( $categoriesIDs, 0, -1);
+    if( substr($categoriesSavedIDs, - 1) == ',' ) {
+		$categoriesSavedIDs = substr( $categoriesSavedIDs, 0, -1);
 	}
 
-    if( $categoriesIDs != '' ) $args['category'] = $categoriesIDs;
+	if( substr($categoriesSavedIDs, 0, 1) == ',' ) {
+		$categoriesSavedIDs = substr( $categoriesSavedIDs, 1);
+	}
+
+    if( $categoriesSavedIDs != '' ) $args['category'] = $categoriesSavedIDs;
     
     $recentPosts = get_posts( $args );
 
