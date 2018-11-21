@@ -45,7 +45,7 @@
 			/* Display by category */
 			categoriesIDs: {
 				type: 'string',
-				default: '',
+				default: ',',
 			},
 			/* First Load */
 			firstLoad: {
@@ -87,6 +87,22 @@
 				}
 
 				return newarr;
+			}
+
+			function _buildQuery( arr, nr ) {
+				let query = '';
+
+				if( arr.substr(0,1) == ',' ) {
+					arr = arr.substr(1);
+				}
+				if( arr.substr(arr.length - 1) == ',' ) {
+					arr = arr.substring(0, arr.length - 1);
+				}
+				if( arr != ',' && arr != '' ) {
+					query = '/wp/v2/posts?categories=' + arr + '&per_page=' + nr;
+				}
+
+				return query;
 			}
 
 			function _isChecked( needle, haystack ) {
@@ -269,19 +285,11 @@
 													}
 												} else {
 													if (index > -1) {
-														newCategoriesSelected = newCategoriesSelected.replace(evt.target.value + ',', '');
+														newCategoriesSelected = newCategoriesSelected.replace(',' + evt.target.value + ',', ',');
 													}
 												}
 												props.setAttributes({ categoriesIDs: newCategoriesSelected });
-												if ( newCategoriesSelected != '' ) {
-													if( newCategoriesSelected.substr(newCategoriesSelected.length - 1) == ',' ) {
-														newCategoriesSelected = newCategoriesSelected.substring(0, newCategoriesSelected.length - 1);
-													}
-													let query = '/wp/v2/posts?categories=' + newCategoriesSelected + '&per_page=' + attributes.number;
-													props.setAttributes({ queryPosts: query});
-												} else {
-													props.setAttributes({ queryPosts: '' });
-												}
+												props.setAttributes({ queryPosts: _buildQuery(newCategoriesSelected, attributes.number) });
 											},
 										}, 
 									),
@@ -339,11 +347,7 @@
 								onChange: function onChange(newNumber){
 									props.setAttributes( { number: newNumber } );
 									let newCategoriesSelected = attributes.categoriesIDs;
-									if( newCategoriesSelected.substr(newCategoriesSelected.length - 1) == ',' ) {
-										newCategoriesSelected = newCategoriesSelected.substring(0, newCategoriesSelected.length - 1);
-									}
-									let query = '/wp/v2/posts?categories=' + newCategoriesSelected + '&per_page=' + newNumber;
-									props.setAttributes({ queryPosts: query});
+									props.setAttributes({ queryPosts: _buildQuery(newCategoriesSelected, newNumber) });
 								},
 							}
 						),
