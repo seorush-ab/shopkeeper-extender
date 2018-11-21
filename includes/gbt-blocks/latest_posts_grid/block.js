@@ -118,9 +118,11 @@
 
 				if( attributes.categoriesIDs != categoriesIDs ) {
 					props.setAttributes({ queryPosts: _buildQuery(categoriesIDs, attributes.number) });
+					props.setAttributes({ queryPostsLast: _buildQuery(categoriesIDs, attributes.number) });
 				}
 
 				props.setAttributes({ categoriesIDs: categoriesIDs });
+				props.setAttributes({ categoriesSavedIDs: categoriesIDs });
 			}
 
 			function _buildQuery( arr, nr ) {

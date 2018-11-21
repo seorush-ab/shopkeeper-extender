@@ -32,20 +32,16 @@
 			{ name: 'masonry_3', label:  'Masonry Style V3' },
 		],
 		attributes: {
-			productIDs: {
-				type: 'string',
-				default: '',
-			},
 			/* Products source */
 			result: {
 				type: 'array',
 				default: [],
 			},
-			queryProducts: {
+			queryItems: {
 				type: 'string',
 				default: '',
 			},
-			queryProductsLast: {
+			queryItemsLast: {
 				type: 'string',
 				default: '',
 			},
@@ -55,24 +51,16 @@
 				default: false,
 			},
 			/* Display by category */
-			queryCategoryOptions: {
-				type: 'array',
-				default: [],
+			categoriesIDs: {
+				type: 'string',
+				default: ',',
 			},
-			queryCategorySelected: {
-				type: 'array',
-				default: [],
-			},
-			selectedCategories: {
-				type: 'array',
-				default: [],
+			categoriesSavedIDs: {
+				type: 'string',
+				default: '',
 			},
 			/* First Load */
 			firstLoad: {
-				type: 'boolean',
-				default: true
-			},
-			firstLoad1: {
 				type: 'boolean',
 				default: true
 			},
@@ -98,11 +86,66 @@
 			var attributes = props.attributes;
 			let className  = props.className;
 
+			attributes.doneFirstLoad 		= attributes.doneFirstLoad || false;
+			attributes.categoryOptions 		= attributes.categoryOptions || [];
+			attributes.doneFirstItemsLoad 	= attributes.doneFirstItemsLoad || false;
+			attributes.result 				= attributes.result || [];
+
 			if( className.indexOf('is-style-') == -1 ) { className += ' is-style-default'; }
 
 			//==============================================================================
 			//	Helper functions
 			//==============================================================================
+
+			function _buildQuery( arr, nr ) {
+				let query = '';
+
+				if( arr.substr(0,1) == ',' ) {
+					arr = arr.substr(1);
+				}
+				if( arr.substr(arr.length - 1) == ',' ) {
+					arr = arr.substring(0, arr.length - 1);
+				}
+
+				if( arr != ',' && arr != '' ) {
+					query = '/wp/v2/portfolio-item?portfolio-category=' + arr + '&per_page=' + nr;
+
+				}
+
+				return query;
+			}
+
+			function _verifyCatIDs( optionsIDs ) {
+
+				let catArr = attributes.categoriesIDs;
+				let categoriesIDs = attributes.categoriesIDs;
+
+				if( catArr.substr(0,1) == ',' ) {
+					catArr = catArr.substr(1);
+				}
+				if( catArr.substr(catArr.length - 1) == ',' ) {
+					catArr = catArr.substring(0, catArr.length - 1);
+				}
+
+				if( catArr != ',' && catArr != '' ) {
+
+					let newCatArr = catArr.split(',');
+					let newArr = [];
+					for (let i = 0; i < newCatArr.length; i++) {
+						if( optionsIDs.indexOf(newCatArr[i]) == -1 ) {
+							categoriesIDs = categoriesIDs.replace(',' + newCatArr[i].toString() + ',', ',');
+						}
+					}
+				}
+
+				if( attributes.categoriesIDs != categoriesIDs ) {
+					props.setAttributes({ queryItems: _buildQuery(categoriesIDs, attributes.number) });
+					props.setAttributes({ queryItemsLast: _buildQuery(categoriesIDs, attributes.number) });
+				}
+
+				props.setAttributes({ categoriesIDs: categoriesIDs });
+				props.setAttributes({ categoriesSavedIDs: categoriesIDs });
+			}
 
 			function getWrapperClass() {
 				if( className.indexOf('is-style-default') >= 0 ) {
@@ -148,7 +191,7 @@
 			}
 
 			function _isDonePossible() {
-				return ( (attributes.queryProducts.length == 0) || (attributes.queryProducts === attributes.queryProductsLast) );
+				return ( (attributes.queryItems.length == 0) || (attributes.queryItems === attributes.queryItemsLast) );
 			}
 
 			function _isLoading() {
@@ -164,35 +207,26 @@
 			//==============================================================================
 
 			function getPortfolioItems() {
-				let query = attributes.queryProducts;
-				props.setAttributes({ queryProductsLast: query});
+				let query = attributes.queryItems;
+				props.setAttributes({ queryItemsLast: query});
 
 				if (query != '') {
-					apiFetch({ path: query }).then(function (products) {
-						props.setAttributes({ result: products});
+					apiFetch({ path: query }).then(function (items) {
+						props.setAttributes({ result: items});
 						props.setAttributes({ isLoading: false});
-						let IDs = '';
-						for ( let i = 0; i < products.length; i++) {
-							IDs += products[i].id + ',';
-						}
-						props.setAttributes({ productIDs: IDs});
+						props.setAttributes({ doneFirstItemsLoad: true});
 					});
 				}
 			}
 
 			function renderResults() {
-				if ( attributes.firstLoad1 === true ) {
+				if ( attributes.firstLoad === true ) {
 					apiFetch({ path: '/wp/v2/portfolio-item?per_page=12' }).then(function (portfolio_items) {
 						props.setAttributes({ result: portfolio_items });
-						props.setAttributes({ firstLoad1: false });
+						props.setAttributes({ firstLoad: false });
 						let query = '/wp/v2/portfolio-item?per_page=12';
-						props.setAttributes({queryProducts: query});
-						props.setAttributes({ queryProductsLast: query});
-						let IDs = '';
-						for ( let i = 0; i < portfolio_items.length; i++) {
-							IDs += portfolio_items[i].id + ',';
-						}
-						props.setAttributes({ productIDs: IDs});
+						props.setAttributes({queryItems: query});
+						props.setAttributes({ queryItemsLast: query});
 					});
 				}
 
@@ -274,35 +308,33 @@
 
 			function getCategories() {
 
-				if( attributes.firstLoad == true) {
+				let categories_list = [];
+				let options = [];
+				let optionsIDs = [];
+				let sorted = [];
+			
+				apiFetch({ path: '/wp/v2/portfolio-category?per_page=-1' }).then(function (categories) {
 
-					let categories_list = [];
-					let options = [];
-					let sorted = [];
-				
-					apiFetch({ path: '/wp/v2/portfolio-category?per_page=-1' }).then(function (categories) {
+				 	for( let i = 0; i < categories.length; i++) {
+	        			options[i] = {'label': categories[i].name.replace(/&amp;/g, '&'), 'value': categories[i].id, 'parent': categories[i].parent, 'count': categories[i].count };
+				 		optionsIDs[i] = categories[i].id.toString();
+				 	}
 
-					 	for( let i = 0; i < categories.length; i++) {
-		        			options[i] = {'label': categories[i].name.replace(/&amp;/g, '&'), 'value': categories[i].id, 'parent': categories[i].parent, 'count': categories[i].count };
-					 	}
-
-					 	sorted = _sortCategories(0, options);
-			        	props.setAttributes({queryCategoryOptions: sorted });
-			        	props.setAttributes({firstLoad: false });
-					});
-				}
+				 	sorted = _sortCategories(0, options);
+		        	props.setAttributes({categoryOptions: sorted });
+		        	_verifyCatIDs(optionsIDs);
+	        		props.setAttributes({ doneFirstLoad: true});
+				});
 			}
 
 			function renderCategories( parent = 0, level = 0 ) {
 
-				getCategories();
-
 				let categoryElements = [];
-				let catArr = attributes.queryCategoryOptions;
+				let catArr = attributes.categoryOptions;
 				if ( catArr.length > 0 )
 				{
 					for ( let i = 0; i < catArr.length; i++ ) {
-						if ( catArr[i].parent !=  parent ) { continue; };
+						 if ( catArr[i].parent !=  parent ) { continue; };
 						categoryElements.push(
 							el(
 								'li',
@@ -322,59 +354,28 @@
 											value: catArr[i].value,
 											'data-index': i,
 											'data-parent': catArr[i].parent,
-											checked: _isChecked(catArr[i].value, attributes.queryCategorySelected),
+											checked: _isChecked(','+catArr[i].value+',', attributes.categoriesIDs),
 											onChange: function onChange(evt){
-												let idx = Number(evt.target.dataset.index);
+												let newCategoriesSelected = attributes.categoriesIDs;
+												let index = newCategoriesSelected.indexOf(',' + evt.target.value + ',');
 												if (evt.target.checked === true) {
-													let qCS = attributes.queryCategorySelected;
-													let index = qCS.indexOf(evt.target.value);
 													if (index == -1) {
-														qCS.push(evt.target.value);
+														newCategoriesSelected += evt.target.value + ',';
 													}
-													for (let j = idx + 1; j < catArr.length - 1; j++) {
-														if ( catArr[idx].level < catArr[j].level) {
-															let index2 = qCS.indexOf(catArr[j].value.toString());
-															if (index2 == -1) {
-																qCS.push(catArr[j].value.toString());
-															}
-														} else {
-															break;
-														}
-													}
-													props.setAttributes({ queryCategorySelected: qCS });
 												} else {
-													let qCS = attributes.queryCategorySelected;
-													let index = qCS.indexOf(evt.target.value);
 													if (index > -1) {
-													  qCS.splice(index, 1);
+														newCategoriesSelected = newCategoriesSelected.replace(',' + evt.target.value + ',', ',');
 													}
-													for (let j = idx + 1; j < catArr.length - 1; j++) {
-														if ( catArr[idx].level < catArr[j].level) {
-															let index2 = qCS.indexOf(catArr[j].value.toString());
-															if (index2 > -1) {
-																qCS.splice(index2, 1);
-															}
-															} else {
-															break;
-														}
-													}
-													props.setAttributes({ queryCategorySelected: qCS });
-												};
-												if ( attributes.queryCategorySelected.length > 0 ) {
-													let query = '/wp/v2/portfolio-item?portfolio-category=' + attributes.queryCategorySelected.join(',') + '&per_page=' + attributes.number;
-													props.setAttributes({ queryProducts: query});
-												} else {
-													props.setAttributes({ queryProducts: '' });
 												}
+												props.setAttributes({ categoriesIDs: newCategoriesSelected });
+												props.setAttributes({ queryItems: _buildQuery(newCategoriesSelected, attributes.number) });
 											},
 										}, 
 									),
 									catArr[i].label,
 									el(
 										'sup',
-										{
-											className: 'category-count',
-										},
+										{},
 										catArr[i].count,
 									),
 								),
@@ -408,6 +409,7 @@
 							{
 								className: 'category-result-wrapper',
 							},
+							attributes.categoryOptions.length < 1 && attributes.doneFirstLoad === false && getCategories(),
 							renderCategories(),
 						),
 						el(
@@ -423,8 +425,8 @@
 								label: i18n.__( 'Number of Portfolio Items' ),
 								onChange: function onChange(newNumber){
 									props.setAttributes( { number: newNumber } );
-									let query = '/wp/v2/portfolio-item?portfolio-category=' + attributes.queryCategorySelected.join(',') + '&per_page=' + newNumber;
-									props.setAttributes({ queryProducts: query});
+									let newCategoriesSelected = attributes.categoriesIDs;
+									props.setAttributes({ queryItems: _buildQuery(newCategoriesSelected, newNumber) });
 								},
 							}
 						),
@@ -435,6 +437,7 @@
 								disabled: _isDonePossible(),
 								onClick: function onChange(e) {
 									props.setAttributes({ isLoading: true });
+									props.setAttributes({ categoriesSavedIDs: attributes.categoriesIDs });
 									getPortfolioItems();
 								},
 							},
@@ -479,211 +482,15 @@
 							key: 		'gbt_18_sk_editor_portfolio_wrapper',
 							className: 	getWrapperClass(),
 						},
-						renderResults(),
+						attributes.result.length < 1 && attributes.doneFirstItemsLoad === false && getPortfolioItems(),
+						renderResults()
 					),
 				)
 			];
 		},
 
-		save: function( props ) {
-
-			let attributes = props.attributes;
-
-			attributes.className = attributes.className || 'is-style-default';
-
-			function renderFrontend() {
-
-				let portfolio_items = attributes.result;
-				let postElements = [];
-				let wrapper = [];
-
-				if( portfolio_items.length > 0) {
-
-					for ( let i = 0; i < portfolio_items.length; i++ ) {
-
-						let portfolio_image = [];
-						if ( portfolio_items[i]['fimg_url'] ) { 
-							portfolio_image.push(
-								el( 'span',
-									{
-										key: 		'portfolio-thumb',
-										className: 	'portfolio-thumb hover-effect-thumb',
-										style:
-										{
-											backgroundImage: 'url(' + portfolio_items[i]['fimg_url'] + ')'
-										}
-									}
-								)
-							);
-						};
-
-						let categories = '';
-						let cat_slug_classes = '';
-						for( let j = 0; j < portfolio_items[i]['categories'].length; j++ ) {
-							categories +=  portfolio_items[i]['categories'][j]['name'];
-							cat_slug_classes += portfolio_items[i]['categories'][j]['slug'] + ' ';
-							if( (j+1) < portfolio_items[i]['categories'].length ) categories += ', ';
-						}
- 
-						postElements.push(
-							el( "div", 
-								{
-									key: 		'portfolio-box_' + portfolio_items[i].id, 
-									className: 	'portfolio-box hidden ' + cat_slug_classes
-								},
-								el( 'a',
-									{
-										key: 		'portfolio-box-inner-link',
-										className: 	'portfolio-box-inner hover-effect-link',
-										href: portfolio_items[i]['link'],
-										style:
-										{
-											backgroundColor: portfolio_items[i]['color_meta_box']
-										}
-									},
-									el( "div", 
-										{
-											key: 		'portfolio-content-wrapper', 
-											className: 	'portfolio-content-wrapper hover-effect-content'
-										},
-										portfolio_image,
-										el( 'h2',
-											{
-												key: 'portfolio-title',
-												className: 'portfolio-title hover-effect-title',
-											},
-											i18n.__( portfolio_items[i]['title']['rendered'] )
-										),
-										el( 'p',
-											{
-												key: 'portfolio-categories',
-												className: 'portfolio-categories hover-effect-text',
-											},
-											categories
-										)
-									)
-								)
-							)
-						);
-					}
-				} 
-
-				wrapper.push(
-					el( 'div',
-						{
-							key: 		'portfolio-isotope',
-							className: 	'portfolio-isotope',
-						},
-						el( 'div',
-							{
-								key: 		'portfolio-grid-sizer',
-								className: 	'portfolio-grid-sizer'
-							}
-						),
-						el( 'div',
-						{
-							key: 		'portfolio-grid-items',
-							className: 	'portfolio-grid-items'
-						},
-						postElements
-						)
-					)
-				);
-				
-				return wrapper;
-			}
-
-			function getColumns() {
-				if ( attributes.className.indexOf('is-style-default') >= 0 ) {
-					return 'default_grid items_per_row_' + attributes.columns;
-				} else {
-					return '';
-				}
-			}
-
-			function getFilters() {
-
-				let filters = [];
-				let wrapper = [];
-				let categories = [];
-
-				let portfolio_items = attributes.result;
-				if( portfolio_items.length > 0) {
-					for ( let i = 0; i < portfolio_items.length; i++ ) {
-						for ( let j = 0; j < portfolio_items[i]['categories'].length; j++ ) {
-							categories.push(portfolio_items[i]['categories'][j]);
-						}
-					}
-				}
-
-				categories = Array.from(new Set(categories.map(JSON.stringify))).map(JSON.parse);
-				categories.sort(function(a,b) {
-				    if ( a.name < b.name )
-				        return -1;
-				    if ( a.name > b.name )
-				        return 1;
-				    return 0;
-				});
-
-				if( categories.length > 0 ) {
-
-					for( let i = 0; i < categories.length; i++ ) {
-						filters.push(
-							el( 'li',
-								{
-									key: 'filter-item-' + i,
-									className: 'filter-item',
-									'data-filter': '.' + categories[i]['slug']
-								},
-								categories[i]['name']
-							)
-						);
-					}
-
-					wrapper.push(
-						el( 'div',
-							{
-								key: 		'portfolio-filters',
-								className: 	'portfolio-filters',
-							},
-							el( 'ul',
-								{
-									key: 		'filters-group',
-									className: 	'filters-group list-centered',
-								},
-								el( 'li',
-									{
-										key: 'filter-item-all',
-										className: 'filter-item is-checked',
-										'data-filter': '*',
-									},
-									i18n.__( 'Show all' )
-								),
-								filters
-							)
-						)
-					);
-
-					return wrapper;
-				}
-
-				return '';
-			}
-
-			return el( 'div',
-				{
-					key: 		'gbt_18_sk_portfolio',
-					className: 	'gbt_18_sk_portfolio wp-block-gbt-portfolio ' + attributes.className
-				},
-				el( 'div',
-					{
-						key: 		'gbt_18_sk_portfolio_wrapper',
-						className: 	'portfolio-isotope-container gbt_18_sk_portfolio_container ' + getColumns()
-					},
-					attributes.showFilters === true && getFilters(),
-					renderFrontend(),
-				),
-			);
+		save: function() {
+			return null;
 		},
 	} );
 
