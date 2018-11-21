@@ -400,7 +400,7 @@
 					el(
 						'div',
 						{
-							className: 'products-main-inspector-wrapper',
+							className: 'main-inspector-wrapper',
 						},
 						el( 'label', { className: 'components-base-control__label' }, i18n.__('Categories:') ),
 						el(
