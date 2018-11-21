@@ -18,11 +18,24 @@
 	const TabPanel 				= wp.components.TabPanel;
 	const SVG 					= wp.components.SVG;
 	const Path 					= wp.components.Path;
+	const Circle 				= wp.components.Circle;
+	const Polygon 				= wp.components.Polygon;
 
 	/* Register Block */
 	registerBlockType( 'getbowtied/sk-slider', {
 		title: i18n.__( 'Slider' ),
-		icon: 'slides',
+		icon:
+			el( SVG, { xmlns:'http://www.w3.org/2000/svg', viewBox:'0 0 100 100' },
+				el( Path, { d:'M85,15H15v60h70V15z M20,70v-9l15-15l9,9L29,70H20z M36,70l19-19l21,19H36z M80,66.8L54.9,44l-7.4,7.4L35,39 L20,54V20h60V66.8z' } ),
+				el( Circle, {cx: "50", cy: "82.5", r: "2.5"}),
+				el( Circle, {cx: "40", cy: "82.5", r: "2.5"}),
+				el( Circle, {cx: "60", cy: "82.5", r: "2.5"}),
+				el( Circle, {cx: "70", cy: "82.5", r: "2.5"}),
+				el( Circle, {cx: "30", cy: "82.5", r: "2.5"}),
+				el( Polygon, { points: "10,40 5,45 10,50 "}),
+				el( Polygon, { points: "90,50 95,45 90,40 "}),
+				el( Path, { d:'M65,40c4.1,0,7.5-3.4,7.5-7.5S69.1,25,65,25s-7.5,3.4-7.5,7.5S60.9,40,65,40z M65,30c1.4,0,2.5,1.1,2.5,2.5 S66.4,35,65,35s-2.5-1.1-2.5-2.5S63.6,30,65,30z' } ) 
+			),
 		category: 'shopkeeper',
 		supports: {
 			align: [ 'center', 'wide', 'full' ],
@@ -164,7 +177,7 @@
 					el(
 						'div',
 						{
-							className: 'products-main-inspector-wrapper',
+							className: 'main-inspector-wrapper',
 						},
 						el(
 							ToggleControl,
@@ -304,13 +317,18 @@
 								color: attributes.arrowsColor
 							}
 						},
-						el(
-							'i',
+						el( SVG, 
 							{
-								key: 'spk-icon-left-arrow-thin-large',
-								className: 'spk-icon spk-icon-left-arrow-thin-large',
-							}
-						)
+								className: 'left-arrow-svg',
+								xmlns:'http://www.w3.org/2000/svg',
+								viewBox:'0 0 24 24',
+								style:
+								{
+									fill: attributes.arrowsColor
+								}
+							},
+							el( Path, { d:'M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z' } ) 
+						),
 					),
 					!! attributes.arrows && el(
 						'div',
@@ -322,13 +340,18 @@
 								color: attributes.arrowsColor
 							}
 						},
-						el(
-							'i',
+						el( SVG, 
 							{
-								key: 'spk-icon-right-arrow-thin-large',
-								className: 'spk-icon spk-icon-right-arrow-thin-large',
-							}
-						)
+								className: 'right-arrow-svg',
+								xmlns:'http://www.w3.org/2000/svg',
+								viewBox:'0 0 24 24',
+								style:
+								{
+									fill: attributes.arrowsColor
+								}
+							},
+							el( Path, { d:'M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z' } ) 
+						),
 					),
 					!! attributes.pagination && el(
 						'div',

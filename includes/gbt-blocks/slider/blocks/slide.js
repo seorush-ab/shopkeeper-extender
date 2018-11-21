@@ -20,10 +20,19 @@
 	const Button 				= wp.components.Button;
 	const RangeControl			= wp.components.RangeControl;
 
+	const SVG 					= wp.components.SVG;
+	const Path 					= wp.components.Path;
+	const Circle 				= wp.components.Circle;
+	const Polygon 				= wp.components.Polygon;
+
 	/* Register Block */
 	registerBlockType( 'getbowtied/sk-slide', {
 		title: i18n.__( 'Slide' ),
-		icon: 'slides',
+		icon:
+			el( SVG, { xmlns:'http://www.w3.org/2000/svg', viewBox:'0 0 100 100' },
+				el( Path, { d:'M85,15H15v60h70V15z M20,70v-9l15-15l9,9L29,70H20z M36,70l19-19l21,19H36z M80,66.8L54.9,44l-7.4,7.4L35,39 L20,54V20h60V66.8z' } ),
+				el( Path, { d:'M65,40c4.1,0,7.5-3.4,7.5-7.5S69.1,25,65,25s-7.5,3.4-7.5,7.5S60.9,40,65,40z M65,30c1.4,0,2.5,1.1,2.5,2.5 S66.4,35,65,35s-2.5-1.1-2.5-2.5S63.6,30,65,30z' } ) 
+			),
 		category: 'shopkeeper',
 		parent: [ 'getbowtied/sk-slider' ],
 		attributes: {
@@ -47,11 +56,7 @@
 	        },
 	        titleSize: {
 	        	type: 'number',
-	        	default: 73,
-	        },
-	        titleFont: {
-	        	type: 'string',
-	        	default: 'primary_font',
+	        	default: 64,
 	        },
 	        description: {
 	        	type: 'string',
@@ -60,10 +65,6 @@
 	        descriptionSize: {
 	        	type: 'number',
 	        	default: 16,
-	        },
-	        descriptionFont: {
-	        	type: 'string',
-	        	default: 'secondary_font',
 	        },
 	        textColor: {
 	        	type: 'string',
@@ -156,7 +157,7 @@
 					el(
 						'div',
 						{
-							className: 'products-main-inspector-wrapper',
+							className: 'main-inspector-wrapper',
 						},
 						el(
 							TextControl,
@@ -195,7 +196,7 @@
 									key: "gbt_18_sk_editor_slide_title_size",
 									value: attributes.titleSize,
 									allowReset: false,
-									initialPosition: 32,
+									initialPosition: 64,
 									min: 10,
 									max: 72,
 									label: i18n.__( 'Title Font Size' ),
@@ -205,42 +206,17 @@
 								}
 							),
 							el(
-								SelectControl,
-								{
-									key: "gbt_18_sk_editor_slide_title_font",
-									options: [{value: 'primary_font', label: 'Primary Font'}, {value: 'secondary_font', label: 'Secondary Font'}],
-									label: i18n.__( 'Title Font Family (preview in frontend)' ),
-									value: attributes.titleFont,
-									onChange: function( newSelection ) {
-										props.setAttributes( { titleFont: newSelection } );
-									},
-								}
-							),
-							el( 'hr', {} ),
-							el(
 								RangeControl,
 								{
 									key: "gbt_18_sk_editor_slide_description_size",
 									value: attributes.descriptionSize,
 									allowReset: false,
-									initialPosition: 14,
+									initialPosition: 16,
 									min: 10,
 									max: 72,
 									label: i18n.__( 'Description Font Size' ),
 									onChange: function( newNumber ) {
 										props.setAttributes( { descriptionSize: newNumber } );
-									},
-								}
-							),
-							el(
-								SelectControl,
-								{
-									key: "gbt_18_sk_editor_slide_description_font",
-									options: [{value: 'primary_font', label: 'Primary Font'}, {value: 'secondary_font', label: 'Secondary Font'}],
-									label: i18n.__( 'Description Font Family (preview in frontend)' ),
-									value: attributes.descriptionFont,
-									onChange: function( newSelection ) {
-										props.setAttributes( { descriptionFont: newSelection } );
 									},
 								}
 							),
@@ -476,7 +452,7 @@
 						attributes.title != '' && el( 'h2',
 							{
 								key: 		'gbt_18_sk_slide_title',
-								className: 	'gbt_18_sk_slide_title slide-title ' + attributes.titleFont,
+								className: 	'gbt_18_sk_slide_title slide-title',
 								style:
 								{
 									fontSize: attributes.titleSize,
@@ -488,7 +464,7 @@
 						attributes.description != '' && el( 'p',
 							{
 								key: 		'gbt_18_sk_slide_description',
-								className: 	'gbt_18_sk_slide_description slide-description ' + attributes.descriptionFont,
+								className: 	'gbt_18_sk_slide_description slide-description',
 								style:
 								{
 									fontSize: attributes.descriptionSize,

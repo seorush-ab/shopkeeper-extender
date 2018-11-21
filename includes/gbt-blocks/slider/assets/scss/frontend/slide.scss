@@ -31,31 +31,11 @@
 		{
 			font-size: 50px;
 			line-height: 1.2 !important;
-		}
-
-		h2
-		{
 			margin: 0 10% 25px 15%; 
 		}
 
-		p,
-		.button
-		{
-			margin-bottom: 40px;
-
-			@media screen and (min-width: 1024px) {
-				margin: 0 10% 40px 15%;
-			}
-		}
-
-		p
-		{
-			font-size: 14px; 
-		}
-
-		.button
-		{
-			margin-top: 40px;  
+		.slide-description {
+			margin: 0px 10% 55px 15%
 		}
 
 		.fullslidelink 

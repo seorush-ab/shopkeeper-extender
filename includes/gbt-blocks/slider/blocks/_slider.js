@@ -94,7 +94,7 @@
 					el(
 						'div',
 						{
-							className: 'products-main-inspector-wrapper',
+							className: 'main-inspector-wrapper',
 						},
 						el(
 							ToggleControl,

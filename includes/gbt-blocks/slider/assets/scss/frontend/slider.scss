@@ -12,6 +12,7 @@
 	.swiper-container.full_height
 	{
 	    height: 100vh !important;
+	    max-height: 100vh;
 	}
 
 	.gbt_18_sk_slider_container .swiper-slide .slider-content-wrapper
@@ -44,6 +45,18 @@
 
 	.gbt_18_sk_slider_container
 	{
+		.swiper-button-next {
+			.right-arrow-svg {
+			    width: 50px;
+			}
+		}
+
+		.swiper-button-prev {
+			.left-arrow-svg {
+			    width: 50px;
+			}
+		}
+
 		.shortcode-slider-pagination
 		{
 			.swiper-pagination-bullet
