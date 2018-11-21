@@ -12,14 +12,14 @@ if ( ! function_exists( 'gbt_18_sk_portfolio_editor_assets' ) ) {
 		wp_enqueue_script(
 			'gbt_18_sk_portfolio_script',
 			plugins_url( 'block.js', __FILE__ ),
-			array( 'wp-blocks', 'wp-i18n', 'wp-element', 'jquery' ),
+			array( 'wp-api-request','wp-blocks', 'wp-i18n', 'wp-element' ),
 			filemtime( plugin_dir_path( __FILE__ ) . 'block.js' )
 		);
 
 		wp_enqueue_style(
 			'gbt_18_sk_portfolio_editor_styles',
 			plugins_url( 'assets/css/editor.css', __FILE__ ),
-			array( 'wp-blocks' )
+			array( 'wp-edit-blocks' )
 		);
 	}
 }
