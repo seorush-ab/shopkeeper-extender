@@ -55,6 +55,10 @@ if ( function_exists( 'register_block_type' ) ) {
 				'type'						=> 'string',
 				'default'					=> 'center',
 			),
+			'orderby'						=> array(
+				'type'						=> 'string',
+				'default'					=> 'title_asc',
+			),
 			'columns'						=> array(
 				'type'						=> 'number',
 				'default'					=> '3'

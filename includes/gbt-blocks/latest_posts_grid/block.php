@@ -16,6 +16,7 @@ function gbt_18_sk_render_frontend_latest_posts( $attributes ) {
 		'number'				=> '12',
 		'categoriesSavedIDs'	=> '',
 		'align'					=> 'center',
+		'orderby'				=> 'title_asc',
 		'columns'				=> '3'
 	), $attributes ) );
 
@@ -24,6 +25,26 @@ function gbt_18_sk_render_frontend_latest_posts( $attributes ) {
         'post_type' 		=> 'post',
         'posts_per_page' 	=> $number
     );
+
+    switch ( $orderby ) {
+    	case 'date_asc' :
+			$args['orderby'] = 'date';
+			$args['order']	 = 'asc';
+			break;
+		case 'date_desc' :
+			$args['orderby'] = 'date';
+			$args['order']	 = 'desc';
+			break;
+		case 'title_asc' :
+			$args['orderby'] = 'title';
+			$args['order']	 = 'asc';
+			break;
+		case 'title_desc':
+			$args['orderby'] = 'title';
+			$args['order']	 = 'desc';
+			break;
+		default: break;
+	}
 
     if( substr($categoriesSavedIDs, - 1) == ',' ) {
 		$categoriesSavedIDs = substr( $categoriesSavedIDs, 0, -1);

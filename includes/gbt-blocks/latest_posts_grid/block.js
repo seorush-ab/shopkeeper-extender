@@ -66,6 +66,11 @@
 				type: 'number',
 				default: '3'
 			},
+			/* Orderby */
+			orderby: {
+				type: 'string',
+				default: 'title_asc'
+			},
 		},
 
 		edit: function( props ) {
@@ -76,6 +81,9 @@
 			attributes.categoryOptions 		= attributes.categoryOptions || [];
 			attributes.doneFirstPostsLoad 	= attributes.doneFirstPostsLoad || false;
 			attributes.result 				= attributes.result || [];
+
+			console.log(attributes.queryPosts);
+			console.log(attributes.queryPostsLast);
 
 			//==============================================================================
 			//	Helper functions
@@ -117,15 +125,15 @@
 				}
 
 				if( attributes.categoriesIDs != categoriesIDs ) {
-					props.setAttributes({ queryPosts: _buildQuery(categoriesIDs, attributes.number) });
-					props.setAttributes({ queryPostsLast: _buildQuery(categoriesIDs, attributes.number) });
+					props.setAttributes({ queryPosts: _buildQuery(categoriesIDs, attributes.number, attributes.orderby) });
+					props.setAttributes({ queryPostsLast: _buildQuery(categoriesIDs, attributes.number, attributes.orderby) });
 				}
 
 				props.setAttributes({ categoriesIDs: categoriesIDs });
 				props.setAttributes({ categoriesSavedIDs: categoriesIDs });
 			}
 
-			function _buildQuery( arr, nr ) {
+			function _buildQuery( arr, nr, order ) {
 				let query = '';
 
 				if( arr.substr(0,1) == ',' ) {
@@ -137,6 +145,23 @@
 
 				if( arr != ',' && arr != '' ) {
 					query = '/wp/v2/posts?categories=' + arr + '&per_page=' + nr;
+
+					switch (order) {
+						case 'date_asc':
+							query += '&orderby=date&order=asc';
+							break;
+						case 'date_desc':
+							query += '&orderby=date&order=desc';
+							break;
+						case 'title_asc':
+							query += '&orderby=title&order=asc';
+							break;
+						case 'title_desc':
+							query += '&orderby=title&order=desc';
+							break;
+						default: 
+							break;
+					}
 				}
 
 				return query;
@@ -329,7 +354,7 @@
 													}
 												}
 												props.setAttributes({ categoriesIDs: newCategoriesSelected });
-												props.setAttributes({ queryPosts: _buildQuery(newCategoriesSelected, attributes.number) });
+												props.setAttributes({ queryPosts: _buildQuery(newCategoriesSelected, attributes.number, attributes.orderby) });
 											},
 										}, 
 									),
@@ -374,6 +399,26 @@
 							renderCategories(),
 						),
 						el(
+							SelectControl,
+							{
+								key: 'sk-latest-posts-order-by',
+								options:
+									[
+										{ value: 'title_asc',   label: 'Alphabetical Ascending' },
+										{ value: 'title_desc',  label: 'Alphabetical Descending' },
+										{ value: 'date_asc',   	label: 'Date Ascending' },
+										{ value: 'date_desc',  	label: 'Date Descending' },
+									],
+	              				label: i18n.__( 'Order By' ),
+	              				value: attributes.orderby,
+	              				onChange: function( value ) {
+	              					props.setAttributes( { orderby: value } );
+	              					let newCategoriesSelected = attributes.categoriesIDs;
+									props.setAttributes({ queryPosts: _buildQuery(newCategoriesSelected, attributes.number, value) });
+								},
+							}
+						),
+						el(
 							RangeControl,
 							{
 								key: "sk-latest-posts-number",
@@ -387,7 +432,7 @@
 								onChange: function onChange(newNumber){
 									props.setAttributes( { number: newNumber } );
 									let newCategoriesSelected = attributes.categoriesIDs;
-									props.setAttributes({ queryPosts: _buildQuery(newCategoriesSelected, newNumber) });
+									props.setAttributes({ queryPosts: _buildQuery(newCategoriesSelected, newNumber, attributes.orderby) });
 								},
 							}
 						),
