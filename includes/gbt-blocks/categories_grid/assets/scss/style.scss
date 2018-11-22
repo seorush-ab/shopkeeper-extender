@@ -5,12 +5,24 @@
 		margin-left: calc( -100vw / 2 + 100% / 2 );
 	    margin-right: calc( -100vw / 2 + 100% / 2 );
 	    max-width: 100vw;
+
+	    @media all and (min-width: 640px) {
+        	padding: 0 15px;
+        }
+
+        @media all and (max-width: 639px) {
+        	.gbt_18_sk_categories_grid div {
+        		padding: 0;
+        	}
+        }
 	}
 
 	&.wide {
-		margin-left: calc( -75vw / 2 + 100% / 2 );
-	    margin-right: calc( -75vw / 2 + 100% / 2 );
-	    max-width: 75vw;
+		@media all and (min-width: 640px) {
+			margin-left: calc( -75vw / 2 + 100% / 2 );
+		    margin-right: calc( -75vw / 2 + 100% / 2 );
+		    max-width: 75vw;
+		}
 	}
 
 	&:not(.full)

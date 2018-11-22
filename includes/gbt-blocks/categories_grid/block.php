@@ -1,45 +1,106 @@
 <?php
 
-// Categories Grid
-
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+include_once 'functions/function-setup.php';
+
 //==============================================================================
-//	Enqueue Editor Assets
+//	Frontend Output
 //==============================================================================
-add_action( 'enqueue_block_editor_assets', 'gbt_18_sk_categories_grid_editor_assets' );
-if ( ! function_exists( 'gbt_18_sk_categories_grid_editor_assets' ) ) {
-	function gbt_18_sk_categories_grid_editor_assets() {
+function getbowtied_render_frontend_categories_grid( $attributes ) {
 
-		wp_enqueue_script(
-			'gbt_18_sk_categories_grid_script',
-			plugins_url( 'block.js', __FILE__ ),
-			array( 'wp-blocks', 'wp-components', 'wp-editor', 'wp-i18n', 'wp-element', 'jquery' )
-		);
+	extract( shortcode_atts( array(
+		'categoryIDs'					=> '',
+		'orderby'						=> 'menu_order',
+		'limit'     					=> 8,
+		'columns'						=> '3',
+		'hideEmpty'				 		=> false,
+		'productCount'				 	=> true,
+		'parentOnly'     				=> false,
+		'align'							=> 'center',
+		'queryDisplayType'				=> 'all_categories',
+	), $attributes ) );
 
-		wp_enqueue_style(
-			'gbt_18_sk_categories_grid_editor_styles',
-			plugins_url( 'assets/css/editor.css', __FILE__ ),
-			array( 'wp-edit-blocks' )
-		);
-
-		wp_localize_script( 'gbt_18_sk_categories_grid_script', 'ajax_object',
-            array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) 
-        );
+	$args['taxonomy'] = 'product_cat';
+	if ( $queryDisplayType == 'specific' ) {
+		$args['orderby'] 	= 'include';
+		$args['include'] 	= $categoryIDs;
+		$args['hide_empty'] = false;
+	} else {
+		$args['number']	 		= $limit;
+		$args['hide_empty']		= $hideEmpty;
+		$args['parent']			= ($parentOnly === true)? 0 : '';
+		switch ( $orderby ) {
+			case 'menu_order': break;
+			case 'title_asc' :
+				$args['orderby'] = 'title';
+				$args['order']	 = 'asc';
+				break;
+			case 'title_desc':
+				$args['orderby'] = 'title';
+				$args['order']	 = 'desc';
+				break;
+			default: break;
+		}
 	}
-}
 
-//==============================================================================
-//	Enqueue Frontend Assets
-//==============================================================================
-add_action( 'enqueue_block_assets', 'gbt_18_sk_categories_grid_assets' );
-if ( ! function_exists( 'gbt_18_sk_categories_grid_assets' ) ) {
-	function gbt_18_sk_categories_grid_assets() {
-		
-		wp_enqueue_style(
-			'gbt_18_sk_categories_grid_styles',
-			plugins_url( 'assets/css/style.css', __FILE__ ),
-			array()
-		);
-	}
+	$product_categories = get_terms( $args );
+
+	ob_start();
+
+	$cat_counter = 0;
+	$cat_number = count($product_categories);
+
+	if ( $product_categories ) : ?>
+		<div class="gbt_18_sk_categories_grid_wrapper <?php echo $align; ?>">
+			<div class="gbt_18_sk_categories_grid">
+				<?php foreach ($product_categories as $category):
+
+					$thumbnail_id = get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true );
+					$image = wp_get_attachment_url( $thumbnail_id );
+
+					$cat_class = "";
+					$cat_counter++;   
+
+					switch ($cat_number) {
+						case 1:
+							$cat_class = "one_cat_" . $cat_counter;
+							break;
+						case 2:
+							$cat_class = "two_cat_" . $cat_counter;
+							break;
+						case 3:
+							$cat_class = "three_cat_" . $cat_counter;
+							break;
+						case 4:
+							$cat_class = "four_cat_" . $cat_counter;
+							break;
+						case 5:
+							$cat_class = "five_cat_" . $cat_counter;
+							break;
+						default:
+							if ($cat_counter < 7) {
+								$cat_class = $cat_counter;
+							} else {
+								$cat_class = "more_than_6";
+							}
+					} ?>
+		            <div class="gbt_18_sk_category_<?php echo $cat_class; ?>">
+						<div class="gbt_18_sk_category_grid_box">
+							<span class="gbt_18_sk_category_item_bkg" style="background-image:url(<?php echo esc_url($image); ?>)"></span> 
+							<a href="<?php echo get_term_link( $category->slug, 'product_cat' ); ?>" class="gbt_18_sk_category_item" >
+								<span class="gbt_18_sk_category_name"><?php echo esc_html($category->name); ?>
+									<?php if ( $productCount ) { ?>
+										<span class="gbt_18_sk_category_count"><?php echo esc_html($category->count); ?></span>
+									<?php } ?>
+								</span>
+							</a>
+						</div>
+					</div>
+				<?php endforeach; ?>
+				<div class="clearfix"></div>
+	 		</div>
+		</div>
+	<?php endif;
+	return  ob_get_clean();
 }

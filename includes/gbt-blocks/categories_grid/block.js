@@ -15,7 +15,7 @@
 	const apiFetch 				= wp.apiFetch;
 
 	/* Register Block */
-	registerBlockType( 'getbowtied/categories-grid', {
+	registerBlockType( 'getbowtied/sk-categories-grid', {
 		title: i18n.__( 'Product Categories - Grid' ),
 		icon: 'layout',
 		category: 'shopkeeper',
@@ -101,7 +101,6 @@
 				type: 'int',
 				default: 3,
 			}
-
 		},
 		edit: function( props ) {
 
@@ -554,7 +553,7 @@
 				el(
 					InspectorControls,
 					{
-						key: 'products-main-inspector',
+						key: 'categories-main-inspector',
 					},
 					el(
 						'div',
@@ -731,116 +730,8 @@
 			];
 		},
 
-		save: function( props ) {
-
-			let attributes = props.attributes;
-
-			function renderFrontend() {
-				
-				let categories = attributes.result;
-				let categoryElements = [];
-				let cat_counter = 0;
-				let cat_class = "";
-
-				for ( let i = 0; i < categories.length; i++ ) {
-
-					cat_class = "";
-					cat_counter++;   
-
-					switch ( categories.length ) {
-						case 1:
-							cat_class = "one_cat_" + cat_counter;
-							break;
-						case 2:
-							cat_class = "two_cat_" + cat_counter;
-							break;
-						case 3:
-							cat_class = "three_cat_" + cat_counter;
-							break;
-						case 4:
-							cat_class = "four_cat_" + cat_counter;
-							break;
-						case 5:
-							cat_class = "five_cat_" + cat_counter;
-							break;
-						default:
-							if (cat_counter < 7) {
-								cat_class = cat_counter;
-							} else {
-								cat_class = "more_than_6";
-							}
-					}
-
-					let img = '';
-					if ( categories[i].image !== null ) { img = categories[i]['image']['src'] } else { img = '' };
-					categoryElements.push(
-						el( 'div',
-							{	
-								key: 		'gbt_18_sk_category_' + cat_class + '_item-' + categories[i].id,
-								className: 	'gbt_18_sk_category_' + cat_class
-							},
-							el( 'div',
-								{
-									key: 		'gbt_18_sk_category_grid_box',
-									className: 	'gbt_18_sk_category_grid_box'
-								},
-								el( 'span',
-									{
-										key: 		'gbt_18_sk_category_item_bkg',
-										className: 	'gbt_18_sk_category_item_bkg',
-										style:
-											{
-												backgroundImage: 'url(' + img + ')'
-											}
-									}
-								),
-								el( 'a',
-									{
-										key: 		'gbt_18_sk_category_item',
-										className: 	'gbt_18_sk_category_item'
-									},
-									el( 'span',
-										{
-											key: 		'gbt_18_sk_category_name',
-											className: 	'gbt_18_sk_category_name'
-										},
-										categories[i]['name'].replace(/&amp;/g, '&'),
-										attributes.productCount === true && el( 'span',
-											{
-												key: 		'gbt_18_sk_category_count',
-												className: 	'gbt_18_sk_category_count',
-											},
-											categories[i]['count']
-										),
-									)
-								)
-							)
-						)
-					);
-				}
-
-				return categoryElements;
-			}
-
-			return el(	'div',
-					{
-						key: 'gbt_18_sk_categories_grid_wrapper',
-						className: 'gbt_18_sk_categories_grid_wrapper'
-					},
-					el( 'div',
-						{
-							key: 		'gbt_18_sk_categories_grid',
-							className: 	'gbt_18_sk_categories_grid'
-						},
-						renderFrontend(),
-						el(	'div',
-						{
-							key: 	'clearfix',
-							className: 	'clearfix'
-						}
-					),
-				),
-			);
+		save: function() {
+			return null;
 		},
 	} );
 

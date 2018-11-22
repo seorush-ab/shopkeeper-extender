@@ -1,4 +1,4 @@
-.editor-block-list__block[data-type="getbowtied/categories-grid"][data-align="wide"] {
+.editor-block-list__block[data-type="getbowtied/sk-categories-grid"][data-align="wide"] {
 
   .gbt_18_sk_editor_categories_grid_wrapper {
 
@@ -36,7 +36,7 @@
   }
 }
 
-.editor-block-list__block[data-type="getbowtied/categories-grid"][data-align="full"] {
+.editor-block-list__block[data-type="getbowtied/sk-categories-grid"][data-align="full"] {
 
   .gbt_18_sk_editor_categories_grid_wrapper {
 
@@ -284,80 +284,94 @@
     }
   }
 
-  .gbt_18_sk_editor_categories_grid .gbt_18_sk_editor_category_grid_box {
-    overflow: hidden;
-    position: relative;
-    display: block;
-    backface-visibility:hidden;
-  }
-
-  .gbt_18_sk_editor_categories_grid .gbt_18_sk_editor_category_item {
-    display: table !important;
-    width: 100%;
-    text-align: left;
-    color: #fff;
-    position: relative;
-    border-spacing: 0;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  .gbt_18_sk_editor_category_item_bkg {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    display: block;
-    background-color:#333;
-    background-size:cover;
-    background-repeat:no-repeat;
-    background-position:center;
-    width: calc(100% + 50px);
-    max-width: none;
-    min-height: 100.6%;
-    transition: opacity 0.35s, transform 0.35s;
-    transform: translate3d(-40px,0,0);
-  }
-
-  .gbt_18_sk_editor_categories_grid .gbt_18_sk_editor_category_name {
-     font-size: 14px;
-  }
-
-  .gbt_18_sk_editor_categories_grid .gbt_18_sk_editor_category_count {
-    font-size: 13px;
-    margin-left: 7px;
-  }
-
-  .gbt_18_sk_editor_categories_grid .gbt_18_sk_editor_category_grid_box:hover .gbt_18_sk_editor_category_item_bkg {
-    transform: translate3d(0,0,0);
-  }
-
-  .gbt_18_sk_editor_categories_grid .gbt_18_sk_editor_category_name {
-    width:100%;
-    display: table-cell; 
-    line-height:1.333em;
-    font-weight:700;
-    padding: 15px 15px;
-    background:rgba(0,0,0,0);
-    transition: all 0.35s ease;
-    position: relative;
-    z-index: 2;
-  }
-    
-  .gbt_18_sk_editor_categories_grid .gbt_18_sk_editor_category_name:hover {
-    background:rgba(0,0,0,.6);
-  }
-
-  article .gbt_18_sk_editor_categories_grid {
+  .gbt_18_sk_editor_categories_grid {
     margin-bottom: 0px;
-  }
 
-  .gbt_18_sk_editor_categories_grid:before,
-  .gbt_18_sk_editor_categories_grid:after {
-    content: " ";
-    display: table;
+    .gbt_18_sk_editor_category_grid_box {
+      overflow: hidden;
+      position: relative;
+      display: block;
+      backface-visibility:hidden;
+    }
+
+    .gbt_18_sk_editor_category_item {
+      display: table !important;
+      width: 100%;
+      text-align: left;
+      color: #fff;
+      position: relative;
+      border-spacing: 0;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .gbt_18_sk_editor_category_item_bkg {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: block;
+      background-color:#333;
+      background-size:cover;
+      background-repeat:no-repeat;
+      background-position:center;
+      width: calc(100% + 50px);
+      max-width: none;
+      min-height: 100.6%;
+      transition: opacity 0.35s, transform 0.35s;
+      transform: translate3d(-40px,0,0);
+    }
+
+    .gbt_18_sk_editor_category_name {
+       font-size: 16px;
+    }
+
+    .gbt_18_sk_editor_category_count {
+      font-size: 13px;
+      margin-left: 7px;
+    }
+
+    .gbt_18_sk_editor_category_grid_box:hover .gbt_18_sk_editor_category_item_bkg {
+      transform: translate3d(0,0,0);
+    }
+
+    .gbt_18_sk_editor_category_name {
+      width:100%;
+      display: table-cell; 
+      line-height:1.333em;
+      font-weight:700;
+      padding: 15px 15px;
+      background:rgba(0,0,0,0);
+      transition: all 0.35s ease;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .gbt_18_sk_editor_category_name:hover {
+      background:rgba(0,0,0,.6);
+    }
+
+    &:before,
+    &:after {
+      content: " ";
+      display: table;
+    }
+  }
+}
+
+.editor-block-list__block[data-type="getbowtied/sk-categories-grid"][data-align="center"] {
+  .gbt_18_sk_editor_categories_grid_wrapper {
+    .gbt_18_sk_editor_categories_grid {
+      .gbt_18_sk_editor_category_name {
+        font-size: 12px;
+        padding: 10px 10px;
+      }
+      .gbt_18_sk_editor_category_count {
+        font-size: 11px;
+      }
+    }
   }
 }
