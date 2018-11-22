@@ -4,72 +4,13 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-//==============================================================================
-//	Enqueue Editor Assets
-//==============================================================================
-add_action( 'enqueue_block_editor_assets', 'gbt_18_sk_latest_posts_editor_assets' );
-if ( ! function_exists( 'gbt_18_sk_latest_posts_editor_assets' ) ) {
-	function gbt_18_sk_latest_posts_editor_assets() {
-		
-		wp_enqueue_script(
-			'gbt_18_sk_latest_posts_script',
-			plugins_url( 'block.js', __FILE__ ),
-			array( 'wp-api-request', 'wp-blocks', 'wp-i18n', 'wp-element' ),
-			filemtime( plugin_dir_path( __FILE__ ) . 'block.js' )
-		);
-
-		wp_enqueue_style(
-			'gbt_18_sk_latest_posts_editor_styles',
-			plugins_url( 'assets/css/editor.css', __FILE__ ),
-			array( 'wp-edit-blocks' )
-		);
-	}
-}
-
-//==============================================================================
-//	Enqueue Frontend Assets
-//==============================================================================
-add_action( 'enqueue_block_assets', 'gbt_18_sk_latest_posts_assets' );
-if ( ! function_exists( 'gbt_18_sk_latest_posts_assets' ) ) {
-	function gbt_18_sk_latest_posts_assets() {
-		
-		wp_enqueue_style(
-			'gbt_18_sk_latest_posts_styles',
-			plugins_url( 'assets/css/style.css', __FILE__ ),
-			array()
-		);
-	}
-}
-
-if ( function_exists( 'register_block_type' ) ) {
-	register_block_type( 'getbowtied/sk-latest-posts', array(
-		'attributes'      					=> array(
-			'number'						=> array(
-				'type'						=> 'number',
-				'default'					=> '12',
-			),
-			'categoriesSavedIDs'			=> array(
-				'type'						=> 'string',
-				'default'					=> '',
-			),
-			'align'							=> array(
-				'type'						=> 'string',
-				'default'					=> 'center',
-			),
-			'columns'						=> array(
-				'type'						=> 'number',
-				'default'					=> '3'
-			),
-		),
-
-		'render_callback' => 'getbowtied_render_frontend_latest_posts_grid',
-	) );
-}
+include_once 'functions/function-setup.php';
+include_once 'functions/function-helpers.php';
 
 //==============================================================================
 //	Frontend Output
 //==============================================================================
-function getbowtied_render_frontend_latest_posts_grid( $attributes ) {
+function gbt_18_sk_render_frontend_latest_posts( $attributes ) {
 
 	extract( shortcode_atts( array(
 		'number'				=> '12',
@@ -142,28 +83,4 @@ function getbowtied_render_frontend_latest_posts_grid( $attributes ) {
 	wp_reset_query();
 
 	return ob_get_clean();
-
-}
-
-//==============================================================================
-//	Post Featured Image Helper
-//==============================================================================
-add_action('rest_api_init', 'gbt_18_sk_register_rest_post_images' );
-function gbt_18_sk_register_rest_post_images(){
-    register_rest_field( array('post'),
-        'fimg_url',
-        array(
-            'get_callback'    => 'gbt_18_sk_get_rest_post_featured_image',
-            'update_callback' => null,
-            'schema'          => null,
-        )
-    );
-}
-
-function gbt_18_sk_get_rest_post_featured_image( $object, $field_name, $request ) {
-    if( $object['featured_media'] ){
-        $img = wp_get_attachment_image_src( $object['featured_media'], 'app-thumb' );
-        return $img[0];
-    }
-    return false;
 }

@@ -85,5 +85,5 @@ register_block_type( 'getbowtied/sk-categories-grid', array(
 		),
 	),
 
-	'render_callback' => 'getbowtied_render_frontend_categories_grid',
+	'render_callback' => 'gbt_18_sk_render_frontend_categories_grid',
 ) );

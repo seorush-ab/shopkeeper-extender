@@ -7,7 +7,7 @@ include_once 'functions/function-setup.php';
 //==============================================================================
 //	Frontend Output
 //==============================================================================
-function getbowtied_render_frontend_categories_grid( $attributes ) {
+function gbt_18_sk_render_frontend_categories_grid( $attributes ) {
 
 	extract( shortcode_atts( array(
 		'categoryIDs'					=> '',

@@ -2,80 +2,13 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-//==============================================================================
-//	Enqueue Editor Assets
-//==============================================================================
-add_action( 'enqueue_block_editor_assets', 'gbt_18_sk_portfolio_editor_assets' );
-if ( ! function_exists( 'gbt_18_sk_portfolio_editor_assets' ) ) {
-	function gbt_18_sk_portfolio_editor_assets() {
-		
-		wp_enqueue_script(
-			'gbt_18_sk_portfolio_script',
-			plugins_url( 'block.js', __FILE__ ),
-			array( 'wp-api-request','wp-blocks', 'wp-i18n', 'wp-element' ),
-			filemtime( plugin_dir_path( __FILE__ ) . 'block.js' )
-		);
-
-		wp_enqueue_style(
-			'gbt_18_sk_portfolio_editor_styles',
-			plugins_url( 'assets/css/editor.css', __FILE__ ),
-			array( 'wp-edit-blocks' )
-		);
-	}
-}
-
-//==============================================================================
-//	Enqueue Frontend Assets
-//==============================================================================
-add_action( 'enqueue_block_assets', 'gbt_18_sk_portfolio_assets' );
-if ( ! function_exists( 'gbt_18_sk_portfolio_assets' ) ) {
-	function gbt_18_sk_portfolio_assets() {
-		
-		wp_enqueue_style(
-			'gbt_18_sk_portfolio_styles',
-			plugins_url( 'assets/css/style.css', __FILE__ ),
-			array()
-		);
-	}
-}
-
-if ( function_exists( 'register_block_type' ) ) {
-    register_block_type( 'getbowtied/sk-portfolio', array(
-        'attributes'      => array(
-            'number'                        => array(
-                'type'                      => 'integer',
-                'default'                   => 12,
-            ),
-            'categoriesSavedIDs'            => array(
-                'type'                      => 'string',
-                'default'                   => '',
-            ),
-            'showFilters'                   => array(
-                'type'                      => 'boolean',
-                'default'                   => false,
-            ),
-            'columns'                       => array(
-                'type'                      => 'number',
-                'default'                   => '3',
-            ),
-            'align'                         => array(
-                'type'                      => 'string',
-                'default'                   => 'center',
-            ),
-            'className'                     => array(
-                'type'                      => 'string',
-                'default'                   => 'is-style-default',
-            ),
-        ),
-
-        'render_callback' => 'getbowtied_render_frontend_portfolio',
-    ) );
-}
+include_once 'functions/function-setup.php';
+include_once 'functions/function-helpers.php';
 
 //==============================================================================
 //  Frontend Output
 //==============================================================================
-function getbowtied_render_frontend_portfolio( $attributes ) {
+function gbt_18_sk_render_frontend_portfolio( $attributes ) {
     
     $sliderrandomid = rand();
     
@@ -236,27 +169,4 @@ function getbowtied_render_frontend_portfolio( $attributes ) {
     wp_reset_query();
    
     return ob_get_clean();
-}
-
-//==============================================================================
-//	Portfolio Helpers
-//==============================================================================
-add_action('rest_api_init', 'gbt_18_sk_register_rest_portfolio_images' );
-function gbt_18_sk_register_rest_portfolio_images(){
-    register_rest_field( array('portfolio'),
-        'fimg_url',
-        array(
-            'get_callback'    => 'gbt_18_sk_get_rest_portfolio_featured_image',
-            'update_callback' => null,
-            'schema'          => null,
-        )
-    );
-}
-
-function gbt_18_sk_get_rest_portfolio_featured_image( $object, $field_name, $request ) {
-    if( $object['featured_media'] ){
-        $img = wp_get_attachment_image_src( $object['featured_media'], 'large' );
-        return $img[0];
-    }
-    return false;
 }
