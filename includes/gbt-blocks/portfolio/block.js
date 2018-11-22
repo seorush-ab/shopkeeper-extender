@@ -79,6 +79,11 @@
 				type: 'boolean',
 				default: false,
 			},
+			/* Orderby */
+			orderby: {
+				type: 'string',
+				default: 'title_asc'
+			},
 		},
 
 		edit: function( props ) {
@@ -97,7 +102,7 @@
 			//	Helper functions
 			//==============================================================================
 
-			function _buildQuery( arr, nr ) {
+			function _buildQuery( arr, nr, order ) {
 				let query = '';
 
 				if( arr.substr(0,1) == ',' ) {
@@ -110,6 +115,22 @@
 				if( arr != ',' && arr != '' ) {
 					query = '/wp/v2/portfolio-item?portfolio-category=' + arr + '&per_page=' + nr;
 
+					switch (order) {
+						case 'date_asc':
+							query += '&orderby=date&order=asc';
+							break;
+						case 'date_desc':
+							query += '&orderby=date&order=desc';
+							break;
+						case 'title_asc':
+							query += '&orderby=title&order=asc';
+							break;
+						case 'title_desc':
+							query += '&orderby=title&order=desc';
+							break;
+						default: 
+							break;
+					}
 				}
 
 				return query;
@@ -139,8 +160,8 @@
 				}
 
 				if( attributes.categoriesIDs != categoriesIDs ) {
-					props.setAttributes({ queryItems: _buildQuery(categoriesIDs, attributes.number) });
-					props.setAttributes({ queryItemsLast: _buildQuery(categoriesIDs, attributes.number) });
+					props.setAttributes({ queryItems: _buildQuery(categoriesIDs, attributes.number, attributes.orderby) });
+					props.setAttributes({ queryItemsLast: _buildQuery(categoriesIDs, attributes.number, attributes.orderby) });
 				}
 
 				props.setAttributes({ categoriesIDs: categoriesIDs });
@@ -368,7 +389,7 @@
 													}
 												}
 												props.setAttributes({ categoriesIDs: newCategoriesSelected });
-												props.setAttributes({ queryItems: _buildQuery(newCategoriesSelected, attributes.number) });
+												props.setAttributes({ queryItems: _buildQuery(newCategoriesSelected, attributes.number, attributes.orderby) });
 											},
 										}, 
 									),
@@ -413,6 +434,26 @@
 							renderCategories(),
 						),
 						el(
+							SelectControl,
+							{
+								key: 'sk-latest-posts-order-by',
+								options:
+									[
+										{ value: 'title_asc',   label: 'Alphabetical Ascending' },
+										{ value: 'title_desc',  label: 'Alphabetical Descending' },
+										{ value: 'date_asc',   	label: 'Date Ascending' },
+										{ value: 'date_desc',  	label: 'Date Descending' },
+									],
+	              				label: i18n.__( 'Order By' ),
+	              				value: attributes.orderby,
+	              				onChange: function( value ) {
+	              					props.setAttributes( { orderby: value } );
+	              					let newCategoriesSelected = attributes.categoriesIDs;
+									props.setAttributes({ queryItems: _buildQuery(newCategoriesSelected, attributes.number, value) });
+								},
+							}
+						),
+						el(
 							RangeControl,
 							{
 								key: "sk-portfolio-number",
@@ -426,7 +467,7 @@
 								onChange: function onChange(newNumber){
 									props.setAttributes( { number: newNumber } );
 									let newCategoriesSelected = attributes.categoriesIDs;
-									props.setAttributes({ queryItems: _buildQuery(newCategoriesSelected, newNumber) });
+									props.setAttributes({ queryItems: _buildQuery(newCategoriesSelected, newNumber, attributes.orderby) });
 								},
 							}
 						),

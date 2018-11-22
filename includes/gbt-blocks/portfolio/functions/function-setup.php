@@ -63,6 +63,10 @@ if ( function_exists( 'register_block_type' ) ) {
                 'type'                      => 'string',
                 'default'                   => 'center',
             ),
+            'orderby'                       => array(
+                'type'                      => 'string',
+                'default'                   => 'title_asc',
+            ),
             'className'                     => array(
                 'type'                      => 'string',
                 'default'                   => 'is-style-default',

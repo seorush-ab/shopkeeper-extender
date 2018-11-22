@@ -82,9 +82,6 @@
 			attributes.doneFirstPostsLoad 	= attributes.doneFirstPostsLoad || false;
 			attributes.result 				= attributes.result || [];
 
-			console.log(attributes.queryPosts);
-			console.log(attributes.queryPostsLast);
-
 			//==============================================================================
 			//	Helper functions
 			//==============================================================================

@@ -13,12 +13,13 @@ function gbt_18_sk_render_frontend_portfolio( $attributes ) {
     $sliderrandomid = rand();
     
     extract(shortcode_atts(array(
-        "number"                    => '12',
-        "categoriesSavedIDs"        => '',
-        "showFilters"               => false,
-        "columns"                   => '3',
-        "align"                     => 'center',
-        "className"                 => 'is-style-default'
+        'number'                    => '12',
+        'categoriesSavedIDs'        => '',
+        'showFilters'               => false,
+        'columns'                   => '3',
+        'align'                     => 'center',
+        'orderby'                   => 'title_asc',
+        'className'                 => 'is-style-default'
     ), $attributes));
     ob_start();
     ?>
@@ -39,12 +40,32 @@ function gbt_18_sk_render_frontend_portfolio( $attributes ) {
         'posts_per_page'        => $number
     );
 
+    switch ( $orderby ) {
+        case 'date_asc' :
+            $args['orderby'] = 'date';
+            $args['order']   = 'asc';
+            break;
+        case 'date_desc' :
+            $args['orderby'] = 'date';
+            $args['order']   = 'desc';
+            break;
+        case 'title_asc' :
+            $args['orderby'] = 'title';
+            $args['order']   = 'asc';
+            break;
+        case 'title_desc':
+            $args['orderby'] = 'title';
+            $args['order']   = 'desc';
+            break;
+        default: break;
+    }
+
     if( $categoriesSavedIDs != '' ) {
         $args['tax_query'] = array(
             array(
-                'taxonomy' => 'portfolio_categories',
-                'field' => 'term_id',
-                'terms'    => explode(",",$categoriesSavedIDs)
+                'taxonomy'  => 'portfolio_categories',
+                'field'     => 'term_id',
+                'terms'     => explode(",",$categoriesSavedIDs)
             ),
        );
     }
