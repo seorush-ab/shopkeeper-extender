@@ -106,6 +106,7 @@
 
 			let attributes = props.attributes;
 			attributes.selectedIDS = attributes.selectedIDS || [];
+			attributes.doneFirstPostsLoad 	= attributes.doneFirstPostsLoad || false;
 
 		//==============================================================================
 		//	Helper functions
@@ -215,6 +216,7 @@
 					query = attributes.queryCategories;
 				}
 				props.setAttributes({ queryCategoriesLast: query});
+				props.setAttributes({ doneFirstPostsLoad: true});
 
 				if (query != '') {
 					apiFetch({ path: query }).then(function (categories) {
@@ -725,6 +727,7 @@
 						key: 		'gbt_18_sk_editor_categories_grid_wrapper',
 						className: 	'gbt_18_sk_editor_categories_grid_wrapper'
 					},
+					attributes.queryDisplayType == 'all_categories' && attributes.doneFirstPostsLoad === false && getResult(),
 					renderResults(),
 				),
 			];
