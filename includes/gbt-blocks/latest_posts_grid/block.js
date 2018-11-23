@@ -69,7 +69,7 @@
 			/* Orderby */
 			orderby: {
 				type: 'string',
-				default: 'title_asc'
+				default: 'date_desc'
 			},
 		},
 
@@ -131,7 +131,7 @@
 			}
 
 			function _buildQuery( arr, nr, order ) {
-				let query = '';
+				let query = '/wp/v2/posts?per_page=' + nr;
 
 				if( arr.substr(0,1) == ',' ) {
 					arr = arr.substr(1);
@@ -142,23 +142,23 @@
 
 				if( arr != ',' && arr != '' ) {
 					query = '/wp/v2/posts?categories=' + arr + '&per_page=' + nr;
+				}
 
-					switch (order) {
-						case 'date_asc':
-							query += '&orderby=date&order=asc';
-							break;
-						case 'date_desc':
-							query += '&orderby=date&order=desc';
-							break;
-						case 'title_asc':
-							query += '&orderby=title&order=asc';
-							break;
-						case 'title_desc':
-							query += '&orderby=title&order=desc';
-							break;
-						default: 
-							break;
-					}
+				switch (order) {
+					case 'date_asc':
+						query += '&orderby=date&order=asc';
+						break;
+					case 'date_desc':
+						query += '&orderby=date&order=desc';
+						break;
+					case 'title_asc':
+						query += '&orderby=title&order=asc';
+						break;
+					case 'title_desc':
+						query += '&orderby=title&order=desc';
+						break;
+					default: 
+						break;
 				}
 
 				return query;
@@ -219,10 +219,10 @@
 
 			function renderResults() {
 				if ( attributes.firstLoad === true ) {
-					apiFetch({ path: '/wp/v2/posts?per_page=12' }).then(function (posts) {
+					apiFetch({ path: '/wp/v2/posts?per_page=12&orderby=date&order=desc' }).then(function (posts) {
 						props.setAttributes({ result: posts });
 						props.setAttributes({ firstLoad: false });
-						let query = '/wp/v2/posts?per_page=12';
+						let query = '/wp/v2/posts?per_page=12&orderby=date&order=desc';
 						props.setAttributes({queryPosts: query});
 						props.setAttributes({ queryPostsLast: query});
 					});
