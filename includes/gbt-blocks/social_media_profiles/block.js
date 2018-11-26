@@ -14,7 +14,7 @@
 	const RangeControl			= components.RangeControl;
 
 	/* Register Block */
-	registerBlockType( 'getbowtied/social-media-profiles', {
+	registerBlockType( 'getbowtied/sk-social-media-profiles', {
 		title: i18n.__( 'Social Media Profiles' ),
 		icon: 'share',
 		category: 'shopkeeper',

@@ -42,7 +42,7 @@ if ( ! function_exists( 'gbt_18_sk_social_media_assets' ) ) {
 //  Frontend Output
 //==============================================================================
 if ( function_exists( 'register_block_type' ) ) {
-    register_block_type( 'getbowtied/social-media-profiles', array(
+    register_block_type( 'getbowtied/sk-social-media-profiles', array(
     	'attributes'            => array(
     		'align'			    => array(
     			'type'          => 'string',
