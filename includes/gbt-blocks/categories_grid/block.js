@@ -708,7 +708,7 @@
 							_isLoadingText(),
 						),
 					),
-					el('hr', {}),
+					el( 'hr', {} ),
 					el(
 						ToggleControl,
 						{
