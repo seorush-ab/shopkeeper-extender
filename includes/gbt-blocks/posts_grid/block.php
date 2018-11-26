@@ -10,13 +10,13 @@ include_once 'functions/function-helpers.php';
 //==============================================================================
 //	Frontend Output
 //==============================================================================
-function gbt_18_sk_render_frontend_latest_posts( $attributes ) {
+function gbt_18_sk_render_frontend_posts_grid( $attributes ) {
 
 	extract( shortcode_atts( array(
 		'number'				=> '12',
 		'categoriesSavedIDs'	=> '',
 		'align'					=> 'center',
-		'orderby'				=> 'title_asc',
+		'orderby'				=> 'date_desc',
 		'columns'				=> '3'
 	), $attributes ) );
 
@@ -62,31 +62,31 @@ function gbt_18_sk_render_frontend_latest_posts( $attributes ) {
 	        
     if ( !empty($recentPosts) ) : ?>
 
-        <div class="gbt_18_sk_latest_posts">
+        <div class="gbt_18_sk_posts_grid">
     
-    		<div class="gbt_18_sk_latest_posts_wrapper columns-<?php echo $columns; ?> <?php echo $align; ?>">
+    		<div class="gbt_18_sk_posts_grid_wrapper columns-<?php echo $columns; ?> <?php echo $align; ?>">
 	                    
 	            <?php foreach($recentPosts as $post) : ?>
 	        
 	                <?php $post_format = get_post_format($post->ID); ?>
 
-	                <div class="gbt_18_sk_latest_posts_item <?php echo $post_format ? $post_format: 'standard'; ?> <?php if ( !has_post_thumbnail($post->ID)) : ?>no_thumb<?php endif; ?>">
+	                <div class="gbt_18_sk_posts_grid_item <?php echo $post_format ? $post_format: 'standard'; ?> <?php if ( !has_post_thumbnail($post->ID)) : ?>no_thumb<?php endif; ?>">
 	                    
-						<a class="gbt_18_sk_latest_posts_item_link" href="<?php echo get_post_permalink($post->ID); ?>">
-							<span class="gbt_18_sk_latest_posts_img_container">
-								<span class="gbt_18_sk_latest_posts_img_overlay"></span>
+						<a class="gbt_18_sk_posts_grid_item_link" href="<?php echo get_post_permalink($post->ID); ?>">
+							<span class="gbt_18_sk_posts_grid_img_container">
+								<span class="gbt_18_sk_posts_grid_img_overlay"></span>
 								
 								<?php if ( has_post_thumbnail($post->ID)) :
 									$image_id = get_post_thumbnail_id($post->ID);
 									$image_url = wp_get_attachment_image_src($image_id,'large', true);
 								?>
-									<span class="gbt_18_sk_latest_posts_img gbt_18_sk_latest_posts_with_img" style="background-image: url(<?php echo esc_url($image_url[0]); ?> );"></span>
+									<span class="gbt_18_sk_posts_grid_img gbt_18_sk_posts_grid_with_img" style="background-image: url(<?php echo esc_url($image_url[0]); ?> );"></span>
 								<?php else : ?>
-									<span class="gbt_18_sk_latest_posts_img gbt_18_sk_latest_posts_noimg"></span>
+									<span class="gbt_18_sk_posts_grid_img gbt_18_sk_posts_grid_noimg"></span>
 								<?php endif;  ?>
 
 							</span><!--.from_the_blog_img_container-->
-							<span class="gbt_18_sk_latest_posts_title" href="<?php echo get_post_permalink($post->ID); ?>"><?php echo $post->post_title; ?></span>
+							<span class="gbt_18_sk_posts_grid_title" href="<?php echo get_post_permalink($post->ID); ?>"><?php echo $post->post_title; ?></span>
 						</a>
 	                    
 	                </div>

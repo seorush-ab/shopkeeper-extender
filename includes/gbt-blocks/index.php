@@ -26,7 +26,7 @@ if ( ! function_exists( 'getbowtied_product_blocks_scripts' ) ) {
 }
 
 require_once 'categories_grid/block.php';
-require_once 'latest_posts_grid/block.php';
+require_once 'posts_grid/block.php';
 require_once 'banner/block.php';
 require_once 'portfolio/block.php';
 require_once 'social_media_profiles/block.php';

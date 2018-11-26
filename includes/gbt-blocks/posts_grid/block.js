@@ -18,10 +18,10 @@
 	const apiFetch 				= wp.apiFetch;
 
 	/* Register Block */
-	registerBlockType( 'getbowtied/sk-latest-posts', {
-		title: i18n.__( 'Latest Posts Grid' ),
+	registerBlockType( 'getbowtied/sk-posts-grid', {
+		title: i18n.__( 'Posts Grid' ),
 		icon: el( SVG, { xmlns:'http://www.w3.org/2000/svg', viewBox:'0 0 24 24' },
-				el( Path, { d:'M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12zM10 9h8v2h-8zm0 3h4v2h-4zm0-6h8v2h-8z' } ) 
+				el( Path, { d:'M4 5v13h17V5H4zm10 2v3.5h-3V7h3zM6 7h3v3.5H6V7zm0 9v-3.5h3V16H6zm5 0v-3.5h3V16h-3zm8 0h-3v-3.5h3V16zm-3-5.5V7h3v3.5h-3z' } ) 
 			),
 		category: 'shopkeeper',
 		supports: {
@@ -237,43 +237,43 @@
 					for ( let i = 0; i < posts.length; i++ ) {
 
 						let img = '';
-						let img_class = 'gbt_18_sk_editor_latest_posts_noimg';
-						if ( posts[i]['fimg_url'] ) { img = posts[i]['fimg_url']; img_class = 'gbt_18_sk_editor_latest_posts_with_img'; } else { img_class = 'gbt_18_sk_editor_latest_posts_noimg'; img = ''; };
+						let img_class = 'gbt_18_sk_editor_posts_grid_noimg';
+						if ( posts[i]['fimg_url'] ) { img = posts[i]['fimg_url']; img_class = 'gbt_18_sk_editor_posts_grid_with_img'; } else { img_class = 'gbt_18_sk_editor_posts_grid_noimg'; img = ''; };
 
 						postElements.push(
 							el( "div", 
 								{
-									key: 		'gbt_18_sk_editor_latest_posts_item_' + posts[i].id, 
-									className: 	'gbt_18_sk_editor_latest_posts_item'
+									key: 		'gbt_18_sk_editor_posts_grid_item_' + posts[i].id, 
+									className: 	'gbt_18_sk_editor_posts_grid_item'
 								},
 								el( "a", 
 									{
-										key: 		'gbt_18_sk_editor_latest_posts_item_link',
-										className: 	'gbt_18_sk_editor_latest_posts_item_link'
+										key: 		'gbt_18_sk_editor_posts_grid_item_link',
+										className: 	'gbt_18_sk_editor_posts_grid_item_link'
 									},
 									el( "span", 
 										{ 
-											key: 		'gbt_18_sk_editor_latest_posts_img_container',
-											className: 	'gbt_18_sk_editor_latest_posts_img_container'
+											key: 		'gbt_18_sk_editor_posts_grid_img_container',
+											className: 	'gbt_18_sk_editor_posts_grid_img_container'
 										},
 										el( "span", 
 											{
-												key: 'gbt_18_sk_editor_latest_posts_img_overlay',
-												className: 'gbt_18_sk_editor_latest_posts_img_overlay'
+												key: 'gbt_18_sk_editor_posts_grid_img_overlay',
+												className: 'gbt_18_sk_editor_posts_grid_img_overlay'
 											}
 										),
 										el( "span", 
 											{
-												key: 		'gbt_18_sk_editor_latest_posts_img',
-												className: 	'gbt_18_sk_editor_latest_posts_img ' + img_class,
+												key: 		'gbt_18_sk_editor_posts_grid_img',
+												className: 	'gbt_18_sk_editor_posts_grid_img ' + img_class,
 												style: 		{ backgroundImage: 'url(' + img + ')' }
 											}
 										)
 									),
 									el( "span", 
 										{
-											key: 		'gbt_18_sk_editor_latest_posts_title',
-											className:  'gbt_18_sk_editor_latest_posts_title',
+											key: 		'gbt_18_sk_editor_posts_grid_title',
+											className:  'gbt_18_sk_editor_posts_grid_title',
 											dangerouslySetInnerHTML: { __html: posts[i]['title']['rendered'] }
 										}
 									)
@@ -379,7 +379,7 @@
 				el(
 					InspectorControls,
 					{
-						key: 'sk-latest-posts-inspector'
+						key: 'sk-posts-grid-inspector'
 					},
 					el(
 						'div',
@@ -398,7 +398,7 @@
 						el(
 							SelectControl,
 							{
-								key: 'sk-latest-posts-order-by',
+								key: 'sk-posts-grid-order-by',
 								options:
 									[
 										{ value: 'title_asc',   label: 'Alphabetical Ascending' },
@@ -418,7 +418,7 @@
 						el(
 							RangeControl,
 							{
-								key: "sk-latest-posts-number",
+								key: "sk-posts-grid-number",
 								className: 'range-wrapper',
 								value: attributes.number,
 								allowReset: false,
@@ -450,7 +450,7 @@
 						el(
 							RangeControl,
 							{
-								key: "sk-latest-posts-columns",
+								key: "sk-posts-grid-columns",
 								value: attributes.columns,
 								allowReset: false,
 								initialPosition: 3,
@@ -466,14 +466,14 @@
 				),
 				el( 'div',
 					{
-						key: 		'gbt_18_sk_latest_posts',
-						className: 	'gbt_18_sk_latest_posts'	
+						key: 		'gbt_18_sk_posts_grid',
+						className: 	'gbt_18_sk_posts_grid'	
 					},
 					el(
 						'div',
 						{
-							key: 		'gbt_18_sk_editor_latest_posts_wrapper',
-							className: 	'gbt_18_sk_editor_latest_posts_wrapper columns-' + attributes.columns,
+							key: 		'gbt_18_sk_editor_posts_grid_wrapper',
+							className: 	'gbt_18_sk_editor_posts_grid_wrapper columns-' + attributes.columns,
 						},
 						attributes.result.length < 1 && attributes.doneFirstPostsLoad === false && getPosts(),
 						renderResults()
