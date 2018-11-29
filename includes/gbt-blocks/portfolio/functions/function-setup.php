@@ -65,7 +65,7 @@ if ( function_exists( 'register_block_type' ) ) {
             ),
             'orderby'                       => array(
                 'type'                      => 'string',
-                'default'                   => 'title_asc',
+                'default'                   => 'date_desc',
             ),
             'className'                     => array(
                 'type'                      => 'string',

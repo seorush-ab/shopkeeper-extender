@@ -18,13 +18,10 @@ function gbt_18_sk_render_frontend_portfolio( $attributes ) {
         'showFilters'               => false,
         'columns'                   => '3',
         'align'                     => 'center',
-        'orderby'                   => 'title_asc',
+        'orderby'                   => 'date_desc',
         'className'                 => 'is-style-default'
     ), $attributes));
     ob_start();
-    ?>
-    
-    <?php
 
     if( substr($categoriesSavedIDs, - 1) == ',' ) {
         $categoriesSavedIDs = substr( $categoriesSavedIDs, 0, -1);
