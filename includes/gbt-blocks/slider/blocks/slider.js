@@ -69,10 +69,6 @@
 				type: 'string',
 				default: '#fff'
 			},
-			slideURL: {
-	        	type: 'string',
-	        	default: '#'
-	        },
 	        activeTab: {
 	        	type: 'number',
 	        	default: '1'

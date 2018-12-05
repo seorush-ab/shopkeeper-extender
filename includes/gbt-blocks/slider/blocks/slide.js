@@ -457,9 +457,9 @@
 								{
 									fontSize: attributes.titleSize,
 									color: attributes.textColor
-								}
+								},
+								dangerouslySetInnerHTML: { __html: attributes.title },
 							},
-							attributes.title
 						),
 						attributes.description != '' && el( 'p',
 							{
@@ -469,9 +469,9 @@
 								{
 									fontSize: attributes.descriptionSize,
 									color: attributes.textColor
-								}
+								},
+								dangerouslySetInnerHTML: { __html: attributes.description },
 							},
-							attributes.description
 						),
 						!! attributes.slideButton && attributes.buttonText != '' && el( 'a',
 							{
@@ -482,9 +482,9 @@
 								{
 									backgroundColor: attributes.buttonBgColor,
 									color: attributes.buttonTextColor
-								}
+								},
+								dangerouslySetInnerHTML: { __html: attributes.buttonText },
 							},
-							attributes.buttonText
 						)
 					)
 				)
