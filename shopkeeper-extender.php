@@ -7,8 +7,8 @@
  * Version:           		1.2
  * Author:            		GetBowtied
  * Author URI:        		https://getbowtied.com
- * Requires at least: 		4.9
- * Tested up to: 			4.9.8
+ * Requires at least: 		5.0
+ * Tested up to: 			5.0
  *
  * @package  Shopkeeper Extender
  * @author   GetBowtied
@@ -40,8 +40,8 @@ if(!function_exists('github_sk_plugin_updater')) {
 				'github_url' 		 => 'https://github.com/getbowtied/shopkeeper-extender',
 				'zip_url' 			 => 'https://github.com/getbowtied/shopkeeper-extender/zipball/master',
 				'sslverify'			 => true,
-				'requires'			 => '4.9',
-				'tested'			 => '4.9.8',
+				'requires'			 => '5.0',
+				'tested'			 => '5.0',
 				'readme'			 => 'README.txt',
 				'access_token'		 => '',
 			);
