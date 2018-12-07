@@ -10,14 +10,14 @@
     text-align: center;
     font-size: 13px;
 
-    .gbt_18_sk_editor_social_media_icon.dashicon.dashicons-share {
-	    margin-right: 1ch;
-	    margin-top: -6px;
+    .gbt_18_sk_editor_social_media_icon {
+	    margin-right: 10px;
 
-	    &:before {
-			font-family: "dashicons";
-		    font-size: 20px;
-		}
+	    svg {
+    	    fill: #000;
+		    width: 20px;
+		    height: 20px;
+	    }
 	}
 
 	.gbt_18_sk_editor_social_media_title {
