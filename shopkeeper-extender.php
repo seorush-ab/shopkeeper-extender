@@ -71,9 +71,13 @@ if(!function_exists('gbt_sk_gutenberg_blocks')) {
 if( !function_exists('theme_warning') ) {
 	function theme_warning() {
 
-		echo '<div class="message error woocommerce-admin-notice woocommerce-st-inactive woocommerce-not-configured">';
-		echo '<p>Shopkeeper Extender is enabled but not effective. Please activate Gutenberg plugin in order to work.</p>';
-		echo '</div>';
+		?>
+
+		<div class="message error woocommerce-admin-notice woocommerce-st-inactive woocommerce-not-configured">
+			<p>Shopkeeper Extender plugin couldn't find the Block Editor (Gutenberg) on this site. It requires WordPress 5+ or Gutenberg installed as a plugin.</p>
+		</div>
+
+		<?php
 	}
 }
 
