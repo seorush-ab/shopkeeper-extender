@@ -13,6 +13,9 @@ Extends the functionality of Shopkeeper with Gutenberg elements.
 
 == Changelog ==
 
+= 1.3 =
+- WordPress 5+ compatibility improvements
+
 = 1.2 =
 - Improvement: Compatibility updates for Gutenberg 4.0.0
 
