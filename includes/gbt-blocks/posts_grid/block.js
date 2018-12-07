@@ -18,33 +18,22 @@
 	const apiFetch 				= wp.apiFetch;
 
 	/* Register Block */
-	registerBlockType( 'getbowtied/sk-portfolio', {
-		title: i18n.__( 'Portfolio' ),
-		icon:
-			el( SVG, { xmlns:'http://www.w3.org/2000/svg', viewBox:'0 0 24 24' },
-				el( Path, { d:'M14 6V4h-4v2h4zM4 8v11h16V8H4zm16-2c1.11 0 2 .89 2 2v11c0 1.11-.89 2-2 2H4c-1.11 0-2-.89-2-2l.01-11c0-1.11.88-2 1.99-2h4V4c0-1.11.89-2 2-2h4c1.11 0 2 .89 2 2v2h4z' } ),
+	registerBlockType( 'getbowtied/sk-posts-grid', {
+		title: i18n.__( 'Posts Grid' ),
+		icon: el( SVG, { xmlns:'http://www.w3.org/2000/svg', viewBox:'0 0 24 24' },
+				el( Path, { d:'M4 5v13h17V5H4zm10 2v3.5h-3V7h3zM6 7h3v3.5H6V7zm0 9v-3.5h3V16H6zm5 0v-3.5h3V16h-3zm8 0h-3v-3.5h3V16zm-3-5.5V7h3v3.5h-3z' } ) 
 			),
 		category: 'shopkeeper',
 		supports: {
 			align: [ 'center', 'wide', 'full' ],
 		},
-		styles: [
-			{ name: 'default', label:  'Equal Boxes', isDefault: true },
-			{ name: 'masonry_1', label:  'Masonry Style V1' },
-			{ name: 'masonry_2', label:  'Masonry Style V2' },
-			{ name: 'masonry_3', label:  'Masonry Style V3' },
-		],
 		attributes: {
-			/* Products source */
-			result: {
-				type: 'array',
-				default: [],
-			},
-			queryItems: {
+			/* posts source */
+			queryPosts: {
 				type: 'string',
 				default: '',
 			},
-			queryItemsLast: {
+			queryPostsLast: {
 				type: 'string',
 				default: '',
 			},
@@ -67,7 +56,7 @@
 				type: 'boolean',
 				default: true
 			},
-			/* Number of Portfolio Items */
+			/* Number of Posts */
 			number: {
 				type: 'number',
 				default: '12'
@@ -76,11 +65,6 @@
 			columns: {
 				type: 'number',
 				default: '3'
-			},
-			/* Filters */
-			showFilters: {
-				type: 'boolean',
-				default: false,
 			},
 			/* Orderby */
 			orderby: {
@@ -92,51 +76,26 @@
 		edit: function( props ) {
 
 			let attributes = props.attributes;
-			let className  = props.className;
 
 			attributes.doneFirstLoad 		= attributes.doneFirstLoad || false;
 			attributes.categoryOptions 		= attributes.categoryOptions || [];
-			attributes.doneFirstItemsLoad 	= attributes.doneFirstItemsLoad || false;
+			attributes.doneFirstPostsLoad 	= attributes.doneFirstPostsLoad || false;
 			attributes.result 				= attributes.result || [];
-
-			if( className.indexOf('is-style-') == -1 ) { className += ' is-style-default'; }
 
 			//==============================================================================
 			//	Helper functions
 			//==============================================================================
 
-			function _buildQuery( arr, nr, order ) {
-				let query = '/wp/v2/portfolio-item?per_page=' + nr;
-
-				if( arr.substr(0,1) == ',' ) {
-					arr = arr.substr(1);
-				}
-				if( arr.substr(arr.length - 1) == ',' ) {
-					arr = arr.substring(0, arr.length - 1);
-				}
-
-				if( arr != ',' && arr != '' ) {
-					query = '/wp/v2/portfolio-item?portfolio-category=' + arr + '&per_page=' + nr;
+			function _sortCategories( index, arr, newarr = [], level = 0) {
+				for ( let i = 0; i < arr.length; i++ ) {
+					if ( arr[i].parent == index) {
+						arr[i].level = level;
+						newarr.push(arr[i]);
+						_sortCategories(arr[i].value, arr, newarr, level + 1 );
+					}
 				}
 
-				switch (order) {
-					case 'date_asc':
-						query += '&orderby=date&order=asc';
-						break;
-					case 'date_desc':
-						query += '&orderby=date&order=desc';
-						break;
-					case 'title_asc':
-						query += '&orderby=title&order=asc';
-						break;
-					case 'title_desc':
-						query += '&orderby=title&order=desc';
-						break;
-					default: 
-						break;
-				}	
-
-				return query;
+				return newarr;
 			}
 
 			function _verifyCatIDs( optionsIDs ) {
@@ -163,36 +122,51 @@
 				}
 
 				if( attributes.categoriesIDs != categoriesIDs ) {
-					props.setAttributes({ queryItems: _buildQuery(categoriesIDs, attributes.number, attributes.orderby) });
-					props.setAttributes({ queryItemsLast: _buildQuery(categoriesIDs, attributes.number, attributes.orderby) });
+					props.setAttributes({ queryPosts: _buildQuery(categoriesIDs, attributes.number, attributes.orderby) });
+					props.setAttributes({ queryPostsLast: _buildQuery(categoriesIDs, attributes.number, attributes.orderby) });
 				}
 
 				props.setAttributes({ categoriesIDs: categoriesIDs });
 				props.setAttributes({ categoriesSavedIDs: categoriesIDs });
 			}
 
-			function getWrapperClass() {
-				if( className.indexOf('is-style-default') >= 0 ) {
-					return 'gbt_18_sk_editor_portfolio_wrapper items_per_row_' + attributes.columns;
-				}
-				return 'gbt_18_sk_editor_portfolio_wrapper';
-			}
+			function _buildQuery( arr, nr, order ) {
+				let query = '/wp/v2/posts?per_page=' + nr;
 
-			function _sortCategories( index, arr, newarr = [], level = 0) {
-				for ( let i = 0; i < arr.length; i++ ) {
-					if ( arr[i].parent == index) {
-						arr[i].level = level;
-						newarr.push(arr[i]);
-						_sortCategories(arr[i].value, arr, newarr, level + 1 );
-					}
+				if( arr.substr(0,1) == ',' ) {
+					arr = arr.substr(1);
+				}
+				if( arr.substr(arr.length - 1) == ',' ) {
+					arr = arr.substring(0, arr.length - 1);
 				}
 
-				return newarr;
+				if( arr != ',' && arr != '' ) {
+					query = '/wp/v2/posts?categories=' + arr + '&per_page=' + nr;
+				}
+
+				switch (order) {
+					case 'date_asc':
+						query += '&orderby=date&order=asc';
+						break;
+					case 'date_desc':
+						query += '&orderby=date&order=desc';
+						break;
+					case 'title_asc':
+						query += '&orderby=title&order=asc';
+						break;
+					case 'title_desc':
+						query += '&orderby=title&order=desc';
+						break;
+					default: 
+						break;
+				}
+
+				return query;
 			}
 
 			function _isChecked( needle, haystack ) {
 				let idx = haystack.indexOf(needle.toString());
-				if ( idx != - 1) {
+				if ( idx > - 1) {
 					return true;
 				}
 				return false;
@@ -215,7 +189,7 @@
 			}
 
 			function _isDonePossible() {
-				return ( (attributes.queryItems.length == 0) || (attributes.queryItems === attributes.queryItemsLast) );
+				return ( (attributes.queryPosts.length == 0) || (attributes.queryPosts === attributes.queryPostsLast) );
 			}
 
 			function _isLoading() {
@@ -227,103 +201,89 @@
 			}
 
 			//==============================================================================
-			//	Show portfolio items functions
+			//	Show posts functions
 			//==============================================================================
 
-			function getPortfolioItems() {
-				let query = attributes.queryItems;
-				props.setAttributes({ queryItemsLast: query});
+			function getPosts() {
+				let query = attributes.queryPosts;
+				props.setAttributes({ queryPostsLast: query});
 
 				if (query != '') {
-					apiFetch({ path: query }).then(function (items) {
-						props.setAttributes({ result: items});
+					apiFetch({ path: query }).then(function (posts) {
+						props.setAttributes({ result: posts});
 						props.setAttributes({ isLoading: false});
-						props.setAttributes({ doneFirstItemsLoad: true});
+						props.setAttributes({ doneFirstPostsLoad: true});
 					});
 				}
 			}
 
 			function renderResults() {
 				if ( attributes.firstLoad === true ) {
-					apiFetch({ path: '/wp/v2/portfolio-item?per_page=12&orderby=date&order=desc' }).then(function (portfolio_items) {
-						props.setAttributes({ result: portfolio_items });
+					apiFetch({ path: '/wp/v2/posts?per_page=12&orderby=date&order=desc' }).then(function (posts) {
+						props.setAttributes({ result: posts });
 						props.setAttributes({ firstLoad: false });
-						let query = '/wp/v2/portfolio-item?per_page=12&orderby=date&order=desc';
-						props.setAttributes({queryItems: query});
-						props.setAttributes({ queryItemsLast: query});
+						let query = '/wp/v2/posts?per_page=12&orderby=date&order=desc';
+						props.setAttributes({queryPosts: query});
+						props.setAttributes({ queryPostsLast: query});
 					});
 				}
 
-				let portfolio_items = attributes.result;
+				let posts = attributes.result;
 				let postElements = [];
 				let wrapper = [];
 
-				if( portfolio_items.length > 0) {
+				if( posts.length > 0) {
 
-					for ( let i = 0; i < portfolio_items.length; i++ ) {
+					for ( let i = 0; i < posts.length; i++ ) {
 
-						let portfolio_image = [];
-						if ( portfolio_items[i]['fimg_url'] ) { 
-							portfolio_image.push(
-								el( 'span',
-									{
-										key: 		'gbt_18_sk_editor_portfolio_item_thumbnail',
-										className: 	'gbt_18_sk_editor_portfolio_item_thumbnail',
-										style:
-										{
-											backgroundImage: 'url(' + portfolio_items[i]['fimg_url'] + ')'
-										}
-									}
-								)
-							);
-						};
- 
+						let img = '';
+						let img_class = 'gbt_18_sk_editor_posts_grid_noimg';
+						if ( posts[i]['fimg_url'] ) { img = posts[i]['fimg_url']; img_class = 'gbt_18_sk_editor_posts_grid_with_img'; } else { img_class = 'gbt_18_sk_editor_posts_grid_noimg'; img = ''; };
+
 						postElements.push(
 							el( "div", 
 								{
-									key: 		'gbt_18_sk_editor_portfolio_item_box_' + portfolio_items[i].id, 
-									className: 	'gbt_18_sk_editor_portfolio_item_box'
+									key: 		'gbt_18_sk_editor_posts_grid_item_' + posts[i].id, 
+									className: 	'gbt_18_sk_editor_posts_grid_item'
 								},
-								el( 'a',
+								el( "a", 
 									{
-										key: 		'gbt_18_sk_editor_portfolio_item_link',
-										className: 	'gbt_18_sk_editor_portfolio_item_link',
-										style:
-										{
-											backgroundColor: portfolio_items[i]['color_meta_box']
-										}
+										key: 		'gbt_18_sk_editor_posts_grid_item_link',
+										className: 	'gbt_18_sk_editor_posts_grid_item_link'
 									},
-									el( "div", 
-										{
-											key: 		'gbt_18_sk_editor_portfolio_item_content', 
-											className: 	'gbt_18_sk_editor_portfolio_item_content'
+									el( "span", 
+										{ 
+											key: 		'gbt_18_sk_editor_posts_grid_img_container',
+											className: 	'gbt_18_sk_editor_posts_grid_img_container'
 										},
-										portfolio_image,
-										el( 'h2',
+										el( "span", 
 											{
-												key: 'gbt_18_sk_editor_portfolio_item_title',
-												className: 'gbt_18_sk_editor_portfolio_item_title',
-												dangerouslySetInnerHTML: { __html: portfolio_items[i]['title']['rendered'] }
+												key: 'gbt_18_sk_editor_posts_grid_img_overlay',
+												className: 'gbt_18_sk_editor_posts_grid_img_overlay'
 											}
 										),
+										el( "span", 
+											{
+												key: 		'gbt_18_sk_editor_posts_grid_img',
+												className: 	'gbt_18_sk_editor_posts_grid_img ' + img_class,
+												style: 		{ backgroundImage: 'url(' + img + ')' }
+											}
+										)
+									),
+									el( "span", 
+										{
+											key: 		'gbt_18_sk_editor_posts_grid_title',
+											className:  'gbt_18_sk_editor_posts_grid_title',
+											dangerouslySetInnerHTML: { __html: posts[i]['title']['rendered'] }
+										}
 									)
 								)
 							)
 						);
 					}
 				} 
-
-				wrapper.push(
-					el( 'div',
-						{
-							key: 		'gbt_18_sk_editor_portfolio_items',
-							className: 	'gbt_18_sk_editor_portfolio_items'
-						},
-						postElements
-					)
-				);
-
-				return wrapper;
+				
+				return postElements;
 			}
 
 			//==============================================================================
@@ -337,7 +297,7 @@
 				let optionsIDs = [];
 				let sorted = [];
 			
-				apiFetch({ path: '/wp/v2/portfolio-category?per_page=-1' }).then(function (categories) {
+				apiFetch({ path: '/wp/v2/categories?per_page=-1' }).then(function (categories) {
 
 				 	for( let i = 0; i < categories.length; i++) {
 	        			options[i] = {'label': categories[i].name.replace(/&amp;/g, '&'), 'value': categories[i].id, 'parent': categories[i].parent, 'count': categories[i].count };
@@ -347,12 +307,11 @@
 				 	sorted = _sortCategories(0, options);
 		        	props.setAttributes({categoryOptions: sorted });
 		        	_verifyCatIDs(optionsIDs);
-	        		props.setAttributes({ doneFirstLoad: true});
+		        	props.setAttributes({ doneFirstLoad: true});
 				});
 			}
 
 			function renderCategories( parent = 0, level = 0 ) {
-
 				let categoryElements = [];
 				let catArr = attributes.categoryOptions;
 				if ( catArr.length > 0 )
@@ -392,7 +351,7 @@
 													}
 												}
 												props.setAttributes({ categoriesIDs: newCategoriesSelected });
-												props.setAttributes({ queryItems: _buildQuery(newCategoriesSelected, attributes.number, attributes.orderby) });
+												props.setAttributes({ queryPosts: _buildQuery(newCategoriesSelected, attributes.number, attributes.orderby) });
 											},
 										}, 
 									),
@@ -420,7 +379,7 @@
 				el(
 					InspectorControls,
 					{
-						key: 'sk-portfolio-inspector'
+						key: 'sk-posts-grid-inspector'
 					},
 					el(
 						'div',
@@ -439,7 +398,7 @@
 						el(
 							SelectControl,
 							{
-								key: 'sk-latest-posts-order-by',
+								key: 'sk-posts-grid-order-by',
 								options:
 									[
 										{ value: 'title_asc',   label: 'Alphabetical Ascending' },
@@ -452,25 +411,25 @@
 	              				onChange: function( value ) {
 	              					props.setAttributes( { orderby: value } );
 	              					let newCategoriesSelected = attributes.categoriesIDs;
-									props.setAttributes({ queryItems: _buildQuery(newCategoriesSelected, attributes.number, value) });
+									props.setAttributes({ queryPosts: _buildQuery(newCategoriesSelected, attributes.number, value) });
 								},
 							}
 						),
 						el(
 							RangeControl,
 							{
-								key: "sk-portfolio-number",
+								key: "sk-posts-grid-number",
 								className: 'range-wrapper',
 								value: attributes.number,
 								allowReset: false,
 								initialPosition: 12,
 								min: 1,
 								max: 20,
-								label: i18n.__( 'Number of Portfolio Items' ),
+								label: i18n.__( 'Number of Posts' ),
 								onChange: function onChange(newNumber){
 									props.setAttributes( { number: newNumber } );
 									let newCategoriesSelected = attributes.categoriesIDs;
-									props.setAttributes({ queryItems: _buildQuery(newCategoriesSelected, newNumber, attributes.orderby) });
+									props.setAttributes({ queryPosts: _buildQuery(newCategoriesSelected, newNumber, attributes.orderby) });
 								},
 							}
 						),
@@ -482,32 +441,21 @@
 								onClick: function onChange(e) {
 									props.setAttributes({ isLoading: true });
 									props.setAttributes({ categoriesSavedIDs: attributes.categoriesIDs });
-									getPortfolioItems();
+									getPosts();
 								},
 							},
 							_isLoadingText(),
 						),
 						el( 'hr', {} ),
 						el(
-							ToggleControl,
-							{
-								key: "portfolio-filters-toggle",
-	              				label: i18n.__( 'Show Filters?' ),
-	              				checked: attributes.showFilters,
-	              				onChange: function() {
-									props.setAttributes( { showFilters: ! attributes.showFilters } );
-								},
-							}
-						),
-						props.className.indexOf('is-style-default') !== -1 && el(
 							RangeControl,
 							{
-								key: "sk-portfolio-columns",
+								key: "sk-posts-grid-columns",
 								value: attributes.columns,
 								allowReset: false,
 								initialPosition: 3,
-								min: 2,
-								max: 5,
+								min: 1,
+								max: 4,
 								label: i18n.__( 'Columns' ),
 								onChange: function( newColumns ) {
 									props.setAttributes( { columns: newColumns } );
@@ -518,22 +466,23 @@
 				),
 				el( 'div',
 					{
-						key: 		'gbt_18_sk_editor_portfolio',
-						className: 	'gbt_18_sk_editor_portfolio ' + className
+						key: 		'gbt_18_sk_posts_grid',
+						className: 	'gbt_18_sk_posts_grid'	
 					},
-					el( 'div',
+					el(
+						'div',
 						{
-							key: 		'gbt_18_sk_editor_portfolio_wrapper',
-							className: 	getWrapperClass(),
+							key: 		'gbt_18_sk_editor_posts_grid_wrapper',
+							className: 	'gbt_18_sk_editor_posts_grid_wrapper columns-' + attributes.columns,
 						},
-						attributes.result.length < 1 && attributes.doneFirstItemsLoad === false && getPortfolioItems(),
+						attributes.result.length < 1 && attributes.doneFirstPostsLoad === false && getPosts(),
 						renderResults()
 					),
-				)
+				),
 			];
 		},
 
-		save: function() {
+		save: function(props) {
 			return null;
 		},
 	} );

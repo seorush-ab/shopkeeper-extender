@@ -1,0 +1,64 @@
+.gbt_18_sk_social_media_wrapper
+{
+	margin-bottom: 2.5rem;
+	vertical-align: middle;
+	clear:both;
+	margin: 5px -15px 15px -15px;
+	display: block;
+
+	.gbt_18_sk_social_media_list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	    line-height: 1em;
+		font-size: 24px;
+
+		&.left {
+			text-align:left;
+		}
+
+		&.center {
+			text-align:center;
+		}
+
+		&.right {
+			text-align:right;
+		}
+
+		&:before,
+		&:after {
+			content:" ";
+			display:table;
+			clear:both;
+		}
+
+		.gbt_18_sk_social_media_item {
+			padding: 5px 15px;
+			display: inline-block;
+
+			.gbt_18_sk_social_media_link {
+
+				i {
+					transition: opacity .2s;
+				}
+
+				&:hover {
+					i {
+						opacity: .7;
+					}
+				}
+
+				span {
+					display: none;
+				}
+			}
+		}
+	}
+
+	&:before,
+	&:after  {
+		content:" ";
+		display:table;
+		clear:both;
+	}
+}

@@ -1,26 +1,36 @@
 <?php
 
-// Shopkeeper Custom Gutenberg Blocks
- 
-add_filter( 'block_categories', function( $categories, $post ) {
+//==============================================================================
+//	Main Editor Styles
+//==============================================================================
+wp_enqueue_style(
+	'getbowtied-sk-blocks-editor-styles',
+	plugins_url( 'assets/css/editor.css', __FILE__ ),
+	array( 'wp-edit-blocks' )
+);
 
-	if ( $post &&  $post->post_type !== 'post' && $post->post_type !== 'page' && $post->post_type !== 'portfolio' ) {
-		return $categories;
+//==============================================================================
+//	Main JS
+//==============================================================================
+add_action( 'admin_init', 'getbowtied_sk_blocks_scripts' );
+if ( ! function_exists( 'getbowtied_sk_blocks_scripts' ) ) {
+	function getbowtied_sk_blocks_scripts() {
+
+		wp_enqueue_script(
+			'getbowtied-sk-blocks-editor-scripts',
+			plugins_url( 'assets/js/main.js', __FILE__ ),
+			array( 'wp-blocks', 'jquery' )
+		);
+
 	}
-	return array_merge(
-		array(
-			array(
-				'slug' => 'shopkeeper',
-				'title' => __( 'Shopkeeper', 'gbt-blocks' ),
-			),
-		),
-		$categories
-	);
-}, 10, 2 );
+}
 
-require_once 'categories_grid/index.php';
-require_once 'latest_posts_grid/index.php';
-require_once 'banner/index.php';
-require_once 'portfolio/index.php';
-require_once 'social-media-profiles/index.php';
-require_once 'slider/index.php';
+if( is_plugin_active( 'woocommerce/woocommerce.php') ) {
+	include_once 'categories_grid/block.php';
+}
+
+include_once 'posts_grid/block.php';
+include_once 'banner/block.php';
+include_once 'portfolio/block.php';
+include_once 'social_media_profiles/block.php';
+include_once 'slider/block.php';

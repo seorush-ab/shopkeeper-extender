@@ -1,159 +1,661 @@
 ( function( blocks, components, editor, i18n, element ) {
 
-	var el = element.createElement;
+	const el = element.createElement;
 
 	/* Blocks */
-	var registerBlockType   = blocks.registerBlockType;
+	const registerBlockType   	= blocks.registerBlockType;
 
-	var InspectorControls 	= editor.InspectorControls;
+	const InspectorControls 	= editor.InspectorControls;
 
-	var TextControl 		= components.TextControl;
-	var RadioControl        = components.RadioControl;
-	var SelectControl		= components.SelectControl;
-	var ToggleControl		= components.ToggleControl;
+	const TextControl 			= components.TextControl;
+	const RadioControl        	= components.RadioControl;
+	const SelectControl			= components.SelectControl;
+	const ToggleControl			= components.ToggleControl;
+	const SVG 					= components.SVG;
+	const Path 					= components.Path;
+
+	const apiFetch 				= wp.apiFetch;
 
 	/* Register Block */
-	registerBlockType( 'getbowtied/categories-grid', {
+	registerBlockType( 'getbowtied/sk-categories-grid', {
 		title: i18n.__( 'Product Categories - Grid' ),
-		icon: 'layout',
+		icon: el( SVG, { xmlns:'http://www.w3.org/2000/svg', viewBox:'0 0 24 24' },
+				el( Path, { d:'M19 5v2h-4V5h4M9 5v6H5V5h4m10 8v6h-4v-6h4M9 17v2H5v-2h4M21 3h-8v6h8V3zM11 3H3v10h8V3zm10 8h-8v10h8V11zm-10 4H3v6h8v-6z' } ) 
+			),
 		category: 'shopkeeper',
 		supports: {
 			align: [ 'center', 'wide', 'full' ],
 		},
 		attributes: {
-			product_categories_selection: {
-				type: 'string',
-				default: 'auto'
-			},
-			ids: {
+			categoryIDs: {
 				type: 'string',
 				default: '',
 			},
-			number: {
-				type: 'number',
-				default: '12'
+		/* Products source */
+			result: {
+				type: 'array',
+				default: [],
 			},
-			order: {
+			queryCategories: {
 				type: 'string',
-				default: 'asc'
+				default: '',
 			},
-			hide_empty: {
-				type: 'boolean',
-				default: false
-			},
-			product_count: {
-				type: 'boolean',
-				default: false
-			},
-			parent: {
+			queryCategoriesLast: {
 				type: 'string',
-				default: '0'
+				default: '',
 			},
-			grid: {
+			queryDisplayType: {
 				type: 'string',
-				default: ''
+				default: 'all_categories',
+			},
+		/* loader */
+			isLoading: {
+				type: 'bool',
+				default: false,
+			},
+		/* Manually pick products */
+			querySearchString: {
+				type: 'string',
+				default: '',
+			},
+			querySearchResults: {
+				type: 'array',
+				default: [],
+			},
+			querySearchNoResults: {
+				type: 'bool',
+				default: false,
+			},
+			querySearchSelected: {
+				type: 'array',
+				default: [],
+			},
+		/* Order by */
+			queryOrder: {
+				type: 'string',
+				default: '',
+			},
+			parentOnly: {
+				type: 'bool',
+				default: false,
+			},
+			hideEmpty: {
+				type: 'bool',
+				default: false,
+			},
+			orderby: {
+				type: 'string',
+				default: 'menu_order',
+			},
+			productCount: {
+				type: 'bool',
+				default: true,
+			},
+		/* First Load */
+			firstLoad: {
+				type: 'bool',
+				default: true,
+			},
+			limit: {
+				type: 'int',
+				default: 8,
+			},
+		/* Columns */
+			columns: {
+				type: 'int',
+				default: 3,
 			}
 		},
-
 		edit: function( props ) {
 
-			var attributes = props.attributes;
+			let attributes = props.attributes;
+			attributes.selectedIDS = attributes.selectedIDS || [];
+			attributes.doneFirstPostsLoad 	= attributes.doneFirstPostsLoad || false;
 
-			function getCategoriesGrid( categories, ids, number, order, hide_empty, parent, product_count ) {
+		//==============================================================================
+		//	Helper functions
+		//==============================================================================
 
-				categories 	= categories || attributes.product_categories_selection;
-				ids 		= ids 		 || attributes.ids;
-				number 		= number 	 || attributes.number;
-				order 		= order 	 || attributes.order;
-				parent 		= parent 	 || attributes.parent;
-
-				var data = {
-					action 		: 'getbowtied_render_frontend_categories_grid',
-					attributes  : {
-						'product_categories_selection' : categories,
-						'ids'						   : ids,
-						'number'					   : number,
-						'order'						   : order,
-						'hide_empty'				   : Number(hide_empty),
-						'parent'					   : parent,
-						'product_count'				   : Number(product_count),
-					}
-				};
-
-				jQuery.post( 'admin-ajax.php', data, function(response) { 
-					response = jQuery.parseJSON(response);
-					props.setAttributes( { grid: response } );
-				});	
+			function _categoryClassName(parent, value) {
+				if ( parent == 0) {
+					return 'parent parent-' + value;
+				} else {
+					return 'child child-' + parent;
+				}
 			}
 
+			function _searchResultClass(theID){
+				const index = attributes.selectedIDS.indexOf(theID);
+				if ( index == -1) {
+					return 'single-result';
+				} else {
+					return 'single-result selected';
+				}
+			}
+
+			function _sortCategories( index, arr, newarr = [], level = 0) {
+				for ( let i = 0; i < arr.length; i++ ) {
+					if ( arr[i].parent == index) {
+						arr[i].level = level;
+						newarr.push(arr[i]);
+						_sortCategories(arr[i].id, arr, newarr, level + 1 );
+					}
+				}
+
+				return newarr;
+			}
+
+			function _sortByKeys(keys, products) {
+				let sorted =[];
+				for ( let i = 0; i < keys.length; i++ ) {
+					for ( let j = 0; j < products.length; j++ ) {
+						if ( keys[i] == products[j].id ) {
+							sorted.push(products[j]);
+							break;
+						}
+					}
+				}
+
+				return sorted;
+			}
+
+			function _destroyQuery() {
+				props.setAttributes({ queryOrder: ''});
+				props.setAttributes({ queryCategories: ''});
+				props.setAttributes({ querySearchString: ''});
+				props.setAttributes({ querySearchResults: []});
+				props.setAttributes({ querySearchSelected: []});
+				props.setAttributes({ selectedIDS: []});
+				props.setAttributes({ queryAttributesOptionsSelected: [] });
+				props.setAttributes({ queryCategorySelected: [] });
+				props.setAttributes({result: []});
+			}
+
+			function _destroyTempAtts() {
+				props.setAttributes({ querySearchString: ''});
+				props.setAttributes({ querySearchResults: []});
+			}
+
+			function _isChecked( needle, haystack ) {
+				const idx = haystack.indexOf(needle.toString());
+				if ( idx != - 1) {
+					return true;
+				}
+				return false;
+			}
+
+			function _isDonePossible() {
+				return ( (attributes.queryCategories.length == 0) || (_buildQuery(attributes.limit, attributes.orderby, attributes.parentOnly, attributes.hideEmpty) === attributes.queryCategoriesLast) );
+			}
+
+			function _isLoading() {
+				if ( attributes.isLoading  === true ) {
+					return 'is-busy';
+				} else {
+					return '';
+				}
+			}
+
+			function _isLoadingText(){
+				if ( attributes.isLoading  === false ) {
+					return i18n.__('Update');
+				} else {
+					return i18n.__('Updating');
+				}
+			}
+
+		//==============================================================================
+		//	Show products functions
+		//==============================================================================
+			function getQuery( query ) {
+				return '/wc/v3/products/categories' + query;
+			}
+
+			function getResult() {
+				let query;
+
+				if ( attributes.queryDisplayType == 'all_categories' ) {
+					query = _buildQuery(attributes.limit, attributes.orderby, attributes.parentOnly, attributes.hideEmpty);
+				} else {
+					query = attributes.queryCategories;
+				}
+				props.setAttributes({ queryCategoriesLast: query});
+				props.setAttributes({ doneFirstPostsLoad: true});
+
+				if (query != '') {
+					apiFetch({ path: query }).then(function (categories) {
+						if ( attributes.orderby == 'menu_order' && attributes.queryDisplayType == 'all_categories') {
+							categories = _sortCategories(0, categories);
+						}
+						props.setAttributes({ result: categories});
+						props.setAttributes({ isLoading: false});
+						let IDs = '';
+						for ( let i = 0; i < categories.length; i++) {
+							IDs += categories[i].id + ',';
+						}
+						props.setAttributes({ categoryIDs: IDs});
+					});
+				}
+			}
+
+			function renderResults() {
+				if ( attributes.firstLoad === true ) {
+					let query = _buildQuery(attributes.limit, attributes.orderby, attributes.parentOnly, attributes.hideEmpty);
+					apiFetch({ path: query }).then(function (categories) {
+						categories = _sortCategories(0, categories);
+						props.setAttributes({ result: categories });
+						props.setAttributes({ firstLoad: false });
+						props.setAttributes({queryCategories: query});
+						props.setAttributes({queryCategoriesLast: query});
+
+						let IDs = '';
+						for ( let i = 0; i < categories.length; i++) {
+							IDs += categories[i].id + ',';
+						}
+						props.setAttributes({ categoryIDs: IDs});
+					});
+				}
+
+				let categories = attributes.result;
+				let categoryElements = [];
+				let wrapper = [];
+				let cat_counter = 0;
+				let cat_class = "";
+
+				for ( let i = 0; i < categories.length; i++ ) {
+
+					cat_class = "";
+					cat_counter++;   
+
+					switch ( categories.length ) {
+						case 1:
+							cat_class = "one_cat_" + cat_counter;
+							break;
+						case 2:
+							cat_class = "two_cat_" + cat_counter;
+							break;
+						case 3:
+							cat_class = "three_cat_" + cat_counter;
+							break;
+						case 4:
+							cat_class = "four_cat_" + cat_counter;
+							break;
+						case 5:
+							cat_class = "five_cat_" + cat_counter;
+							break;
+						default:
+							if (cat_counter < 7) {
+								cat_class = cat_counter;
+							} else {
+								cat_class = "more_than_6";
+							}
+					}
+
+					let img = '';
+					if ( categories[i].image !== null ) { img = categories[i]['image']['src'] } else { img = '' };
+					categoryElements.push(
+						el( 'div',
+							{	
+								key: 		'gbt_18_sk_editor_category_' + cat_class + '_item-' + categories[i].id,
+								className: 	'gbt_18_sk_editor_category_' + cat_class
+							},
+							el( 'div',
+								{
+									key: 		'gbt_18_sk_editor_category_grid_box',
+									className: 	'gbt_18_sk_editor_category_grid_box'
+								},
+								el( 'span',
+									{
+										key: 		'gbt_18_sk_editor_category_item_bkg',
+										className: 	'gbt_18_sk_editor_category_item_bkg',
+										style:
+											{
+												backgroundImage: 'url(' + img + ')'
+											}
+									}
+								),
+								el( 'a',
+									{
+										key: 		'gbt_18_sk_editor_category_item',
+										className: 	'gbt_18_sk_editor_category_item'
+									},
+									el( 'span',
+										{
+											key: 		'gbt_18_sk_editor_category_name',
+											className: 	'gbt_18_sk_editor_category_name'
+										},
+										categories[i]['name'].replace(/&amp;/g, '&'),
+										attributes.productCount === true && el( 'span',
+											{
+												key: 		'gbt_18_sk_editor_category_count',
+												className: 	'gbt_18_sk_editor_category_count',
+											},
+											categories[i]['count']
+										),
+									)
+								)
+							)
+						)
+					);
+				}
+
+				wrapper.push(
+					el( 'div',
+						{
+							key: 		'gbt_18_sk_editor_categories_grid',
+							className: 	'gbt_18_sk_editor_categories_grid'
+						},
+						categoryElements,
+						el(	'div',
+						{
+							key: 		'clearfix',
+							className: 	'clearfix'
+						}
+						),
+					),
+				);
+
+				return wrapper;
+			}
+
+			function _buildQuery(limit = 10, orderby='menu_order', parentOnly=true, hideEmpty=true) {
+				if ( attributes.queryDisplayType === 'specific' ) {
+					return attributes.queryCategories;
+				}
+				let query = getQuery('?per_page=' + limit);
+
+				switch (orderby) {
+					case 'menu_order':
+						break;
+					case 'title_asc':
+						query += '&orderby=slug&order=asc';
+						break;
+					case 'title_desc':
+						query += '&orderby=slug&order=desc';
+						break;
+					default: 
+						break;
+				}
+
+				if (parentOnly === true ) {
+					query+= '&parent=0';
+				}
+
+				if ( hideEmpty === true ) {
+					query+= '&hide_empty=true';
+				}
+				return query;
+			}
+
+			function _getQueryOrder() {
+				if ( attributes.queryOrder.length < 1) return '';
+				let order = '';
+				switch ( attributes.queryOrder ) {
+					case 'date_desc':
+						order = '&orderby=date&order=desc';
+					break;
+					case 'date_asc':
+						order = '&orderby=date&order=asc';
+					break;
+					case 'title_desc':
+						order = '&orderby=title&order=desc';
+					break;
+					case 'title_asc':
+						order = '&orderby=title&order=asc';
+					break;
+					default: 
+						
+					break;
+				}
+
+				return order;
+			}
+
+		//==============================================================================
+		//	Display ajax results
+		//==============================================================================
+			function renderSearchResults() {
+				let categoryElements = [];
+
+				if ( attributes.querySearchNoResults == true) {
+					return el('span', {className: 'no-results'}, i18n.__('No categories matching.'));
+				}
+				let categories = attributes.querySearchResults;
+				for ( let i = 0; i < categories.length; i++ ) {
+					let img;
+					if ( categories[i].image !== null && categories[i].image.src != '' ) {
+						img = el('span', { className: 'img-wrapper', dangerouslySetInnerHTML: { __html: '<span class="img" style="background-image: url(\''+categories[i].image.src+'\')"></span>'}});
+					} else {
+						img = el('span', { className: 'img-wrapper', dangerouslySetInnerHTML: { __html: '<span class="img" style="background-image: url(\''+getbowtied_pbw.woo_placeholder_image+'\')"></span>'}});
+					}
+					categoryElements.push(
+						el(
+							'span', 
+							{
+								key: 	   'item-' + categories[i].id,
+								className: _searchResultClass(categories[i].id),
+								title: categories[i].name.replace(/&amp;/g, '&'),
+								'data-index': i,
+							}, 
+							img,
+							el(
+								'label', 
+								{
+									className: 'title-wrapper'
+								},
+								el(
+									'input',
+									{
+										type: 'checkbox',
+										value: i,
+										onChange: function onChange(evt) {
+											let _this = evt.target;
+											let qSR = attributes.selectedIDS;
+											let index = qSR.indexOf(categories[evt.target.value].id);
+											if (index == -1) {
+												qSR.push(categories[evt.target.value].id);
+											} else {
+												qSR.splice(index,1);
+											}
+											props.setAttributes({ selectedIDS: qSR });
+											
+											let query = getQuery('?include=' + qSR.join(',') + '&orderby=include');
+											if ( qSR.length > 0 ) {
+												props.setAttributes({queryCategories: query});
+											} else {
+												props.setAttributes({queryCategories: '' });
+											}
+											apiFetch({ path: query }).then(function (categories) {
+												props.setAttributes({ querySearchSelected: categories});
+											});
+										},
+									},
+								),
+								categories[i].name.replace(/&amp;/g, '&'),
+								el('span',{ className: 'dashicons dashicons-yes'}),
+								el('span',{ className: 'dashicons dashicons-no-alt'}),
+							),
+						)
+					);
+				}
+				return categoryElements;
+			}
+
+			function renderSearchSelected() {
+				let categoryElements = [];
+				let i;
+
+				let categories = attributes.querySearchSelected;
+				if ( attributes.selectedIDS.length < 1 && categories.length > 0) {
+					let bugFixer = [];
+					for ( let i = 0; i < categories.length; i++ ) {
+						bugFixer.push(categories[i].id);
+					}
+					props.setAttributes({ selectedIDS: bugFixer});
+				}
+
+				for ( let i = 0; i < categories.length; i++ ) {
+					let img ='';
+					if ( categories[i].image !== null && categories[i].image.src != '' ) {
+						img = el('span', { className: 'img-wrapper', dangerouslySetInnerHTML: { __html: '<span class="img" style="background-image: url(\''+categories[i].image.src+'\')"></span>'}});
+					} else {
+						img = el('span', { className: 'img-wrapper', dangerouslySetInnerHTML: { __html: '<span class="img" style="background-image: url(\''+getbowtied_pbw.woo_placeholder_image+'\')"></span>'}});
+					}
+					categoryElements.push(
+						el(
+							'span', 
+							{
+								key 	 : 'item-' + categories[i].id,
+								className:'single-result', 
+								title: categories[i].name.replace(/&amp;/g, '&'),
+							}, 
+							img, 
+							el(
+								'label', 
+								{
+									className: 'title-wrapper'
+								},
+								el(
+									'input',
+									{
+										type: 'checkbox',
+										value: i,
+										onChange: function onChange(evt) {
+											let _this = evt.target;
+
+											
+											let qSS = attributes.selectedIDS;
+											let index = qSS.indexOf(categories[evt.target.value].id);
+											if (index != -1) {
+												qSS.splice(index,1);
+											}
+											props.setAttributes({ selectedIDS: qSS });
+											
+											let query = getQuery('?include=' + qSS.join(',') + '&orderby=include');
+											if ( qSS.length > 0 ) {
+												props.setAttributes({queryCategories: query});
+											} else {
+												props.setAttributes({queryCategories: ''});
+											}
+											apiFetch({ path: query }).then(function (categories) {
+												props.setAttributes({ querySearchSelected: categories});
+											});
+										},
+									},
+								),
+								categories[i].name.replace(/&amp;/g, '&'),
+								el('span',{ className: 'dashicons dashicons-no-alt'})
+							),
+						)
+					);
+				}
+				return categoryElements;
+			}
+
+		//==============================================================================
+		//	Main controls 
+		//==============================================================================
 			return [
 				el(
 					InspectorControls,
 					{
-						key: 'categories-grid-inspector'
+						key: 'categories-main-inspector',
 					},
 					el(
 						'div',
 						{
-							className: 'categories-grid-block-description',
-							key: 'categories-grid-description'
-						},
-						el( 
-							'hr',
-							{
-								key: 'categories-grid-hr'
-							},
-						),
-					),
-					el(
-						SelectControl,
-						{
-							key: 'categories-grid-selection',
-							options:
-								[
-									{ value: 'auto', label: 'Display X Number of Product Categories'},
-									{ value: 'ids',  label: 'Manually Pick Categories'				},
-								],
-              				label: i18n.__( 'Product Categories' ),
-              				value: attributes.product_categories_selection,
-              				onChange: function( newSelection ) {
-              					props.setAttributes( { product_categories_selection: newSelection } );
-								getCategoriesGrid( newSelection, null, null, null, attributes.hide_empty, null, attributes.product_count );
-							},
-						}
-					),
-					attributes.product_categories_selection == 'ids' &&
-					el(
-						TextControl,
-						{
-							key: 'categories-grid-ids-option',
-              				label: i18n.__( 'Category IDs' ),
-              				type: 'text',
-              				help: i18n.__('Insert product categories IDs between commas. Example: 12,56,76'),
-              				value: attributes.ids,
-              				onChange: function( newIds ) {
-              					props.setAttributes( { ids: newIds } );
-								getCategoriesGrid( null, newIds, null, null, attributes.hide_empty, null, attributes.product_count );
-							},
-						},
-					),
-					attributes.product_categories_selection == 'auto' &&
-					el( 
-						'div',
-						{
-							key: 'categories-grid-number-option'
+							className: 'main-inspector-wrapper',
 						},
 						el(
 							SelectControl,
 							{
-								id: "categories-grid-display",
-								key: 'cat-display',
-								options: [{value: '0', label: 'Parent Categories Only'}, {value: '1', label: 'Parent Categories + Subcategories'}],
-	              				label: i18n.__( 'Categories Display' ),
-	              				value: attributes.parent,
-	              				onChange: function( newParent ) {
-	              					props.setAttributes( { parent: newParent } );
-									getCategoriesGrid( null, null, null, null, attributes.hide_empty, newParent, attributes.product_count);
+								key: 'query-panel-select',
+								label: i18n.__('Source:'),
+								value: attributes.queryDisplayType,
+								options: [{
+									label: i18n.__('Manually pick'),
+									value: 'specific'
+								}, {
+									label: i18n.__('All Categories'),
+									value: 'all_categories'
+								}],
+								onChange: function onChange(value) {
+									return props.setAttributes({ queryDisplayType: value });
+								}
+							}
+						),
+					/* Pick specific producs */
+						attributes.queryDisplayType === 'specific' && el(
+							'div',
+							{
+								className: 'products-ajax-search-wrapper',
+							},
+							el(
+								TextControl,
+								{
+									key: 'query-panel-string',
+			          				type: 'search',
+			          				className: 'products-ajax-search',
+			          				value: attributes.querySearchString,
+			          				placeholder: i18n.__( 'Search for categories to display'),
+			          				onChange: function( newQuery ) {
+			          					props.setAttributes({ querySearchString: newQuery});
+			          					if (newQuery.length < 3) return;
+
+								        let query = getQuery('?per_page=10&search=' + newQuery);
+								        apiFetch({ path: query }).then(function (categories) {
+								        	if ( categories.length == 0) {
+								        		props.setAttributes({ querySearchNoResults: true});
+								        	} else {
+								        		props.setAttributes({ querySearchNoResults: false});
+								        	}
+											props.setAttributes({ querySearchResults: categories});
+										});
+
+									},
+								},
+							),
+						),
+						attributes.queryDisplayType === 'specific' && attributes.querySearchString != '' && el(
+							'div',
+							{ 
+								className: 'products-ajax-search-results',
+							},
+							renderSearchResults(),
+						),
+						attributes.queryDisplayType === 'specific' && attributes.querySearchSelected.length > 0 && el(
+							'div',
+							{
+								className: 'products-selected-results-wrapper',
+							},
+							el(
+								'label',
+								{},
+								i18n.__('Selected Products:'),
+							),
+							el(
+								'div',
+								{
+									className: 'products-selected-results',
+								},
+								renderSearchSelected(),
+							),
+						),
+						attributes.queryDisplayType === 'all_categories' && [
+						el(
+							SelectControl,
+							{
+								key: 'categories-grid-order-by',
+								options:
+									[
+										{ value: 'menu_order',  label: 'Menu Order' },
+										{ value: 'title_asc',   label: 'Alphabetical Ascending' },
+										{ value: 'title_desc',  label: 'Alphabetical Descending' },
+									],
+	              				label: i18n.__( 'Order By' ),
+	              				value: attributes.orderby,
+	              				onChange: function( value ) {
+	              					props.setAttributes( { orderby: value } );
 								},
 							}
 						),
@@ -162,66 +664,81 @@
 							{
 								key: 'categories-grid-display-number',
 	              				label: i18n.__( 'How many product categories to display?' ),
-	              				type: 'text',
-	              				value: attributes.number,
-	              				onChange: function( newNumber ) {
-	              					props.setAttributes( { number: newNumber } );
-	              					setTimeout(function() {
-	              						getCategoriesGrid( null, null, newNumber, null, attributes.hide_empty, null, attributes.product_count );
-	              					}, 500);
+	              				type: 'number',
+	              				value: attributes.limit,
+	              				onChange: function( value ) {
+	              					props.setAttributes( { limit: value } );
 								},
 							},
 						),
 						el(
-							SelectControl,
+							ToggleControl,
 							{
-								key: 'categories-grid-order',
-								options:
-								[
-									{ value: 'asc',  label: 'Ascending'  },
-									{ value: 'desc', label: 'Descending' }
-								],
-	              				label: i18n.__( 'Alphabetical Order' ),
-	              				value: attributes.order,
-	              				onChange: function( newOrder ) {
-	              					props.setAttributes( { order: newOrder } );
-									getCategoriesGrid( null, null, null, newOrder, attributes.hide_empty, null, attributes.product_count );
+								id: "categories-grid-display",
+								key: 'categories-grid-display',
+	              				label: i18n.__( 'Parent Categories Only' ),
+	              				checked: attributes.parentOnly,
+	              				onChange: function( value ) {
+		              				props.setAttributes( { parentOnly: value } );
 								},
 							}
 						),
-					),
-					el(
-						ToggleControl,
-						{
-							key: "categories-grid-hide-empty",
-              				label: i18n.__( 'Hide Empty' ),
-              				checked: attributes.hide_empty,
-              				onChange: function() {
-              					props.setAttributes( { hide_empty: ! attributes.hide_empty } );
-								getCategoriesGrid( null, null, null, null, !attributes.hide_empty, null, attributes.product_count );
+						el(
+							ToggleControl,
+							{
+								key: "categories-grid-hide-empty",
+	              				label: i18n.__( 'Hide Empty' ),
+	              				checked: attributes.hideEmpty,
+	              				onChange: function( value ) {
+	              					props.setAttributes( { hideEmpty: value } );
+								},
+							}
+						),
+					],
+					/* All products */
+
+					/* Load all products */
+						el(
+							'button',
+							{
+								className: 'render-results components-button is-button is-default is-primary is-large ' + _isLoading(),
+								disabled: _isDonePossible(),
+								onClick: function onChange(e) {
+									props.setAttributes({ isLoading: true });
+									_destroyTempAtts();
+									getResult();
+								},
 							},
-						}
+							_isLoadingText(),
+						),
 					),
+					el( 'hr', {} ),
 					el(
 						ToggleControl,
 						{
 							key: "categories-grid-product-count",
-              				label: i18n.__( 'Show Product Count' ),
-              				checked: attributes.product_count,
-              				onChange: function() {
-              					props.setAttributes( { product_count: ! attributes.product_count } );
-								getCategoriesGrid( null, null, null, null, attributes.hide_empty, null, !attributes.product_count );
+              				label: i18n.__( 'Product Count' ),
+              				checked: attributes.productCount,
+              				onChange: function( value ) {
+              					props.setAttributes({ productCount: value });
 							},
 						}
 					),
 				),
-				eval( attributes.grid ),
-				attributes.grid == '' && getCategoriesGrid( null, null, null, null, attributes.hide_empty, null, attributes.product_count )
+				el(
+					'div',
+					{
+						key: 		'gbt_18_sk_editor_categories_grid_wrapper',
+						className: 	'gbt_18_sk_editor_categories_grid_wrapper'
+					},
+					attributes.queryDisplayType == 'all_categories' && attributes.doneFirstPostsLoad === false && getResult(),
+					renderResults(),
+				),
 			];
 		},
 
-		save: function( props ) {
-			return '';
+		save: function() {
+			return null;
 		},
 	} );
 
