@@ -25,7 +25,10 @@ if ( ! function_exists( 'getbowtied_sk_blocks_scripts' ) ) {
 	}
 }
 
-include_once 'categories_grid/block.php';
+if( is_plugin_active( 'woocommerce/woocommerce.php') ) {
+	include_once 'categories_grid/block.php';
+}
+
 include_once 'posts_grid/block.php';
 include_once 'banner/block.php';
 include_once 'portfolio/block.php';
