@@ -75,7 +75,7 @@
 
 		edit: function( props ) {
 
-			var attributes = props.attributes;
+			let attributes = props.attributes;
 
 			attributes.doneFirstLoad 		= attributes.doneFirstLoad || false;
 			attributes.categoryOptions 		= attributes.categoryOptions || [];

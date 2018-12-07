@@ -88,7 +88,7 @@
 
 		edit: function( props ) {
 
-			var attributes = props.attributes;
+			let attributes = props.attributes;
 			let className  = props.className;
 
 			attributes.doneFirstLoad 		= attributes.doneFirstLoad || false;

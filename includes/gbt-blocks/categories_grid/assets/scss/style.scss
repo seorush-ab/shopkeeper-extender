@@ -18,7 +18,7 @@
 	}
 
 	&.wide {
-		@media all and (min-width: 640px) {
+		@media all and (min-width: 1024px) {
 			margin-left: calc( -75vw / 2 + 100% / 2 );
 		    margin-right: calc( -75vw / 2 + 100% / 2 );
 		    max-width: 75vw;
@@ -38,6 +38,12 @@
 			@media all and (max-width: 639px) {
 				padding-left: 0;
 				padding-right: 0;
+			}
+		}
+
+		.gbt_18_sk_categories_grid {
+			@media all and (min-width: 641px) {
+				margin: 0 -0.625rem;
 			}
 		}
 

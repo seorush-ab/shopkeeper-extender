@@ -77,7 +77,7 @@
 
 		edit: function( props ) {
 
-			var attributes = props.attributes;
+			let attributes = props.attributes;
 
 			function getTabs() {
 
@@ -278,7 +278,9 @@
 		},
 
 		save: function( props ) {
-			attributes = props.attributes;
+
+			let attributes = props.attributes;
+
 			return el( 
 				'div',
 				{

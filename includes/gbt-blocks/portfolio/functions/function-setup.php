@@ -8,16 +8,17 @@ add_action( 'enqueue_block_editor_assets', 'gbt_18_sk_portfolio_editor_assets' )
 if ( ! function_exists( 'gbt_18_sk_portfolio_editor_assets' ) ) {
 	function gbt_18_sk_portfolio_editor_assets() {
 		
-		wp_enqueue_script(
+		wp_register_script(
 			'gbt_18_sk_portfolio_script',
 			plugins_url( 'block.js', dirname(__FILE__) ),
 			array( 'wp-api-request','wp-blocks', 'wp-i18n', 'wp-element' )
 		);
 
-		wp_enqueue_style(
+		wp_register_style(
 			'gbt_18_sk_portfolio_editor_styles',
 			plugins_url( 'assets/css/editor.css', dirname(__FILE__) ),
-			array( 'wp-edit-blocks' )
+			array( 'wp-edit-blocks' ),
+            filemtime(plugin_dir_path(__FILE__) . '../assets/css/editor.css')
 		);
 	}
 }
@@ -32,7 +33,8 @@ if ( ! function_exists( 'gbt_18_sk_portfolio_assets' ) ) {
 		wp_enqueue_style(
 			'gbt_18_sk_portfolio_styles',
 			plugins_url( 'assets/css/style.css', dirname(__FILE__) ),
-			array()
+			array(),
+            filemtime(plugin_dir_path(__FILE__) . '../assets/css/style.css')
 		);
 	}
 }
@@ -42,6 +44,8 @@ if ( ! function_exists( 'gbt_18_sk_portfolio_assets' ) ) {
 //==============================================================================
 if ( function_exists( 'register_block_type' ) ) {
     register_block_type( 'getbowtied/sk-portfolio', array(
+        'editor_style'      => 'gbt_18_sk_portfolio_editor_styles',
+        'editor_script'     => 'gbt_18_sk_portfolio_script',
         'attributes'      => array(
             'number'                        => array(
                 'type'                      => 'integer',

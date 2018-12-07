@@ -2,6 +2,10 @@
 
 	margin-bottom: 2.5rem;
 
+	&.aligncenter {
+		margin: 0 auto 2.5rem;
+	}
+
 	&.full
 	{
 		margin-left: calc( -100vw / 2 + 100% / 2 );
@@ -11,9 +15,11 @@
 
 	&.wide
 	{
-		margin-left: calc( -75vw / 2 + 100% / 2 );
-	    margin-right: calc( -75vw / 2 + 100% / 2 );
-	    max-width: 75vw;
+		@media all and (min-width: 1024px) {
+			margin-left: calc( -75vw / 2 + 100% / 2 );
+		    margin-right: calc( -75vw / 2 + 100% / 2 );
+		    max-width: 75vw;
+		}
 	}
 
 	&:hover {

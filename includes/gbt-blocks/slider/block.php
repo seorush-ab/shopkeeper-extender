@@ -24,7 +24,8 @@ if ( ! function_exists( 'gbt_18_sk_slider_editor_assets' ) ) {
 		wp_enqueue_style(
 			'gbt_18_sk_slider_editor_styles',
 			plugins_url( 'assets/css/backend/editor.css', __FILE__ ),
-			array( 'wp-edit-blocks' )
+			array( 'wp-edit-blocks' ),
+			filemtime(plugin_dir_path(__FILE__) . 'assets/css/backend/editor.css')
 		);
 	}
 }
@@ -39,7 +40,8 @@ if ( ! function_exists( 'gbt_18_sk_slider_assets' ) ) {
 		wp_enqueue_style(
 			'gbt_18_sk_slider_styles',
 			plugins_url( 'assets/css/frontend/style.css', __FILE__ ),
-			array()
+			array(),
+			filemtime(plugin_dir_path(__FILE__) . 'assets/css/frontend/style.css')
 		);
 	}
 }
