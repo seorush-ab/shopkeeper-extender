@@ -459,7 +459,7 @@
 									color: attributes.textColor
 								},
 							},
-							attributes.title
+							i18n.__( attributes.title, 'shopkeeper-extender' )
 						),
 						attributes.description != '' && el( 'p',
 							{
@@ -471,7 +471,7 @@
 									color: attributes.textColor
 								},
 							},
-							attributes.description
+							i18n.__( attributes.description, 'shopkeeper-extender' )
 						),
 						!! attributes.slideButton && attributes.buttonText != '' && el( 'a',
 							{
@@ -484,7 +484,7 @@
 									color: attributes.buttonTextColor
 								},
 							},
-							attributes.buttonText
+							i18n.__( attributes.buttonText, 'shopkeeper-extender' )
 						)
 					)
 				)

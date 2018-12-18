@@ -463,7 +463,7 @@
 											fontSize: attributes.titleSize + 'px'
 										},
 									},
-									attributes.title
+									i18n.__( attributes.title, 'shopkeeper-extender' )
 								),
 								el( 'p',
 									{
@@ -475,7 +475,7 @@
 											fontSize: attributes.subtitleSize + 'px'
 										},
 									},
-									attributes.subtitle
+									i18n.__( attributes.subtitle, 'shopkeeper-extender' )
 								)
 							)
 						)
