@@ -14,8 +14,10 @@ if ( ! function_exists( 'gbt_18_sk_posts_grid_editor_assets' ) ) {
 			array( 'wp-api-request', 'wp-blocks', 'wp-i18n', 'wp-element' )
 		);
 
+		$language = isset($_GET['lang']) ? $_GET['lang'] : get_locale();
+
 		wp_localize_script( 'gbt_18_sk_posts_grid_script', 'posts_grid_vars', array(
-			'language' => $_GET['lang'],
+			'language' => $language
 		) );
 
 		wp_register_style(
