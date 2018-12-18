@@ -6,7 +6,9 @@
  * Description:       		Extends the functionality of Shopkeeper with Gutenberg elements.
  * Version:           		1.3
  * Author:            		GetBowtied
- * Author URI:        		https://getbowtied.com
+ * Author URI:				https://getbowtied.com
+ * Text Domain:				shopkeeper-extender
+ * Domain Path:				/languages/
  * Requires at least: 		5.0
  * Tested up to: 			5.0
  *

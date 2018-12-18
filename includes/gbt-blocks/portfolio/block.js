@@ -19,7 +19,7 @@
 
 	/* Register Block */
 	registerBlockType( 'getbowtied/sk-portfolio', {
-		title: i18n.__( 'Portfolio' ),
+		title: i18n.__( 'Portfolio', 'shopkeeper-extender' ),
 		icon:
 			el( SVG, { xmlns:'http://www.w3.org/2000/svg', viewBox:'0 0 24 24' },
 				el( Path, { d:'M14 6V4h-4v2h4zM4 8v11h16V8H4zm16-2c1.11 0 2 .89 2 2v11c0 1.11-.89 2-2 2H4c-1.11 0-2-.89-2-2l.01-11c0-1.11.88-2 1.99-2h4V4c0-1.11.89-2 2-2h4c1.11 0 2 .89 2 2v2h4z' } ),
@@ -29,10 +29,10 @@
 			align: [ 'center', 'wide', 'full' ],
 		},
 		styles: [
-			{ name: 'default', label:  'Equal Boxes', isDefault: true },
-			{ name: 'masonry_1', label:  'Masonry Style V1' },
-			{ name: 'masonry_2', label:  'Masonry Style V2' },
-			{ name: 'masonry_3', label:  'Masonry Style V3' },
+			{ name: 'default', label:    i18n.__( 'Equal Boxes', 'shopkeeper-extender' ), isDefault: true },
+			{ name: 'masonry_1', label:  i18n.__( 'Masonry Style V1', 'shopkeeper-extender' ) },
+			{ name: 'masonry_2', label:  i18n.__( 'Masonry Style V2', 'shopkeeper-extender' ) },
+			{ name: 'masonry_3', label:  i18n.__( 'Masonry Style V3', 'shopkeeper-extender' ) },
 		],
 		attributes: {
 			/* Products source */
@@ -208,9 +208,9 @@
 
 			function _isLoadingText(){
 				if ( attributes.isLoading  === false ) {
-					return i18n.__('Update');
+					return i18n.__( 'Update', 'shopkeeper-extender' );
 				} else {
-					return i18n.__('Updating');
+					return i18n.__( 'Updating', 'shopkeeper-extender' );
 				}
 			}
 
@@ -427,7 +427,7 @@
 						{
 							className: 'main-inspector-wrapper',
 						},
-						el( 'label', { className: 'components-base-control__label' }, i18n.__('Categories:') ),
+						el( 'label', { className: 'components-base-control__label' }, i18n.__( 'Categories:', 'shopkeeper-extender' ) ),
 						el(
 							'div',
 							{
@@ -442,12 +442,12 @@
 								key: 'sk-latest-posts-order-by',
 								options:
 									[
-										{ value: 'title_asc',   label: 'Alphabetical Ascending' },
-										{ value: 'title_desc',  label: 'Alphabetical Descending' },
-										{ value: 'date_asc',   	label: 'Date Ascending' },
-										{ value: 'date_desc',  	label: 'Date Descending' },
+										{ value: 'title_asc',   label: i18n.__( 'Alphabetical Ascending', 'shopkeeper-extender' ) },
+										{ value: 'title_desc',  label: i18n.__( 'Alphabetical Descending', 'shopkeeper-extender' ) },
+										{ value: 'date_asc',   	label: i18n.__( 'Date Ascending', 'shopkeeper-extender' ) },
+										{ value: 'date_desc',  	label: i18n.__( 'Date Descending', 'shopkeeper-extender' ) },
 									],
-	              				label: i18n.__( 'Order By' ),
+	              				label: i18n.__( 'Order By', 'shopkeeper-extender' ),
 	              				value: attributes.orderby,
 	              				onChange: function( value ) {
 	              					props.setAttributes( { orderby: value } );
@@ -466,7 +466,7 @@
 								initialPosition: 12,
 								min: 1,
 								max: 20,
-								label: i18n.__( 'Number of Portfolio Items' ),
+								label: i18n.__( 'Number of Portfolio Items', 'shopkeeper-extender' ),
 								onChange: function onChange(newNumber){
 									props.setAttributes( { number: newNumber } );
 									let newCategoriesSelected = attributes.categoriesIDs;
@@ -492,7 +492,7 @@
 							ToggleControl,
 							{
 								key: "portfolio-filters-toggle",
-	              				label: i18n.__( 'Show Filters?' ),
+	              				label: i18n.__( 'Show Filters?', 'shopkeeper-extender' ),
 	              				checked: attributes.showFilters,
 	              				onChange: function() {
 									props.setAttributes( { showFilters: ! attributes.showFilters } );
@@ -508,7 +508,7 @@
 								initialPosition: 3,
 								min: 2,
 								max: 5,
-								label: i18n.__( 'Columns' ),
+								label: i18n.__( 'Columns', 'shopkeeper-extender' ),
 								onChange: function( newColumns ) {
 									props.setAttributes( { columns: newColumns } );
 								},

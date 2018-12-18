@@ -14,6 +14,7 @@ if ( ! function_exists( 'gbt_18_sk_banner_editor_assets' ) ) {
 			plugins_url( 'block.js', __FILE__ ),
 			array( 'wp-blocks', 'wp-components', 'wp-editor', 'wp-i18n', 'wp-element' )
 		);
+		wp_set_script_translations( 'gbt_18_sk_banner_script', 'shopkeeper-extender', plugin_dir_path( __FILE__ ) . 'languages' );
 
 		wp_enqueue_style(
 			'gbt_18_sk_banner_editor_styles',
