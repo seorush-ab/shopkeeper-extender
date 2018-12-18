@@ -161,6 +161,8 @@
 						break;
 				}
 
+				query += '&lang=' + posts_grid_vars.language
+
 				return query;
 			}
 
@@ -219,10 +221,10 @@
 
 			function renderResults() {
 				if ( attributes.firstLoad === true ) {
-					apiFetch({ path: '/wp/v2/posts?per_page=12&orderby=date&order=desc' }).then(function (posts) {
+					apiFetch({ path: '/wp/v2/posts?per_page=12&orderby=date&order=desc&lang=' + posts_grid_vars.language }).then(function (posts) {
 						props.setAttributes({ result: posts });
 						props.setAttributes({ firstLoad: false });
-						let query = '/wp/v2/posts?per_page=12&orderby=date&order=desc';
+						let query = '/wp/v2/posts?per_page=12&orderby=date&order=desc&lang=' + posts_grid_vars.language;
 						props.setAttributes({queryPosts: query});
 						props.setAttributes({ queryPostsLast: query});
 					});
