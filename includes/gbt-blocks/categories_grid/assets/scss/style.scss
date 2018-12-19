@@ -14,14 +14,6 @@
         }
 	}
 
-	&.alignwide {
-		@media all and (min-width: 1024px) {
-			margin-left: calc( -75vw / 2 + 100% / 2 );
-		    margin-right: calc( -75vw / 2 + 100% / 2 );
-		    max-width: 75vw;
-		}
-	}
-
 	&:not(.alignfull)
 	{
 		.gbt_18_sk_category_1,
