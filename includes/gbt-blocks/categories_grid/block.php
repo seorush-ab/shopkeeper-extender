@@ -53,8 +53,8 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_categories_grid' ) ) {
 		$cat_number = count($product_categories);
 
 		if ( $product_categories ) : ?>
-			<div class="gbt_18_sk_categories_grid_wrapper align<?php echo $align; ?>">
-				<div class="gbt_18_sk_categories_grid">
+			<div class="gbt_18_sk_categories_grid align<?php echo $align; ?>">
+				<div class="gbt_18_sk_categories_grid_wrapper">
 					<?php foreach ($product_categories as $category):
 
 						$thumbnail_id = get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true );
