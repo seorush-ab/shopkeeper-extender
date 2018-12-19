@@ -409,7 +409,7 @@
 			return el( 'div', 
 				{ 
 					key: 'gbt_18_sk_banner',
-					className: 'gbt_18_sk_banner ' + attributes.align,
+					className: 'gbt_18_sk_banner',
 					style:
 					{
 						height: attributes.height + 'px',
