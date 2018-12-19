@@ -57,11 +57,6 @@ add_action( 'init', 'gbt_sk_gutenberg_blocks' );
 if(!function_exists('gbt_sk_gutenberg_blocks')) {
 	function gbt_sk_gutenberg_blocks() {
 
-		$theme = wp_get_theme();
-		if ( $theme->template != 'shopkeeper') {
-			return;
-		}
-
 		if( is_plugin_active( 'gutenberg/gutenberg.php' ) || is_wp_version('>=', '5.0') ) {
 			include_once 'includes/gbt-blocks/index.php';
 		} else {
