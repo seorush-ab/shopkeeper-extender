@@ -322,13 +322,13 @@
 									el( 'span',
 										{
 											key: 		'gbt_18_sk_editor_category_name',
-											className: 	'gbt_18_sk_editor_category_name'
+											className: 	'gbt_18_sk_category_name'
 										},
 										categories[i]['name'].replace(/&amp;/g, '&'),
 										attributes.productCount === true && el( 'span',
 											{
 												key: 		'gbt_18_sk_editor_category_count',
-												className: 	'gbt_18_sk_editor_category_count',
+												className: 	'gbt_18_sk_category_count',
 											},
 											categories[i]['count']
 										),
@@ -728,8 +728,8 @@
 				el(
 					'div',
 					{
-						key: 		'gbt_18_sk_editor_categories_grid_wrapper',
-						className: 	'gbt_18_sk_editor_categories_grid_wrapper'
+						key: 		'gbt_18_sk_categories_grid',
+						className: 	'gbt_18_sk_categories_grid'
 					},
 					attributes.queryDisplayType == 'all_categories' && attributes.doneFirstPostsLoad === false && getResult(),
 					renderResults(),

@@ -1,14 +1,14 @@
 .editor-block-list__block[data-type="getbowtied/sk-categories-grid"][data-align="wide"] {
 
-  .gbt_18_sk_editor_categories_grid_wrapper {
+  .gbt_18_sk_categories_grid {
 
     .gbt_18_sk_editor_categories_grid {
-      .gbt_18_sk_editor_category_name {
+      .gbt_18_sk_category_name {
          font-size: 16px;
          padding: 15px 15px;
       }
 
-      .gbt_18_sk_editor_category_count {
+      .gbt_18_sk_category_count {
         font-size: 13px;
       }
     }
@@ -49,15 +49,15 @@
 
 .editor-block-list__block[data-type="getbowtied/sk-categories-grid"][data-align="full"] {
 
-  .gbt_18_sk_editor_categories_grid_wrapper {
+  .gbt_18_sk_categories_grid {
 
     .gbt_18_sk_editor_categories_grid {
-      .gbt_18_sk_editor_category_name {
+      .gbt_18_sk_category_name {
          font-size: 16px;
          padding: 15px 15px;
       }
 
-      .gbt_18_sk_editor_category_count {
+      .gbt_18_sk_category_count {
         font-size: 13px;
       }
     }
@@ -96,7 +96,7 @@
   }
 }
 
-.gbt_18_sk_editor_categories_grid_wrapper {
+.gbt_18_sk_categories_grid {
 
   .gbt_18_sk_editor_categories_grid {
     overflow: auto;
@@ -347,7 +347,7 @@
       transform: translate3d(-40px,0,0);
     }
 
-    .gbt_18_sk_editor_category_count {
+    .gbt_18_sk_category_count {
       margin-left: 7px;
     }
 
@@ -355,7 +355,7 @@
       transform: translate3d(0,0,0);
     }
 
-    .gbt_18_sk_editor_category_name {
+    .gbt_18_sk_category_name {
       width:100%;
       display: table-cell; 
       line-height:1.333em;
@@ -367,7 +367,7 @@
       z-index: 2;
     }
     
-    .gbt_18_sk_editor_category_name:hover {
+    .gbt_18_sk_category_name:hover {
       background:rgba(0,0,0,.6);
     }
 
@@ -380,13 +380,13 @@
 }
 
 .editor-block-list__block[data-type="getbowtied/sk-categories-grid"] {
-  .gbt_18_sk_editor_categories_grid_wrapper {
+  .gbt_18_sk_categories_grid {
     .gbt_18_sk_editor_categories_grid {
-      .gbt_18_sk_editor_category_name {
-        font-size: 12px;
+      .gbt_18_sk_category_name {
+        font-size: 13px;
         padding: 10px 10px;
       }
-      .gbt_18_sk_editor_category_count {
+      .gbt_18_sk_category_count {
         font-size: 11px;
       }
     }

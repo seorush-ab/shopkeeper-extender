@@ -275,7 +275,7 @@
 									el( "span", 
 										{
 											key: 		'gbt_18_sk_editor_posts_grid_title',
-											className:  'gbt_18_sk_editor_posts_grid_title',
+											className:  'gbt_18_sk_posts_grid_title',
 											dangerouslySetInnerHTML: { __html: posts[i]['title']['rendered'] }
 										}
 									)
