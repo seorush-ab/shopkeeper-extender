@@ -62,9 +62,9 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_posts_grid' ) ) {
 		        
 	    if ( !empty($recentPosts) ) : ?>
 
-	        <div class="gbt_18_sk_posts_grid">
+	        <div class="gbt_18_sk_posts_grid align<?php echo $align; ?>">
 	    
-	    		<div class="gbt_18_sk_posts_grid_wrapper columns-<?php echo $columns; ?> align<?php echo $align; ?>">
+	    		<div class="gbt_18_sk_posts_grid_wrapper columns-<?php echo $columns; ?>">
 		                    
 		            <?php foreach($recentPosts as $post) : ?>
 		        
