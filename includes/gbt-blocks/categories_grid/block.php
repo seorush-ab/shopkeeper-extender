@@ -90,11 +90,11 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_categories_grid' ) ) {
 							<div class="gbt_18_sk_category_grid_box">
 								<span class="gbt_18_sk_category_item_bkg" style="background-image:url(<?php echo esc_url($image); ?>)"></span> 
 								<a href="<?php echo get_term_link( $category->slug, 'product_cat' ); ?>" class="gbt_18_sk_category_item" >
-									<h3 class="gbt_18_sk_category_name"><?php echo esc_html($category->name); ?>
+									<h4 class="gbt_18_sk_category_name"><?php echo esc_html($category->name); ?>
 										<?php if ( $productCount ) { ?>
-											<span class="gbt_18_sk_category_count"><?php echo esc_html($category->count); ?></span>
+											<sup class="gbt_18_sk_category_count"><?php echo esc_html($category->count); ?></sup>
 										<?php } ?>
-									</h3>
+									</h4>
 								</a>
 							</div>
 						</div>
