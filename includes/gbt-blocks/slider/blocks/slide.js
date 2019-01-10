@@ -483,8 +483,8 @@
 									backgroundColor: attributes.buttonBgColor,
 									color: attributes.buttonTextColor
 								},
-							},
-							i18n.__( attributes.buttonText, 'shopkeeper-extender' )
+								dangerouslySetInnerHTML: { __html: i18n.__( attributes.buttonText, 'shopkeeper-extender' ) }
+							}
 						)
 					)
 				)
