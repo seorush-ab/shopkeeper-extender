@@ -458,8 +458,8 @@
 									fontSize: attributes.titleSize,
 									color: attributes.textColor
 								},
-							},
-							i18n.__( attributes.title, 'shopkeeper-extender' )
+								dangerouslySetInnerHTML: { __html: i18n.__( attributes.title, 'shopkeeper-extender' ) }
+							}
 						),
 						attributes.description != '' && el( 'p',
 							{
@@ -470,8 +470,8 @@
 									fontSize: attributes.descriptionSize,
 									color: attributes.textColor
 								},
-							},
-							i18n.__( attributes.description, 'shopkeeper-extender' )
+								dangerouslySetInnerHTML: { __html: i18n.__( attributes.description, 'shopkeeper-extender' ) }
+							}
 						),
 						!! attributes.slideButton && attributes.buttonText != '' && el( 'a',
 							{
