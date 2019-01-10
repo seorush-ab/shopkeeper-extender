@@ -1,5 +1,7 @@
 <?php
 
+global $theme;
+
 //==============================================================================
 //	Main Editor Styles
 //==============================================================================
@@ -30,7 +32,6 @@ if ( ! function_exists( 'getbowtied_sk_blocks_scripts' ) ) {
 //==============================================================================
 
 // Shopkeeper Dependent Blocks
-$theme = wp_get_theme();
 if ( $theme->template == 'shopkeeper') {
 	include_once 'social_media_profiles/block.php';
 	include_once 'portfolio/block.php';

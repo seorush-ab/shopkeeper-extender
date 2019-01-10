@@ -16,6 +16,9 @@
  * @author   GetBowtied
  */
 
+global $theme;
+$theme = wp_get_theme();
+
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 } // Exit if accessed directly

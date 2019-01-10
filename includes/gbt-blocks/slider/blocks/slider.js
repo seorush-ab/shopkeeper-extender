@@ -291,7 +291,7 @@
 					'div',
 					{
 						key: 'gbt_18_sk_slider_container',
-						className: attributes.fullHeight ? 'shortcode_getbowtied_slider gbt_18_sk_slider_container swiper-container full_height' : 'shortcode_getbowtied_slider gbt_18_sk_slider_container swiper-container',
+						className: attributes.fullHeight ? 'gbt_18_sk_slider swiper-container full_height' : 'gbt_18_sk_slider swiper-container',
 						style:
 						{
 							height: attributes.customHeight + 'px'
@@ -354,8 +354,8 @@
 					!! attributes.pagination && el(
 						'div',
 						{
-							key: 'shortcode-slider-pagination',
-							className: 'quickview-pagination shortcode-slider-pagination',
+							key: 'gbt_18_sk_slider_pagination',
+							className: 'gbt_18_sk_slider_pagination',
 							style:
 							{
 								color: attributes.paginationColor
