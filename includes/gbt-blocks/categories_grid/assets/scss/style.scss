@@ -59,7 +59,6 @@
 		}
 
 		.gbt_18_sk_category_count {
-			font-size: 13px;
 			margin-left: 7px;
 		}
 
@@ -109,8 +108,8 @@
 	.gbt_18_sk_categories_grid_wrapper .gbt_18_sk_category_item {
 		display:table !important;
 		width:100%;
-		color:#fff;
 		position:relative;
+		text-decoration: none;
 		border-spacing:0;
 	}
 
@@ -118,11 +117,10 @@
 		width:100%;
 		display: table-cell; 
 		line-height:1.333em;
-		font-weight:700;
+		text-decoration: none;
 	    padding: 33px 30px;
+	    color:#fff;
 		background:rgba(0,0,0,0);
-		-webkit-transition: all 0.35s ease;
-		-moz-transition: all 0.35s ease;
 		transition: all 0.35s ease;
 		position: relative;
 		z-index: 2;
@@ -463,9 +461,5 @@
 		.gbt_18_sk_category_count {
 			opacity: 1 !important;
 		}
-	}
-
-	.gbt_18_sk_categories_grid_wrapper .gbt_18_sk_category_name {
-		 font-size: 18px;
 	}
 }
