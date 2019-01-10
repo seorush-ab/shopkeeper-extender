@@ -22,8 +22,7 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_posts_grid' ) ) {
 		$args = array(
 	        'post_status' 		=> 'publish',
 	        'post_type' 		=> 'post',
-	        'posts_per_page' 	=> $number,
-	        'lang'				=> get_locale()
+	        'posts_per_page' 	=> $number
 	    );
 
 	    switch ( $orderby ) {
@@ -56,7 +55,7 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_posts_grid' ) ) {
 
 	    if( $categoriesSavedIDs != '' ) $args['category'] = $categoriesSavedIDs;
 	    
-	    $recentPosts = query_posts( $args );
+	    $recentPosts = get_posts( $args );
 
 		ob_start();
 		        
