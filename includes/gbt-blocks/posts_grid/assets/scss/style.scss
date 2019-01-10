@@ -183,20 +183,9 @@
 
 		.gbt_18_sk_posts_grid_title {
 			display: block;
-			font-weight: 900;
 			text-align: left;
-			font-size: 24px;
-			line-height: 1.4em;
 			margin: 0 0 15px;
 		    transition: all .5s;
-
-		    @media all and (min-width: 640px) and (max-width: 1023px) {
-		    	font-size: 22px;
-		    }
-
-		    @media all and (max-width: 639px) {
-		    	font-size: 20px;
-		    }
 
 			&:hover {
 			    opacity: 1;
