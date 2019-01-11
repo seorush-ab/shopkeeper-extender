@@ -61,9 +61,9 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_posts_grid' ) ) {
 		        
 	    if ( !empty($recentPosts) ) : ?>
 
-	        <div class="gbt_18_sk_posts_grid">
+	        <div class="gbt_18_sk_posts_grid align<?php echo $align; ?>">
 	    
-	    		<div class="gbt_18_sk_posts_grid_wrapper columns-<?php echo $columns; ?> <?php echo $align; ?>">
+	    		<div class="gbt_18_sk_posts_grid_wrapper columns-<?php echo $columns; ?>">
 		                    
 		            <?php foreach($recentPosts as $post) : ?>
 		        
@@ -85,7 +85,7 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_posts_grid' ) ) {
 									<?php endif;  ?>
 
 								</span><!--.from_the_blog_img_container-->
-								<span class="gbt_18_sk_posts_grid_title" href="<?php echo get_post_permalink($post->ID); ?>"><?php echo $post->post_title; ?></span>
+								<h3 class="gbt_18_sk_posts_grid_title" href="<?php echo get_post_permalink($post->ID); ?>"><?php echo $post->post_title; ?></h3>
 							</a>
 		                    
 		                </div>

@@ -98,7 +98,7 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_portfolio' ) ) {
         ?>
         
         <!-- Wrappers -->
-        <div class="gbt_18_sk_portfolio wp-block-gbt-portfolio <?php echo $className; ?> <?php echo $align; ?>">
+        <div class="gbt_18_sk_portfolio wp-block-gbt-portfolio <?php echo $className; ?> align<?php echo $align; ?>">
             <div class="portfolio-isotope-container gbt_18_sk_portfolio_container <?php echo $items_per_row_class ;?>">
                         
             <!-- Filters -->
@@ -108,7 +108,7 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_portfolio' ) ) {
                     
                     if ( !empty( $portfolio_categories_queried ) && !is_wp_error( $portfolio_categories_queried ) ){
                         echo '<ul class="filters-group list-centered">';
-                            echo '<li class="filter-item is-checked" data-filter="*">' . __("Show all", "shopkeeper") . '</li>';
+                            echo '<li class="filter-item is-checked" data-filter="*">' . __("Show all", "shopkeeper-extender") . '</li>';
                         foreach ( $portfolio_categories_queried as $key => $value ) {
                             echo '<li class="filter-item" data-filter=".' . $key . '">' . $value . '</li>';
                         }

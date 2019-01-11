@@ -1,0 +1,328 @@
+# Copyright (C) 2018 shopkeeper-extender
+# This file is distributed under the same license as the shopkeeper-extender package.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Shopkeeper Extender\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;i18n;i18n.__\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.1\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/gbt-blocks/banner/block.js:24
+msgid "Banner"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:103
+msgid "Title Color"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:110
+msgid "Subtitle Color"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:117
+msgid "Background Color"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:128
+msgid "Inner Stroke Color"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:150
+msgid "General Settings"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:158
+msgid "URL"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:169
+msgid "Open link in new tab?"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:185
+msgid "Height"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:196
+msgid "Font Settings"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:208
+#: includes/gbt-blocks/slider/blocks/slide.js:202
+msgid "Title Font Size"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:223
+msgid "Subtitle Font Size"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:234
+msgid "Inner Stroke"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:246
+msgid "Inner Stroke Thickness"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:257
+#: includes/gbt-blocks/slider/blocks/slide.js:229
+#: includes/gbt-blocks/slider/blocks/slider.js:247
+msgid "Colors"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:320
+#: includes/gbt-blocks/slider/blocks/slide.js:263
+msgid "Add Image"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:336
+#: includes/gbt-blocks/slider/blocks/slide.js:279
+msgid "Remove Image"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:372
+#: includes/gbt-blocks/slider/blocks/slide.js:348
+msgid "Add Title"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:392
+#: includes/gbt-blocks/slider/blocks/slide.js:375
+msgid "Add Subtitle"
+msgstr ""
+
+#: includes/gbt-blocks/categories_grid/block.js:21
+msgid "Product Categories - Grid"
+msgstr ""
+
+#: includes/gbt-blocks/categories_grid/block.js:201
+#: includes/gbt-blocks/portfolio/block.js:211
+#: includes/gbt-blocks/posts_grid/block.js:185
+msgid "Update"
+msgstr ""
+
+#: includes/gbt-blocks/categories_grid/block.js:203
+#: includes/gbt-blocks/portfolio/block.js:213
+#: includes/gbt-blocks/posts_grid/block.js:187
+msgid "Updating"
+msgstr ""
+
+#: includes/gbt-blocks/categories_grid/block.js:421
+msgid "No categories matching."
+msgstr ""
+
+#: includes/gbt-blocks/categories_grid/block.js:573
+msgid "Source:"
+msgstr ""
+
+#: includes/gbt-blocks/categories_grid/block.js:576
+msgid "Manually pick"
+msgstr ""
+
+#: includes/gbt-blocks/categories_grid/block.js:579
+msgid "All Categories"
+msgstr ""
+
+#: includes/gbt-blocks/categories_grid/block.js:600
+msgid "Search for categories to display"
+msgstr ""
+
+#: includes/gbt-blocks/categories_grid/block.js:634
+msgid "Selected Products:"
+msgstr ""
+
+#: includes/gbt-blocks/categories_grid/block.js:651
+msgid "Menu Order"
+msgstr ""
+
+#: includes/gbt-blocks/categories_grid/block.js:652
+#: includes/gbt-blocks/portfolio/block.js:445
+#: includes/gbt-blocks/posts_grid/block.js:404
+msgid "Alphabetical Ascending"
+msgstr ""
+
+#: includes/gbt-blocks/categories_grid/block.js:653
+#: includes/gbt-blocks/portfolio/block.js:446
+#: includes/gbt-blocks/posts_grid/block.js:405
+msgid "Alphabetical Descending"
+msgstr ""
+
+#: includes/gbt-blocks/categories_grid/block.js:655
+#: includes/gbt-blocks/portfolio/block.js:450
+#: includes/gbt-blocks/posts_grid/block.js:409
+msgid "Order By"
+msgstr ""
+
+#: includes/gbt-blocks/categories_grid/block.js:666
+msgid "How many product categories to display?"
+msgstr ""
+
+#: includes/gbt-blocks/categories_grid/block.js:679
+msgid "Parent Categories Only"
+msgstr ""
+
+#: includes/gbt-blocks/categories_grid/block.js:690
+msgid "Hide Empty"
+msgstr ""
+
+#: includes/gbt-blocks/categories_grid/block.js:720
+msgid "Product Count"
+msgstr ""
+
+#: includes/gbt-blocks/portfolio/block.js:22
+msgid "Portfolio"
+msgstr ""
+
+#: includes/gbt-blocks/portfolio/block.js:32
+msgid "Equal Boxes"
+msgstr ""
+
+#: includes/gbt-blocks/portfolio/block.js:33
+msgid "Masonry Style V1"
+msgstr ""
+
+#: includes/gbt-blocks/portfolio/block.js:34
+msgid "Masonry Style V2"
+msgstr ""
+
+#: includes/gbt-blocks/portfolio/block.js:35
+msgid "Masonry Style V3"
+msgstr ""
+
+#: includes/gbt-blocks/portfolio/block.js:430
+#: includes/gbt-blocks/posts_grid/block.js:389
+msgid "Categories:"
+msgstr ""
+
+#: includes/gbt-blocks/portfolio/block.js:447
+#: includes/gbt-blocks/posts_grid/block.js:406
+msgid "Date Ascending"
+msgstr ""
+
+#: includes/gbt-blocks/portfolio/block.js:448
+#: includes/gbt-blocks/posts_grid/block.js:407
+msgid "Date Descending"
+msgstr ""
+
+#: includes/gbt-blocks/portfolio/block.js:469
+msgid "Number of Portfolio Items"
+msgstr ""
+
+#: includes/gbt-blocks/portfolio/block.js:495
+msgid "Show Filters?"
+msgstr ""
+
+#: includes/gbt-blocks/portfolio/block.js:511
+#: includes/gbt-blocks/posts_grid/block.js:459
+msgid "Columns"
+msgstr ""
+
+#: includes/gbt-blocks/portfolio/block.php:111
+msgid "Show all"
+msgstr ""
+
+#: includes/gbt-blocks/posts_grid/block.js:22
+msgid "Posts Grid"
+msgstr ""
+
+#: includes/gbt-blocks/posts_grid/block.js:428
+msgid "Number of Posts"
+msgstr ""
+
+#: includes/gbt-blocks/slider/blocks/slide.js:30
+msgid "Slide"
+msgstr ""
+
+#: includes/gbt-blocks/slider/blocks/slide.js:114
+msgid "Title & Description"
+msgstr ""
+
+#: includes/gbt-blocks/slider/blocks/slide.js:121
+msgid "Slide Background"
+msgstr ""
+
+#: includes/gbt-blocks/slider/blocks/slide.js:132
+#: includes/gbt-blocks/slider/blocks/slide.js:402
+msgid "Button Text"
+msgstr ""
+
+#: includes/gbt-blocks/slider/blocks/slide.js:139
+msgid "Button Background"
+msgstr ""
+
+#: includes/gbt-blocks/slider/blocks/slide.js:166
+msgid "Slide Link"
+msgstr ""
+
+#: includes/gbt-blocks/slider/blocks/slide.js:179
+msgid "Slide Button"
+msgstr ""
+
+#: includes/gbt-blocks/slider/blocks/slide.js:217
+msgid "Description Font Size"
+msgstr ""
+
+#: includes/gbt-blocks/slider/blocks/slider.js:26
+msgid "Slider"
+msgstr ""
+
+#: includes/gbt-blocks/slider/blocks/slider.js:143
+#: includes/gbt-blocks/slider/blocks/slider.js:225
+msgid "Pagination Bullets"
+msgstr ""
+
+#: includes/gbt-blocks/slider/blocks/slider.js:155
+#: includes/gbt-blocks/slider/blocks/slider.js:236
+msgid "Navigation Arrows"
+msgstr ""
+
+#: includes/gbt-blocks/slider/blocks/slider.js:182
+msgid "Full Height"
+msgstr ""
+
+#: includes/gbt-blocks/slider/blocks/slider.js:199
+msgid "Custom Desktop Height"
+msgstr ""
+
+#: includes/gbt-blocks/slider/blocks/slider.js:214
+msgid "Number of Slides"
+msgstr ""
+
+#: includes/gbt-blocks/social_media_profiles/block.js:20
+msgid "Social Media Profiles"
+msgstr ""
+
+#: includes/gbt-blocks/social_media_profiles/block.js:65
+msgid "Icons Font Size"
+msgstr ""
+
+#: includes/gbt-blocks/social_media_profiles/block.js:75
+#: includes/gbt-blocks/social_media_profiles/block.js:78
+msgid "Icons Color"
+msgstr ""
+
+#: includes/gbt-blocks/social_media_profiles/block.js:127
+msgid "Social Media Icons"
+msgstr ""
+
+#: includes/gbt-blocks/social_media_profiles/block.js:135
+msgid "Setup profile links under Appearance > Customize > Social Media"
+msgstr ""
+
+#: updater.php:434
+msgid "The plugin has been updated, but could not be reactivated. Please reactivate it manually."
+msgstr ""
+
+#: updater.php:435
+msgid "Plugin reactivated successfully."
+msgstr ""

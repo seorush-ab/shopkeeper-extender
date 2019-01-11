@@ -19,7 +19,7 @@
 
 	/* Register Block */
 	registerBlockType( 'getbowtied/sk-posts-grid', {
-		title: i18n.__( 'Posts Grid' ),
+		title: i18n.__( 'Posts Grid', 'shopkeeper-extender' ),
 		icon: el( SVG, { xmlns:'http://www.w3.org/2000/svg', viewBox:'0 0 24 24' },
 				el( Path, { d:'M4 5v13h17V5H4zm10 2v3.5h-3V7h3zM6 7h3v3.5H6V7zm0 9v-3.5h3V16H6zm5 0v-3.5h3V16h-3zm8 0h-3v-3.5h3V16zm-3-5.5V7h3v3.5h-3z' } ) 
 			),
@@ -182,9 +182,9 @@
 
 			function _isLoadingText(){
 				if ( attributes.isLoading  === false ) {
-					return i18n.__('Update');
+					return i18n.__( 'Update', 'shopkeeper-extender' );
 				} else {
-					return i18n.__('Updating');
+					return i18n.__( 'Updating', 'shopkeeper-extender' );
 				}
 			}
 
@@ -273,7 +273,7 @@
 									el( "span", 
 										{
 											key: 		'gbt_18_sk_editor_posts_grid_title',
-											className:  'gbt_18_sk_editor_posts_grid_title',
+											className:  'gbt_18_sk_posts_grid_title',
 											dangerouslySetInnerHTML: { __html: posts[i]['title']['rendered'] }
 										}
 									)
@@ -386,7 +386,7 @@
 						{
 							className: 'main-inspector-wrapper',
 						},
-						el( 'label', { className: 'components-base-control__label' }, i18n.__('Categories:') ),
+						el( 'label', { className: 'components-base-control__label' }, i18n.__( 'Categories:', 'shopkeeper-extender' ) ),
 						el(
 							'div',
 							{
@@ -401,12 +401,12 @@
 								key: 'sk-posts-grid-order-by',
 								options:
 									[
-										{ value: 'title_asc',   label: 'Alphabetical Ascending' },
-										{ value: 'title_desc',  label: 'Alphabetical Descending' },
-										{ value: 'date_asc',   	label: 'Date Ascending' },
-										{ value: 'date_desc',  	label: 'Date Descending' },
+										{ value: 'title_asc',   label: i18n.__( 'Alphabetical Ascending', 'shopkeeper-extender' ) },
+										{ value: 'title_desc',  label: i18n.__( 'Alphabetical Descending', 'shopkeeper-extender' ) },
+										{ value: 'date_asc',   	label: i18n.__( 'Date Ascending', 'shopkeeper-extender' ) },
+										{ value: 'date_desc',  	label: i18n.__( 'Date Descending', 'shopkeeper-extender' ) },
 									],
-	              				label: i18n.__( 'Order By' ),
+	              				label: i18n.__( 'Order By', 'shopkeeper-extender' ),
 	              				value: attributes.orderby,
 	              				onChange: function( value ) {
 	              					props.setAttributes( { orderby: value } );
@@ -425,7 +425,7 @@
 								initialPosition: 12,
 								min: 1,
 								max: 20,
-								label: i18n.__( 'Number of Posts' ),
+								label: i18n.__( 'Number of Posts', 'shopkeeper-extender' ),
 								onChange: function onChange(newNumber){
 									props.setAttributes( { number: newNumber } );
 									let newCategoriesSelected = attributes.categoriesIDs;
@@ -456,7 +456,7 @@
 								initialPosition: 3,
 								min: 1,
 								max: 4,
-								label: i18n.__( 'Columns' ),
+								label: i18n.__( 'Columns', 'shopkeeper-extender' ),
 								onChange: function( newColumns ) {
 									props.setAttributes( { columns: newColumns } );
 								},

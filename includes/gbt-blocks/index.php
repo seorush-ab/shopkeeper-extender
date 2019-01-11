@@ -1,5 +1,7 @@
 <?php
 
+global $theme;
+
 //==============================================================================
 //	Main Editor Styles
 //==============================================================================
@@ -25,12 +27,21 @@ if ( ! function_exists( 'getbowtied_sk_blocks_scripts' ) ) {
 	}
 }
 
+//==============================================================================
+//	Blocks
+//==============================================================================
+
+// Shopkeeper Dependent Blocks
+if ( $theme->template == 'shopkeeper') {
+	include_once 'social_media_profiles/block.php';
+	include_once 'portfolio/block.php';
+}
+
+// WooCommerce Dependent Blocks
 if( is_plugin_active( 'woocommerce/woocommerce.php') ) {
 	include_once 'categories_grid/block.php';
 }
 
 include_once 'posts_grid/block.php';
 include_once 'banner/block.php';
-include_once 'portfolio/block.php';
-include_once 'social_media_profiles/block.php';
 include_once 'slider/block.php';

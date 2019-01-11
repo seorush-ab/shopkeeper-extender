@@ -23,7 +23,7 @@
 
 	/* Register Block */
 	registerBlockType( 'getbowtied/sk-slider', {
-		title: i18n.__( 'Slider' ),
+		title: i18n.__( 'Slider', 'shopkeeper-extender' ),
 		icon:
 			el( SVG, { xmlns:'http://www.w3.org/2000/svg', viewBox:'0 0 100 100' },
 				el( Path, { d:'M85,15H15v60h70V15z M20,70v-9l15-15l9,9L29,70H20z M36,70l19-19l21,19H36z M80,66.8L54.9,44l-7.4,7.4L35,39 L20,54V20h60V66.8z' } ),
@@ -140,7 +140,7 @@
 				if( attributes.pagination ) {
 					colors.push(
 						{ 
-							label: i18n.__( 'Pagination Bullets' ),
+							label: i18n.__( 'Pagination Bullets', 'shopkeeper-extender' ),
 							value: attributes.paginationColor,
 							onChange: function( newColor) {
 								props.setAttributes( { paginationColor: newColor } );
@@ -152,7 +152,7 @@
 				if( attributes.arrows ) {
 					colors.push(
 						{ 
-							label: i18n.__( 'Navigation Arrows' ),
+							label: i18n.__( 'Navigation Arrows', 'shopkeeper-extender' ),
 							value: attributes.arrowsColor,
 							onChange: function( newColor) {
 								props.setAttributes( { arrowsColor: newColor } );
@@ -179,7 +179,7 @@
 							ToggleControl,
 							{
 								key: "gbt_18_sk_slider_full_height",
-								label: i18n.__( 'Full Height' ),
+								label: i18n.__( 'Full Height', 'shopkeeper-extender' ),
 								checked: attributes.fullHeight,
 								onChange: function() {
 									props.setAttributes( { fullHeight: ! attributes.fullHeight } );
@@ -196,7 +196,7 @@
 								initialPosition: 800,
 								min: 100,
 								max: 1000,
-								label: i18n.__( 'Custom Desktop Height' ),
+								label: i18n.__( 'Custom Desktop Height', 'shopkeeper-extender' ),
 								onChange: function( newNumber ) {
 									props.setAttributes( { customHeight: newNumber } );
 								},
@@ -211,7 +211,7 @@
 								initialPosition: 3,
 								min: 1,
 								max: 6,
-								label: i18n.__( 'Number of Slides' ),
+								label: i18n.__( 'Number of Slides', 'shopkeeper-extender' ),
 								onChange: function( newNumber ) {
 									props.setAttributes( { slides: newNumber } );
 									props.setAttributes( { activeTab: '1' } );
@@ -222,7 +222,7 @@
 							ToggleControl,
 							{
 								key: "gbt_18_sk_slider_pagination",
-	              				label: i18n.__( 'Pagination Bullets' ),
+	              				label: i18n.__( 'Pagination Bullets', 'shopkeeper-extender' ),
 	              				checked: attributes.pagination,
 	              				onChange: function() {
 									props.setAttributes( { pagination: ! attributes.pagination } );
@@ -233,7 +233,7 @@
 							ToggleControl,
 							{
 								key: "gbt_18_sk_slider_arrows",
-	              				label: i18n.__( 'Navigation Arrows' ),
+	              				label: i18n.__( 'Navigation Arrows', 'shopkeeper-extender' ),
 	              				checked: attributes.arrows,
 	              				onChange: function() {
 									props.setAttributes( { arrows: ! attributes.arrows } );
@@ -244,7 +244,7 @@
 							ColorSettings,
 							{
 								key: 'gbt_18_sk_slider_arrows_color',
-								title: i18n.__( 'Colors' ),
+								title: i18n.__( 'Colors', 'shopkeeper-extender' ),
 								initialOpen: false,
 								colorSettings: getColors()
 							},
@@ -291,7 +291,7 @@
 					'div',
 					{
 						key: 'gbt_18_sk_slider_container',
-						className: attributes.fullHeight ? 'shortcode_getbowtied_slider gbt_18_sk_slider_container swiper-container full_height' : 'shortcode_getbowtied_slider gbt_18_sk_slider_container swiper-container',
+						className: attributes.fullHeight ? 'gbt_18_sk_slider swiper-container full_height' : 'gbt_18_sk_slider swiper-container',
 						style:
 						{
 							height: attributes.customHeight + 'px'
@@ -354,8 +354,8 @@
 					!! attributes.pagination && el(
 						'div',
 						{
-							key: 'shortcode-slider-pagination',
-							className: 'quickview-pagination shortcode-slider-pagination',
+							key: 'gbt_18_sk_slider_pagination',
+							className: 'gbt_18_sk_slider_pagination',
 							style:
 							{
 								color: attributes.paginationColor

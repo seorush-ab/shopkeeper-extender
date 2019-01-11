@@ -53,8 +53,8 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_categories_grid' ) ) {
 		$cat_number = count($product_categories);
 
 		if ( $product_categories ) : ?>
-			<div class="gbt_18_sk_categories_grid_wrapper <?php echo $align; ?>">
-				<div class="gbt_18_sk_categories_grid">
+			<div class="gbt_18_sk_categories_grid align<?php echo $align; ?>">
+				<div class="gbt_18_sk_categories_grid_wrapper">
 					<?php foreach ($product_categories as $category):
 
 						$thumbnail_id = get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true );
@@ -90,11 +90,11 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_categories_grid' ) ) {
 							<div class="gbt_18_sk_category_grid_box">
 								<span class="gbt_18_sk_category_item_bkg" style="background-image:url(<?php echo esc_url($image); ?>)"></span> 
 								<a href="<?php echo get_term_link( $category->slug, 'product_cat' ); ?>" class="gbt_18_sk_category_item" >
-									<span class="gbt_18_sk_category_name"><?php echo esc_html($category->name); ?>
+									<h4 class="gbt_18_sk_category_name"><?php echo esc_html($category->name); ?>
 										<?php if ( $productCount ) { ?>
-											<span class="gbt_18_sk_category_count"><?php echo esc_html($category->count); ?></span>
+											<sup class="gbt_18_sk_category_count"><?php echo esc_html($category->count); ?></sup>
 										<?php } ?>
-									</span>
+									</h4>
 								</a>
 							</div>
 						</div>
