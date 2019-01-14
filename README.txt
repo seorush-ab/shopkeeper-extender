@@ -9,7 +9,19 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 ~Current Version:1.3.2~
 
-Extends the functionality of Shopkeeper with Gutenberg elements.
+Extends the functionality of the Shopkeeper theme by adding theme specific features.
+
+== Description ==
+
+Companion plugin for the *Shopkeeper* theme. Extends the functionality by adding theme specific features:
+
+*Gutenberg Blocks*
+
+*   Image Slider
+*   Banner
+*   Posts Grid
+*   Product Categories Grid
+*   Portfolio
 
 == Changelog ==
 
