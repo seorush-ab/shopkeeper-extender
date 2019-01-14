@@ -13,10 +13,9 @@ Extends the functionality of the Shopkeeper theme by adding theme specific featu
 
 == Description ==
 
-Companion plugin for the **Shopkeeper** theme. Extends the functionality by adding theme specific features:
+Companion plugin for the **Shopkeeper** theme. Extends the functionality by adding theme specific features.
 
-**Gutenberg Blocks**
-
+**Gutenberg Blocks:**
 - Image Slider
 - Banner
 - Posts Grid
