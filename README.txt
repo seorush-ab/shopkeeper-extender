@@ -21,6 +21,7 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 - Posts Grid
 - Product Categories Grid
 - Portfolio
+- Social Media Profiles
 
 == Changelog ==
 
