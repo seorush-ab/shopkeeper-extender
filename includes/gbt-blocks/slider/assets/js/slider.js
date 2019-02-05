@@ -19,7 +19,9 @@ jQuery(function($) {
 		    grabCursor: true,
 			preventClicks: true,
 			preventClicksPropagation: true,
-			autoplay: autoplay,
+			autoplay: {
+			    delay: autoplay
+		  	},
 			speed: 600,
 			effect: 'slide',
 			parallax: true,

@@ -161,7 +161,7 @@
 						break;
 				}
 
-				query += '&lang=' + posts_grid_vars.language
+				query += '&lang=' + posts_grid_vars.language;
 
 				return query;
 			}
