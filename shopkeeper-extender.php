@@ -2,9 +2,9 @@
 
 /**
  * Plugin Name:       		Shopkeeper Extender
- * Plugin URI:        		https://github.com/getbowtied/shopkeeper-extender
+ * Plugin URI:        		https://shopkeeper.wp-theme.design/
  * Description:       		Extends the functionality of Shopkeeper with Gutenberg elements.
- * Version:           		1.3.2
+ * Version:           		1.3.3
  * Author:            		GetBowtied
  * Author URI:				https://getbowtied.com
  * Text Domain:				shopkeeper-extender
@@ -16,9 +16,6 @@
  * @author   GetBowtied
  */
 
-global $theme;
-$theme = wp_get_theme();
-
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 } // Exit if accessed directly
@@ -27,34 +24,16 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
     require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 }
 
-add_action( 'init', 'github_sk_plugin_updater' );
-if(!function_exists('github_sk_plugin_updater')) {
-	function github_sk_plugin_updater() {
+global $theme;
+$theme = wp_get_theme();
 
-		include_once 'updater.php';
-
-		define( 'WP_GITHUB_FORCE_UPDATE', true );
-
-		if ( is_admin() ) {
-
-			$config = array(
-				'slug' 				 => plugin_basename(__FILE__),
-				'proper_folder_name' => 'shopkeeper-extender',
-				'api_url' 			 => 'https://api.github.com/repos/getbowtied/shopkeeper-extender',
-				'raw_url' 			 => 'https://raw.github.com/getbowtied/shopkeeper-extender/master',
-				'github_url' 		 => 'https://github.com/getbowtied/shopkeeper-extender',
-				'zip_url' 			 => 'https://github.com/getbowtied/shopkeeper-extender/zipball/master',
-				'sslverify'			 => true,
-				'requires'			 => '5.0',
-				'tested'			 => '5.0',
-				'readme'			 => 'README.txt',
-				'access_token'		 => '',
-			);
-
-			new WP_GitHub_Updater( $config );
-		}
-	}
-}
+// Plugin Updater
+require 'core/updater/plugin-update-checker.php';
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+	'https://raw.githubusercontent.com/getbowtied/shopkeeper-extender/master/core/updater/assets/plugin.json',
+	__FILE__,
+	'shopkeeper-extender'
+);
 
 add_action( 'init', 'gbt_sk_gutenberg_blocks' );
 if(!function_exists('gbt_sk_gutenberg_blocks')) {
@@ -73,7 +52,7 @@ if( !function_exists('theme_warning') ) {
 
 		?>
 
-		<div class="message error woocommerce-admin-notice woocommerce-st-inactive woocommerce-not-configured">
+		<div class="error">
 			<p>Shopkeeper Extender plugin couldn't find the Block Editor (Gutenberg) on this site. It requires WordPress 5+ or Gutenberg installed as a plugin.</p>
 		</div>
 
