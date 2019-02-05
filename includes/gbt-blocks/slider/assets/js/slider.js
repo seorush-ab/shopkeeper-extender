@@ -20,7 +20,7 @@ jQuery(function($) {
 			preventClicks: true,
 			preventClicksPropagation: true,
 			autoplay: {
-			    delay: autoplay
+			    delay: autoplay,
 		  	},
 			speed: 600,
 			effect: 'slide',
