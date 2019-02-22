@@ -36,7 +36,6 @@ if ( ! function_exists( 'gbt_18_sk_slider_editor_assets' ) ) {
 add_action( 'enqueue_block_assets', 'gbt_18_sk_slider_assets' );
 if ( ! function_exists( 'gbt_18_sk_slider_assets' ) ) {
 	function gbt_18_sk_slider_assets() {
-		global $theme;
 		
 		wp_enqueue_style(
 			'gbt_18_sk_slider_styles',
@@ -45,6 +44,7 @@ if ( ! function_exists( 'gbt_18_sk_slider_assets' ) ) {
 			filemtime(plugin_dir_path(__FILE__) . 'assets/css/frontend/style.css')
 		);
 
+		$theme = wp_get_theme();
 		if ( $theme->template != 'shopkeeper') {
 			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 			wp_enqueue_style(

@@ -1,7 +1,5 @@
 <?php
 
-global $theme;
-
 //==============================================================================
 //	Main Editor Styles
 //==============================================================================
@@ -29,6 +27,7 @@ add_action( 'enqueue_block_editor_assets', function() {
 //==============================================================================
 
 // Shopkeeper Dependent Blocks
+$theme = wp_get_theme();
 if ( $theme->template == 'shopkeeper') {
 	include_once 'social_media_profiles/block.php';
 	include_once 'portfolio/block.php';
