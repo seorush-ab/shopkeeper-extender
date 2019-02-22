@@ -4,13 +4,13 @@
  * Plugin Name:       		Shopkeeper Extender
  * Plugin URI:        		https://shopkeeper.wp-theme.design/
  * Description:       		Extends the functionality of Shopkeeper with Gutenberg elements.
- * Version:           		1.3.3
+ * Version:           		1.3.4
  * Author:            		GetBowtied
  * Author URI:				https://getbowtied.com
  * Text Domain:				shopkeeper-extender
  * Domain Path:				/languages/
  * Requires at least: 		5.0
- * Tested up to: 			5.0.3
+ * Tested up to: 			5.1
  *
  * @package  Shopkeeper Extender
  * @author   GetBowtied
@@ -23,9 +23,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! function_exists( 'is_plugin_active' ) ) {
     require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 }
-
-global $theme;
-$theme = wp_get_theme();
 
 // Plugin Updater
 require 'core/updater/plugin-update-checker.php';
