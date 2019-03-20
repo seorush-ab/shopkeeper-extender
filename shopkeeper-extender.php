@@ -70,11 +70,23 @@ if( !function_exists('is_wp_version') ) {
 // Shortcodes
 $theme = wp_get_theme();
 if ( $theme->template == 'shopkeeper') {
+
+	// Social Media
+	include_once( 'includes/social-media/social-media-profiles.php' );
+	include_once( 'includes/social-media/import-options.php' );
+	include_once( 'includes/social-media/customizer.php' );
+
+	// Shortcodes
 	include_once( 'includes/shortcodes/wp/posts-slider.php' );
+	include_once( 'includes/shortcodes/wp/social-media.php' );
+
+	// Widgets
+	include_once( 'includes/widgets/social-media.php' );
 
 	add_action( 'wp_enqueue_scripts', 'getbowtied_sk_shortcodes_styles', 99 );
 	function getbowtied_sk_shortcodes_styles() {
 		wp_enqueue_style('shopkeeper-posts-slider-shortcode-styles', plugins_url( 'includes/shortcodes/assets/css/posts-slider.css', __FILE__ ), NULL );
+		wp_enqueue_style('shopkeeper-social-media-styles', plugins_url( 'includes/social-media/assets/css/social-media.css', __FILE__ ), NULL );
 	}
 
 	// Add Shortcodes to WP Bakery
@@ -82,6 +94,7 @@ if ( $theme->template == 'shopkeeper') {
 		add_action( 'init', 'getbowtied_sk_wb_shortcodes' );
 		function getbowtied_sk_wb_shortcodes() {
 			include_once( 'includes/shortcodes/wb/posts-slider.php' );
+			include_once( 'includes/shortcodes/wb/social-media.php' );
 		}
 	}
 }
