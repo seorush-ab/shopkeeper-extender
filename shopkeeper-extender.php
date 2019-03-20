@@ -32,6 +32,7 @@ $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 	'shopkeeper-extender'
 );
 
+// Gutenberg Blocks
 add_action( 'init', 'gbt_sk_gutenberg_blocks' );
 if(!function_exists('gbt_sk_gutenberg_blocks')) {
 	function gbt_sk_gutenberg_blocks() {
@@ -63,5 +64,24 @@ if( !function_exists('is_wp_version') ) {
 		global $wp_version;
 
 		return version_compare( $wp_version, $version, $operator );
+	}
+}
+
+// Shortcodes
+$theme = wp_get_theme();
+if ( $theme->template == 'shopkeeper') {
+	include_once( 'includes/shortcodes/wp/posts-slider.php' );
+
+	add_action( 'wp_enqueue_scripts', 'getbowtied_sk_shortcodes_styles', 99 );
+	function getbowtied_sk_shortcodes_styles() {
+		wp_enqueue_style('shopkeeper-posts-slider-shortcode-styles', plugins_url( 'includes/shortcodes/assets/css/posts-slider.css', __FILE__ ), NULL );
+	}
+
+	// Add Shortcodes to WP Bakery
+	if ( defined(  'WPB_VC_VERSION' ) ) {
+		add_action( 'init', 'getbowtied_sk_wb_shortcodes' );
+		function getbowtied_sk_wb_shortcodes() {
+			include_once( 'includes/shortcodes/wb/posts-slider.php' );
+		}
 	}
 }
