@@ -437,7 +437,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 		    if( $type == 'block') {
 			    if( !empty($fontcolor) ) {
 			    	$color = 'fill="' . $fontcolor . '"';
-			    }
+				}
 		    }
 
 		    ob_start();

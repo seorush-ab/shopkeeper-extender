@@ -69,7 +69,7 @@ if( !function_exists('is_wp_version') ) {
 
 // Shortcodes
 $theme = wp_get_theme();
-if ( $theme->template == 'shopkeeper') {
+if ( $theme->template == 'shopkeeper') { 
 
 	// Customizer
 	include_once( 'includes/customizer/class/class-control-toggle.php' );
