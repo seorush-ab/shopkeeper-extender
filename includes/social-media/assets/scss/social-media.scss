@@ -1,247 +1,165 @@
-// Widget
-
-.widget_shopkeeper_social_media .widget-title
+// Social Media Icons List
+ul.sk_social_icons_list
 {
-	margin-bottom: 16px;
-}
-
-.widget_shopkeeper_social_media a
-{
-	font-size: 0;
-}
-
-.widget_shopkeeper_social_media span:before
-{
-	display: inline-block;
-	font-size: 24px;
-	padding: 10px 20px 10px 0;
-	margin-right: 10px;
-	font-style: normal;
-	font-weight: normal;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-.widget a.widget_connect_facebook:before {
-	content:"\f09a";
-}
-
-.widget a.widget_connect_pinterest:before {
-	content:"\f0d2";
-}
-
-.widget a.widget_connect_linkedin:before {
-	content:"\f0e1";
-}
-
-.widget a.widget_connect_twitter:before {
-	content:"\f099";
-}
-
-.widget a.widget_connect_tripadvisor:before { 
-	content:"\f262";
-}
-
-.widget a.widget_connect_wechat:before { 
-	content:"\f1d7";
-}
-
-
-.widget a.widget_connect_googleplus:before {
-	content:"\f0d5";
-}
-
-.widget a.widget_connect_rss:before {
-	content:"\f09e";
-}
-
-.widget a.widget_connect_tumblr:before {
-	content:"\f173";
-}
-
-.widget a.widget_connect_instagram:before {
-	content:"\f16d";
-}
-
-.widget a.widget_connect_youtube:before {
-	content:"\f16a";
-}
-
-.widget a.widget_connect_vimeo:before {
-	content:"\f194";
-}
-
-.widget a.widget_connect_behance:before {
-	content:"\f1b4";
-}
-
-.widget a.widget_connect_dribble:before {
-	content:"\f17d";
-}
-
-.widget a.widget_connect_flickr:before {
-	content:"\f16e";
-}
-
-.widget a.widget_connect_git:before {
-	content:"\f1d3";
-}
-
-.widget a.widget_connect_skype:before {
-	content:"\f17e";
-}
-
-.widget a.widget_connect_weibo:before {
-	content:"\f18a";
-}
-
-.widget a.widget_connect_foursquare:before {
-	content:"\f180";
-}
-
-.widget a.widget_connect_soundcloud:before {
-	content:"\f1be";
-}
-
-.widget a.widget_connect_vk:before {
-	content:"\f189";
-}
-
-.widget a.widget_connect_houzz:before {
-	content:"\f27c";
-}
-
-.widget a.widget_connect_naver:before {
-	content:"\e91f";
-	font-family: 'Shopkeeper-Icon-Font';
-}
-
-// Header
-
-.site-social-icons-wrapper {
-	float:right;
-	display:block;
-	padding:8px 0;
-}
-
-.site-social-icons {
-
-}
-
-.site-social-icons ul {
-	list-style:none;
-	margin:0;
-	padding:0 0 0 50px;
-	line-height:1.8em;
-	overflow: auto;
-	font-size:16px !important;
-}
-
-.site-social-icons ul li {
+	clear: both;
+	display: block;
+	margin: 15px 0;
 	padding: 0;
-	margin-left: 20px;
-	float:left;
+	vertical-align: middle;
+
+	&.left
+	{
+		text-align:left;
+	}
+
+	&.center
+	{
+		text-align: center;
+	}
+
+	&.right
+	{
+		text-align:right;
+	}
+
+	li.sk_social_icon
+	{	
+		display: inline-block;
+		font-size: 24px;
+		list-style: none;
+		line-height: 1;
+		margin: 10px 30px 10px 0;
+
+		&:last-child
+		{
+			margin-right: 0;
+		}
+
+		a.sk_social_icon_link
+		{
+			&:hover
+			{
+				i
+				{
+					opacity: .75;
+				}
+			}
+
+			i
+			{
+				transition: opacity .2s;
+			}
+		}
+	}
 }
 
-.site-social-icons ul li:first-child {
-	margin-left: 0;
-}
+// Top Bar
+.site-top-bar-social-icons-wrapper
+{
+	display: block;
+	float: right;
+	padding: 8px 0;
 
-.site-social-icons ul li a i {
-	-webkit-transition: opacity .2s;
-    -moz-transition: opacity .2s;
-    -ms-transition: opacity .2s;
-    -o-transition: opacity .2s;
-    transition: opacity .2s;
-}
+	ul.sk_social_icons_list
+	{
+		margin: 0;
+		padding-left: 50px;
 
-.site-social-icons ul li a:hover i {
-	opacity:.5;
+		li.sk_social_icon
+		{
+			font-size: 16px;
+			margin: 5px 10px 5px 0;
+
+			&:last-child
+			{
+				margin-right: 0;
+			}
+		}
+	}
 }
 
 // Footer
+.footer_socials_wrapper
+{
+	margin-bottom: 21px;
 
-/* min-width 641px, medium screens */
-@media only screen and (min-width: 40.063em) {
-	.footer_socials_wrapper
-	{
+	@media only screen and (min-width: 40.063em) {
 		margin-bottom: 34px;
 	}
 }
 
-.footer_socials_wrapper
+// Off-Canvas
+.off-canvas
 {
-	text-align: center;
-	margin-bottom: 21px;
-	margin-left: 0;
+	ul.sk_social_icons_list
+	{
+		li.sk_social_icon
+		{
+			margin: 10px 22px 10px 0;
+
+			a.sk_social_icon_link
+			{
+				font-size: 18px;
+			}
+		}
+	}
 }
 
-.footer_socials_wrapper li {
-    display: inline-block;
-	font-size: 24px;
-	margin: 0 15px 15px;
-}
-
-.site-social-icons-shortcode {
-	vertical-align: middle;
-	clear:both;
-	margin: 5px -15px 15px -15px;
-	display: block;
-}
-
-.site-social-icons-shortcode ul {
-	list-style:none;
-	margin:0 !important;
-	padding:0 !important;
-    line-height: 1em;
-	font-size:24px !important;
-}
-
-.site-social-icons-shortcode ul.left {
-	text-align:left;
-}
-
-.site-social-icons-shortcode ul.center {
-	text-align:center;
-}
-
-.site-social-icons-shortcode ul.right {
-	text-align:right;
-}
-
-.site-social-icons-shortcode:before,
-.site-social-icons-shortcode:after,
-.site-social-icons-shortcode ul:before,
-.site-social-icons-shortcode ul:after
+// RTL
+.rtl
 {
-	content:" ";
-	display:table;
-	clear:both;
-}
+	ul.sk_social_icons_list
+	{
+		li.sk_social_icon
+		{	
+			margin: 10px 0 10px 30px;
 
-.site-social-icons-shortcode ul li {
-	padding: 5px 15px;
-	/*float:left;*/
-	display:inline-block;
-}
+			&:last-child
+			{
+				margin-left: 0;
+			}
+		}
+	}
 
-.site-social-icons-shortcode ul li a {
-    color: #222;
-}
+	.widget_shopkeeper_social_media
+	{
+		ul.sk_social_icons_list
+		{
+			text-align: right;
+		}
+	}
 
-.site-social-icons-shortcode ul li a i {
-	-webkit-transition: opacity .2s;
-    -moz-transition: opacity .2s;
-    -ms-transition: opacity .2s;
-    -o-transition: opacity .2s;
-    transition: opacity .2s;
-}
+	.site-top-bar-social-icons-wrapper
+	{
+	    float: left;
 
-.site-social-icons-shortcode ul li a:hover i {
-	opacity:.7;
-}
+	    ul.sk_social_icons_list
+	    {
+	    	padding-left: 0;
+	    	padding-right: 50px;
 
-.site-social-icons-shortcode ul li span {
-	display:none;
+	    	li.sk_social_icon
+			{
+				margin: 5px  5px 10px;
+
+				&:last-child
+				{
+					margin-left: 0;
+				}
+			}
+	    }
+	}
+
+	.off-canvas
+	{
+		ul.sk_social_icons_list
+		{
+			text-align: right;
+
+			li.sk_social_icon
+			{
+				margin: 10px 0 10px 22px;
+			}
+		}
+	}
 }
