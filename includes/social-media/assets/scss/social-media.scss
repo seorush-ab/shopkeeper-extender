@@ -25,7 +25,6 @@ ul.sk_social_icons_list
 	li.sk_social_icon
 	{	
 		display: inline-block;
-		font-size: 24px;
 		list-style: none;
 		line-height: 1;
 		margin: 10px 30px 10px 0;
@@ -67,12 +66,17 @@ ul.sk_social_icons_list
 
 		li.sk_social_icon
 		{
-			font-size: 16px;
 			margin: 5px 10px 5px 0;
 
 			&:last-child
 			{
 				margin-right: 0;
+			}
+
+			svg
+			{
+				width: 16px !important;
+				height: 16px !important;
 			}
 		}
 	}
@@ -97,9 +101,10 @@ ul.sk_social_icons_list
 		{
 			margin: 10px 22px 10px 0;
 
-			a.sk_social_icon_link
+			svg
 			{
-				font-size: 18px;
+				width: 18px !important;
+				height: 18px !important;
 			}
 		}
 	}
