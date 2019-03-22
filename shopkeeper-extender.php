@@ -32,6 +32,27 @@ $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 	'shopkeeper-extender'
 );
 
+// Enqueue vendor
+add_action( 'wp_enqueue_scripts', 'getbowtied_vendor_scripts', 99 );
+function getbowtied_vendor_scripts() {
+
+	$theme = wp_get_theme();
+	if ( $theme->template != 'shopkeeper') {
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		wp_register_style(
+			'gbt_18_sk_swiper_style',
+			plugins_url( 'includes/vendor/swiper/css/swiper'.$suffix.'.css', __FILE__ ),
+			array(),
+			filemtime(plugin_dir_path(__FILE__) . 'includes/vendor/swiper/css/swiper'.$suffix.'.css')
+		);
+		wp_register_script(
+			'gbt_18_sk_swiper_script',
+			plugins_url( 'includes/vendor/swiper/js/swiper'.$suffix.'.js', __FILE__ ),
+			array()
+		);
+	}
+}
+
 // Gutenberg Blocks
 add_action( 'init', 'gbt_sk_gutenberg_blocks' );
 if(!function_exists('gbt_sk_gutenberg_blocks')) {
@@ -81,14 +102,15 @@ if ( is_plugin_active( 'woocommerce/woocommerce.php') ) {
 
 add_action( 'wp_enqueue_scripts', 'getbowtied_sk_shortcodes_styles', 99 );
 function getbowtied_sk_shortcodes_styles() {
-	wp_enqueue_style('shopkeeper-posts-slider-shortcode-styles', plugins_url( 'includes/shortcodes/assets/css/posts-slider.css', __FILE__ ), NULL );
-	wp_enqueue_style('shopkeeper-banner-shortcode-styles', plugins_url( 'includes/shortcodes/assets/css/banner.css', __FILE__ ), NULL );
-	wp_enqueue_style('shopkeeper-slider-shortcode-styles', plugins_url( 'includes/shortcodes/assets/css/slider.css', __FILE__ ), NULL );
+	wp_register_style('shopkeeper-posts-slider-shortcode-styles', plugins_url( 'includes/shortcodes/assets/css/posts-slider.css', __FILE__ ), NULL );
+	wp_register_style('shopkeeper-banner-shortcode-styles', plugins_url( 'includes/shortcodes/assets/css/banner.css', __FILE__ ), NULL );
+	wp_register_style('shopkeeper-slider-shortcode-styles', plugins_url( 'includes/shortcodes/assets/css/slider.css', __FILE__ ), NULL );
 }
 
 add_action( 'wp_enqueue_scripts', 'getbowtied_sk_shortcodes_scripts', 99 );
 function getbowtied_sk_shortcodes_scripts() {
-	wp_enqueue_script('shopkeeper-slider-shortcode-script', plugins_url( 'includes/shortcodes/assets/js/slider.js', __FILE__ ), array('jquery') );
+	wp_register_script('shopkeeper-posts-slider-shortcode-script', plugins_url( 'includes/shortcodes/assets/js/posts-slider.js', __FILE__ ), array('jquery') );
+	wp_register_script('shopkeeper-slider-shortcode-script', plugins_url( 'includes/shortcodes/assets/js/slider.js', __FILE__ ), array('jquery') );
 }
 
 // Add Shortcodes to WP Bakery

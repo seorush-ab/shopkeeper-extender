@@ -1,8 +1,14 @@
 <?php
 
 // [slider]
-
 function getbowtied_slider($params = array(), $content = null) {
+
+	wp_enqueue_style( 'gbt_18_sk_swiper_style' );
+	wp_enqueue_script( 'gbt_18_sk_swiper_script' );
+
+	wp_enqueue_style(  'shopkeeper-slider-shortcode-styles' );
+	wp_enqueue_script( 'shopkeeper-slider-shortcode-script' );
+
 	extract(shortcode_atts(array(
 		'full_height' 				=> 'yes',
 		'custom_height'	 			=> '',

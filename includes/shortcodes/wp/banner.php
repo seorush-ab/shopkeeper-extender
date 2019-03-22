@@ -2,6 +2,9 @@
 
 // [banner]
 function banner_simple_height($params = array(), $content = null) {
+
+	wp_enqueue_style(  'shopkeeper-banner-shortcode-styles' );
+	
 	extract(shortcode_atts(array(
 		'title' => 'Title',
 		'subtitle' => 'Subtitle',
