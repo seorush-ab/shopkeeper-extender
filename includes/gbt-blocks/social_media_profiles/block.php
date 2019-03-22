@@ -66,7 +66,7 @@ if ( ! function_exists( 'gbt_18_sk_social_media_frontend_output' ) ) {
         ?>
 
         <div class="gbt_18_sk_social_media_wrapper">
-            <?php echo do_shortcode('[social-media items_align="center" type="block" fontSize="'.$fontSize.'" fontColor="'.$fontColor.'"]'); ?>
+            <?php echo do_shortcode('[social-media items_align="'.$align.'" type="block" fontsize="'.$fontSize.'" fontcolor="'.$fontColor.'"]'); ?>
         </div>
 
     	<?php return ob_get_clean();

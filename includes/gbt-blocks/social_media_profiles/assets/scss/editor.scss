@@ -48,6 +48,8 @@ ul.sk_social_icons_list
 
 		a.sk_social_icon_link
 		{
+			pointer-events: none;
+			
 			&:hover
 			{
 				i
