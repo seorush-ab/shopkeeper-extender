@@ -76,10 +76,18 @@ if ( $theme->template == 'shopkeeper') {
 	// Shortcodes
 	include_once( 'includes/shortcodes/wp/posts-slider.php' );
 	include_once( 'includes/shortcodes/wp/banner.php' );
+	include_once( 'includes/shortcodes/wp/slider.php' );
 
 	add_action( 'wp_enqueue_scripts', 'getbowtied_sk_shortcodes_styles', 99 );
 	function getbowtied_sk_shortcodes_styles() {
 		wp_enqueue_style('shopkeeper-posts-slider-shortcode-styles', plugins_url( 'includes/shortcodes/assets/css/posts-slider.css', __FILE__ ), NULL );
+		wp_enqueue_style('shopkeeper-banner-shortcode-styles', plugins_url( 'includes/shortcodes/assets/css/banner.css', __FILE__ ), NULL );
+		wp_enqueue_style('shopkeeper-slider-shortcode-styles', plugins_url( 'includes/shortcodes/assets/css/slider.css', __FILE__ ), NULL );
+	}
+
+	add_action( 'wp_enqueue_scripts', 'getbowtied_sk_shortcodes_scripts', 99 );
+	function getbowtied_sk_shortcodes_scripts() {
+		wp_enqueue_script('shopkeeper-slider-shortcode-script', plugins_url( 'includes/shortcodes/assets/js/slider.js', __FILE__ ), array('jquery') );
 	}
 
 	// Add Shortcodes to WP Bakery
@@ -88,6 +96,7 @@ if ( $theme->template == 'shopkeeper') {
 		function getbowtied_sk_wb_shortcodes() {
 			include_once( 'includes/shortcodes/wb/posts-slider.php' );
 			include_once( 'includes/shortcodes/wb/banner.php' );
+			include_once( 'includes/shortcodes/wb/slider.php' );
 		}
 	}
 }
