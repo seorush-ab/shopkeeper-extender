@@ -80,11 +80,16 @@ function shortcode_from_the_blog($atts, $content = null) {
 										<span class="no_thumb_icon"></span>
 									<?php endif;  ?>
 								</span><!--.from_the_blog_img_container-->
-								<span class="from_the_blog_title" href="<?php the_permalink() ?>"><?php echo get_the_title(); ?></span>
+								<span class="from_the_blog_title" href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></span>
 							</a>
 	                        
 	                        <div class="from_the_blog_content">
-	                            <div class="post_meta_archive"><?php shopkeeper_entry_archives(); ?></div>                       
+	                            <div class="post_meta_archive">
+	                            	<?php _e( ' by ', 'shopkeeper-extender' ); ?>
+	                            	<a class="url fn n" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' )); ?>" title="<?php echo sprintf( __( 'View all posts by %s', 'shopkeeper-extender' ), get_the_author() ); ?>" rel="author"><?php echo get_the_author(); ?></a>
+	                            	<?php _e( ' on ', 'shopkeeper-extender' ); ?>
+	                            	<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php echo sprintf( __( 'Permalink to %s', 'shopkeeper-extender' ), the_title_attribute( 'echo=0' ) ); ?>"><?php echo get_the_date(); ?></a>
+								</div>                       
 	                        </div>
 	                        
 	                    </div>
