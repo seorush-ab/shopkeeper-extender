@@ -67,14 +67,15 @@ if( !function_exists('is_wp_version') ) {
 	}
 }
 
-// Shortcodes
 $theme = wp_get_theme();
 if ( $theme->template == 'shopkeeper') { 
 
 	// Customizer
 	include_once( 'includes/customizer/class/class-control-toggle.php' );
 
+	// Shortcodes
 	include_once( 'includes/shortcodes/wp/posts-slider.php' );
+	include_once( 'includes/shortcodes/wp/banner.php' );
 
 	add_action( 'wp_enqueue_scripts', 'getbowtied_sk_shortcodes_styles', 99 );
 	function getbowtied_sk_shortcodes_styles() {
@@ -86,6 +87,7 @@ if ( $theme->template == 'shopkeeper') {
 		add_action( 'init', 'getbowtied_sk_wb_shortcodes' );
 		function getbowtied_sk_wb_shortcodes() {
 			include_once( 'includes/shortcodes/wb/posts-slider.php' );
+			include_once( 'includes/shortcodes/wb/banner.php' );
 		}
 	}
 }
