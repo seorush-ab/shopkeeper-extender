@@ -44,7 +44,9 @@ if ( ! function_exists( 'gbt_18_sk_slider_assets' ) ) {
 			filemtime(plugin_dir_path(__FILE__) . 'assets/css/frontend/style.css')
 		);
 
-		getbowtied_vendor_scripts();
+		if( function_exists( 'getbowtied_vendor_scripts' ) ) {
+			getbowtied_vendor_scripts();
+		}
 
 		wp_enqueue_style( 'gbt_18_sk_swiper_style' );
 		wp_enqueue_script( 'gbt_18_sk_swiper_script' );

@@ -1,19 +1,19 @@
-.toggle-content .customize-control-title
+.toggle-content .sk-customize-control-title
 {
   display: inline-block;
 }
 
-.toggle-content hr
+.sk-toggle-content hr
 {
   margin-bottom: 12px;
 }
 
-input[type=checkbox].tgl
+input[type=checkbox].sk-tgl
 {
   display: none;
 }
 
-input[type=checkbox].tgl + .tgl-btn
+input[type=checkbox].sk-tgl + .sk-tgl-btn
 {
   border: 1px solid #b4b9be;
   display: inline-block;
@@ -30,13 +30,13 @@ input[type=checkbox].tgl + .tgl-btn
   transition: background 350ms ease;
 }
 
-input[type=checkbox].tgl:checked + .tgl-btn:after
+input[type=checkbox].sk-tgl:checked + .sk-tgl-btn:after
 {
   background: #0073aa;
   transform: translate3d(100%, -50%, 0);
 }
 
-input[type=checkbox].tgl + .tgl-btn:after
+input[type=checkbox].sk-tgl + .sk-tgl-btn:after
 {
   content: "";
   display: block;

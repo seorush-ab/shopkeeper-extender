@@ -342,7 +342,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 				) );
 
 				$wp_customize->add_control( 
-					new WP_Customize_Toggle_Control(
+					new WP_SK_Customize_Toggle_Control(
 						$wp_customize,
 						'sk_top_bar_social_icons',
 						array( 
@@ -361,7 +361,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 				) );
 
 				$wp_customize->add_control( 
-					new WP_Customize_Toggle_Control(
+					new WP_SK_Customize_Toggle_Control(
 						$wp_customize,
 						'sk_footer_social_icons',
 						array( 
