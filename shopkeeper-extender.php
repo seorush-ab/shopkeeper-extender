@@ -78,6 +78,10 @@ if ( $theme->template == 'shopkeeper') {
 	include_once( 'includes/shortcodes/wp/banner.php' );
 	include_once( 'includes/shortcodes/wp/slider.php' );
 
+	if ( is_plugin_active( 'woocommerce/woocommerce.php') ) {
+		include_once( 'includes/shortcodes/wc/categories-grid.php' );
+	}
+
 	add_action( 'wp_enqueue_scripts', 'getbowtied_sk_shortcodes_styles', 99 );
 	function getbowtied_sk_shortcodes_styles() {
 		wp_enqueue_style('shopkeeper-posts-slider-shortcode-styles', plugins_url( 'includes/shortcodes/assets/css/posts-slider.css', __FILE__ ), NULL );
@@ -97,6 +101,10 @@ if ( $theme->template == 'shopkeeper') {
 			include_once( 'includes/shortcodes/wb/posts-slider.php' );
 			include_once( 'includes/shortcodes/wb/banner.php' );
 			include_once( 'includes/shortcodes/wb/slider.php' );
+
+			if ( is_plugin_active( 'woocommerce/woocommerce.php') ) {
+				include_once( 'includes/shortcodes/wb/categories-grid.php' );
+			}
 		}
 	}
 }
