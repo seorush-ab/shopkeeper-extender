@@ -94,21 +94,27 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 			}
 
 			if( get_theme_mod( 'top_bar_social_icons' ) ) {
-				update_option( 'sk_top_bar_social_icons', get_theme_mod( 'top_bar_social_icons' ) );
-				if( get_option( 'sk_top_bar_social_icons' ) ) {
+				update_option( 'sk_top_bar_social_icons', 'yes' );
+			} else {
+				update_option( 'sk_top_bar_social_icons', 'no' );
+			}
+
+			if( get_option( 'sk_top_bar_social_icons' ) ) {
 					remove_theme_mod( 'top_bar_social_icons' );
 				} else {
 					$done_import = false;
 				}
-			}
 
 			if( get_theme_mod( 'footer_social_icons' ) ) {
-				update_option( 'sk_footer_social_icons', get_theme_mod( 'footer_social_icons' ) );
-				if( get_option( 'sk_footer_social_icons' ) ) {
-					remove_theme_mod( 'footer_social_icons' );
-				} else {
-					$done_import = false;
-				}
+				update_option( 'sk_footer_social_icons', 'yes' );
+			} else {
+				update_option( 'sk_footer_social_icons', 'no' );
+			}
+
+			if( get_option( 'sk_footer_social_icons' ) ) {
+				remove_theme_mod( 'footer_social_icons' );
+			} else {
+				$done_import = false;
 			}
 
 			return $done_import;
@@ -332,13 +338,21 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 
 			global $social_media_profiles;
 
+			function sk_bool_to_string( $bool ) {
+				if ( ! is_bool( $bool ) ) {
+					$bool = wc_string_to_bool( $bool );
+				}
+				return true === $bool ? 'yes' : 'no';
+			}
+
 			$theme = wp_get_theme();
 			if ( $theme->template == 'shopkeeper') {
 
 				$wp_customize->add_setting( 'sk_top_bar_social_icons', array(
-					'type'		 => 'option',
-					'capability' => 'manage_options',
-					'transport'  => 'refresh',
+					'type'		 			=> 'option',
+					'capability' 			=> 'manage_options',
+					'sanitize_callback'    	=> 'sk_bool_to_string',
+					'default'	 			=> 'no',
 				) );
 
 				$wp_customize->add_control( 
@@ -349,15 +363,15 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 							'label'       	=> esc_attr__( 'Top Bar Social Icons', 'shopkeeper-extender' ),
 							'section'     	=> 'top_bar',
 							'priority'    	=> 20,
-							'default'		=> false,
 						)
 					)
 				);
 
 				$wp_customize->add_setting( 'sk_footer_social_icons', array(
-					'type'		 => 'option',
-					'capability' => 'manage_options',
-					'transport'  => 'refresh',
+					'type'		 			=> 'option',
+					'capability' 			=> 'manage_options',
+					'sanitize_callback'    	=> 'sk_bool_to_string',
+					'default'	 			=> 'no',
 				) );
 
 				$wp_customize->add_control( 
@@ -368,7 +382,6 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 							'label'       	=> esc_attr__( 'Social Networking Icons', 'shopkeeper-extender' ),
 							'section'     	=> 'footer',
 							'priority'    	=> 20,
-							'default'		=> false,
 						)
 					)
 				);

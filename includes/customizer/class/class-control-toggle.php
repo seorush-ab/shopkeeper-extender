@@ -41,7 +41,7 @@ if ( ! class_exists( 'WP_SK_Customize_Toggle_Control' ) ) {
 			<label>
 				<div class="sk-toggle-content">
 					<hr />
-					<span class="sk-customize-control-title" style="width: calc(100% - 55px);"><?php echo esc_html( $this->label ); ?></span>
+					<span class="customize-control-title" style="width: calc(100% - 55px);"><?php echo esc_html( $this->label ); ?></span>
 					<input id="cb<?php echo $this->instance_number ?>" type="checkbox" class="sk-tgl" value="<?php echo esc_attr( $this->value() ); ?>" <?php $this->link(); checked( $this->value() ); ?> />
 					<label for="cb<?php echo $this->instance_number ?>" class="sk-tgl-btn"></label>
 				</div>
