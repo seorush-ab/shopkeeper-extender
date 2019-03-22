@@ -103,6 +103,6 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_categories_grid' ) ) {
 		 		</div>
 			</div>
 		<?php endif;
-		return  ob_get_clean();
+		return ob_get_clean();
 	}
 }
