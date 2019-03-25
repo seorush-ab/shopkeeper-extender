@@ -72,6 +72,7 @@
 		display: table-cell; 
 		line-height:1.333em;
 		text-decoration: none;
+	    font-weight: 700;
 	    padding: 33px 30px;
 	    color:#fff;
 		background:rgba(0,0,0,0);
@@ -407,6 +408,28 @@
 }
 
 @media all and (min-width: 63.9375em) {
+
+	.sk_categories_grid .category_item:hover
+	{
+		opacity: 1 !important;
+
+		.category_name,
+		.category_count
+		{
+			opacity: 1 !important;
+		}
+	}
+
+	.sk_categories_grid .category_name
+	{
+		 font-size: 18px;
+	}
+
+	.sk_categories_grid .category_count
+	{
+		font-size: 13px;
+		margin-left: 7px;
+	}
 
 	.sk_categories_grid .category_item:hover {
 		opacity: 1 !important;
