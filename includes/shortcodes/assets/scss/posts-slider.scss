@@ -1,16 +1,9 @@
 .from-the-blog-wrapper {
-	margin: 30px 0px 0px 0px;
+	margin-bottom: 2.5rem;
 }
 
 .from_the_blog_item {
 	padding: 0 15px;	
-}
-
-.from_the_blog_link,
-.from-the-blog-wrapper .post_meta_archive,
-.from-the-blog-wrapper .post_meta_archive a,
-.from_the_blog_title {
-	color: inherit;
 }
 
 .from_the_blog_title {
@@ -23,13 +16,24 @@
 	transition: color 0.35s;
 }
 
+.from-the-blog-wrapper .swiper-pagination {
+	bottom: 0;
+}
+
+.from-the-blog-wrapper .swiper-wrapper {
+	margin-bottom: 2.5rem;
+}
+
+.from-the-blog-wrapper .swiper-pagination-bullet-active {
+	background: #000;
+}
+
 .from-the-blog-wrapper .post_meta_archive {
 	text-align: center;
 }
 
 .from-the-blog-wrapper .post_meta_archive,
 .from-the-blog-wrapper .post_meta_archive a {
-	color: inherit;
 	transition: color 0.35s;
 }
 
