@@ -1,5 +1,6 @@
 .shortcode_getbowtied_slider {
-  height: 100vh; }
+  height: 100vh;
+  margin-bottom: 2.5rem; }
   .shortcode_getbowtied_slider .swiper-button-prev,
   .shortcode_getbowtied_slider .swiper-button-next,
   .shortcode_getbowtied_slider .quickview-pagination {

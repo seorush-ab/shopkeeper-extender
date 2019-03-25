@@ -1,19 +1,17 @@
 .shortcode_banner_simple_height {
 	
 	cursor:pointer;
-	margin-bottom:30px;
+	margin-bottom: 2.5rem;
 	clear:both;
 	position: relative;
 }
 
 .shortcode_banner_simple_height_inner
 {
-    
     padding:15px;
-    
     overflow: hidden;
     position: relative;
-	
+	height: 100%;
     backface-visibility:hidden;
     -webkit-backface-visibility: hidden;
 }
@@ -76,6 +74,7 @@
 
 .shortcode_banner_simple_height_inside {
 	padding:20px;
+	height: 100%;
 	text-align:center;
 	border:2px solid #fff;
 	transition: all 0.2s linear;
@@ -86,7 +85,6 @@
 	display: table;
 	width:100%;
 	box-sizing: border-box;
-	
 	position: relative;
 	z-index: 5;
 }
@@ -100,31 +98,31 @@
 	z-index: 999;
 }
 
-.shortcode_banner_simple_height_inside h3 {
+.shortcode_banner_simple_height_inside .banner_title {
 	padding:0;
 	margin:0;
 	font-weight:900;
-	font-size:1.4375rem;
+	font-size: 38px;
 	line-height: 1.391em;
 }
 
-.shortcode_banner_simple_height_inside h3 strong {
+.shortcode_banner_simple_height_inside .banner_title strong {
 	font-size:28px;
 }
 
-.shortcode_banner_simple_height_inside h3 a {
+.shortcode_banner_simple_height_inside .banner_title a {
 	text-decoration:underline;
 }
 
-.shortcode_banner_simple_height_inside h4 {
+.shortcode_banner_simple_height_inside .banner_subtitle {
 	padding:0;
 	margin:0;
-	font-size:1rem;
+	font-size: 18px;
 	font-weight: normal;
 	line-height: 1.5em;
 }
 
-.shortcode_banner_simple_height_inside h4 a {
+.shortcode_banner_simple_height_inside .banner_subtitle a {
 	text-decoration:underline;
 }
 

@@ -14,9 +14,9 @@ function banner_simple_height($params = array(), $content = null) {
 		'subtitle_color' => '#fff',
 		'inner_stroke' => '2px',
 		'inner_stroke_color' => '#fff',
-		'bg_color' => '#000',
+		'bg_color' => '#464646',
 		'bg_image' => '',
-		'height' => 'auto',
+		'height' => '300',
 		'sep_padding' => '5px',
 		'sep_color' => '#fff',
 		'with_bullet' => 'no',
@@ -44,15 +44,15 @@ function banner_simple_height($params = array(), $content = null) {
 	}
 	
 	$banner_simple_height = '
-		<div class="shortcode_banner_simple_height '.$banner_with_img.'" '.$link_tab.'>
+		<div class="shortcode_banner_simple_height '.$banner_with_img.'" '.$link_tab.' style="height:'.$height.'px;">
 			<div class="shortcode_banner_simple_height_inner">
 				<div class="shortcode_banner_simple_height_bkg" style="background-color:'.$bg_color.'; background-image:url('.$bg_image.')"></div>
 			
-				<div class="shortcode_banner_simple_height_inside" style="height:'.$height.'; border: '.$inner_stroke.' solid '.$inner_stroke_color.'">
+				<div class="shortcode_banner_simple_height_inside" style="border: '.$inner_stroke.'px solid '.$inner_stroke_color.'">
 					<div class="shortcode_banner_simple_height_content">
-						<div><h3 style="color:'.$title_color.' !important">'.esc_html__($title, 'shopkeeper').'</h3></div>
+						<div><h3 class="banner_title" style="color:'.$title_color.'">'.esc_html__($title, 'shopkeeper').'</h3></div>
 						<div class="shortcode_banner_simple_height_sep" style="margin:'.$sep_padding.' auto; background-color:'.$sep_color.';"></div>
-						<div><h4 style="color:'.$subtitle_color.' !important">'.esc_html__($subtitle, 'shopkeeper').'</h4></div>
+						<div><h4 class="banner_subtitle" style="color:'.$subtitle_color.'">'.esc_html__($subtitle, 'shopkeeper').'</h4></div>
 					</div>
 				</div>
 			</div>';
