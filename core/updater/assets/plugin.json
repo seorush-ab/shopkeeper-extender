@@ -12,7 +12,7 @@
 	"author_homepage": "https://getbowtied.com/",
 
 	"sections": {
-		"description": "<p>Companion plugin for the <b>Shopkeeper</b> theme. Extends the functionality by adding theme specific features.</p><h4>Gutenberg Blocks:</h4><ul><li>Image Slider</li><li>Banner</li><li>Posts Grid</li><li>Product Categories Grid</li><li>Portfolio</li><li>Social Media Profiles</li></ul>",
+		"description": "<p>Companion plugin for the <b>Shopkeeper</b> theme. Extends the functionality by adding theme specific features.</p><h4>Gutenberg Blocks:</h4><ul><li>Image Slider</li><li>Banner</li><li>Posts Grid</li><li>Product Categories Grid</li><li>Portfolio</li><li>Social Media Profiles</li></ul><h4>WPBakery Page Builder Elements:</h4><ul><li>Slider</li><li>Banner</li><li>Posts Slider</li><li>Product Categories Grid</li><li>Social Media Profiles</li></ul><h4>Widgets:</h4><ul><li>Social Media Profiles</li></ul><h4>Features:</h4><ul><li>Adds 'Social Media' section in Customizer for social media profiles management</li><li>Adds header image option for product categories</li></ul>",
 		"changelog": "<h4>1.3.4</h4><ul><li>WordPress 5.1 compatibility improvements</li></ul><h4>1.3.3</h4><ul><li>Fixed: Columns Block displaying issue</li><li>Fixed: Yoast SEO compatibiity issue</li></ul><h4>1.3.2</h4><ul><li>Fixed: Localization issues with the Posts Grid Block</li></ul><h4>1.3.1</h4><ul><li>WordPress 5+ compatibility improvements</li><li>Improved styles for theme neutrality </li></ul><h4>1.3</h4><ul><li>WordPress 5+ compatibility improvements</li></ul><h4>1.2</h4><ul><li>Improvement: Compatibility updates for Gutenberg 4.0.0</li></ul><h4>1.1</h4><ul><li>New: Product Count on Product Categories Grid</li></ul><h4>1.0</h4><ul><li>Initial Version</li></ul>"
 	},
 	

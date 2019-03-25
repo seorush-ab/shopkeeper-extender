@@ -23,6 +23,20 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 - Portfolio
 - Social Media Profiles
 
+**WPBakery Page Builder Elements:**
+- Slider
+- Banner
+- Posts Slider
+- Product Categories Grid
+- Social Media Profiles
+
+**Widgets:**
+- Social Media Profiles
+
+**Features:**
+- Adds 'Social Media' section in Customizer for social media profiles management
+- Adds header image option for product categories
+
 == Changelog ==
 
 = 1.3.4 =
