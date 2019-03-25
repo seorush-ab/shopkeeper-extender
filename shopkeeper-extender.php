@@ -130,3 +130,9 @@ if ( defined(  'WPB_VC_VERSION' ) ) {
 // Social Media
 include_once( 'includes/social-media/class-social-media.php' );
 include_once( 'includes/widgets/social-media.php' );
+
+// Addons
+$theme = wp_get_theme();
+if ( $theme->template == 'shopkeeper' && is_plugin_active( 'woocommerce/woocommerce.php') ) { 
+	include_once( 'includes/addons/class-wc-category-header-image.php' );
+}
