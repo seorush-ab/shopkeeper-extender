@@ -31,16 +31,15 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 		 * @since 1.4
 		*/
 		public function __construct() {
+
+			$this->set_profiles();
 			
 			if( !get_option( 'social_media_options_import', false ) ) {
 				$done_import = $this->import_options();
-				if( $done_import ) {
-					update_option( 'social_media_options_import', true );
-				}
+				update_option( 'social_media_options_import', true );
 			}
 
 			$this->enqueue_styles();
-			$this->set_profiles();
 			$this->customizer_options();
 			$this->create_shortcode();
 			$this->create_wb_element();
@@ -80,44 +79,17 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 		 */
 		private function import_options() {
 
-			$done_import = true;
-
 			foreach( $this->social_media_profiles as $social) {
 				if( get_theme_mod( $social['link'] ) ) {
 					update_option( 'sk_' . $social['link'], get_theme_mod( $social['link'], '' ) );
-					if( get_option( 'sk_' . $social['link'] ) ) {
-						remove_theme_mod( $social['link'] );
-					} else {
-						$done_import = false;
-					}
 				}
 			}
 
-			if( get_theme_mod( 'top_bar_social_icons' ) ) {
-				update_option( 'sk_top_bar_social_icons', 'yes' );
-			} else {
-				update_option( 'sk_top_bar_social_icons', 'no' );
-			}
+			$top_bar_option = get_theme_mod( 'top_bar_social_icons', false ) ? 'yes' : 'no';
+			update_option( 'sk_top_bar_social_icons', $top_bar_option );
 
-			if( get_option( 'sk_top_bar_social_icons' ) ) {
-					remove_theme_mod( 'top_bar_social_icons' );
-				} else {
-					$done_import = false;
-				}
-
-			if( get_theme_mod( 'footer_social_icons' ) ) {
-				update_option( 'sk_footer_social_icons', 'yes' );
-			} else {
-				update_option( 'sk_footer_social_icons', 'no' );
-			}
-
-			if( get_option( 'sk_footer_social_icons' ) ) {
-				remove_theme_mod( 'footer_social_icons' );
-			} else {
-				$done_import = false;
-			}
-
-			return $done_import;
+			$footer_option = get_theme_mod( 'footer_social_icons', true ) ? 'yes' : 'no';
+			update_option( 'sk_footer_social_icons', $footer_option );
 		}
 
 		/**
@@ -371,7 +343,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 					'type'		 			=> 'option',
 					'capability' 			=> 'manage_options',
 					'sanitize_callback'    	=> 'sk_bool_to_string',
-					'default'	 			=> 'no',
+					'default'	 			=> 'yes',
 				) );
 
 				$wp_customize->add_control( 
