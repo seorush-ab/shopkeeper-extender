@@ -3,7 +3,7 @@ Contributors: getbowtied, vanesareinerth, adrianlbs
 Tags: gutenberg, blocks
 Requires at least: 5.0
 Tested up to: 5.1
-Stable tag: 1.3.4
+Stable tag: 1.4
 Requires PHP: 5.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -15,12 +15,19 @@ Extends the functionality of the Shopkeeper theme by adding theme specific featu
 
 Companion plugin for the **Shopkeeper** theme. Extends the functionality by adding theme specific features.
 
+**Features:**
+- Adds 'Social Media' section in Customizer for easy management of links to social media profiles
+- Adds header image option for WooCommerce product categories
+
 **Gutenberg Blocks:**
 - Image Slider
 - Banner
 - Posts Grid
 - Product Categories Grid
 - Portfolio
+- Social Media Profiles
+
+**Widgets:**
 - Social Media Profiles
 
 **WPBakery Page Builder Elements:**
@@ -30,14 +37,12 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 - Product Categories Grid
 - Social Media Profiles
 
-**Widgets:**
-- Social Media Profiles
-
-**Features:**
-- Adds 'Social Media' section in Customizer for social media profiles management
-- Adds header image option for product categories
-
 == Changelog ==
+
+= 1.4 =
+- Addds: the 'Social Media' section in Customizer allowing for easy management of links to social media profiles. The icons can be turned on/off in the Top Bar, the footer or displayed in pages using the Gutenberg Block or the WPBakery Page Builder element (functionality transferred from the theme).
+- Addds: Theme-specific Gutenberg Blocks: Image Slider, Banner, Posts Grid, Product Categories Grid, Portfolio, Social Media Icons (functionality transferred from the theme).
+- Adds: Theme-specific WPBakery Page Builder elements: Slider, Banner, Posts Slider, Product Categories Grid, Social Media profiles (functionality transferred from the theme).
 
 = 1.3.4 =
 - WordPress 5.1 compatibility improvements
