@@ -311,9 +311,8 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 			global $social_media_profiles;
 
 			function sk_bool_to_string( $bool ) {
-				if ( ! is_bool( $bool ) ) {
-					$bool = wc_string_to_bool( $bool );
-				}
+				$bool = is_bool( $bool ) ? $bool : ( 'yes' === $bool || 1 === $bool || 'true' === $bool || '1' === $bool );
+
 				return true === $bool ? 'yes' : 'no';
 			}
 

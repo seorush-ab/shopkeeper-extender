@@ -310,3 +310,13 @@ vc_map( array(
 		),
     )
 ) );
+
+//Your "container" content element should extend WPBakeryShortCodesContainer class to inherit all required functionality
+if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
+    class WPBakeryShortCode_Slider extends WPBakeryShortCodesContainer {
+    }
+}
+if ( class_exists( 'WPBakeryShortCode' ) ) {
+    class WPBakeryShortCode_Image_Slide extends WPBakeryShortCode {
+    }
+} 
