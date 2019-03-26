@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Social_Media_Widget class.
+ * SK_Social_Media_Widget class.
  *
  * @since 1.4
 */
-class Social_Media_Widget extends WP_Widget {
+class SK_Social_Media_Widget extends WP_Widget {
 
 	/**
-	 * Social_Media_Widget constructor.
+	 * SK_Social_Media_Widget constructor.
 	 *
 	 * @since 1.4
 	*/
@@ -82,5 +82,5 @@ class Social_Media_Widget extends WP_Widget {
 }
 
 add_action( 'widgets_init', function() {
-	register_widget( 'Social_Media_Widget' );
+	register_widget( 'SK_Social_Media_Widget' );
 } );

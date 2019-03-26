@@ -1,6 +1,6 @@
 <?php
 
-function shopkeeper_product_categories( $atts ) {
+function sk_product_categories_shortcode( $atts ) {
 
 	wp_enqueue_style(  'shopkeeper-categories-grid-shortcode-styles' );
 
@@ -132,4 +132,4 @@ function shopkeeper_product_categories( $atts ) {
 	return '<div class="row"><div class="sk_categories_grid">' . ob_get_clean() . '</div></div>';
 }
 
-add_shortcode("product_categories_grid", "shopkeeper_product_categories");
+add_shortcode("product_categories_grid", "sk_product_categories_shortcode");

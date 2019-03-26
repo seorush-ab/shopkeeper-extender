@@ -38,20 +38,25 @@ include_once( 'includes/helpers/helpers.php' );
 // Vendor
 include_once( 'includes/vendor/enqueue.php' );
 
-// Customizer
-include_once( 'includes/customizer/class/class-control-toggle.php' );
-
-// Shortcodes
-include_once( 'includes/shortcodes/index.php' );
-
-// Social Media
-include_once( 'includes/social-media/class-social-media.php' );
-include_once( 'includes/widgets/social-media.php' );
-
-// Addons
 $theme = wp_get_theme();
-if ( $theme->template == 'shopkeeper' && is_plugin_active( 'woocommerce/woocommerce.php') ) { 
-	include_once( 'includes/addons/class-wc-category-header-image.php' );
+if( ( $theme->template == 'shopkeeper' && $theme->version >= '2.7.3' ) || $theme->template != 'shopkeeper' ) {
+
+	// Customizer
+	include_once( 'includes/customizer/class/class-control-toggle.php' );
+
+	// Shortcodes
+	include_once( 'includes/shortcodes/index.php' );
+
+	// Social Media
+	include_once( 'includes/social-media/class-social-media.php' );
+
+	//Widgets
+	include_once( 'includes/widgets/social-media.php' );
+
+	// Addons
+	if ( $theme->template == 'shopkeeper' && is_plugin_active( 'woocommerce/woocommerce.php') ) { 
+		include_once( 'includes/addons/class-wc-category-header-image.php' );
+	}
 }
 
 // Gutenberg Blocks

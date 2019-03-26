@@ -1,7 +1,7 @@
 <?php
 
 // [from_the_blog]
-function shortcode_from_the_blog($atts, $content = null) {
+function sk_posts_slider_shortcode($atts, $content = null) {
 
 	wp_enqueue_style( 'gbt_18_sk_swiper_style' );
 	wp_enqueue_script( 'gbt_18_sk_swiper_script' );
@@ -109,4 +109,4 @@ function shortcode_from_the_blog($atts, $content = null) {
 	return $content;
 }
 
-add_shortcode("from_the_blog", "shortcode_from_the_blog");
+add_shortcode("from_the_blog", "sk_posts_slider_shortcode");

@@ -1,7 +1,7 @@
 <?php
 
 // [banner]
-function banner_simple_height($params = array(), $content = null) {
+function sk_banner_shortcode($params = array(), $content = null) {
 
 	wp_enqueue_style(  'shopkeeper-banner-shortcode-styles' );
 	
@@ -66,4 +66,4 @@ function banner_simple_height($params = array(), $content = null) {
 	return $banner_simple_height;
 }
 
-add_shortcode('banner', 'banner_simple_height');
+add_shortcode('banner', 'sk_banner_shortcode');

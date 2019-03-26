@@ -1,7 +1,7 @@
 <?php
 
 // [slider]
-function getbowtied_slider($params = array(), $content = null) {
+function sk_slider_shortcode($params = array(), $content = null) {
 
 	wp_enqueue_style( 'gbt_18_sk_swiper_style' );
 	wp_enqueue_script( 'gbt_18_sk_swiper_script' );
@@ -63,9 +63,9 @@ function getbowtied_slider($params = array(), $content = null) {
 	return $getbowtied_slider;
 }
 
-add_shortcode('slider', 'getbowtied_slider');
+add_shortcode('slider', 'sk_slider_shortcode');
 
-function getbowtied_image_slide($params = array(), $content = null) {
+function sk_image_slide_shortcode($params = array(), $content = null) {
 	extract(shortcode_atts(array(
 		'title' 					=> '',
 		'title_font_size'			=> '64px',
@@ -161,4 +161,4 @@ function getbowtied_image_slide($params = array(), $content = null) {
 	return $getbowtied_image_slide;
 }
 
-add_shortcode('image_slide', 'getbowtied_image_slide');
+add_shortcode('image_slide', 'sk_image_slide_shortcode');
