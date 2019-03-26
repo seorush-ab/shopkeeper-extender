@@ -103,7 +103,7 @@ function getbowtied_image_slide($params = array(), $content = null) {
 	if (!empty($title))
 	{
 		$title_line_height = $title_line_height ? $title_line_height : $title_font_size;
-		$title = '<h2 class="'.$title_font_family.'" style="color:'.$text_color.'; font-size:'.$title_font_size.'; line-height: '.$title_line_height.'">'.esc_html__($title, 'shopkeeper').'</h2>';
+		$title = '<h2 class="'.$title_font_family.'" style="color:'.$text_color.'; font-size:'.$title_font_size.'; line-height: '.$title_line_height.'">'.esc_html__($title, 'shopkeeper-extender').'</h2>';
 	} else {
 		$title = "";
 	}
@@ -118,14 +118,14 @@ function getbowtied_image_slide($params = array(), $content = null) {
 	if (!empty($description))
 	{
 		$description_line_height = $description_line_height ? $description_line_height : $description_font_size;
-		$description = '<p class="'.$description_font_family.'" style="color:'.$text_color.'; font-size:'.$description_font_size.'; line-height: '.$description_line_height.'">'.esc_html__($description, 'shopkeeper').'</p>';
+		$description = '<p class="'.$description_font_family.'" style="color:'.$text_color.'; font-size:'.$description_font_size.'; line-height: '.$description_line_height.'">'.esc_html__($description, 'shopkeeper-extender').'</p>';
 	} else {
 		$description = "";
 	}
 
 	if (!empty($button_text))
 	{
-		$button = '<a class="button" style="color:'.$button_text_color.' !important; background: '.$button_color.' !important" href="'.$button_url.'">'.esc_html__($button_text, 'shopkeeper').'</a>';
+		$button = '<a class="button" style="color:'.$button_text_color.' !important; background: '.$button_color.' !important" href="'.$button_url.'">'.esc_html__($button_text, 'shopkeeper-extender').'</a>';
 	} else {
 		$button = "";
 	}

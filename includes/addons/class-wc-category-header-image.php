@@ -61,12 +61,12 @@ if ( ! class_exists( 'SKCategoryHeaderImage' ) ) :
 			?>
 
 			<div class="form-field">
-				<label><?php _e( 'Header', 'shopkeeper' ); ?></label>
+				<label><?php _e( 'Header', 'shopkeeper-extender' ); ?></label>
 				<div id="product_cat_header" style="float:left;margin-right:10px;"><img src="<?php echo wc_placeholder_img_src(); ?>" width="60px" height="60px" /></div>
 				<div style="line-height:60px;">
 					<input type="hidden" id="product_cat_header_id" name="product_cat_header_id" />
-					<button type="submit" class="upload_header_button button"><?php _e( 'Upload/Add image', 'shopkeeper' ); ?></button>
-					<button type="submit" class="remove_header_image_button button"><?php _e( 'Remove image', 'shopkeeper' ); ?></button>
+					<button type="submit" class="upload_header_button button"><?php _e( 'Upload/Add image', 'shopkeeper-extender' ); ?></button>
+					<button type="submit" class="remove_header_image_button button"><?php _e( 'Remove image', 'shopkeeper-extender' ); ?></button>
 				</div>
 
 				<script type="text/javascript">
@@ -90,9 +90,9 @@ if ( ! class_exists( 'SKCategoryHeaderImage' ) ) :
 
 						// Create the media frame.
 						header_file_frame = wp.media.frames.downloadable_file = wp.media({
-							title: '<?php _e( 'Choose an image', 'shopkeeper' ); ?>',
+							title: '<?php _e( 'Choose an image', 'shopkeeper-extender' ); ?>',
 							button: {
-								text: '<?php _e( 'Use image', 'shopkeeper' ); ?>',
+								text: '<?php _e( 'Use image', 'shopkeeper-extender' ); ?>',
 							},
 							multiple: false
 						});
@@ -151,13 +151,13 @@ if ( ! class_exists( 'SKCategoryHeaderImage' ) ) :
 			?>
 
 			<tr class="form-field">
-				<th scope="row" valign="top"><label><?php _e( 'Header', 'shopkeeper' ); ?></label></th>
+				<th scope="row" valign="top"><label><?php _e( 'Header', 'shopkeeper-extender' ); ?></label></th>
 				<td>
 					<div id="product_cat_header" style="float:left;margin-right:10px;"><img src="<?php echo $image; ?>" width="60px" height="60px" /></div>
 					<div style="line-height:60px;">
 						<input type="hidden" id="product_cat_header_id" name="product_cat_header_id" value="<?php echo $header_id; ?>" />
-						<button type="submit" class="upload_header_button button"><?php _e( 'Upload/Add image', 'shopkeeper' ); ?></button>
-						<button type="submit" class="remove_header_image_button button"><?php _e( 'Remove image', 'shopkeeper' ); ?></button>
+						<button type="submit" class="upload_header_button button"><?php _e( 'Upload/Add image', 'shopkeeper-extender' ); ?></button>
+						<button type="submit" class="remove_header_image_button button"><?php _e( 'Remove image', 'shopkeeper-extender' ); ?></button>
 					</div>
 
 					<script type="text/javascript">			 
@@ -183,9 +183,9 @@ if ( ! class_exists( 'SKCategoryHeaderImage' ) ) :
 
 							// Create the media frame.
 							header_file_frame = wp.media.frames.downloadable_file = wp.media({
-								title: '<?php _e( 'Choose an image', 'shopkeeper' ); ?>',
+								title: '<?php _e( 'Choose an image', 'shopkeeper-extender' ); ?>',
 								button: {
-									text: '<?php _e( 'Use image', 'shopkeeper' ); ?>',
+									text: '<?php _e( 'Use image', 'shopkeeper-extender' ); ?>',
 								},
 								multiple: false
 							});
@@ -250,8 +250,8 @@ if ( ! class_exists( 'SKCategoryHeaderImage' ) ) :
 		public function woocommerce_product_cat_header_columns( $columns ) {
 			$new_columns = array();
 			//$new_columns['cb'] = $columns['cb'];
-			$new_columns['thumb'] = __( 'Image', 'shopkeeper' );
-			$new_columns['header'] = __( 'Header', 'shopkeeper' );
+			$new_columns['thumb'] = __( 'Image', 'shopkeeper-extender' );
+			$new_columns['header'] = __( 'Header', 'shopkeeper-extender' );
 			unset( $columns['cb'] );
 			unset( $columns['thumb'] );
 

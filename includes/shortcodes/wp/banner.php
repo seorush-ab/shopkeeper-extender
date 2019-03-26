@@ -50,9 +50,9 @@ function banner_simple_height($params = array(), $content = null) {
 			
 				<div class="shortcode_banner_simple_height_inside" style="border: '.$inner_stroke.'px solid '.$inner_stroke_color.'">
 					<div class="shortcode_banner_simple_height_content">
-						<div><h3 class="banner_title" style="color:'.$title_color.'">'.esc_html__($title, 'shopkeeper').'</h3></div>
+						<div><h3 class="banner_title" style="color:'.$title_color.'">'.esc_html__($title, 'shopkeeper-extender').'</h3></div>
 						<div class="shortcode_banner_simple_height_sep" style="margin:'.$sep_padding.' auto; background-color:'.$sep_color.';"></div>
-						<div><h4 class="banner_subtitle" style="color:'.$subtitle_color.'">'.esc_html__($subtitle, 'shopkeeper').'</h4></div>
+						<div><h4 class="banner_subtitle" style="color:'.$subtitle_color.'">'.esc_html__($subtitle, 'shopkeeper-extender').'</h4></div>
 					</div>
 				</div>
 			</div>';

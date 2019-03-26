@@ -15,8 +15,78 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"X-Generator: Poedit 2.1\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: core/updater/Puc/v4p5/Plugin/Ui.php:54
+msgid "View details"
+msgstr ""
+
+#: core/updater/Puc/v4p5/Plugin/Ui.php:77
+#, php-format
+msgid "More information about %s"
+msgstr ""
+
+#: core/updater/Puc/v4p5/Plugin/Ui.php:128
+msgid "Check for updates"
+msgstr ""
+
+#: core/updater/Puc/v4p5/Plugin/Ui.php:213
+#, php-format
+msgctxt "the plugin title"
+msgid "The %s plugin is up to date."
+msgstr ""
+
+#: core/updater/Puc/v4p5/Plugin/Ui.php:215
+#, php-format
+msgctxt "the plugin title"
+msgid "A new version of the %s plugin is available."
+msgstr ""
+
+#: core/updater/Puc/v4p5/Plugin/Ui.php:217
+#, php-format
+msgctxt "the plugin title"
+msgid "Could not determine if updates are available for %s."
+msgstr ""
+
+#: core/updater/Puc/v4p5/Plugin/Ui.php:223
+#, php-format
+msgid "Unknown update checker status \"%s\""
+msgstr ""
+
+#: core/updater/Puc/v4p5/Vcs/PluginUpdateChecker.php:98
+msgid "There is no changelog available."
+msgstr ""
+
+#: includes/addons/class-wc-category-header-image.php:64
+#: includes/addons/class-wc-category-header-image.php:154
+#: includes/addons/class-wc-category-header-image.php:254
+msgid "Header"
+msgstr ""
+
+#: includes/addons/class-wc-category-header-image.php:68
+#: includes/addons/class-wc-category-header-image.php:159
+msgid "Upload/Add image"
+msgstr ""
+
+#: includes/addons/class-wc-category-header-image.php:69
+#: includes/addons/class-wc-category-header-image.php:160
+msgid "Remove image"
+msgstr ""
+
+#: includes/addons/class-wc-category-header-image.php:93
+#: includes/addons/class-wc-category-header-image.php:186
+msgid "Choose an image"
+msgstr ""
+
+#: includes/addons/class-wc-category-header-image.php:95
+#: includes/addons/class-wc-category-header-image.php:188
+msgid "Use image"
+msgstr ""
+
+#: includes/addons/class-wc-category-header-image.php:253
+msgid "Image"
+msgstr ""
 
 #: includes/gbt-blocks/banner/block.js:24
 msgid "Banner"
@@ -107,13 +177,13 @@ msgstr ""
 
 #: includes/gbt-blocks/categories_grid/block.js:201
 #: includes/gbt-blocks/portfolio/block.js:211
-#: includes/gbt-blocks/posts_grid/block.js:185
+#: includes/gbt-blocks/posts_grid/block.js:187
 msgid "Update"
 msgstr ""
 
 #: includes/gbt-blocks/categories_grid/block.js:203
 #: includes/gbt-blocks/portfolio/block.js:213
-#: includes/gbt-blocks/posts_grid/block.js:187
+#: includes/gbt-blocks/posts_grid/block.js:189
 msgid "Updating"
 msgstr ""
 
@@ -147,19 +217,19 @@ msgstr ""
 
 #: includes/gbt-blocks/categories_grid/block.js:652
 #: includes/gbt-blocks/portfolio/block.js:445
-#: includes/gbt-blocks/posts_grid/block.js:404
+#: includes/gbt-blocks/posts_grid/block.js:406
 msgid "Alphabetical Ascending"
 msgstr ""
 
 #: includes/gbt-blocks/categories_grid/block.js:653
 #: includes/gbt-blocks/portfolio/block.js:446
-#: includes/gbt-blocks/posts_grid/block.js:405
+#: includes/gbt-blocks/posts_grid/block.js:407
 msgid "Alphabetical Descending"
 msgstr ""
 
 #: includes/gbt-blocks/categories_grid/block.js:655
 #: includes/gbt-blocks/portfolio/block.js:450
-#: includes/gbt-blocks/posts_grid/block.js:409
+#: includes/gbt-blocks/posts_grid/block.js:411
 msgid "Order By"
 msgstr ""
 
@@ -200,17 +270,17 @@ msgid "Masonry Style V3"
 msgstr ""
 
 #: includes/gbt-blocks/portfolio/block.js:430
-#: includes/gbt-blocks/posts_grid/block.js:389
+#: includes/gbt-blocks/posts_grid/block.js:391
 msgid "Categories:"
 msgstr ""
 
 #: includes/gbt-blocks/portfolio/block.js:447
-#: includes/gbt-blocks/posts_grid/block.js:406
+#: includes/gbt-blocks/posts_grid/block.js:408
 msgid "Date Ascending"
 msgstr ""
 
 #: includes/gbt-blocks/portfolio/block.js:448
-#: includes/gbt-blocks/posts_grid/block.js:407
+#: includes/gbt-blocks/posts_grid/block.js:409
 msgid "Date Descending"
 msgstr ""
 
@@ -223,7 +293,7 @@ msgid "Show Filters?"
 msgstr ""
 
 #: includes/gbt-blocks/portfolio/block.js:511
-#: includes/gbt-blocks/posts_grid/block.js:459
+#: includes/gbt-blocks/posts_grid/block.js:461
 msgid "Columns"
 msgstr ""
 
@@ -235,7 +305,7 @@ msgstr ""
 msgid "Posts Grid"
 msgstr ""
 
-#: includes/gbt-blocks/posts_grid/block.js:428
+#: includes/gbt-blocks/posts_grid/block.js:430
 msgid "Number of Posts"
 msgstr ""
 
@@ -298,31 +368,65 @@ msgstr ""
 msgid "Number of Slides"
 msgstr ""
 
-#: includes/gbt-blocks/social_media_profiles/block.js:20
+#: includes/gbt-blocks/social_media_profiles/block.js:25
 msgid "Social Media Profiles"
 msgstr ""
 
-#: includes/gbt-blocks/social_media_profiles/block.js:65
+#: includes/gbt-blocks/social_media_profiles/block.js:70
 msgid "Icons Font Size"
 msgstr ""
 
-#: includes/gbt-blocks/social_media_profiles/block.js:75
-#: includes/gbt-blocks/social_media_profiles/block.js:78
+#: includes/gbt-blocks/social_media_profiles/block.js:80
+#: includes/gbt-blocks/social_media_profiles/block.js:83
 msgid "Icons Color"
 msgstr ""
 
-#: includes/gbt-blocks/social_media_profiles/block.js:127
-msgid "Social Media Icons"
+#: includes/gbt-blocks/social_media_profiles/block.js:122
+msgid "Setup social profile links under Appearance > Customize > Social Media"
 msgstr ""
 
-#: includes/gbt-blocks/social_media_profiles/block.js:135
-msgid "Setup profile links under Appearance > Customize > Social Media"
+#: includes/shortcodes/wp/posts-slider.php:69
+msgid " by "
 msgstr ""
 
-#: updater.php:434
-msgid "The plugin has been updated, but could not be reactivated. Please reactivate it manually."
+#: includes/shortcodes/wp/posts-slider.php:71
+#, php-format
+msgid "View all posts by %s"
 msgstr ""
 
-#: updater.php:435
-msgid "Plugin reactivated successfully."
+#: includes/shortcodes/wp/posts-slider.php:75
+msgid " on "
+msgstr ""
+
+#: includes/shortcodes/wp/posts-slider.php:77
+#, php-format
+msgid "Permalink to %s"
+msgstr ""
+
+#: includes/social-media/class-social-media.php:363
+msgid "Top Bar Social Icons"
+msgstr ""
+
+#: includes/social-media/class-social-media.php:382
+msgid "Social Networking Icons"
+msgstr ""
+
+#: includes/social-media/class-social-media.php:392
+msgid "Social Media"
+msgstr ""
+
+#: includes/widgets/social-media.php:18
+msgid "Shopkeeper Social Media Profiles"
+msgstr ""
+
+#: includes/widgets/social-media.php:19
+msgid "A widget that displays Social Media Profiles"
+msgstr ""
+
+#: includes/widgets/social-media.php:57
+msgid "Get Connected"
+msgstr ""
+
+#: includes/widgets/social-media.php:62
+msgid "Title:"
 msgstr ""
