@@ -41,7 +41,6 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 
 = 1.4 =
 - Adds: the 'Social Media' section in Customizer allowing for easy management of links to social media profiles. The icons can be turned on/off in the Top Bar, the footer or displayed in pages using the Gutenberg Block or the WPBakery Page Builder element (functionality transferred from the theme).
-- Adds: Theme-specific Gutenberg Blocks: Image Slider, Banner, Posts Grid, Product Categories Grid, Portfolio, Social Media Icons (functionality transferred from the theme).
 - Adds: Theme-specific WPBakery Page Builder elements: Slider, Banner, Posts Slider, Product Categories Grid, Social Media profiles (functionality transferred from the theme).
 - Adds: Upload header images for WooCommerce product categories (functionality transferred from the theme).
 
