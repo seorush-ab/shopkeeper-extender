@@ -44,21 +44,12 @@ if ( ! function_exists( 'gbt_18_sk_slider_assets' ) ) {
 			filemtime(plugin_dir_path(__FILE__) . 'assets/css/frontend/style.css')
 		);
 
-		$theme = wp_get_theme();
-		if ( $theme->template != 'shopkeeper') {
-			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-			wp_enqueue_style(
-				'gbt_18_sk_swiper_style',
-				plugins_url( 'vendor/swiper/css/swiper'.$suffix.'.css', __FILE__ ),
-				array(),
-				filemtime(plugin_dir_path(__FILE__) . 'vendor/swiper/css/swiper'.$suffix.'.css')
-			);
-			wp_enqueue_script(
-				'gbt_18_sk_swiper_script',
-				plugins_url( 'vendor/swiper/js/swiper'.$suffix.'.js', __FILE__ ),
-				array()
-			);
+		if( function_exists( 'getbowtied_vendor_scripts' ) ) {
+			getbowtied_vendor_scripts();
 		}
+
+		wp_enqueue_style( 'gbt_18_sk_swiper_style' );
+		wp_enqueue_script( 'gbt_18_sk_swiper_script' );
 
 		wp_enqueue_script(
 			'gbt_18_sk_slider_script',

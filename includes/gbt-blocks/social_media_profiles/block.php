@@ -25,22 +25,6 @@ if ( ! function_exists( 'gbt_18_sk_social_media_editor_assets' ) ) {
 }
 
 //==============================================================================
-//  Enqueue Frontend Assets
-//==============================================================================
-add_action( 'enqueue_block_assets', 'gbt_18_sk_social_media_assets' );
-if ( ! function_exists( 'gbt_18_sk_social_media_assets' ) ) {
-    function gbt_18_sk_social_media_assets() {
-        
-        wp_enqueue_style(
-            'gbt_18_sk_social_media_styles',
-            plugins_url( 'assets/css/style.css', __FILE__ ),
-            array(),
-            filemtime(plugin_dir_path(__FILE__) . 'assets/css/style.css')
-        );
-    }
-}
-
-//==============================================================================
 //  Frontend Output
 //==============================================================================
 if ( function_exists( 'register_block_type' ) ) {
@@ -82,21 +66,7 @@ if ( ! function_exists( 'gbt_18_sk_social_media_frontend_output' ) ) {
         ?>
 
         <div class="gbt_18_sk_social_media_wrapper">
-            <ul class="gbt_18_sk_social_media_list <?php echo esc_html($align); ?>">
-                <?php foreach($social_media_profiles as $social) : ?>
-                	<?php if ( (isset($shopkeeper_theme_options[$social['link']])) && (trim($shopkeeper_theme_options[$social['link']]) != "" ) ) : ?>
-                		<li class="gbt_18_sk_social_media_item">
-                		    <a class="gbt_18_sk_social_media_link" 
-                               target="_blank"
-                               style="color:<?php echo $fontColor?>; font-size:<?php echo $fontSize?> px"
-                               href="<?php echo esc_url($shopkeeper_theme_options[$social['link']]); ?>">
-                                <i class="<?php echo $social['icon']; ?>"></i>
-                    		    <span class="<?php echo $social['icon']; ?>"></span>
-                		    </a>
-                        </li>
-                	<?php endif; ?>
-                <?php endforeach; ?>
-            </ul>
+            <?php echo do_shortcode('[social-media items_align="'.$align.'" type="block" fontsize="'.$fontSize.'" fontcolor="'.$fontColor.'"]'); ?>
         </div>
 
     	<?php return ob_get_clean();

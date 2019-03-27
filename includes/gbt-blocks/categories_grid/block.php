@@ -57,7 +57,7 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_categories_grid' ) ) {
 				<div class="gbt_18_sk_categories_grid_wrapper">
 					<?php foreach ($product_categories as $category):
 
-						$thumbnail_id = get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true );
+						$thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
 						$image = wp_get_attachment_url( $thumbnail_id );
 
 						$cat_class = "";
@@ -103,6 +103,6 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_categories_grid' ) ) {
 		 		</div>
 			</div>
 		<?php endif;
-		return  ob_get_clean();
+		return ob_get_clean();
 	}
 }

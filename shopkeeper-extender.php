@@ -3,14 +3,14 @@
 /**
  * Plugin Name:       		Shopkeeper Extender
  * Plugin URI:        		https://shopkeeper.wp-theme.design/
- * Description:       		Extends the functionality of Shopkeeper with Gutenberg elements.
- * Version:           		1.3.4
+ * Description:       		Extends the functionality of Shopkeeper with theme specific features.
+ * Version:           		1.4
  * Author:            		GetBowtied
  * Author URI:				https://getbowtied.com
  * Text Domain:				shopkeeper-extender
  * Domain Path:				/languages/
  * Requires at least: 		5.0
- * Tested up to: 			5.1
+ * Tested up to: 			5.1.1
  *
  * @package  Shopkeeper Extender
  * @author   GetBowtied
@@ -32,6 +32,34 @@ $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 	'shopkeeper-extender'
 );
 
+// Helpers
+include_once( 'includes/helpers/helpers.php' );
+
+// Vendor
+include_once( 'includes/vendor/enqueue.php' );
+
+$theme = wp_get_theme();
+if( ( $theme->template == 'shopkeeper' && ( $theme->version >= '2.8' || ( !empty($theme->parent()) && $theme->parent()->version >= '2.8' ) ) ) || $theme->template != 'shopkeeper' ) {
+
+	// Customizer
+	include_once( 'includes/customizer/class/class-control-toggle.php' );
+
+	// Shortcodes
+	include_once( 'includes/shortcodes/index.php' );
+
+	// Social Media
+	include_once( 'includes/social-media/class-social-media.php' );
+
+	//Widgets
+	include_once( 'includes/widgets/social-media.php' );
+
+	// Addons
+	if ( $theme->template == 'shopkeeper' && is_plugin_active( 'woocommerce/woocommerce.php') ) { 
+		include_once( 'includes/addons/class-wc-category-header-image.php' );
+	}
+}
+
+// Gutenberg Blocks
 add_action( 'init', 'gbt_sk_gutenberg_blocks' );
 if(!function_exists('gbt_sk_gutenberg_blocks')) {
 	function gbt_sk_gutenberg_blocks() {
@@ -41,27 +69,5 @@ if(!function_exists('gbt_sk_gutenberg_blocks')) {
 		} else {
 			add_action( 'admin_notices', 'theme_warning' );
 		}
-	}
-}
-
-if( !function_exists('theme_warning') ) {
-	function theme_warning() {
-
-		?>
-
-		<div class="error">
-			<p>Shopkeeper Extender plugin couldn't find the Block Editor (Gutenberg) on this site. It requires WordPress 5+ or Gutenberg installed as a plugin.</p>
-		</div>
-
-		<?php
-	}
-}
-
-if( !function_exists('is_wp_version') ) {
-	function is_wp_version( $operator, $version ) {
-
-		global $wp_version;
-
-		return version_compare( $wp_version, $version, $operator );
 	}
 }

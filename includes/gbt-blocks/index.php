@@ -29,7 +29,6 @@ add_action( 'enqueue_block_editor_assets', function() {
 // Shopkeeper Dependent Blocks
 $theme = wp_get_theme();
 if ( $theme->template == 'shopkeeper') {
-	include_once 'social_media_profiles/block.php';
 	include_once 'portfolio/block.php';
 }
 
@@ -38,6 +37,7 @@ if( is_plugin_active( 'woocommerce/woocommerce.php') ) {
 	include_once 'categories_grid/block.php';
 }
 
+include_once 'social_media_profiles/block.php';
 include_once 'posts_grid/block.php';
 include_once 'banner/block.php';
 include_once 'slider/block.php';
