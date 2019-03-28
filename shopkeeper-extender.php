@@ -39,7 +39,8 @@ include_once( 'includes/helpers/helpers.php' );
 include_once( 'includes/vendor/enqueue.php' );
 
 $theme = wp_get_theme();
-if( ( $theme->template == 'shopkeeper' && ( $theme->version >= '2.8' || ( !empty($theme->parent()) && $theme->parent()->version >= '2.8' ) ) ) || $theme->template != 'shopkeeper' ) {
+$parent_theme = $theme->parent();
+if( ( $theme->template == 'shopkeeper' && ( $theme->version >= '2.8' || ( !empty($parent_theme) && $parent_theme->version >= '2.8' ) ) ) || $theme->template != 'shopkeeper' ) {
 
 	// Customizer
 	include_once( 'includes/customizer/class/class-control-toggle.php' );
