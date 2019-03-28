@@ -3,11 +3,11 @@ Contributors: getbowtied, vanesareinerth, adrianlbs
 Tags: gutenberg, blocks
 Requires at least: 5.0
 Tested up to: 5.1.1
-Stable tag: 1.4
+Stable tag: 1.4.1
 Requires PHP: 5.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-~Current Version:1.4~
+~Current Version:1.4.1~
 
 Extends the functionality of the Shopkeeper theme by adding theme specific features.
 
@@ -38,6 +38,10 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 - Social Media Profiles
 
 == Changelog ==
+
+= 1.4.1 =
+- Fixed: Error showing upon installation
+- Fixed: Customizer toggle options issue
 
 = 1.4 =
 - Adds: the 'Social Media' section in Customizer allowing for easy management of links to social media profiles. The icons can be turned on/off in the Top Bar, the footer or displayed in pages using the Gutenberg Block or the WPBakery Page Builder element (functionality transferred from the theme).
