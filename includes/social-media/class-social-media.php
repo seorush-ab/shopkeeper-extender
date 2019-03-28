@@ -316,6 +316,10 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 				return true === $bool ? 'yes' : 'no';
 			}
 
+			function sk_string_to_bool( $string ) {
+				return is_bool( $string ) ? $string : ( 'yes' === $string || 1 === $string || 'true' === $string || '1' === $string );
+			}
+
 			$theme = wp_get_theme();
 			if ( $theme->template == 'shopkeeper') {
 
@@ -323,6 +327,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 					'type'		 			=> 'option',
 					'capability' 			=> 'manage_options',
 					'sanitize_callback'    	=> 'sk_bool_to_string',
+					'sanitize_js_callback' 	=> 'sk_string_to_bool',
 					'default'	 			=> 'no',
 				) );
 
