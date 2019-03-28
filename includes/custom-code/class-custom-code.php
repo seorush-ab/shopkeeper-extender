@@ -53,7 +53,7 @@ if ( ! class_exists( 'SKCustomCode' ) ) :
 
 			if( !get_option( 'sk_custom_code_options_import', false ) ) {
 
-				wp_update_custom_css_post( get_theme_mod( 'custom_css', '' ) );
+				wp_update_custom_css_post( wp_get_custom_css() . ' ' . get_theme_mod( 'custom_css', '' ) );
 
 				$custom_header_js_option = get_theme_mod( 'header_js', '' );
 				update_option( 'sk_custom_code_header_js', $custom_header_js_option );
