@@ -310,16 +310,6 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 
 			global $social_media_profiles;
 
-			function sk_bool_to_string( $bool ) {
-				$bool = is_bool( $bool ) ? $bool : ( 'yes' === $bool || 1 === $bool || 'true' === $bool || '1' === $bool );
-
-				return true === $bool ? 'yes' : 'no';
-			}
-
-			function sk_string_to_bool( $string ) {
-				return is_bool( $string ) ? $string : ( 'yes' === $string || 1 === $string || 'true' === $string || '1' === $string );
-			}
-
 			$theme = wp_get_theme();
 			if ( $theme->template == 'shopkeeper') {
 

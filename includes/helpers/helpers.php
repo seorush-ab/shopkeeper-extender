@@ -21,3 +21,13 @@ if( !function_exists('is_wp_version') ) {
 		return version_compare( $wp_version, $version, $operator );
 	}
 }
+
+function sk_bool_to_string( $bool ) {
+	$bool = is_bool( $bool ) ? $bool : ( 'yes' === $bool || 1 === $bool || 'true' === $bool || '1' === $bool );
+
+	return true === $bool ? 'yes' : 'no';
+}
+
+function sk_string_to_bool( $string ) {
+	return is_bool( $string ) ? $string : ( 'yes' === $string || 1 === $string || 'true' === $string || '1' === $string );
+}
