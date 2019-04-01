@@ -20,10 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 } // Exit if accessed directly
 
-if ( ! function_exists( 'is_plugin_active' ) ) {
-    require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-}
-
 // Plugin Updater
 require 'core/updater/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
@@ -32,46 +28,93 @@ $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 	'shopkeeper-extender'
 );
 
-// Helpers
-include_once( 'includes/helpers/helpers.php' );
+if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 
-// Vendor
-include_once( 'includes/vendor/enqueue.php' );
+	/**
+	 * ShopkeeperExtender class.
+	*/
+	class ShopkeeperExtender {
 
-$theme = wp_get_theme();
-$parent_theme = $theme->parent();
-if( ( $theme->template == 'shopkeeper' && ( $theme->version >= '2.8' || ( !empty($parent_theme) && $parent_theme->version >= '2.8' ) ) ) || $theme->template != 'shopkeeper' ) {
+		/**
+		 * The single instance of the class.
+		 *
+		 * @var ShopkeeperExtender
+		*/
+		protected static $_instance = null;
 
-	// Customizer
-	include_once( 'includes/customizer/class/class-control-toggle.php' );
+		/**
+		 * ShopkeeperExtender constructor.
+		 *
+		*/
+		public function __construct() {
 
-	// Shortcodes
-	include_once( 'includes/shortcodes/index.php' );
+			// Helpers
+			include_once( 'includes/helpers/helpers.php' );
 
-	// Social Media
-	include_once( 'includes/social-media/class-social-media.php' );
+			// Vendor
+			include_once( 'includes/vendor/enqueue.php' );
 
-	//Widgets
-	include_once( 'includes/widgets/social-media.php' );
+			$theme = wp_get_theme();
+			$parent_theme = $theme->parent();
+			if( ( $theme->template == 'shopkeeper' && ( $theme->version >= '2.8' || ( !empty($parent_theme) && $parent_theme->version >= '2.8' ) ) ) || $theme->template != 'shopkeeper' ) {
 
-	// Addons
-	if ( $theme->template == 'shopkeeper' && is_plugin_active( 'woocommerce/woocommerce.php') ) { 
-		include_once( 'includes/addons/class-wc-category-header-image.php' );
-	}
-}
+				// Customizer
+				include_once( 'includes/customizer/class/class-control-toggle.php' );
 
-// Gutenberg Blocks
-add_action( 'init', 'gbt_sk_gutenberg_blocks' );
-if(!function_exists('gbt_sk_gutenberg_blocks')) {
-	function gbt_sk_gutenberg_blocks() {
+				// Shortcodes
+				include_once( 'includes/shortcodes/index.php' );
 
-		if( is_plugin_active( 'gutenberg/gutenberg.php' ) || is_wp_version('>=', '5.0') ) {
-			include_once 'includes/gbt-blocks/index.php';
-		} else {
-			add_action( 'admin_notices', 'theme_warning' );
+				// Social Media
+				include_once( 'includes/social-media/class-social-media.php' );
+
+				//Widgets
+				include_once( 'includes/widgets/social-media.php' );
+
+				// Addons
+				if ( $theme->template == 'shopkeeper' && class_exists( 'WooCommerce' ) ) { 
+					include_once( 'includes/addons/class-wc-category-header-image.php' );
+				}
+			}
+
+			// Gutenberg Blocks
+			add_action( 'init', array( $this, 'gbt_sk_gutenberg_blocks' ) );
+
+			if( ( $theme->template == 'shopkeeper' && ( $theme->version >= '2.8.1' || ( !empty($parent_theme) && $parent_theme->version >= '2.8.1' ) ) ) || $theme->template != 'shopkeeper' ) {
+
+				// Custom Code Section
+				include_once( 'includes/custom-code/class-custom-code.php' );
+
+				// Social Sharing Buttons
+				include_once( 'includes/social-sharing/class-social-sharing.php' );
+			}
+		}
+
+		/**
+		 * Loads Gutenberg blocks
+		 *
+		 * @return void
+		*/
+		public function gbt_sk_gutenberg_blocks() {
+
+			if( function_exists( 'gutenberg_pre_init' ) || is_wp_version('>=', '5.0') ) {
+				include_once 'includes/gbt-blocks/index.php';
+			} else {
+				add_action( 'admin_notices', 'theme_warning' );
+			}
+		}
+
+		/**
+		 * Ensures only one instance of ShopkeeperExtender is loaded or can be loaded.
+		 *
+		 * @return ShopkeeperExtender
+		*/
+		public static function instance() {
+			if ( is_null( self::$_instance ) ) {
+				self::$_instance = new self();
+			}
+			return self::$_instance;
 		}
 	}
-}
+endif;
 
-include_once( 'includes/custom-code/class-custom-code.php' );
-include_once( 'includes/social-sharing/class-social-sharing.php' );
+$shopkeeper_extender = new ShopkeeperExtender;

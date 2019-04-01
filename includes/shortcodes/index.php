@@ -4,7 +4,7 @@ include_once( 'wp/posts-slider.php' );
 include_once( 'wp/banner.php' );
 include_once( 'wp/slider.php' );
 
-if ( is_plugin_active( 'woocommerce/woocommerce.php') ) {
+if ( class_exists( 'WooCommerce' ) ) {
 	include_once( 'wc/categories-grid.php' );
 }
 
@@ -30,7 +30,7 @@ if ( defined(  'WPB_VC_VERSION' ) ) {
 		include_once( 'wb/banner.php' );
 		include_once( 'wb/slider.php' );
 
-		if ( is_plugin_active( 'woocommerce/woocommerce.php') ) {
+		if ( class_exists( 'WooCommerce' ) ) {
 			include_once( 'wb/categories-grid.php' );
 		}
 	}
