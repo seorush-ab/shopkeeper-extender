@@ -6,7 +6,7 @@
   .shortcode_getbowtied_slider .quickview-pagination {
     display: none; }
   .shortcode_getbowtied_slider .swiper-slide {
-    background-size: cover;
+    background-size: cover !important;
     text-align: center;
     position: relative;
     display: table; }

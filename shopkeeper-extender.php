@@ -79,7 +79,7 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 			// Gutenberg Blocks
 			add_action( 'init', array( $this, 'gbt_sk_gutenberg_blocks' ) );
 
-			if( ( $theme->template == 'shopkeeper' && ( $theme->version >= '2.8.1' || ( !empty($parent_theme) && $parent_theme->version >= '2.8.1' ) ) ) || $theme->template != 'shopkeeper' ) {
+			if( $theme->template == 'shopkeeper' && ( $theme->version >= '2.8.1' || ( !empty($parent_theme) && $parent_theme->version >= '2.8.1' ) ) ) {
 
 				// Custom Code Section
 				include_once( 'includes/custom-code/class-custom-code.php' );
