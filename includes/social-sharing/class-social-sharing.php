@@ -72,7 +72,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 		private function import_options() {
 
 			$sharing_option = get_theme_mod( 'sharing_options', true ) ? 'yes' : 'no';
-			update_option( 'sk_footer_social_icons', $sharing_option );
+			update_option( 'sk_sharing_options', $sharing_option );
 		}
 
 		/**
