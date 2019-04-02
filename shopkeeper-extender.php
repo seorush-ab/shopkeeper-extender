@@ -4,7 +4,7 @@
  * Plugin Name:       		Shopkeeper Extender
  * Plugin URI:        		https://shopkeeper.wp-theme.design/
  * Description:       		Extends the functionality of Shopkeeper with theme specific features.
- * Version:           		1.4.1
+ * Version:           		1.4.2
  * Author:            		GetBowtied
  * Author URI:				https://getbowtied.com
  * Text Domain:				shopkeeper-extender
@@ -48,14 +48,15 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 		*/
 		public function __construct() {
 
+			$theme = wp_get_theme();
+			$parent_theme = $theme->parent();
+
 			// Helpers
 			include_once( 'includes/helpers/helpers.php' );
 
 			// Vendor
 			include_once( 'includes/vendor/enqueue.php' );
 
-			$theme = wp_get_theme();
-			$parent_theme = $theme->parent();
 			if( ( $theme->template == 'shopkeeper' && ( $theme->version >= '2.8' || ( !empty($parent_theme) && $parent_theme->version >= '2.8' ) ) ) || $theme->template != 'shopkeeper' ) {
 
 				// Customizer
@@ -85,7 +86,9 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 				include_once( 'includes/custom-code/class-custom-code.php' );
 
 				// Social Sharing Buttons
-				include_once( 'includes/social-sharing/class-social-sharing.php' );
+				if ( class_exists( 'WooCommerce' ) ) { 
+					include_once( 'includes/social-sharing/class-social-sharing.php' );
+				}
 			}
 		}
 

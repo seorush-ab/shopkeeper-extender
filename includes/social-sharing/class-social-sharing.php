@@ -93,29 +93,25 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 		 */
 		public function sk_social_sharing_customizer( $wp_customize ) {
 
-			$theme = wp_get_theme();
-			if ( $theme->template == 'shopkeeper') {
+			$wp_customize->add_setting( 'sk_sharing_options', array(
+				'type'		 			=> 'option',
+				'capability' 			=> 'manage_options',
+				'sanitize_callback'    	=> 'sk_bool_to_string',
+				'sanitize_js_callback' 	=> 'sk_string_to_bool',
+				'default'	 			=> 'yes',
+			) );
 
-				$wp_customize->add_setting( 'sk_sharing_options', array(
-					'type'		 			=> 'option',
-					'capability' 			=> 'manage_options',
-					'sanitize_callback'    	=> 'sk_bool_to_string',
-					'sanitize_js_callback' 	=> 'sk_string_to_bool',
-					'default'	 			=> 'yes',
-				) );
-
-				$wp_customize->add_control( 
-					new WP_SK_Customize_Toggle_Control(
-						$wp_customize,
-						'sk_sharing_options',
-						array( 
-							'label'       	=> esc_attr__( 'Social Sharing Options', 'shopkeeper-extender' ),
-							'section'     	=> 'product',
-							'priority'    	=> 20,
-						)
+			$wp_customize->add_control( 
+				new WP_SK_Customize_Toggle_Control(
+					$wp_customize,
+					'sk_sharing_options',
+					array( 
+						'label'       	=> esc_attr__( 'Social Sharing Options', 'shopkeeper-extender' ),
+						'section'     	=> 'product',
+						'priority'    	=> 20,
 					)
-				);
-			}
+				)
+			);
 		}
 
 		public function getbowtied_single_share_product() {

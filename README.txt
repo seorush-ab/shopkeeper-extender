@@ -3,11 +3,11 @@ Contributors: getbowtied, vanesareinerth, adrianlbs
 Tags: gutenberg, blocks
 Requires at least: 5.0
 Tested up to: 5.1.1
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 Requires PHP: 5.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-~Current Version:1.4.1~
+~Current Version:1.4.2~
 
 Extends the functionality of the Shopkeeper theme by adding theme specific features.
 
@@ -18,6 +18,8 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 **Features:**
 - Adds 'Social Media' section in Customizer for easy management of links to social media profiles
 - Adds header image option for WooCommerce product categories
+- Adds 'Additional JS' section in Customizer allowing for site customization with custom JavaScript code
+- Adds social sharing buttons for WooCommerce products
 
 **Gutenberg Blocks:**
 - Image Slider
@@ -38,6 +40,10 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 - Social Media Profiles
 
 == Changelog ==
+
+= 1.4.2 =
+- Adds: Theme-specific 'Additional JS' section in Customizer allowing for site customization with custom JavaScript code
+- Adds: Theme-specific social sharing buttons for WooCommerce products
 
 = 1.4.1 =
 - Fixed: Error showing upon installation
