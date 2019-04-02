@@ -28,6 +28,11 @@ $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 	'shopkeeper-extender'
 );
 
+if ( ! function_exists( 'is_plugin_active' ) ) {
+    require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+}
+
+
 if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 
 	/**
@@ -72,7 +77,7 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 				include_once( 'includes/widgets/social-media.php' );
 
 				// Addons
-				if ( $theme->template == 'shopkeeper' && class_exists( 'WooCommerce' ) ) { 
+				if ( $theme->template == 'shopkeeper' && is_plugin_active( 'woocommerce/woocommerce.php') ) { 
 					include_once( 'includes/addons/class-wc-category-header-image.php' );
 				}
 			}
@@ -86,7 +91,7 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 				include_once( 'includes/custom-code/class-custom-code.php' );
 
 				// Social Sharing Buttons
-				if ( class_exists( 'WooCommerce' ) ) { 
+				if ( is_plugin_active( 'woocommerce/woocommerce.php') ) { 
 					include_once( 'includes/social-sharing/class-social-sharing.php' );
 				}
 			}
@@ -99,7 +104,7 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 		*/
 		public function gbt_sk_gutenberg_blocks() {
 
-			if( function_exists( 'gutenberg_pre_init' ) || is_wp_version('>=', '5.0') ) {
+			if( is_plugin_active( 'gutenberg/gutenberg.php' ) || is_wp_version('>=', '5.0') ) {
 				include_once 'includes/gbt-blocks/index.php';
 			} else {
 				add_action( 'admin_notices', 'theme_warning' );

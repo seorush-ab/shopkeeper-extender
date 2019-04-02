@@ -33,7 +33,7 @@ if ( $theme->template == 'shopkeeper') {
 }
 
 // WooCommerce Dependent Blocks
-if( class_exists( 'WooCommerce' ) ) {
+if( is_plugin_active( 'woocommerce/woocommerce.php') ) {
 	include_once 'categories_grid/block.php';
 }
 
