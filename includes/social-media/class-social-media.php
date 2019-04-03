@@ -42,7 +42,10 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 			$this->enqueue_styles();
 			$this->customizer_options();
 			$this->create_shortcode();
-			$this->create_wb_element();
+
+			if ( defined(  'WPB_VC_VERSION' ) ) {
+				$this->create_wb_element();
+			}
 		}
 
 		/**
