@@ -88,6 +88,18 @@ msgstr ""
 msgid "Image"
 msgstr ""
 
+#: includes/custom-code/class-custom-code.php:88
+msgid "Additional JS"
+msgstr ""
+
+#: includes/custom-code/class-custom-code.php:105
+msgid "Header JavaScript Code"
+msgstr ""
+
+#: includes/custom-code/class-custom-code.php:125
+msgid "Footer JavaScript Code"
+msgstr ""
+
 #: includes/gbt-blocks/banner/block.js:24
 msgid "Banner"
 msgstr ""
@@ -176,13 +188,11 @@ msgid "Product Categories - Grid"
 msgstr ""
 
 #: includes/gbt-blocks/categories_grid/block.js:201
-#: includes/gbt-blocks/portfolio/block.js:211
 #: includes/gbt-blocks/posts_grid/block.js:187
 msgid "Update"
 msgstr ""
 
 #: includes/gbt-blocks/categories_grid/block.js:203
-#: includes/gbt-blocks/portfolio/block.js:213
 #: includes/gbt-blocks/posts_grid/block.js:189
 msgid "Updating"
 msgstr ""
@@ -216,19 +226,16 @@ msgid "Menu Order"
 msgstr ""
 
 #: includes/gbt-blocks/categories_grid/block.js:652
-#: includes/gbt-blocks/portfolio/block.js:445
 #: includes/gbt-blocks/posts_grid/block.js:406
 msgid "Alphabetical Ascending"
 msgstr ""
 
 #: includes/gbt-blocks/categories_grid/block.js:653
-#: includes/gbt-blocks/portfolio/block.js:446
 #: includes/gbt-blocks/posts_grid/block.js:407
 msgid "Alphabetical Descending"
 msgstr ""
 
 #: includes/gbt-blocks/categories_grid/block.js:655
-#: includes/gbt-blocks/portfolio/block.js:450
 #: includes/gbt-blocks/posts_grid/block.js:411
 msgid "Order By"
 msgstr ""
@@ -249,64 +256,28 @@ msgstr ""
 msgid "Product Count"
 msgstr ""
 
-#: includes/gbt-blocks/portfolio/block.js:22
-msgid "Portfolio"
-msgstr ""
-
-#: includes/gbt-blocks/portfolio/block.js:32
-msgid "Equal Boxes"
-msgstr ""
-
-#: includes/gbt-blocks/portfolio/block.js:33
-msgid "Masonry Style V1"
-msgstr ""
-
-#: includes/gbt-blocks/portfolio/block.js:34
-msgid "Masonry Style V2"
-msgstr ""
-
-#: includes/gbt-blocks/portfolio/block.js:35
-msgid "Masonry Style V3"
-msgstr ""
-
-#: includes/gbt-blocks/portfolio/block.js:430
-#: includes/gbt-blocks/posts_grid/block.js:391
-msgid "Categories:"
-msgstr ""
-
-#: includes/gbt-blocks/portfolio/block.js:447
-#: includes/gbt-blocks/posts_grid/block.js:408
-msgid "Date Ascending"
-msgstr ""
-
-#: includes/gbt-blocks/portfolio/block.js:448
-#: includes/gbt-blocks/posts_grid/block.js:409
-msgid "Date Descending"
-msgstr ""
-
-#: includes/gbt-blocks/portfolio/block.js:469
-msgid "Number of Portfolio Items"
-msgstr ""
-
-#: includes/gbt-blocks/portfolio/block.js:495
-msgid "Show Filters?"
-msgstr ""
-
-#: includes/gbt-blocks/portfolio/block.js:511
-#: includes/gbt-blocks/posts_grid/block.js:461
-msgid "Columns"
-msgstr ""
-
-#: includes/gbt-blocks/portfolio/block.php:111
-msgid "Show all"
-msgstr ""
-
 #: includes/gbt-blocks/posts_grid/block.js:22
 msgid "Posts Grid"
 msgstr ""
 
+#: includes/gbt-blocks/posts_grid/block.js:391
+msgid "Categories:"
+msgstr ""
+
+#: includes/gbt-blocks/posts_grid/block.js:408
+msgid "Date Ascending"
+msgstr ""
+
+#: includes/gbt-blocks/posts_grid/block.js:409
+msgid "Date Descending"
+msgstr ""
+
 #: includes/gbt-blocks/posts_grid/block.js:430
 msgid "Number of Posts"
+msgstr ""
+
+#: includes/gbt-blocks/posts_grid/block.js:461
+msgid "Columns"
 msgstr ""
 
 #: includes/gbt-blocks/slider/blocks/slide.js:30
@@ -403,16 +374,24 @@ msgstr ""
 msgid "Permalink to %s"
 msgstr ""
 
-#: includes/social-media/class-social-media.php:363
+#: includes/social-media/class-social-media.php:332
 msgid "Top Bar Social Icons"
 msgstr ""
 
-#: includes/social-media/class-social-media.php:382
+#: includes/social-media/class-social-media.php:351
 msgid "Social Networking Icons"
 msgstr ""
 
-#: includes/social-media/class-social-media.php:392
+#: includes/social-media/class-social-media.php:361
 msgid "Social Media"
+msgstr ""
+
+#: includes/social-sharing/class-social-sharing.php:109
+msgid "Social Sharing Options"
+msgstr ""
+
+#: includes/social-sharing/class-social-sharing.php:128
+msgid "Share this product"
 msgstr ""
 
 #: includes/widgets/social-media.php:18

@@ -26,12 +26,6 @@ add_action( 'enqueue_block_editor_assets', function() {
 //	Blocks
 //==============================================================================
 
-// Shopkeeper Dependent Blocks
-$theme = wp_get_theme();
-if ( $theme->template == 'shopkeeper') {
-	include_once 'portfolio/block.php';
-}
-
 // WooCommerce Dependent Blocks
 if( is_plugin_active( 'woocommerce/woocommerce.php') ) {
 	include_once 'categories_grid/block.php';
