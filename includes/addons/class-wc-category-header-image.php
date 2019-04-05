@@ -249,11 +249,7 @@ if ( ! class_exists( 'SKCategoryHeaderImage' ) ) :
 		 */
 		public function woocommerce_product_cat_header_columns( $columns ) {
 			$new_columns = array();
-			//$new_columns['cb'] = $columns['cb'];
-			$new_columns['thumb'] = __( 'Image', 'shopkeeper-extender' );
 			$new_columns['header'] = __( 'Header', 'shopkeeper-extender' );
-			unset( $columns['cb'] );
-			unset( $columns['thumb'] );
 
 			return array_merge( $new_columns, $columns );
 		}
