@@ -3,11 +3,11 @@ Contributors: getbowtied, vanesareinerth, adrianlbs
 Tags: gutenberg, blocks
 Requires at least: 5.0
 Tested up to: 5.1.1
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 Requires PHP: 5.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-~Current Version:1.4.3~
+~Current Version:1.4.4~
 
 Extends the functionality of the Shopkeeper theme by adding theme specific features.
 
@@ -26,7 +26,6 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 - Banner
 - Posts Grid
 - Product Categories Grid
-- Portfolio
 - Social Media Profiles
 
 **Widgets:**
@@ -40,6 +39,9 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 - Social Media Profiles
 
 == Changelog ==
+
+= 1.4.4 =
+- 'Portfolio' block was moved to 'Shopkeeper Portfolio Addon' plugin
 
 = 1.4.3 =
 - Fixed: Error showing when WPBakery Page Builder plugin is not active
