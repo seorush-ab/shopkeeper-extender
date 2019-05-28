@@ -2,12 +2,12 @@
 Contributors: getbowtied, vanesareinerth, adrianlbs
 Tags: gutenberg, blocks
 Requires at least: 5.0
-Tested up to: 5.1.1
-Stable tag: 1.4.5
+Tested up to: 5.2.1
+Stable tag: 1.4.6
 Requires PHP: 5.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-~Current Version:1.4.5~
+~Current Version:1.4.6~
 
 Extends the functionality of the Shopkeeper theme by adding theme specific features.
 
@@ -39,6 +39,9 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 - Social Media Profiles
 
 == Changelog ==
+
+= 1.4.6 =
+- Small maintenance updates
 
 = 1.4.5 =
 - Fixed: Checkbox not showing in Product Categories list in admin area
