@@ -28,10 +28,10 @@ add_action( 'enqueue_block_editor_assets', function() {
 
 // WooCommerce Dependent Blocks
 if( is_plugin_active( 'woocommerce/woocommerce.php') ) {
-	include_once 'categories_grid/block.php';
+	include_once( dirname( __FILE__ ) . '/categories_grid/block.php' );
 }
 
-include_once 'social_media_profiles/block.php';
-include_once 'posts_grid/block.php';
-include_once 'banner/block.php';
-include_once 'slider/block.php';
+include_once( dirname( __FILE__ ) . '/social_media_profiles/block.php' );
+include_once( dirname( __FILE__ ) . '/posts_grid/block.php' );
+include_once( dirname( __FILE__ ) . '/banner/block.php' );
+include_once( dirname( __FILE__ ) . '/slider/block.php' );

@@ -1,11 +1,11 @@
 <?php
 
-include_once( 'wp/posts-slider.php' );
-include_once( 'wp/banner.php' );
-include_once( 'wp/slider.php' );
+include_once( dirname( __FILE__ ) . '/wp/posts-slider.php' );
+include_once( dirname( __FILE__ ) . '/wp/banner.php' );
+include_once( dirname( __FILE__ ) . '/wp/slider.php' );
 
 if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
-	include_once( 'wc/categories-grid.php' );
+	include_once( dirname( __FILE__ ) . '/wc/categories-grid.php' );
 }
 
 add_action( 'wp_enqueue_scripts', 'getbowtied_sk_shortcodes_styles', 99 );
@@ -26,12 +26,12 @@ function getbowtied_sk_shortcodes_scripts() {
 if ( defined(  'WPB_VC_VERSION' ) ) {
 	add_action( 'init', 'getbowtied_sk_wb_shortcodes' );
 	function getbowtied_sk_wb_shortcodes() {
-		include_once( 'wb/posts-slider.php' );
-		include_once( 'wb/banner.php' );
-		include_once( 'wb/slider.php' );
+		include_once( dirname( __FILE__ ) . '/wb/posts-slider.php' );
+		include_once( dirname( __FILE__ ) . '/wb/banner.php' );
+		include_once( dirname( __FILE__ ) . '/wb/slider.php' );
 
 		if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
-			include_once( 'wb/categories-grid.php' );
+			include_once( dirname( __FILE__ ) . '/wb/categories-grid.php' );
 		}
 	}
 }

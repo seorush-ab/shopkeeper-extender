@@ -57,21 +57,21 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 			$parent_theme = $theme->parent();
 
 			// Helpers
-			include_once( 'includes/helpers/helpers.php' );
+			include_once( dirname( __FILE__ ) . '/includes/helpers/helpers.php' );
 
 			// Vendor
-			include_once( 'includes/vendor/enqueue.php' );
+			include_once( dirname( __FILE__ ) . '/includes/vendor/enqueue.php' );
 
 			if( ( $theme->template == 'shopkeeper' && ( $theme->version >= '2.8' || ( !empty($parent_theme) && $parent_theme->version >= '2.8' ) ) ) || $theme->template != 'shopkeeper' ) {
 
 				// Customizer
-				include_once( 'includes/customizer/class/class-control-toggle.php' );
+				include_once( dirname( __FILE__ ) . '/includes/customizer/class/class-control-toggle.php' );
 
 				// Shortcodes
-				include_once( 'includes/shortcodes/index.php' );
+				include_once( dirname( __FILE__ ) . '/includes/shortcodes/index.php' );
 
 				// Social Media
-				include_once( 'includes/social-media/class-social-media.php' );
+				include_once( dirname( __FILE__ ) . '/includes/social-media/class-social-media.php' );
 
 				add_action( 'footer_socials', function() {
 					if( get_option( 'sk_footer_social_icons', 'no' ) == 'yes' ) {
@@ -90,7 +90,7 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 
 				// Addons
 				if ( $theme->template == 'shopkeeper' && is_plugin_active( 'woocommerce/woocommerce.php') ) { 
-					include_once( 'includes/addons/class-wc-category-header-image.php' );
+					include_once( dirname( __FILE__ ) . '/includes/addons/class-wc-category-header-image.php' );
 				}
 			}
 
@@ -100,20 +100,20 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 			if( $theme->template == 'shopkeeper' && ( $theme->version >= '2.8.1' || ( !empty($parent_theme) && $parent_theme->version >= '2.8.1' ) ) ) {
 
 				// Custom Code Section
-				include_once( 'includes/custom-code/class-custom-code.php' );
+				include_once( dirname( __FILE__ ) . '/includes/custom-code/class-custom-code.php' );
 
 				// Social Sharing Buttons
 				if ( is_plugin_active( 'woocommerce/woocommerce.php') ) { 
-					include_once( 'includes/social-sharing/class-social-sharing.php' );
+					include_once( dirname( __FILE__ ) . '/includes/social-sharing/class-social-sharing.php' );
 				}
 			}
 
 			if( $theme->template == 'shopkeeper' && ( $theme->version >= '2.8.6' || ( !empty($parent_theme) && $parent_theme->version >= '2.8.6' ) ) ) {
 
 				//Custom Menu
-				include_once( 'includes/custom-menu/custom-menu.php' );
-				include_once( 'includes/custom-menu/edit_custom_walker.php' );
-				include_once( 'includes/custom-menu/custom_walker.php' );
+				include_once( dirname( __FILE__ ) . '/includes/custom-menu/custom-menu.php' );
+				include_once( dirname( __FILE__ ) . '/includes/custom-menu/edit_custom_walker.php' );
+				include_once( dirname( __FILE__ ) . '/includes/custom-menu/custom_walker.php' );
 			}
 		}
 
@@ -125,7 +125,7 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 		public function gbt_sk_gutenberg_blocks() {
 
 			if( is_plugin_active( 'gutenberg/gutenberg.php' ) || is_wp_version('>=', '5.0') ) {
-				include_once 'includes/gbt-blocks/index.php';
+				include_once( dirname( __FILE__ ) . '/includes/gbt-blocks/index.php' );
 			} else {
 				add_action( 'admin_notices', 'theme_warning' );
 			}
