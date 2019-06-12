@@ -27,6 +27,18 @@ if ( ! class_exists( 'SKCustomCode' ) ) :
 			add_action('init', array( $this, 'import_options' ));
 
 			$this->customizer_options();
+
+			if( get_option( 'sk_custom_code_header_js', '' ) != '' ) {
+				add_action( 'wp_head', function() {
+					echo get_option( 'sk_custom_code_header_js', '' );
+				});
+			}
+
+			if( get_option( 'sk_custom_code_footer_js', '' ) != '' ) {
+				add_action( 'wp_footer', function() {
+					echo get_option( 'sk_custom_code_footer_js', '' );
+				});
+			}
 		}
 
 		/**

@@ -73,6 +73,18 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 				// Social Media
 				include_once( 'includes/social-media/class-social-media.php' );
 
+				add_action( 'footer_socials', function() {
+					if( get_option( 'sk_footer_social_icons', 'no' ) == 'yes' ) {
+						echo '<div class="footer_socials_wrapper">' . do_shortcode('[social-media items_align="center"]') . '</div>';
+					}
+				} );
+
+				add_action( 'header_socials', function() {
+					if( get_option( 'sk_top_bar_social_icons', 'no' ) == 'yes' ) {
+						echo '<div class="site-top-bar-social-icons-wrapper">' . do_shortcode('[social-media items_align="right"]') . '</div>';
+					}
+				} );
+
 				//Widgets
 				include_once( 'includes/widgets/social-media.php' );
 
@@ -94,6 +106,14 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 				if ( is_plugin_active( 'woocommerce/woocommerce.php') ) { 
 					include_once( 'includes/social-sharing/class-social-sharing.php' );
 				}
+			}
+
+			if( $theme->template == 'shopkeeper' && ( $theme->version >= '2.8.6' || ( !empty($parent_theme) && $parent_theme->version >= '2.8.6' ) ) ) {
+
+				//Custom Menu
+				include_once( 'includes/custom-menu/custom-menu.php' );
+				include_once( 'includes/custom-menu/edit_custom_walker.php' );
+				include_once( 'includes/custom-menu/custom_walker.php' );
 			}
 		}
 
