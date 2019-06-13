@@ -73,18 +73,6 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 				// Social Media
 				include_once( dirname( __FILE__ ) . '/includes/social-media/class-social-media.php' );
 
-				add_action( 'footer_socials', function() {
-					if( get_option( 'sk_footer_social_icons', 'no' ) == 'yes' ) {
-						echo '<div class="footer_socials_wrapper">' . do_shortcode('[social-media items_align="center"]') . '</div>';
-					}
-				} );
-
-				add_action( 'header_socials', function() {
-					if( get_option( 'sk_top_bar_social_icons', 'no' ) == 'yes' ) {
-						echo '<div class="site-top-bar-social-icons-wrapper">' . do_shortcode('[social-media items_align="right"]') . '</div>';
-					}
-				} );
-
 				//Widgets
 				include_once( 'includes/widgets/social-media.php' );
 

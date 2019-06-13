@@ -46,6 +46,18 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 			if ( defined(  'WPB_VC_VERSION' ) ) {
 				$this->create_wb_element();
 			}
+
+			add_action( 'footer_socials', function() {
+				if( get_option( 'sk_footer_social_icons', 'no' ) == 'yes' ) {
+					echo '<div class="footer_socials_wrapper">' . do_shortcode('[social-media items_align="center"]') . '</div>';
+				}
+			} );
+
+			add_action( 'header_socials', function() {
+				if( get_option( 'sk_top_bar_social_icons', 'no' ) == 'yes' ) {
+					echo '<div class="site-top-bar-social-icons-wrapper">' . do_shortcode('[social-media items_align="right"]') . '</div>';
+				}
+			} );
 		}
 
 		/**
