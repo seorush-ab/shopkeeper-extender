@@ -68,13 +68,13 @@ function sk_posts_slider_shortcode($atts, $content = null) {
 		                            <div class="post_meta_archive">
 		                            	<?php _e( ' by ', 'shopkeeper-extender' ); ?>
 		                            	<a class="url fn n" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' )); ?>" 
-		                            		title="<?php echo sprintf( __( 'View all posts by %s', 'shopkeeper-extender' ), get_the_author() ); ?>" 
+		                            		title="<?php echo sprintf( esc_html__( 'View all posts by %s', 'shopkeeper-extender' ), get_the_author() ); ?>" 
 		                            		rel="author">
 		                            		<?php echo get_the_author(); ?>
 		                            	</a>
 		                            	<?php _e( ' on ', 'shopkeeper-extender' ); ?>
 		                            	<a href="<?php the_permalink(); ?>" rel="bookmark" 
-		                            		title="<?php echo sprintf( __( 'Permalink to %s', 'shopkeeper-extender' ), the_title_attribute( 'echo=0' ) ); ?>">
+		                            		title="<?php echo sprintf( esc_html__( 'Permalink to %s', 'shopkeeper-extender' ), the_title_attribute( 'echo=0' ) ); ?>">
 		                            		<?php echo get_the_date(); ?>
 		                            	</a>
 									</div>                       

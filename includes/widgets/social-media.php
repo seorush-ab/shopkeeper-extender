@@ -15,8 +15,8 @@ class SK_Social_Media_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'shopkeeper_social_media', // Base ID
-			__('Shopkeeper Social Media Profiles', 'shopkeeper-extender'), // Name
-			array( 'description' => __( 'A widget that displays Social Media Profiles', 'shopkeeper-extender' ), ) // Args
+			esc_html__('Shopkeeper Social Media Profiles', 'shopkeeper-extender'), // Name
+			array( 'description' => esc_html__( 'A widget that displays Social Media Profiles', 'shopkeeper-extender' ), ) // Args
 		);
 	}
 
@@ -54,7 +54,7 @@ class SK_Social_Media_Widget extends WP_Widget {
 			$title = $instance[ 'title' ];
 		}
 		else {
-			$title = __( 'Get Connected', 'shopkeeper-extender' );
+			$title = esc_html__( 'Get Connected', 'shopkeeper-extender' );
 		}
 		?>
 		
