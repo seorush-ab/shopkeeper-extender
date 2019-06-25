@@ -15,6 +15,10 @@ if ( ! function_exists( 'gbt_18_sk_social_media_editor_assets' ) ) {
             array( 'wp-blocks', 'wp-components', 'wp-editor', 'wp-i18n', 'wp-element' )
         );
 
+        add_action( 'init', function() {
+            wp_set_script_translations( 'gbt_18_sk_social_media_script', 'shopkeeper-extender', plugin_dir_path( __FILE__ ) . 'languages' );
+        });
+
         wp_register_style(
             'gbt_18_sk_social_media_editor_styles',
             plugins_url( 'assets/css/editor.css', __FILE__ ),

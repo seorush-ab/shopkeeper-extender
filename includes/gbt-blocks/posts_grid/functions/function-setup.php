@@ -20,6 +20,10 @@ if ( ! function_exists( 'gbt_18_sk_posts_grid_editor_assets' ) ) {
 			'language' => $language
 		) );
 
+		add_action( 'init', function() {
+			wp_set_script_translations( 'gbt_18_sk_posts_grid_script', 'shopkeeper-extender', plugin_dir_path( __FILE__ ) . 'languages' );
+		});
+
 		wp_register_style(
 			'gbt_18_sk_posts_grid_editor_styles',
 			plugins_url( 'assets/css/editor.css', dirname(__FILE__) ),

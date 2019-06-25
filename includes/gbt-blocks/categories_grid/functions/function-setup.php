@@ -17,6 +17,10 @@ if ( ! function_exists( 'gbt_18_sk_categories_grid_editor_assets' ) ) {
 		wp_localize_script( 'gbt_18_sk_categories_grid_script', 'getbowtied_pbw',
 	        array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'woo_placeholder_image'	=>	function_exists('wc_placeholder_img_src')? wc_placeholder_img_src() : '' ));
 
+		add_action( 'init', function() {
+			wp_set_script_translations( 'gbt_18_sk_categories_grid_script', 'shopkeeper-extender', plugin_dir_path( __FILE__ ) . 'languages' );
+		});
+			
 		wp_register_style(
 			'gbt_18_sk_categories_grid_editor_styles',
 			plugins_url( 'assets/css/editor.css', dirname(__FILE__) ),

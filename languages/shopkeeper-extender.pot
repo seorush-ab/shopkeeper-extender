@@ -15,88 +15,49 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: core\n"
+"X-Poedit-SearchPathExcluded-1: includes/vendor\n"
+"X-Poedit-SearchPathExcluded-2: includes/custom-menu\n"
+"X-Poedit-SearchPathExcluded-3: includes/customizer\n"
+"X-Poedit-SearchPathExcluded-4: includes/helpers\n"
 
-#: core/updater/Puc/v4p5/Plugin/Ui.php:54
-msgid "View details"
-msgstr ""
-
-#: core/updater/Puc/v4p5/Plugin/Ui.php:77
-#, php-format
-msgid "More information about %s"
-msgstr ""
-
-#: core/updater/Puc/v4p5/Plugin/Ui.php:128
-msgid "Check for updates"
-msgstr ""
-
-#: core/updater/Puc/v4p5/Plugin/Ui.php:213
-#, php-format
-msgctxt "the plugin title"
-msgid "The %s plugin is up to date."
-msgstr ""
-
-#: core/updater/Puc/v4p5/Plugin/Ui.php:215
-#, php-format
-msgctxt "the plugin title"
-msgid "A new version of the %s plugin is available."
-msgstr ""
-
-#: core/updater/Puc/v4p5/Plugin/Ui.php:217
-#, php-format
-msgctxt "the plugin title"
-msgid "Could not determine if updates are available for %s."
-msgstr ""
-
-#: core/updater/Puc/v4p5/Plugin/Ui.php:223
-#, php-format
-msgid "Unknown update checker status \"%s\""
-msgstr ""
-
-#: core/updater/Puc/v4p5/Vcs/PluginUpdateChecker.php:98
-msgid "There is no changelog available."
-msgstr ""
-
-#: includes/addons/class-wc-category-header-image.php:64
-#: includes/addons/class-wc-category-header-image.php:154
-#: includes/addons/class-wc-category-header-image.php:254
+#: includes/addons/class-wc-category-header-image.php:68
+#: includes/addons/class-wc-category-header-image.php:158
+#: includes/addons/class-wc-category-header-image.php:256
 msgid "Header"
 msgstr ""
 
-#: includes/addons/class-wc-category-header-image.php:68
-#: includes/addons/class-wc-category-header-image.php:159
+#: includes/addons/class-wc-category-header-image.php:72
+#: includes/addons/class-wc-category-header-image.php:163
 msgid "Upload/Add image"
 msgstr ""
 
-#: includes/addons/class-wc-category-header-image.php:69
-#: includes/addons/class-wc-category-header-image.php:160
+#: includes/addons/class-wc-category-header-image.php:73
+#: includes/addons/class-wc-category-header-image.php:164
 msgid "Remove image"
 msgstr ""
 
-#: includes/addons/class-wc-category-header-image.php:93
-#: includes/addons/class-wc-category-header-image.php:186
+#: includes/addons/class-wc-category-header-image.php:97
+#: includes/addons/class-wc-category-header-image.php:190
 msgid "Choose an image"
 msgstr ""
 
-#: includes/addons/class-wc-category-header-image.php:95
-#: includes/addons/class-wc-category-header-image.php:188
+#: includes/addons/class-wc-category-header-image.php:99
+#: includes/addons/class-wc-category-header-image.php:192
 msgid "Use image"
 msgstr ""
 
-#: includes/addons/class-wc-category-header-image.php:253
-msgid "Image"
-msgstr ""
-
-#: includes/custom-code/class-custom-code.php:88
+#: includes/custom-code/class-custom-code.php:100
 msgid "Additional JS"
 msgstr ""
 
-#: includes/custom-code/class-custom-code.php:105
+#: includes/custom-code/class-custom-code.php:117
 msgid "Header JavaScript Code"
 msgstr ""
 
-#: includes/custom-code/class-custom-code.php:125
+#: includes/custom-code/class-custom-code.php:137
 msgid "Footer JavaScript Code"
 msgstr ""
 
@@ -173,13 +134,13 @@ msgstr ""
 msgid "Remove Image"
 msgstr ""
 
-#: includes/gbt-blocks/banner/block.js:372
-#: includes/gbt-blocks/slider/blocks/slide.js:348
+#: includes/gbt-blocks/banner/block.js:371
+#: includes/gbt-blocks/slider/blocks/slide.js:347
 msgid "Add Title"
 msgstr ""
 
-#: includes/gbt-blocks/banner/block.js:392
-#: includes/gbt-blocks/slider/blocks/slide.js:375
+#: includes/gbt-blocks/banner/block.js:390
+#: includes/gbt-blocks/slider/blocks/slide.js:373
 msgid "Add Subtitle"
 msgstr ""
 
@@ -293,7 +254,7 @@ msgid "Slide Background"
 msgstr ""
 
 #: includes/gbt-blocks/slider/blocks/slide.js:132
-#: includes/gbt-blocks/slider/blocks/slide.js:402
+#: includes/gbt-blocks/slider/blocks/slide.js:399
 msgid "Button Text"
 msgstr ""
 
@@ -374,15 +335,15 @@ msgstr ""
 msgid "Permalink to %s"
 msgstr ""
 
-#: includes/social-media/class-social-media.php:332
+#: includes/social-media/class-social-media.php:344
 msgid "Top Bar Social Icons"
 msgstr ""
 
-#: includes/social-media/class-social-media.php:351
+#: includes/social-media/class-social-media.php:363
 msgid "Social Networking Icons"
 msgstr ""
 
-#: includes/social-media/class-social-media.php:361
+#: includes/social-media/class-social-media.php:373
 msgid "Social Media"
 msgstr ""
 
