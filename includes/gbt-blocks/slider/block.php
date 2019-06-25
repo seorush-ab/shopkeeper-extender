@@ -26,8 +26,6 @@ if ( ! function_exists( 'gbt_18_sk_slider_editor_assets' ) ) {
 			wp_set_script_translations( 'gbt_18_sk_slider_script', 'shopkeeper-extender', plugin_dir_path( __FILE__ ) . 'languages' );
 		});
 
-
-
 		wp_enqueue_style(
 			'gbt_18_sk_slider_editor_styles',
 			plugins_url( 'assets/css/backend/editor.css', __FILE__ ),

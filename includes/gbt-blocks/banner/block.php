@@ -17,7 +17,6 @@ if ( ! function_exists( 'gbt_18_sk_banner_editor_assets' ) ) {
 
 		add_action( 'init', function() {
 			wp_set_script_translations( 'gbt_18_sk_banner_script', 'shopkeeper-extender', plugin_dir_path( __FILE__ ) . 'languages' );
-
 		});
 
 		wp_enqueue_style(
