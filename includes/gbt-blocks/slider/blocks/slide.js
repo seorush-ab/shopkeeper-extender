@@ -456,9 +456,7 @@
 									color: attributes.textColor
 								},
 							},
-							el( RichText.Content, {
-								value: attributes.title
-							})
+							i18n.__( attributes.title, 'shopkeeper-extender' )
 						),
 						attributes.description != '' && el( 'p',
 							{
@@ -470,10 +468,7 @@
 									color: attributes.textColor
 								},
 							},
-							el( RichText.Content, {
-								value: attributes.description
-							})
-
+							i18n.__( attributes.description, 'shopkeeper-extender' )
 						),
 						!! attributes.slideButton && attributes.buttonText != '' && el( 'a',
 							{
