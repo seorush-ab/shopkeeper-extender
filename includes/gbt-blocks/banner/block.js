@@ -365,7 +365,6 @@
 												fontSize: attributes.titleSize + 'px'
 											},
 											className: 'gbt_18_sk_editor_banner_title',
-											formattingControls: [],
 											tagName: 'h3',
 											format: 'string',
 											value: attributes.title,
@@ -388,7 +387,6 @@
 											tagName: 'p',
 											format: 'string',
 											value: attributes.subtitle,
-											formattingControls: [],
 											placeholder: i18n.__( 'Add Subtitle', 'shopkeeper-extender' ),
 											onChange: function( newSubtitle) {
 												props.setAttributes( { subtitle: newSubtitle } );

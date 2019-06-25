@@ -342,7 +342,6 @@
 											},
 											format: 'string',
 											className: 'gbt_18_sk_editor_slide_title_input',
-											formattingControls: [],
 											tagName: 'h2',
 											value: attributes.title,
 											placeholder: i18n.__( 'Add Title', 'shopkeeper-extender' ),
@@ -371,7 +370,6 @@
 											format: 'string',
 											tagName: 'p',
 											value: attributes.description,
-											formattingControls: [],
 											placeholder: i18n.__( 'Add Subtitle', 'shopkeeper-extender' ),
 											onChange: function( newSubtitle) {
 												props.setAttributes( { description: newSubtitle } );
@@ -398,7 +396,6 @@
 											format: 'string',
 											tagName: 'h5',
 											value: attributes.buttonText,
-											formattingControls: [],
 											placeholder: i18n.__( 'Button Text', 'shopkeeper-extender' ),
 											onChange: function( newText) {
 												props.setAttributes( { buttonText: newText } );
@@ -458,8 +455,10 @@
 									fontSize: attributes.titleSize,
 									color: attributes.textColor
 								},
-								dangerouslySetInnerHTML: { __html: i18n.__( attributes.title, 'shopkeeper-extender' ) }
-							}
+							},
+							el( RichText.Content, {
+								value: attributes.title
+							})
 						),
 						attributes.description != '' && el( 'p',
 							{
@@ -470,8 +469,11 @@
 									fontSize: attributes.descriptionSize,
 									color: attributes.textColor
 								},
-								dangerouslySetInnerHTML: { __html: i18n.__( attributes.description, 'shopkeeper-extender' ) }
-							}
+							},
+							el( RichText.Content, {
+								value: attributes.description
+							})
+
 						),
 						!! attributes.slideButton && attributes.buttonText != '' && el( 'a',
 							{
@@ -483,8 +485,8 @@
 									backgroundColor: attributes.buttonBgColor,
 									color: attributes.buttonTextColor
 								},
-								dangerouslySetInnerHTML: { __html: i18n.__( attributes.buttonText, 'shopkeeper-extender' ) }
-							}
+							},
+							i18n.__( attributes.buttonText, 'shopkeeper-extender' )
 						)
 					)
 				)
