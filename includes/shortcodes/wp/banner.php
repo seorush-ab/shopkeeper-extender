@@ -50,15 +50,15 @@ function sk_banner_shortcode($params = array(), $content = null) {
 			
 				<div class="shortcode_banner_simple_height_inside" style="border: '.$inner_stroke.'px solid '.$inner_stroke_color.'">
 					<div class="shortcode_banner_simple_height_content">
-						<div><h3 class="banner_title" style="color:'.$title_color.'">'.$title.'</h3></div>
+						<div><h3 class="banner_title" style="color:'.$title_color.'">'.wp_kses_post($title).'</h3></div>
 						<div class="shortcode_banner_simple_height_sep" style="margin:'.$sep_padding.' auto; background-color:'.$sep_color.';"></div>
-						<div><h4 class="banner_subtitle" style="color:'.$subtitle_color.'">'.$subtitle.'</h4></div>
+						<div><h4 class="banner_subtitle" style="color:'.$subtitle_color.'">'.wp_kses_post($subtitle).'</h4></div>
 					</div>
 				</div>
 			</div>';
 	
 	if ($with_bullet == 'yes') {
-		$banner_simple_height .= '<div class="shortcode_banner_simple_height_bullet" style="background:'.$bullet_bg_color.'; color:'.$bullet_text_color.'"><span>'.$bullet_text.'</span></div>';
+		$banner_simple_height .= '<div class="shortcode_banner_simple_height_bullet" style="background:'.$bullet_bg_color.'; color:'.$bullet_text_color.'"><span>'.wp_kses_post($bullet_text).'</span></div>';
 	}
 	
 	$banner_simple_height .= '</div>';

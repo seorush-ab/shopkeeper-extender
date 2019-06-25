@@ -151,9 +151,9 @@ function sk_image_slide_shortcode($params = array(), $content = null) {
 				'.$slide_link.'
 				<div class="slider-content" data-swiper-parallax="-50%">
 					<div class="slider-content-wrapper">
-						'.$title.'
-						'.$description.'
-						'.$button.'
+						'.wp_kses_post($title).'
+						'.wp_kses_post($description).'
+						'.wp_kses_post($button).'
 					</div>
 				</div>
 			</div>';
