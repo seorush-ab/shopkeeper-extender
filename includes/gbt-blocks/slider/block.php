@@ -14,7 +14,7 @@ if ( ! function_exists( 'gbt_18_sk_slider_editor_assets' ) ) {
 			plugins_url( 'blocks/slide.js', __FILE__ ),
 			array( 'wp-blocks', 'wp-i18n', 'wp-element' )
 		);
-		
+
 		wp_enqueue_script(
 			'gbt_18_sk_slider_script',
 			plugins_url( 'blocks/slider.js', __FILE__ ),
@@ -41,7 +41,7 @@ if ( ! function_exists( 'gbt_18_sk_slider_editor_assets' ) ) {
 add_action( 'enqueue_block_assets', 'gbt_18_sk_slider_assets' );
 if ( ! function_exists( 'gbt_18_sk_slider_assets' ) ) {
 	function gbt_18_sk_slider_assets() {
-		
+
 		wp_enqueue_style(
 			'gbt_18_sk_slider_styles',
 			plugins_url( 'assets/css/frontend/style.css', __FILE__ ),
@@ -53,8 +53,8 @@ if ( ! function_exists( 'gbt_18_sk_slider_assets' ) ) {
 			getbowtied_vendor_scripts();
 		}
 
-		wp_enqueue_style( 'gbt_18_sk_swiper_style' );
-		wp_enqueue_script( 'gbt_18_sk_swiper_script' );
+		wp_enqueue_style( 'swiper' );
+		wp_enqueue_script( 'swiper' );
 
 		wp_enqueue_script(
 			'gbt_18_sk_slider_script',

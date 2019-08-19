@@ -3,8 +3,8 @@
 // [slider]
 function sk_slider_shortcode($params = array(), $content = null) {
 
-	wp_enqueue_style( 'gbt_18_sk_swiper_style' );
-	wp_enqueue_script( 'gbt_18_sk_swiper_script' );
+	wp_enqueue_style( 'swiper' );
+	wp_enqueue_script( 'swiper' );
 
 	wp_enqueue_style(  'shopkeeper-slider-shortcode-styles' );
 	wp_enqueue_script( 'shopkeeper-slider-shortcode-script' );
@@ -24,14 +24,14 @@ function sk_slider_shortcode($params = array(), $content = null) {
 		$height = 'height:'.$custom_height.';';
 		$extra_class = '';
 	}
-	else 
+	else
 	{
 		$height = '';
 		$extra_class = 'full_height';
 	}
 
 	$bottom_line = '<style>
-		
+
 						.shortcode_getbowtied_slider .shortcode-slider-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active:after
 						{
 							background-color: '. $color_navigation_bullets . ';
@@ -41,7 +41,7 @@ function sk_slider_shortcode($params = array(), $content = null) {
 
 
 	$getbowtied_slider = $bottom_line . '
-		
+
 		<div class="shortcode_getbowtied_slider swiper-container '.$extra_class.'" style="'.$height.' width: 100%" data-autoplay="'.$custom_autoplay_speed.'">
 			<div class="swiper-wrapper">
 			'.do_shortcode($content).'
@@ -59,7 +59,7 @@ function sk_slider_shortcode($params = array(), $content = null) {
     endif;
 
 	$getbowtied_slider .=	'</div>';
-	
+
 	return $getbowtied_slider;
 }
 
@@ -108,7 +108,7 @@ function sk_image_slide_shortcode($params = array(), $content = null) {
 		$title = "";
 	}
 
-	if (is_numeric($bg_image)) 
+	if (is_numeric($bg_image))
 	{
 		$bg_image = wp_get_attachment_url($bg_image);
 	} else {
@@ -134,14 +134,14 @@ function sk_image_slide_shortcode($params = array(), $content = null) {
 	{
 		$slide_link = '<a href="'.$button_url.'" class="fullslidelink"></a>';
 	}
-	else 
+	else
 	{
 		$slide_link = '';
 	}
-	
+
 
 	$getbowtied_image_slide = '
-			<div class="swiper-slide '.$class.'" 
+			<div class="swiper-slide '.$class.'"
 			style=	"background: '.$bg_color.' url('.$bg_image.') center center no-repeat ;
 					-webkit-background-size: cover;
 					-moz-background-size: cover;
