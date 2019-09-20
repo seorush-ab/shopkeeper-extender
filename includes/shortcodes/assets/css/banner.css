@@ -3,6 +3,9 @@
   margin-bottom: 2.5rem;
   clear: both;
   position: relative; }
+  @media all and (max-width: 768px) {
+    .shortcode_banner_simple_height {
+      height: auto !important; } }
 
 .shortcode_banner_simple_height_inner {
   padding: 15px;
