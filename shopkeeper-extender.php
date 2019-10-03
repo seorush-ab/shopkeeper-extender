@@ -99,9 +99,7 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 			if( $theme->template == 'shopkeeper' && ( $theme->version >= '2.8.6' || ( !empty($parent_theme) && $parent_theme->version >= '2.8.6' ) ) ) {
 
 				//Custom Menu
-				include_once( dirname( __FILE__ ) . '/includes/custom-menu/custom-menu.php' );
-				include_once( dirname( __FILE__ ) . '/includes/custom-menu/edit_custom_walker.php' );
-				include_once( dirname( __FILE__ ) . '/includes/custom-menu/custom_walker.php' );
+				include_once( dirname( __FILE__ ) . '/includes/custom-menu/index.php' );
 			}
 		}
 

@@ -1,9 +1,7 @@
 <?php
 /**
 
-
  /!\ This is a copy of Walker_Nav_Menu_Edit class in core
-
 
  * Navigation Menu API: Walker_Nav_Menu_Edit class
  *
@@ -207,7 +205,7 @@ if( !class_exists('Walker_Nav_Menu_Edit_Custom')) {
 
 					<?php
 		            /* New fields insertion starts here */
-		            ?>      
+		            ?>
 		            <p class="field-background-url description description-wide">
 		                <label for="edit-menu-item-background_url-<?php echo esc_attr( $item_id ); ?>">
 		                    <?php esc_html_e( 'Background URL', 'shopkeeper-extender' ); ?><br />
