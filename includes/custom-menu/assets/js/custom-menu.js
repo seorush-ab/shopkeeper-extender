@@ -2,22 +2,6 @@ jQuery(function($) {
 
 	"use strict";
 
-	$('.menu-item a.has-hover-img').on({
-        mouseenter: function() {
-            if( $(this)[0] ) {
-                new HoverImgFx1($(this)[0]);
-            }
-        },
-        mouseleave: function() {
-            if($(this).find('.hover-reveal')){
-                var el = $(this);
-                setTimeout( function() {
-                    el.find('.hover-reveal').remove();
-                },300);
-            }
-        }
-    });
-
     const getMousePos = (e) => {
         let posx = 0;
         let posy = 0;
@@ -33,7 +17,7 @@ jQuery(function($) {
         return { x : posx, y : posy }
     }
 
-    class HoverImgFx1 {
+    class HoverImage {
         constructor(el) {
             this.DOM = {el: el};
             this.DOM.reveal = document.createElement('div');
@@ -58,7 +42,10 @@ jQuery(function($) {
             };
             this.mouseenterFn = (ev) => {
                 this.positionElement(ev);
-                this.showImage();
+                var elem = this;
+                setTimeout( function() {
+                    elem.showImage();
+                }, 300);
             };
             this.mousemoveFn = ev => requestAnimationFrame(() => {
                 this.positionElement(ev);
@@ -124,4 +111,18 @@ jQuery(function($) {
             }), 'begin');
         }
     }
+
+    $('.menu-item a.has-hover-img').on({
+        mouseenter: function() {
+            new HoverImage($(this)[0]);
+        },
+        mouseleave: function() {
+            if($(this).find('.hover-reveal')){
+                var el = $(this);
+                setTimeout( function() {
+                    el.find('.hover-reveal').remove();
+                },350);
+            }
+        }
+    });
 });
