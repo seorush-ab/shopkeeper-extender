@@ -3,24 +3,28 @@
 	const el = element.createElement;
 
 	/* Blocks */
-	const registerBlockType   	= blocks.registerBlockType;
+	const registerBlockType = blocks.registerBlockType;
 
-	const InspectorControls 	= editor.InspectorControls;
+	const {
+		TextControl,
+		SelectControl,
+		RadioControl,
+		ToggleControl,
+		SVG,
+		Path,
+	} = wp.components;
 
-	const TextControl 			= components.TextControl;
-	const RadioControl        	= components.RadioControl;
-	const SelectControl			= components.SelectControl;
-	const ToggleControl			= components.ToggleControl;
-	const SVG 					= components.SVG;
-	const Path 					= components.Path;
+	const {
+		InspectorControls,
+	} = wp.blockEditor;
 
-	const apiFetch 				= wp.apiFetch;
+	const apiFetch = wp.apiFetch;
 
 	/* Register Block */
 	registerBlockType( 'getbowtied/sk-categories-grid', {
 		title: i18n.__( 'Product Categories - Grid', 'shopkeeper-extender' ),
 		icon: el( SVG, { xmlns:'http://www.w3.org/2000/svg', viewBox:'0 0 24 24' },
-				el( Path, { d:'M19 5v2h-4V5h4M9 5v6H5V5h4m10 8v6h-4v-6h4M9 17v2H5v-2h4M21 3h-8v6h8V3zM11 3H3v10h8V3zm10 8h-8v10h8V11zm-10 4H3v6h8v-6z' } ) 
+				el( Path, { d:'M19 5v2h-4V5h4M9 5v6H5V5h4m10 8v6h-4v-6h4M9 17v2H5v-2h4M21 3h-8v6h8V3zM11 3H3v10h8V3zm10 8h-8v10h8V11zm-10 4H3v6h8v-6z' } )
 			),
 		category: 'shopkeeper',
 		supports: {
@@ -265,7 +269,7 @@
 				for ( let i = 0; i < categories.length; i++ ) {
 
 					cat_class = "";
-					cat_counter++;   
+					cat_counter++;
 
 					switch ( categories.length ) {
 						case 1:
@@ -295,7 +299,7 @@
 					if ( categories[i].image !== null ) { img = categories[i]['image']['src'] } else { img = '' };
 					categoryElements.push(
 						el( 'div',
-							{	
+							{
 								key: 		'gbt_18_sk_editor_category_' + cat_class + '_item-' + categories[i].id,
 								className: 	'gbt_18_sk_editor_category_' + cat_class
 							},
@@ -373,7 +377,7 @@
 					case 'title_desc':
 						query += '&orderby=slug&order=desc';
 						break;
-					default: 
+					default:
 						break;
 				}
 
@@ -403,8 +407,8 @@
 					case 'title_asc':
 						order = '&orderby=title&order=asc';
 					break;
-					default: 
-						
+					default:
+
 					break;
 				}
 
@@ -430,16 +434,16 @@
 					}
 					categoryElements.push(
 						el(
-							'span', 
+							'span',
 							{
 								key: 	   'item-' + categories[i].id,
 								className: _searchResultClass(categories[i].id),
 								title: categories[i].name.replace(/&amp;/g, '&'),
 								'data-index': i,
-							}, 
+							},
 							img,
 							el(
-								'label', 
+								'label',
 								{
 									className: 'title-wrapper'
 								},
@@ -458,7 +462,7 @@
 												qSR.splice(index,1);
 											}
 											props.setAttributes({ selectedIDS: qSR });
-											
+
 											let query = getQuery('?include=' + qSR.join(',') + '&orderby=include');
 											if ( qSR.length > 0 ) {
 												props.setAttributes({queryCategories: query});
@@ -503,15 +507,15 @@
 					}
 					categoryElements.push(
 						el(
-							'span', 
+							'span',
 							{
 								key 	 : 'item-' + categories[i].id,
-								className:'single-result', 
+								className:'single-result',
 								title: categories[i].name.replace(/&amp;/g, '&'),
-							}, 
-							img, 
+							},
+							img,
 							el(
-								'label', 
+								'label',
 								{
 									className: 'title-wrapper'
 								},
@@ -523,14 +527,14 @@
 										onChange: function onChange(evt) {
 											let _this = evt.target;
 
-											
+
 											let qSS = attributes.selectedIDS;
 											let index = qSS.indexOf(categories[evt.target.value].id);
 											if (index != -1) {
 												qSS.splice(index,1);
 											}
 											props.setAttributes({ selectedIDS: qSS });
-											
+
 											let query = getQuery('?include=' + qSS.join(',') + '&orderby=include');
 											if ( qSS.length > 0 ) {
 												props.setAttributes({queryCategories: query});
@@ -553,7 +557,7 @@
 			}
 
 		//==============================================================================
-		//	Main controls 
+		//	Main controls
 		//==============================================================================
 			return [
 				el(
@@ -618,7 +622,7 @@
 						),
 						attributes.queryDisplayType === 'specific' && attributes.querySearchString != '' && el(
 							'div',
-							{ 
+							{
 								className: 'products-ajax-search-results',
 							},
 							renderSearchResults(),

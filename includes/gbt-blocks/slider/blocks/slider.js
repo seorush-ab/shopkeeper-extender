@@ -3,23 +3,27 @@
 	const el = element.createElement;
 
 	/* Blocks */
-	const registerBlockType   	= wp.blocks.registerBlockType;
+	const registerBlockType = wp.blocks.registerBlockType;
 
-	const InspectorControls 	= wp.editor.InspectorControls;
-	const InnerBlock 			= wp.editor.InnerBlocks;
-	const ColorSettings			= wp.editor.PanelColorSettings;
+	const {
+		TextControl,
+		SelectControl,
+		PanelBody,
+		ToggleControl,
+		Button,
+		RangeControl,
+		TabPanel,
+		SVG,
+		Path,
+		Circle,
+		Polygon,
+	} = wp.components;
 
-	const SelectControl			= wp.components.SelectControl;
-	const ToggleControl			= wp.components.ToggleControl;
-	const TextControl 			= wp.components.TextControl;
-	const Button 				= wp.components.Button;
-	const RangeControl			= wp.components.RangeControl;
-	const PanelBody				= wp.components.PanelBody;
-	const TabPanel 				= wp.components.TabPanel;
-	const SVG 					= wp.components.SVG;
-	const Path 					= wp.components.Path;
-	const Circle 				= wp.components.Circle;
-	const Polygon 				= wp.components.Polygon;
+	const {
+		InspectorControls,
+		InnerBlocks,
+		PanelColorSettings,
+	} = wp.blockEditor;
 
 	/* Register Block */
 	registerBlockType( 'getbowtied/sk-slider', {
@@ -34,7 +38,7 @@
 				el( Circle, {cx: "30", cy: "82.5", r: "2.5"}),
 				el( Polygon, { points: "10,40 5,45 10,50 "}),
 				el( Polygon, { points: "90,50 95,45 90,40 "}),
-				el( Path, { d:'M65,40c4.1,0,7.5-3.4,7.5-7.5S69.1,25,65,25s-7.5,3.4-7.5,7.5S60.9,40,65,40z M65,30c1.4,0,2.5,1.1,2.5,2.5 S66.4,35,65,35s-2.5-1.1-2.5-2.5S63.6,30,65,30z' } ) 
+				el( Path, { d:'M65,40c4.1,0,7.5-3.4,7.5-7.5S69.1,25,65,25s-7.5,3.4-7.5,7.5S60.9,40,65,40z M65,30c1.4,0,2.5,1.1,2.5,2.5 S66.4,35,65,35s-2.5-1.1-2.5-2.5S63.6,30,65,30z' } )
 			),
 		category: 'shopkeeper',
 		supports: {
@@ -99,7 +103,7 @@
 				                key: 'slide' + i,
 				                className: 'slide-tab slide-' + i,
 				                'data-tab': i,
-				                onClick: function() {				                	
+				                onClick: function() {
                     				props.setAttributes({ activeTab: i });
                                 },
 				            },
@@ -119,7 +123,7 @@
 				}
 
 				return tabs;
-			} 
+			}
 
 			function getTemplates() {
 				let n = [];
@@ -139,7 +143,7 @@
 
 				if( attributes.pagination ) {
 					colors.push(
-						{ 
+						{
 							label: i18n.__( 'Pagination Bullets', 'shopkeeper-extender' ),
 							value: attributes.paginationColor,
 							onChange: function( newColor) {
@@ -151,7 +155,7 @@
 
 				if( attributes.arrows ) {
 					colors.push(
-						{ 
+						{
 							label: i18n.__( 'Navigation Arrows', 'shopkeeper-extender' ),
 							value: attributes.arrowsColor,
 							onChange: function( newColor) {
@@ -167,7 +171,7 @@
 			return [
 				el(
 					InspectorControls,
-					{ 
+					{
 						key: 'gbt_18_sk_slider_inspector'
 					},
 					el(
@@ -241,7 +245,7 @@
 							}
 						),
 						el(
-							ColorSettings,
+							PanelColorSettings,
 							{
 								key: 'gbt_18_sk_slider_arrows_color',
 								title: i18n.__( 'Colors', 'shopkeeper-extender' ),
@@ -265,7 +269,7 @@
 						getTabs()
 					),
 					el(
-						InnerBlock,
+						InnerBlocks,
 						{
 							key: 'gbt_18_sk_editor_slider_inner_blocks ',
 							template: getTemplates(),
@@ -281,13 +285,13 @@
 
 			let attributes = props.attributes;
 
-			return el( 
+			return el(
 				'div',
 				{
 					key: 'gbt_18_sk_slider_wrapper',
 					className: 'gbt_18_sk_slider_wrapper'
 				},
-				el( 
+				el(
 					'div',
 					{
 						key: 'gbt_18_sk_slider_container',
@@ -303,7 +307,7 @@
 							key: 'swiper-wrapper',
 							className: 'swiper-wrapper'
 						},
-						el( InnerBlock.Content, { key: 'slide-content' } )
+						el( InnerBlocks.Content, { key: 'slide-content' } )
 					),
 					!! attributes.arrows && el(
 						'div',
@@ -315,7 +319,7 @@
 								color: attributes.arrowsColor
 							}
 						},
-						el( SVG, 
+						el( SVG,
 							{
 								className: 'left-arrow-svg',
 								xmlns:'http://www.w3.org/2000/svg',
@@ -325,7 +329,7 @@
 									fill: attributes.arrowsColor
 								}
 							},
-							el( Path, { d:'M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z' } ) 
+							el( Path, { d:'M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z' } )
 						),
 					),
 					!! attributes.arrows && el(
@@ -338,7 +342,7 @@
 								color: attributes.arrowsColor
 							}
 						},
-						el( SVG, 
+						el( SVG,
 							{
 								className: 'right-arrow-svg',
 								xmlns:'http://www.w3.org/2000/svg',
@@ -348,7 +352,7 @@
 									fill: attributes.arrowsColor
 								}
 							},
-							el( Path, { d:'M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z' } ) 
+							el( Path, { d:'M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z' } )
 						),
 					),
 					!! attributes.pagination && el(

@@ -3,25 +3,29 @@
 	const el = element.createElement;
 
 	/* Blocks */
-	const registerBlockType   	= wp.blocks.registerBlockType;
+	const registerBlockType = wp.blocks.registerBlockType;
 
-	const InspectorControls 	= wp.editor.InspectorControls;
+	const {
+		TextControl,
+		SelectControl,
+		RadioControl,
+		ToggleControl,
+		RangeControl,
+		SVG,
+		Path,
+	} = wp.components;
 
-	const TextControl 			= wp.components.TextControl;
-	const RadioControl       	= wp.components.RadioControl;
-	const SelectControl			= wp.components.SelectControl;
-	const ToggleControl			= wp.components.ToggleControl;
-	const RangeControl			= wp.components.RangeControl;
-	const SVG 					= wp.components.SVG;
-	const Path 					= wp.components.Path;
+	const {
+		InspectorControls,
+	} = wp.blockEditor;
 
-	const apiFetch 				= wp.apiFetch;
+	const apiFetch = wp.apiFetch;
 
 	/* Register Block */
 	registerBlockType( 'getbowtied/sk-posts-grid', {
 		title: i18n.__( 'Posts Grid', 'shopkeeper-extender' ),
 		icon: el( SVG, { xmlns:'http://www.w3.org/2000/svg', viewBox:'0 0 24 24' },
-				el( Path, { d:'M4 5v13h17V5H4zm10 2v3.5h-3V7h3zM6 7h3v3.5H6V7zm0 9v-3.5h3V16H6zm5 0v-3.5h3V16h-3zm8 0h-3v-3.5h3V16zm-3-5.5V7h3v3.5h-3z' } ) 
+				el( Path, { d:'M4 5v13h17V5H4zm10 2v3.5h-3V7h3zM6 7h3v3.5H6V7zm0 9v-3.5h3V16H6zm5 0v-3.5h3V16h-3zm8 0h-3v-3.5h3V16zm-3-5.5V7h3v3.5h-3z' } )
 			),
 		category: 'shopkeeper',
 		supports: {
@@ -157,7 +161,7 @@
 					case 'title_desc':
 						query += '&orderby=title&order=desc';
 						break;
-					default: 
+					default:
 						break;
 				}
 
@@ -243,38 +247,38 @@
 						if ( posts[i]['fimg_url'] ) { img = posts[i]['fimg_url']; img_class = 'gbt_18_sk_editor_posts_grid_with_img'; } else { img_class = 'gbt_18_sk_editor_posts_grid_noimg'; img = ''; };
 
 						postElements.push(
-							el( "div", 
+							el( "div",
 								{
-									key: 		'gbt_18_sk_editor_posts_grid_item_' + posts[i].id, 
+									key: 		'gbt_18_sk_editor_posts_grid_item_' + posts[i].id,
 									className: 	'gbt_18_sk_editor_posts_grid_item'
 								},
-								el( "a", 
+								el( "a",
 									{
-										key: 		'gbt_18_sk_editor_posts_grid_item_link',
+										key: 		'gbt_18_sk_editor_posts_grid_item_link_' + i,
 										className: 	'gbt_18_sk_editor_posts_grid_item_link'
 									},
-									el( "span", 
-										{ 
-											key: 		'gbt_18_sk_editor_posts_grid_img_container',
+									el( "span",
+										{
+											key: 		'gbt_18_sk_editor_posts_grid_img_container_' + i,
 											className: 	'gbt_18_sk_editor_posts_grid_img_container'
 										},
-										el( "span", 
+										el( "span",
 											{
-												key: 'gbt_18_sk_editor_posts_grid_img_overlay',
+												key: 'gbt_18_sk_editor_posts_grid_img_overlay_' + i,
 												className: 'gbt_18_sk_editor_posts_grid_img_overlay'
 											}
 										),
-										el( "span", 
+										el( "span",
 											{
-												key: 		'gbt_18_sk_editor_posts_grid_img',
+												key: 		'gbt_18_sk_editor_posts_grid_img_' + i,
 												className: 	'gbt_18_sk_editor_posts_grid_img ' + img_class,
 												style: 		{ backgroundImage: 'url(' + img + ')' }
 											}
 										)
 									),
-									el( "span", 
+									el( "span",
 										{
-											key: 		'gbt_18_sk_editor_posts_grid_title',
+											key: 		'gbt_18_sk_editor_posts_grid_title_' + i,
 											className:  'gbt_18_sk_posts_grid_title',
 											dangerouslySetInnerHTML: { __html: posts[i]['title']['rendered'] }
 										}
@@ -283,8 +287,8 @@
 							)
 						);
 					}
-				} 
-				
+				}
+
 				return postElements;
 			}
 
@@ -298,7 +302,7 @@
 				let options = [];
 				let optionsIDs = [];
 				let sorted = [];
-			
+
 				apiFetch({ path: '/wp/v2/categories?per_page=-1&lang=' + posts_grid_vars.language }).then(function (categories) {
 
 				 	for( let i = 0; i < categories.length; i++) {
@@ -324,15 +328,17 @@
 							el(
 								'li',
 								{
+									key: 'category_li__' + i,
 									className: 'level-' + catArr[i].level,
 								},
 								el(
 								'label',
 									{
+										key: 'category_label_' + i,
 										className: _categoryClassName( catArr[i].parent, catArr[i].value ) + ' ' + catArr[i].level,
 									},
 									el(
-									'input', 
+									'input',
 										{
 											type:  'checkbox',
 											key:   'category-checkbox-' + catArr[i].value,
@@ -355,7 +361,7 @@
 												props.setAttributes({ categoriesIDs: newCategoriesSelected });
 												props.setAttributes({ queryPosts: _buildQuery(newCategoriesSelected, attributes.number, attributes.orderby) });
 											},
-										}, 
+										},
 									),
 									catArr[i].label,
 									el(
@@ -367,11 +373,11 @@
 								renderCategories( catArr[i].value, level+1)
 							),
 						);
-					} 
-				}	
+					}
+				}
 				if (categoryElements.length > 0 ) {
 					let wrapper = el('ul', {className: 'level-' + level}, categoryElements);
-					return wrapper;		
+					return wrapper;
 				} else {
 					return;
 				}
@@ -469,7 +475,7 @@
 				el( 'div',
 					{
 						key: 		'gbt_18_sk_posts_grid',
-						className: 	'gbt_18_sk_posts_grid'	
+						className: 	'gbt_18_sk_posts_grid'
 					},
 					el(
 						'div',
