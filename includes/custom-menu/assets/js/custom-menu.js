@@ -65,7 +65,7 @@ jQuery(function($) {
             this.tl = new TimelineMax({
                 onStart: () => {
                     this.DOM.reveal.style.opacity = 1;
-                    TweenMax.set(this.DOM.el, {zIndex: 1000});
+                    TweenMax.set(this.DOM.el, {zIndex: 9999});
                 }
             })
             .add('begin')
@@ -92,7 +92,7 @@ jQuery(function($) {
 
             this.tl = new TimelineMax({
                 onStart: () => {
-                    TweenMax.set(this.DOM.el, {zIndex: 999});
+                    TweenMax.set(this.DOM.el, {zIndex: 9999});
                 },
                 onComplete: () => {
                     TweenMax.set(this.DOM.el, {zIndex: ''});

@@ -50,12 +50,13 @@ class SK_Extender_Custom_Menu_Output extends Walker_Nav_Menu {
 	}
 
 	 function start_lvl(&$output, $depth = 0, $args = array()) {
-		if ($args->background_url != "") {
-			$bg_class = "with_bg_image";
-			$bg_style = 'style="background-image:url('.$args->background_url.');"';
-		} else {
-			$bg_class = "";
-			$bg_style = "";
+		 $bg_class = "";
+		 $bg_style = "";
+		if( $depth <= 1 ) {
+			if ($args->background_url != "") {
+				$bg_class = "with_bg_image";
+				$bg_style = 'style="background-image:url('.$args->background_url.');"';
+			}
 		}
 		$indent = str_repeat("\t", $depth);
 		$output .= "\n$indent<ul class=\"sub-menu ".$bg_class." level-".$depth."\" ".$bg_style.">\n";
