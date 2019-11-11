@@ -64,9 +64,6 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 
 			if( ( $theme->template == 'shopkeeper' && ( $theme->version >= '2.8' || ( !empty($parent_theme) && $parent_theme->version >= '2.8' ) ) ) || $theme->template != 'shopkeeper' ) {
 
-				// Customizer
-				include_once( dirname( __FILE__ ) . '/includes/customizer/class/class-control-toggle.php' );
-
 				// Shortcodes
 				include_once( dirname( __FILE__ ) . '/includes/shortcodes/index.php' );
 
