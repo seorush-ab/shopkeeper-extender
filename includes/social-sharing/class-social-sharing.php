@@ -59,7 +59,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 		*/
 		protected function enqueue_styles() {
 			add_action( 'wp_enqueue_scripts', function() {
-				wp_enqueue_style('sk-social-sharing-styles', plugins_url( 'assets/css/social-sharing.css', __FILE__ ), NULL );
+				wp_enqueue_style('sk-social-sharing-styles', plugins_url( 'assets/css/social-sharing'.SK_EXT_ENQUEUE_SUFFIX.'.css', __FILE__ ), NULL );
 			});
 		}
 

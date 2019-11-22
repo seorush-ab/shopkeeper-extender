@@ -8,10 +8,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 add_action( 'enqueue_block_editor_assets', 'gbt_18_sk_social_media_editor_assets' );
 if ( ! function_exists( 'gbt_18_sk_social_media_editor_assets' ) ) {
     function gbt_18_sk_social_media_editor_assets() {
-    	
+
         wp_register_script(
             'gbt_18_sk_social_media_script',
-            plugins_url( 'block.js', __FILE__ ),
+            plugins_url( 'block'.SK_EXT_ENQUEUE_SUFFIX.'.js', __FILE__ ),
             array( 'wp-blocks', 'wp-components', 'wp-editor', 'wp-i18n', 'wp-element' )
         );
 
@@ -21,7 +21,7 @@ if ( ! function_exists( 'gbt_18_sk_social_media_editor_assets' ) ) {
 
         wp_register_style(
             'gbt_18_sk_social_media_editor_styles',
-            plugins_url( 'assets/css/editor.css', __FILE__ ),
+            plugins_url( 'assets/css/editor'.SK_EXT_ENQUEUE_SUFFIX.'.css', __FILE__ ),
             array( 'wp-edit-blocks' ),
             filemtime(plugin_dir_path(__FILE__) . 'assets/css/editor.css')
         );

@@ -32,6 +32,7 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
     require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 }
 
+define( 'SK_EXT_ENQUEUE_SUFFIX', SCRIPT_DEBUG ? '' : '.min' );
 
 if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 

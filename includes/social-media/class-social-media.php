@@ -82,7 +82,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 		*/
 		protected function enqueue_styles() {
 			add_action( 'wp_enqueue_scripts', function() {
-				wp_enqueue_style('sk-social-media-styles', plugins_url( 'assets/css/social-media.css', __FILE__ ), NULL );
+				wp_enqueue_style('sk-social-media-styles', plugins_url( 'assets/css/social-media'.SK_EXT_ENQUEUE_SUFFIX.'.css', __FILE__ ), NULL );
 			});
 		}
 
