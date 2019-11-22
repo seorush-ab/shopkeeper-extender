@@ -23,7 +23,7 @@ if ( ! function_exists( 'gbt_18_sk_social_media_editor_assets' ) ) {
             'gbt_18_sk_social_media_editor_styles',
             plugins_url( 'assets/css/editor'.SK_EXT_ENQUEUE_SUFFIX.'.css', __FILE__ ),
             array( 'wp-edit-blocks' ),
-            filemtime(plugin_dir_path(__FILE__) . 'assets/css/editor.css')
+            filemtime(plugin_dir_path(__FILE__) . 'assets/css/editor'.SK_EXT_ENQUEUE_SUFFIX.'.css')
         );
     }
 }
