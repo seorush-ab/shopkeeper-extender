@@ -61,7 +61,7 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_categories_grid' ) ) {
 						$image = wp_get_attachment_url( $thumbnail_id );
 
 						$cat_class = "";
-						$cat_counter++;   
+						$cat_counter++;
 
 						switch ($cat_number) {
 							case 1:
@@ -88,11 +88,11 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_categories_grid' ) ) {
 						} ?>
 			            <div class="gbt_18_sk_category_<?php echo $cat_class; ?>">
 							<div class="gbt_18_sk_category_grid_box">
-								<span class="gbt_18_sk_category_item_bkg" style="background-image:url(<?php echo esc_url($image); ?>)"></span> 
+								<span class="gbt_18_sk_category_item_bkg" style="background-image:url(<?php echo esc_url($image); ?>)"></span>
 								<a href="<?php echo get_term_link( $category->slug, 'product_cat' ); ?>" class="gbt_18_sk_category_item" >
 									<h4 class="gbt_18_sk_category_name"><?php echo esc_html($category->name); ?>
 										<?php if ( $productCount ) { ?>
-											<sup class="gbt_18_sk_category_count"><?php echo esc_html($category->count); ?></sup>
+											<span class="gbt_18_sk_category_count"><?php echo esc_html($category->count); ?></span>
 										<?php } ?>
 									</h4>
 								</a>

@@ -32,15 +32,11 @@
   overflow: hidden;
   position: relative;
   display: block;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden; }
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; }
 
 .gbt_18_sk_categories_grid .gbt_18_sk_categories_grid_wrapper .gbt_18_sk_category_count {
   margin-left: 7px; }
-
-.gbt_18_sk_categories_grid .gbt_18_sk_categories_grid_wrapper .gbt_18_sk_category_grid_box:hover .gbt_18_sk_category_item_bkg {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0); }
 
 .gbt_18_sk_categories_grid .gbt_18_sk_categories_grid_wrapper .gbt_18_sk_category_item_bkg {
   height: 100%;
@@ -62,9 +58,7 @@
   transition: opacity 0.35s, -webkit-transform 0.35s;
   -o-transition: opacity 0.35s, transform 0.35s;
   transition: opacity 0.35s, transform 0.35s;
-  transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s;
-  -webkit-transform: translate3d(-40px, 0, 0);
-  transform: translate3d(-40px, 0, 0); }
+  transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s; }
 
 .gbt_18_sk_categories_grid .gbt_18_sk_categories_grid_wrapper:before,
 .gbt_18_sk_categories_grid .gbt_18_sk_categories_grid_wrapper:after {
@@ -84,6 +78,8 @@
   position: relative;
   text-decoration: none;
   border-spacing: 0; }
+  .gbt_18_sk_categories_grid .gbt_18_sk_categories_grid_wrapper .gbt_18_sk_category_item:hover {
+    opacity: 1 !important; }
 
 .gbt_18_sk_categories_grid .gbt_18_sk_categories_grid_wrapper .gbt_18_sk_category_name {
   width: 100%;
@@ -99,8 +95,8 @@
   position: relative;
   z-index: 2; }
 
-.gbt_18_sk_categories_grid .gbt_18_sk_categories_grid_wrapper .gbt_18_sk_category_name:hover {
-  background: rgba(0, 0, 0, 0.6); }
+.gbt_18_sk_categories_grid .gbt_18_sk_category_grid_box:hover .gbt_18_sk_category_item_bkg {
+  opacity: .7; }
 
 @media all and (min-width: 40em) {
   .gbt_18_sk_categories_grid_wrapper .gbt_18_sk_category_1 {
@@ -353,10 +349,3 @@
   .gbt_18_sk_categories_grid_wrapper .gbt_18_sk_category_two_cat_2 .gbt_18_sk_category_item,
   .gbt_18_sk_categories_grid_wrapper .gbt_18_sk_category_one_cat_1 .gbt_18_sk_category_item {
     height: 13.33333rem; } }
-
-@media all and (min-width: 63.9375em) {
-  .gbt_18_sk_categories_grid_wrapper .gbt_18_sk_category_item:hover {
-    opacity: 1 !important; }
-    .gbt_18_sk_categories_grid_wrapper .gbt_18_sk_category_item:hover .gbt_18_sk_category_name,
-    .gbt_18_sk_categories_grid_wrapper .gbt_18_sk_category_item:hover .gbt_18_sk_category_count {
-      opacity: 1 !important; } }
