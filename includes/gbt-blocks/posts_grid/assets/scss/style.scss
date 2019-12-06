@@ -34,7 +34,7 @@
 
 	    &.columns-3 {
 	    	@media all and (min-width: 640px) {
-		    	padding: 0 20px;		
+		    	padding: 0 20px;
 		    }
 
 		    @media all and (max-width: 639px) {
@@ -46,7 +46,7 @@
 
 	    &.columns-4 {
 	    	@media all and (min-width: 640px) {
-		    	padding: 0 20px;		
+		    	padding: 0 20px;
 		    }
 
 		    @media all and (max-width: 639px) {
@@ -76,7 +76,7 @@
 		position: relative;
 	  	overflow: hidden;
 
-		&.columns-1 
+		&.columns-1
 		{
 			.gbt_18_sk_posts_grid_item {
 				width: 100%;
@@ -175,7 +175,7 @@
 		}
 
 		.gbt_18_sk_posts_grid_item {
-			padding: 0 15px;	
+			padding: 0 15px;
 		    margin-bottom: 2rem;
 
 		    @media all and (max-width: 639px) {
@@ -190,7 +190,7 @@
 		    transition: all .5s;
 
 			&:hover {
-			    opacity: 1;
+			    opacity: .7;
 		        transition: all .5s;
 			}
 		}
@@ -221,7 +221,7 @@
 			width: 100%;
 			padding-bottom: 100%;
 			margin-bottom: 35px;
-			
+
 			-webkit-mask-image: -webkit-radial-gradient(white, black);
 
 			@media all and (min-width: 640px) and (max-width: 1023px) {
@@ -237,7 +237,7 @@
 					background-position-x: 0px;
 				}
 			}
-		}	
+		}
 
 		.gbt_18_sk_posts_grid_img {
 			display: block;
@@ -246,7 +246,7 @@
 			padding-bottom: 100%;
 			background-position-x: -50px;
 			background-position-y: center;
-			background-size:cover;		
+			background-size:cover;
 			width: -webkit-calc(100% + 50px);
 			width: calc(100% + 50px);
 			max-width: none;
