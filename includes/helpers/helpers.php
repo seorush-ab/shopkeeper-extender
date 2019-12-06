@@ -31,3 +31,7 @@ function sk_bool_to_string( $bool ) {
 function sk_string_to_bool( $string ) {
 	return is_bool( $string ) ? $string : ( 'yes' === $string || 1 === $string || 'true' === $string || '1' === $string );
 }
+
+function sk_sanitize_checkbox( $input ) {
+	return sk_string_to_bool($input);
+}

@@ -32,7 +32,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 			$this->enqueue_styles();
 			$this->customizer_options();
 
-			if ( get_option( 'sk_sharing_options', 'yes' ) == 'yes' ) {
+			if ( get_option( 'sk_sharing_options', true ) ) {
 				add_filter( 'getbowtied_woocommerce_before_single_product_summary_data_tabs', array( $this, 'getbowtied_single_share_product' ), 50 );
 			}
 		}
@@ -71,8 +71,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 		 */
 		private function import_options() {
 
-			$sharing_option = get_theme_mod( 'sharing_options', true ) ? 'yes' : 'no';
-			update_option( 'sk_sharing_options', $sharing_option );
+			update_option( 'sk_sharing_options', get_theme_mod( 'sharing_options', true ) );
 		}
 
 		/**
@@ -96,8 +95,9 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 			$wp_customize->add_setting( 'sk_sharing_options', array(
 				'type'		 			=> 'option',
 				'capability' 			=> 'manage_options',
-				'sanitize_callback'    	=> 'sk_string_to_bool',
-				'default'	 			=> 'yes',
+				'sanitize_callback'    	=> 'sk_sanitize_checkbox',
+				'transport'				=> 'refresh',
+				'default'	 			=> true,
 			) );
 
 			$wp_customize->add_control(

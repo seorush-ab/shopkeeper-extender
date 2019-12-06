@@ -48,13 +48,13 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 			}
 
 			add_action( 'footer_socials', function() {
-				if( get_option( 'sk_footer_social_icons', 'no' ) == 'yes' ) {
+				if( get_option( 'sk_footer_social_icons', true ) ) {
 					echo '<div class="footer_socials_wrapper">' . do_shortcode('[social-media items_align="center"]') . '</div>';
 				}
 			} );
 
 			add_action( 'header_socials', function() {
-				if( get_option( 'sk_top_bar_social_icons', 'no' ) == 'yes' ) {
+				if( get_option( 'sk_top_bar_social_icons', false ) ) {
 					echo '<div class="site-top-bar-social-icons-wrapper">' . do_shortcode('[social-media items_align="right"]') . '</div>';
 				}
 			} );
@@ -100,11 +100,8 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 				}
 			}
 
-			$top_bar_option = get_theme_mod( 'top_bar_social_icons', false ) ? 'yes' : 'no';
-			update_option( 'sk_top_bar_social_icons', $top_bar_option );
-
-			$footer_option = get_theme_mod( 'footer_social_icons', true ) ? 'yes' : 'no';
-			update_option( 'sk_footer_social_icons', $footer_option );
+			update_option( 'sk_top_bar_social_icons', get_theme_mod( 'top_bar_social_icons', false ) );
+			update_option( 'sk_footer_social_icons', get_theme_mod( 'footer_social_icons', true ) );
 		}
 
 		/**
@@ -331,8 +328,9 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 				$wp_customize->add_setting( 'sk_top_bar_social_icons', array(
 					'type'		 			=> 'option',
 					'capability' 			=> 'manage_options',
-					'sanitize_callback'    	=> 'sk_string_to_bool',
-					'default'	 			=> 'no',
+					'sanitize_callback'    	=> 'sk_sanitize_checkbox',
+					'transport'				=> 'refresh',
+					'default'	 			=> false,
 				) );
 
 				$wp_customize->add_control(
@@ -351,8 +349,9 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 				$wp_customize->add_setting( 'sk_footer_social_icons', array(
 					'type'		 			=> 'option',
 					'capability' 			=> 'manage_options',
-					'sanitize_callback'    	=> 'sk_string_to_bool',
-					'default'	 			=> 'yes',
+					'sanitize_callback'    	=> 'sk_sanitize_checkbox',
+					'transport'				=> 'refresh',
+					'default'	 			=> true,
 				) );
 
 				$wp_customize->add_control(
