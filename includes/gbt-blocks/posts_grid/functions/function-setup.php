@@ -77,6 +77,10 @@ if ( function_exists( 'register_block_type' ) ) {
 				'type'						=> 'number',
 				'default'					=> '3'
 			),
+			'excerpt'						=> array(
+				'type'						=> 'boolean',
+				'default'					=> false
+			),
 		),
 
 		'render_callback' => 'gbt_18_sk_render_frontend_posts_grid',

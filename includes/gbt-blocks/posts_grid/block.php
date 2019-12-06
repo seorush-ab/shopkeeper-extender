@@ -16,7 +16,8 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_posts_grid' ) ) {
 			'categoriesSavedIDs'	=> '',
 			'align'					=> 'center',
 			'orderby'				=> 'date_desc',
-			'columns'				=> '3'
+			'columns'				=> '3',
+			'excerpt'				=> false,
 		), $attributes ) );
 
 		$args = array(
@@ -54,27 +55,27 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_posts_grid' ) ) {
 		}
 
 	    if( $categoriesSavedIDs != '' ) $args['category'] = $categoriesSavedIDs;
-	    
+
 	    $recentPosts = get_posts( $args );
 
 		ob_start();
-		        
+
 	    if ( !empty($recentPosts) ) : ?>
 
 	        <div class="gbt_18_sk_posts_grid align<?php echo $align; ?>">
-	    
+
 	    		<div class="gbt_18_sk_posts_grid_wrapper columns-<?php echo $columns; ?>">
-		                    
+
 		            <?php foreach($recentPosts as $post) : ?>
-		        
+
 		                <?php $post_format = get_post_format($post->ID); ?>
 
 		                <div class="gbt_18_sk_posts_grid_item <?php echo $post_format ? $post_format: 'standard'; ?> <?php if ( !has_post_thumbnail($post->ID)) : ?>no_thumb<?php endif; ?>">
-		                    
+
 							<a class="gbt_18_sk_posts_grid_item_link" href="<?php echo get_post_permalink($post->ID); ?>">
 								<span class="gbt_18_sk_posts_grid_img_container">
 									<span class="gbt_18_sk_posts_grid_img_overlay"></span>
-									
+
 									<?php if ( has_post_thumbnail($post->ID)) :
 										$image_id = get_post_thumbnail_id($post->ID);
 										$image_url = wp_get_attachment_image_src($image_id,'large', true);
@@ -87,9 +88,14 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_posts_grid' ) ) {
 								</span><!--.from_the_blog_img_container-->
 								<h3 class="gbt_18_sk_posts_grid_title" href="<?php echo get_post_permalink($post->ID); ?>"><?php echo $post->post_title; ?></h3>
 							</a>
-		                    
+							<?php if( $excerpt ) : ?>
+								<p>
+									<?php echo get_the_excerpt($post->ID); ?>
+								</p>
+							<?php endif; ?>
+
 		                </div>
-		    
+
 		            <?php endforeach; // end of the loop. ?>
 
 			</div>
@@ -99,7 +105,7 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_posts_grid' ) ) {
 		<?php
 
 		endif;
-		        
+
 		wp_reset_query();
 
 		return ob_get_clean();

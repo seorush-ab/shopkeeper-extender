@@ -75,6 +75,11 @@
 				type: 'string',
 				default: 'date_desc'
 			},
+			/* Post excerpt */
+			excerpt: {
+				type: 'boolean',
+				default: false
+			},
 		},
 
 		edit: function( props ) {
@@ -467,6 +472,17 @@
 								label: i18n.__( 'Columns', 'shopkeeper-extender' ),
 								onChange: function( newColumns ) {
 									props.setAttributes( { columns: newColumns } );
+								},
+							}
+						),
+						el(
+							ToggleControl,
+							{
+								key: "sk-posts-grid-excerpts",
+	              				label: i18n.__( 'Post Excerpts', 'shopkeeper-extender' ),
+	              				checked: attributes.excerpt,
+	              				onChange: function() {
+									props.setAttributes( { excerpt: ! attributes.excerpt } );
 								},
 							}
 						),
