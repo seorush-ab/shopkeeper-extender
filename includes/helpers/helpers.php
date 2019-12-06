@@ -33,5 +33,5 @@ function sk_string_to_bool( $string ) {
 }
 
 function sk_sanitize_checkbox( $input ) {
-	return sk_string_to_bool($input);
+	return sk_bool_to_string($input);
 }

@@ -48,13 +48,13 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 			}
 
 			add_action( 'footer_socials', function() {
-				if( get_option( 'sk_footer_social_icons', true ) ) {
+				if( sk_string_to_bool( get_option( 'sk_footer_social_icons', 'yes' ) ) ) {
 					echo '<div class="footer_socials_wrapper">' . do_shortcode('[social-media items_align="center"]') . '</div>';
 				}
 			} );
 
 			add_action( 'header_socials', function() {
-				if( get_option( 'sk_top_bar_social_icons', false ) ) {
+				if( sk_string_to_bool( get_option( 'sk_top_bar_social_icons', 'no' ) ) ) {
 					echo '<div class="site-top-bar-social-icons-wrapper">' . do_shortcode('[social-media items_align="right"]') . '</div>';
 				}
 			} );
@@ -329,8 +329,9 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 					'type'		 			=> 'option',
 					'capability' 			=> 'manage_options',
 					'sanitize_callback'    	=> 'sk_sanitize_checkbox',
+					'sanitize_js_callback'  => 'sk_string_to_bool',
 					'transport'				=> 'refresh',
-					'default'	 			=> false,
+					'default'	 			=> 'no',
 				) );
 
 				$wp_customize->add_control(
@@ -350,8 +351,9 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 					'type'		 			=> 'option',
 					'capability' 			=> 'manage_options',
 					'sanitize_callback'    	=> 'sk_sanitize_checkbox',
+					'sanitize_js_callback'  => 'sk_string_to_bool',
 					'transport'				=> 'refresh',
-					'default'	 			=> true,
+					'default'	 			=> 'yes',
 				) );
 
 				$wp_customize->add_control(
