@@ -287,6 +287,14 @@
 											className:  'gbt_18_sk_posts_grid_title',
 											dangerouslySetInnerHTML: { __html: posts[i]['title']['rendered'] }
 										}
+									),
+									attributes.excerpt && el( "p",
+										{
+											key: 		'gbt_18_sk_editor_posts_grid_excerpt_' + i,
+											className:  'gbt_18_sk_posts_grid_excerpt',
+											dangerouslySetInnerHTML: { __html: posts[i]['excerpt']['rendered'] }
+										}
+
 									)
 								)
 							)
