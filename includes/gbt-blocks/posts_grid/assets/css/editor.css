@@ -40,7 +40,7 @@
     -o-transition: all .5s;
     transition: all .5s; }
     .gbt_18_sk_posts_grid .gbt_18_sk_editor_posts_grid_wrapper .gbt_18_sk_posts_grid_title:hover {
-      opacity: .4;
+      opacity: 1;
       -webkit-transition: all .5s;
       -o-transition: all .5s;
       transition: all .5s;
