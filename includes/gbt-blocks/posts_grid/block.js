@@ -292,10 +292,16 @@
 										{
 											key: 		'gbt_18_sk_editor_posts_grid_excerpt_' + i,
 											className:  'gbt_18_sk_posts_grid_excerpt',
-											dangerouslySetInnerHTML: { __html: posts[i]['excerpt']['rendered'] }
+											dangerouslySetInnerHTML: { __html: posts[i]['excerpt']['rendered'].substr(0, 100) + '...' }
 										}
-
-									)
+									),
+									attributes.excerpt && el( "span",
+										{
+											key: 		'gbt_18_sk_editor_posts_grid_more_' + i,
+											className:  'gbt_18_sk_posts_grid_more_link',
+										},
+										i18n.__( 'Continue Reading', 'shopkeeper-extender' )
+									),
 								)
 							)
 						);

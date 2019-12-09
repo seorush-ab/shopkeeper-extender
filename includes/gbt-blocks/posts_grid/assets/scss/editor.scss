@@ -64,7 +64,7 @@
 
 		.gbt_18_sk_editor_posts_grid_item {
 			padding: 0 10px;
-		    margin-bottom: 1rem;
+		    margin-bottom: 2rem;
 		}
 
 		.gbt_18_sk_posts_grid_title {
@@ -74,12 +74,11 @@
 			font-size: 24px;
 			line-height: 34px;
 		    margin: 23px 0 15px;
-		    transition: all .5s;
+		    transition: all .3s ease;
 
 			&:hover
 			{
 			    opacity: 1;
-		        transition: all .5s;
 		        cursor: pointer;
 			}
 		}
@@ -98,6 +97,37 @@
 			opacity: 0;
 			transition: all .35s ease;
 		    background: rgba(255, 255, 255, 0.6);
+		}
+
+		.gbt_18_sk_posts_grid_excerpt
+		{
+			margin-top: 15px;
+			margin-bottom: 15px;
+
+			p
+			{
+				margin: 0;
+			}
+		}
+
+		.gbt_18_sk_posts_grid_more_link
+		{
+			cursor: pointer;
+			font-size: 13px;
+			font-weight: bold;
+			text-transform: uppercase;
+			transition: all .3s ease;
+
+			&:before
+			{
+				content: "";
+				width: 40px;
+				height: 1px;
+				display: inline-block;
+				vertical-align: middle;
+				margin-right: 10px;
+				transition: all .3s ease;
+			}
 		}
 
 		.gbt_18_sk_editor_posts_grid_img_container:hover .gbt_18_sk_editor_posts_grid_img_overlay

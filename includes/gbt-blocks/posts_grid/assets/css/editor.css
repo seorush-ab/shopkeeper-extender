@@ -28,7 +28,7 @@
       padding-bottom: 100%; }
   .gbt_18_sk_posts_grid .gbt_18_sk_editor_posts_grid_wrapper .gbt_18_sk_editor_posts_grid_item {
     padding: 0 10px;
-    margin-bottom: 1rem; }
+    margin-bottom: 2rem; }
   .gbt_18_sk_posts_grid .gbt_18_sk_editor_posts_grid_wrapper .gbt_18_sk_posts_grid_title {
     display: block;
     font-weight: 900;
@@ -36,14 +36,11 @@
     font-size: 24px;
     line-height: 34px;
     margin: 23px 0 15px;
-    -webkit-transition: all .5s;
-    -o-transition: all .5s;
-    transition: all .5s; }
+    -webkit-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease; }
     .gbt_18_sk_posts_grid .gbt_18_sk_editor_posts_grid_wrapper .gbt_18_sk_posts_grid_title:hover {
       opacity: 1;
-      -webkit-transition: all .5s;
-      -o-transition: all .5s;
-      transition: all .5s;
       cursor: pointer; }
   .gbt_18_sk_posts_grid .gbt_18_sk_editor_posts_grid_wrapper .gbt_18_sk_editor_posts_grid_item.gallery {
     margin: 0 !important; }
@@ -58,6 +55,29 @@
     -o-transition: all .35s ease;
     transition: all .35s ease;
     background: rgba(255, 255, 255, 0.6); }
+  .gbt_18_sk_posts_grid .gbt_18_sk_editor_posts_grid_wrapper .gbt_18_sk_posts_grid_excerpt {
+    margin-top: 15px;
+    margin-bottom: 15px; }
+    .gbt_18_sk_posts_grid .gbt_18_sk_editor_posts_grid_wrapper .gbt_18_sk_posts_grid_excerpt p {
+      margin: 0; }
+  .gbt_18_sk_posts_grid .gbt_18_sk_editor_posts_grid_wrapper .gbt_18_sk_posts_grid_more_link {
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    -webkit-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease; }
+    .gbt_18_sk_posts_grid .gbt_18_sk_editor_posts_grid_wrapper .gbt_18_sk_posts_grid_more_link:before {
+      content: "";
+      width: 40px;
+      height: 1px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+      -webkit-transition: all .3s ease;
+      -o-transition: all .3s ease;
+      transition: all .3s ease; }
   .gbt_18_sk_posts_grid .gbt_18_sk_editor_posts_grid_wrapper .gbt_18_sk_editor_posts_grid_img_container:hover .gbt_18_sk_editor_posts_grid_img_overlay {
     opacity: 1;
     cursor: pointer; }
