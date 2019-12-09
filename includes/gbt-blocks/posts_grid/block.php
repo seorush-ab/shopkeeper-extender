@@ -91,7 +91,7 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_posts_grid' ) ) {
 							<?php if( $excerpt ) : ?>
 								<p>
 									<?php echo wp_trim_words(get_the_excerpt($post->ID), 15); ?>
-									<a class="more-link" href="<?php echo get_permalink(); ?>"><?php esc_html_e( 'Continue Reading', 'shopkeeper-extender' ); ?></a>
+									<a class="more-link" href="<?php echo get_permalink($post->ID); ?>"><?php esc_html_e( 'Continue Reading', 'shopkeeper-extender' ); ?></a>
 								</p>
 							<?php endif; ?>
 
