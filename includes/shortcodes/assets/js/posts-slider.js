@@ -1,5 +1,5 @@
 jQuery(function($) {
-	
+
 	"use strict";
 
 	$('.from-the-blog.swiper-container').each(function() {
@@ -8,6 +8,9 @@ jQuery(function($) {
 			slidesPerView: 3,
 			loop: true,
 			breakpoints: {
+				1024: {
+					slidesPerView: 3,
+				},
 				640: {
 					slidesPerView: 2,
 				},
