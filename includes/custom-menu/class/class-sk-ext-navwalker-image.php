@@ -48,9 +48,9 @@ function sk_ext_edit_walker( $walker, $menu_id ) {
 function sk_ext_add_custom_fields_admin_html( $id, $item, $depth, $args ) {
 ?>
 	<p class="field-background-url description description-wide">
-		<label for="edit-menu-item-background_url-<?php echo esc_attr( $item_id ); ?>">
+		<label for="edit-menu-item-background_url-<?php echo esc_attr( $id ); ?>">
 			<?php esc_html_e( 'Background URL', 'shopkeeper-extender' ); ?><br />
-			<input type="text" id="edit-menu-item-background_url-<?php echo esc_attr( $item_id ); ?>" class="widefat code edit-menu-item-custom" name="menu-item-background_url[<?php echo esc_attr( $item_id ); ?>]" value="<?php echo esc_attr( $item->background_url ); ?>" />
+			<input type="text" id="edit-menu-item-background_url-<?php echo esc_attr( $id ); ?>" class="widefat code edit-menu-item-custom" name="menu-item-background_url[<?php echo esc_attr( $id ); ?>]" value="<?php echo esc_attr( $item->background_url ); ?>" />
 		</label>
 	</p>
 <?php
