@@ -34,7 +34,7 @@ class SK_Extender_Custom_Menu_Output extends Walker_Nav_Menu {
 
 		$item_output = $args->before;
 
-		if($depth > 1 && !empty($item->background_url)) {
+		if($depth >= 1 && !empty($item->background_url)) {
 			$item_output .= '<a class="has-hover-img" data-img="' . $item->background_url . '" '. $attributes .'>';
 		} else {
 			$item_output .= '<a'. $attributes .'>';
