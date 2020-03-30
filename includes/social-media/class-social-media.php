@@ -400,6 +400,22 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 				);
 
 			endforeach;
+
+			$wp_customize->add_setting( 'customizer_repeater_example', array(
+				'sanitize_callback' => 'sk_sanitize_repeater',
+				'default' => json_encode( array() ),
+			) );
+
+			$wp_customize->add_control(
+				new SK_Ext_Customize_Repeater_Control(
+					$wp_customize,
+					'customizer_repeater_example',
+					array(
+						'section' => 'social_media',
+						'priority' => 1,
+					)
+				)
+			);
 		}
 
 		/**
@@ -463,6 +479,42 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 	                <?php endif; ?>
 
 	            <?php endforeach; ?>
+
+				<?php
+
+				$customizer_repeater_example = get_theme_mod('customizer_repeater_example', json_encode( array() ) );
+			      /*This returns a json so we have to decode it*/
+
+			      $customizer_repeater_example_decoded = json_decode($customizer_repeater_example);
+
+			      foreach($customizer_repeater_example_decoded as $repeater_item){
+
+					  ?>
+
+					  <li class="sk_social_icon icon_">
+						  <a class="sk_social_icon_link" target="_blank"
+							  href="<?php echo $repeater_item->link; ?>">
+							  <img src="<?php echo $repeater_item->image_url; ?>" />
+						  </a>
+					  </li>
+
+
+					  <?php
+
+
+
+
+			          // echo $repeater_item->link;
+			          // echo $repeater_item->image_url;
+			          /*Social repeater is also a repeater so we need to decode it*/
+			          // $social_repeater = json_decode($repeater_item->social_repeater);
+			          // foreach($social_repeater as $social_repeater){
+			          //      echo $social_repeater->link;
+			          //      echo $social_repeater->icon;
+			          // }
+			      }
+
+				?>
 
 	        </ul>
 

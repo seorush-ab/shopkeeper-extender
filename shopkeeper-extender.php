@@ -34,6 +34,9 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
 
 define( 'SK_EXT_ENQUEUE_SUFFIX', SCRIPT_DEBUG ? '' : '.min' );
 
+$version = ( isset(get_plugin_data( __FILE__ )['Version']) && !empty(get_plugin_data( __FILE__ )['Version']) ) ? get_plugin_data( __FILE__ )['Version'] : '1.0';
+define ( 'SK_EXT_VERSION', $version );
+
 if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 
 	/**
@@ -65,13 +68,16 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 
 			if( ( $theme->template == 'shopkeeper' && ( $theme->version >= '2.8' || ( !empty($parent_theme) && $parent_theme->version >= '2.8' ) ) ) || $theme->template != 'shopkeeper' ) {
 
+                // Customizer
+				include_once( dirname( __FILE__ ) . '/includes/customizer/repeater/class-sk-ext-repeater-control.php' );
+
 				// Shortcodes
 				include_once( dirname( __FILE__ ) . '/includes/shortcodes/index.php' );
 
 				// Social Media
 				include_once( dirname( __FILE__ ) . '/includes/social-media/class-social-media.php' );
 
-				//Widgets
+				// Widgets
 				include_once( 'includes/widgets/social-media.php' );
 
 				// Addons
