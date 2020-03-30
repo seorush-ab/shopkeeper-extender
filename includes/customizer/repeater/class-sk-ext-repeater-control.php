@@ -18,8 +18,11 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 	private $add_field_label = array();
 	private $allowed_html = array();
 	public $customizer_repeater_image_control = true;
+	public $customizer_repeater_icon_control = true;
 	public $customizer_repeater_title_control = true;
 	public $customizer_repeater_link_control = true;
+	public $customizer_repeater_image_type_control = true;
+	public $profiles = array();
 
 	/*Class constructor*/
 	public function __construct( $manager, $id, $args = array() ) {
@@ -30,12 +33,20 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 			$this->add_field_label = $args['add_field_label'];
 		}
 
+		if ( ! empty( $args['profiles'] ) ) {
+			$this->profiles = $args['profiles'];
+		}
+
 		if ( ! empty( $args['customizer_repeater_image_control'] ) ) {
 			$this->customizer_repeater_image_control = $args['customizer_repeater_image_control'];
 		}
 
 		if ( ! empty( $args['customizer_repeater_icon_control'] ) ) {
 			$this->customizer_repeater_icon_control = $args['customizer_repeater_icon_control'];
+		}
+
+		if ( ! empty( $args['customizer_repeater_image_type_control'] ) ) {
+			$this->customizer_repeater_image_type_control = $args['customizer_repeater_image_type_control'];
 		}
 
 		if ( ! empty( $args['customizer_repeater_title_control'] ) ) {
@@ -139,15 +150,18 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
                     </div>
                     <div class="customizer-repeater-box-content-hidden">
 						<?php
-						$image_url = $title = $text = $link = '';
+						$choice = $icon_slug = $image_url = $title = $text = $link = '';
+						if(!empty($icon->choice)){
+							$choice = $icon->choice;
+						}
 						if(!empty($icon->id)){
 							$id = $icon->id;
 						}
 						if(!empty($icon->image_url)){
 							$image_url = $icon->image_url;
 						}
-						if(!empty($icon->icon_value)){
-							$icon_value = $icon->icon_value;
+						if(!empty($icon->icon_slug)){
+							$icon_slug = $icon->icon_slug;
 						}
 						if(!empty($icon->title)){
 							$title = $icon->title;
@@ -155,9 +169,14 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 						if(!empty($icon->link)){
 							$link = $icon->link;
 						}
-
+						if($this->customizer_repeater_image_control == true && $this->customizer_repeater_image_type_control == true) {
+							$this->image_type_choice( $choice );
+						}
 						if($this->customizer_repeater_image_control == true){
-							$this->image_control($image_url);
+							$this->image_control($image_url, $choice);
+						}
+						if($this->customizer_repeater_icon_control == true){
+							$this->theme_default_icon_control($icon_slug, $choice);
 						}
 						if($this->customizer_repeater_title_control==true){
 							$this->input_control(array(
@@ -195,10 +214,16 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 		} else { ?>
             <div class="customizer-repeater-general-control-repeater-container">
                 <div class="customizer-repeater-customize-control-title">
-					<?php echo esc_html( 'Social Icon', 'shopkeeper-extender' ); ?>
+					<?php echo esc_html( 'Social Media Profile', 'shopkeeper-extender' ); ?>
                 </div>
                 <div class="customizer-repeater-box-content-hidden">
 					<?php
+					if ( $this->customizer_repeater_image_control == true && $this->customizer_repeater_image_type_control == true ) {
+						$this->image_type_choice();
+					}
+					if($this->customizer_repeater_icon_control == true){
+						$this->theme_default_icon_control();
+					}
 					if ( $this->customizer_repeater_image_control == true ) {
 						$this->image_control();
 					}
@@ -229,14 +254,39 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 		}
 	}
 
+	private function image_type_choice( $value='customizer_repeater_theme_default' ){ ?>
+        <span class="customize-control-title">
+            <?php esc_html_e('Image type','shopkeeper-extender');?>
+        </span>
+        <select class="customizer-repeater-image-choice">
+            <option value="customizer_repeater_theme_default" <?php selected($value,'customizer_repeater_theme_default');?>><?php esc_html_e('Theme Default Icons','shopkeeper-extender'); ?></option>
+            <option value="customizer_repeater_image" <?php selected($value,'customizer_repeater_image');?>><?php esc_html_e('Custom Image','shopkeeper-extender'); ?></option>
+        </select>
+		<?php
+	}
+
 	private function input_control( $options, $value='' ){ ?>
         <span class="customize-control-title"><?php echo esc_html( $options['label'] ); ?></span>
         <input type="text" value="<?php echo esc_attr($value); ?>" class="<?php echo esc_attr($options['class']); ?>" placeholder="<?php echo esc_attr( $options['label'] ); ?>"/>
     <?php
 	}
 
-	private function image_control($value = ''){ ?>
-        <div class="customizer-repeater-image-control">
+	private function theme_default_icon_control( $value = 'facebook', $show = '' ){ ?>
+		<div class="customizer-repeater-theme-default-icon-control" <?php if( $show === 'customizer_repeater_image' || empty( $show ) ) { echo 'style="display:none;"'; } ?>>
+	        <span class="customize-control-title">
+	            <?php esc_html_e('Icon','shopkeeper-extender');?>
+	        </span>
+	        <select class="customizer-repeater-theme-default-icon-choice">
+				<?php foreach( $this->profiles as $profile ) { ?>
+		            <option value="<?php echo $profile['slug']; ?>" <?php selected( $value, $profile['slug'] );?>><?php esc_html_e( $profile['name'],'shopkeeper-extender'); ?></option>
+				<?php } ?>
+			</select>
+		</div>
+		<?php
+	}
+
+	private function image_control( $value = '', $show = '' ){ ?>
+        <div class="customizer-repeater-image-control" <?php if( $show === 'customizer_repeater_theme_default' || empty( $show ) ) { echo 'style="display:none;"'; } ?>>
             <span class="customize-control-title">
                 <?php esc_html_e('Image','shopkeeper-extender')?>
             </span>

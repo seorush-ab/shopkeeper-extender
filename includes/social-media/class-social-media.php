@@ -39,6 +39,11 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 				update_option( 'social_media_options_import', true );
 			}
 
+			if( !get_option( 'social_media_repeater_option_import', false ) ) {
+				$this->set_repeater_default();
+				update_option( 'social_media_repeater_option_import', true );
+			}
+
 			$this->enqueue_styles();
 			$this->customizer_options();
 			$this->create_shortcode();
@@ -102,6 +107,31 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 
 			update_option( 'sk_top_bar_social_icons', get_theme_mod( 'top_bar_social_icons', false ) );
 			update_option( 'sk_footer_social_icons', get_theme_mod( 'footer_social_icons', true ) );
+		}
+
+		/**
+		 * Set new repeater option default based on old options.
+		 *
+		 * @since 1.5.9
+		 * @return void
+		 */
+		protected function set_repeater_default() {
+
+			$repeater_default = array();
+			foreach( $this->social_media_profiles as $social) {
+				if( !empty( get_option( 'sk_' . $social['link'] ) ) ) {
+					$repeater_default[] = array(
+						'choice' => 'customizer_repeater_theme_default',
+						'icon_slug' => $social['slug'],
+						'link' => get_option( 'sk_' . $social['link'] ),
+						'title' => $social['name'],
+					);
+				}
+			}
+
+			update_option( 'sk_social_media_repeater', json_encode( $repeater_default ) );
+
+			return;
 		}
 
 		/**
@@ -377,41 +407,21 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 		 	) );
 
 			// Fields
-			foreach($this->social_media_profiles as $social) :
-
-				$wp_customize->add_setting( 'sk_' . $social['link'], array(
-					'type'		 => 'option',
-					'capability' => 'manage_options',
-					'transport'  => 'refresh',
-					'default' 	 => '',
-				) );
-
-				$wp_customize->add_control(
-					new WP_Customize_Control(
-						$wp_customize,
-						'sk_' . $social['link'],
-						array(
-							'type'			=> 'text',
-							'label'       	=> esc_attr__( $social['name'], 'shopkeeper-extender' ),
-							'section'     	=> 'social_media',
-							'priority'    	=> 10,
-						)
-					)
-				);
-
-			endforeach;
-
-			$wp_customize->add_setting( 'customizer_repeater_example', array(
+			$wp_customize->add_setting( 'sk_social_media_repeater', array(
+				'type'		 		=> 'option',
 				'sanitize_callback' => 'sk_sanitize_repeater',
-				'default' => json_encode( array() ),
+				'capability' 		=> 'manage_options',
+				'transport'  		=> 'refresh',
+				'default' 			=> json_encode( array() ),
 			) );
 
 			$wp_customize->add_control(
 				new SK_Ext_Customize_Repeater_Control(
 					$wp_customize,
-					'customizer_repeater_example',
+					'sk_social_media_repeater',
 					array(
 						'section' => 'social_media',
+						'profiles' => $this->social_media_profiles,
 						'priority' => 1,
 					)
 				)
@@ -458,60 +468,54 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 
 	        <ul class="sk_social_icons_list <?php echo esc_html($items_align); ?>">
 
-	            <?php foreach($this->social_media_profiles as $social) : ?>
-
-	                <?php if ( get_option( 'sk_' . $social['link'] ) ) : ?>
-
-	                    <li class="sk_social_icon icon_<?php echo $social['slug']; ?>">
-	                        <a class="sk_social_icon_link" target="_blank"
-	                        	href="<?php echo esc_url(get_option( 'sk_' . $social['link'], '#' )); ?>">
-	                        	<svg
-	                        		class="<?php echo !empty($color) ? 'has-color' : ''; ?>"
-	                        		xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-									width="<?php echo $fontsize; ?>" height="<?php echo $fontsize; ?>"
-									viewBox="0 0 50 50"
-									<?php echo $color; ?>>
-									<path d="<?php echo $social['svg_path']; ?>"></path>
-								</svg>
-	                        </a>
-	                    </li>
-
-	                <?php endif; ?>
-
-	            <?php endforeach; ?>
-
 				<?php
 
-				$customizer_repeater_example = get_theme_mod('customizer_repeater_example', json_encode( array() ) );
+				$customizer_repeater_example = get_option( 'sk_social_media_repeater', json_encode( array() ) );
 			      /*This returns a json so we have to decode it*/
 
 			      $customizer_repeater_example_decoded = json_decode($customizer_repeater_example);
 
 			      foreach($customizer_repeater_example_decoded as $repeater_item){
 
-					  ?>
+					if( 'customizer_repeater_image' === $repeater_item->choice ) {
+					?>
 
-					  <li class="sk_social_icon icon_">
-						  <a class="sk_social_icon_link" target="_blank"
-							  href="<?php echo $repeater_item->link; ?>">
-							  <img src="<?php echo $repeater_item->image_url; ?>" />
-						  </a>
-					  </li>
+						  <li class="sk_social_icon icon_">
+							  <a class="sk_social_icon_link" target="_blank"
+								  href="<?php echo $repeater_item->link; ?>">
+								  <img src="<?php echo $repeater_item->image_url; ?>" />
+							  </a>
+						  </li>
 
+					<?php }
 
-					  <?php
+					if( 'customizer_repeater_theme_default' === $repeater_item->choice ) {
 
+						$profile['svg_path'] = '';
+						foreach ($this->social_media_profiles as $social => $val) {
+					       if ($val['slug'] === $repeater_item->icon_slug) {
+					           $profile = $val;
+					       }
+					   }
 
+					?>
 
+					<li class="sk_social_icon icon_">
+						<a class="sk_social_icon_link" target="_blank"
+							href="<?php echo $repeater_item->link; ?>">
+							<svg
+								class="<?php echo !empty($color) ? 'has-color' : ''; ?>"
+								xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+								width="<?php echo $fontsize; ?>" height="<?php echo $fontsize; ?>"
+								viewBox="0 0 50 50"
+								<?php echo $color; ?>>
+								<path d="<?php echo $profile['svg_path']; ?>"></path>
+							</svg>
+						</a>
+					</li>
 
-			          // echo $repeater_item->link;
-			          // echo $repeater_item->image_url;
-			          /*Social repeater is also a repeater so we need to decode it*/
-			          // $social_repeater = json_decode($repeater_item->social_repeater);
-			          // foreach($social_repeater as $social_repeater){
-			          //      echo $social_repeater->link;
-			          //      echo $social_repeater->icon;
-			          // }
+					<?php
+					}
 			      }
 
 				?>
