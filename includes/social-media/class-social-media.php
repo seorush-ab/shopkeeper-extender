@@ -121,7 +121,6 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 			foreach( $this->social_media_profiles as $social) {
 				if( !empty( get_option( 'sk_' . $social['link'] ) ) ) {
 					$repeater_default[] = array(
-						'choice' => 'customizer_repeater_theme_default',
 						'icon_slug' => $social['slug'],
 						'link' => get_option( 'sk_' . $social['link'] ),
 						'title' => $social['name'],
@@ -475,9 +474,9 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 
 				foreach( $social_media_profiles as $social ) {
 
-					if( !empty( $social->title ) && !empty( $social->link ) ) {
+					if( !empty( $social->link ) ) {
 
-						if( 'customizer_repeater_image' === $social->choice && !empty( $social->image_url ) ) {
+						if( 'custom' === $social->icon_slug && !empty( $social->image_url ) ) {
 						?>
 
 							<li class="sk_social_icon custom_icon">
@@ -487,7 +486,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 								</a>
 							</li>
 
-						<?php } else if( 'customizer_repeater_theme_default' === $social->choice ) {
+						<?php } else if( 'custom' !== $social->icon_slug ) {
 
 							$svg_path = '';
 							foreach( $this->social_media_profiles as $social_profile => $val ) {

@@ -118,10 +118,9 @@ jQuery(function($) {
 			var th = $(this);
 			th.find('.customizer-repeater-general-control-repeater-container').each(function () {
 
-				var choice = $(this).find('.customizer-repeater-image-choice').val();
 				var link = $(this).find('.customizer-repeater-link-control').val();
 				var image_url = $(this).find('.custom-media-url').val();
-				var icon_slug = $(this).find('.customizer-repeater-theme-default-icon-choice').val();
+				var icon_slug = $(this).find('.customizer-repeater-icons .customizer-repeater-icon:checked').val();
 				var title = $(this).find('.customizer-repeater-title-control').val();
 				var id = $(this).find('.social-repeater-box-id').val();
 				if (!id) {
@@ -131,7 +130,6 @@ jQuery(function($) {
 
 				if (icon_slug !== '' || image_url !== '' || title !== '' || link !== '') {
 					values.push({
-						'choice': choice,
 						'link': link,
 						'image_url': image_url,
 						'icon_slug' : icon_slug,
@@ -147,16 +145,6 @@ jQuery(function($) {
 	}
 
 	$(function() {
-
-		$('.customizer-repeater-image-choice').each( function() {
-			if ($(this).val() === 'customizer_repeater_image') {
-				$(this).parent().parent().find('.customizer-repeater-image-control').show();
-
-			}
-			if ($(this).val() === 'customizer_repeater_theme_default') {
-				$(this).parent().parent().find('.customizer-repeater-theme-default-icon-control').show();
-			}
-		});
 
 		var theme_controls = $('#customize-theme-controls');
 		theme_controls.on('click', '.customizer-repeater-customize-control-title', function () {
@@ -200,11 +188,6 @@ jQuery(function($) {
 
 					field.find('.customizer-repeater-customize-control-title').html('Social Media Profile');
 
-					/*Set the default value for choice between image and icon to icon*/
-					field.find('.customizer-repeater-image-choice').val('customizer_repeater_theme_default');
-
-					field.find('.customizer-repeater-theme-default-icon-control').show();
-
 					field.find('.customizer-repeater-image-control').hide();
 
 					/*Show delete box button because it's not the first box*/
@@ -238,26 +221,6 @@ jQuery(function($) {
 			return false;
 		});
 
-		theme_controls.on('change', '.customizer-repeater-image-choice', function () {
-			if ($(this).val() === 'customizer_repeater_image') {
-				$(this).parent().parent().find('.customizer-repeater-theme-default-icon-control').hide();
-				$(this).parent().parent().find('.customizer-repeater-image-control').show();
-
-			}
-			if ($(this).val() === 'customizer_repeater_theme_default') {
-				$(this).parent().parent().find('.customizer-repeater-theme-default-icon-control').show();
-				$(this).parent().parent().find('.customizer-repeater-image-control').hide();
-			}
-
-			customizer_repeater_refresh_general_control_values();
-			return false;
-		});
-
-		theme_controls.on('change', '.customizer-repeater-theme-default-icon-choice', function () {
-			customizer_repeater_refresh_general_control_values();
-			return false;
-		});
-
 		theme_controls.on('click', '.social-repeater-general-control-remove-field', function () {
 
 			if (typeof $(this).parent() !== 'undefined') {
@@ -274,6 +237,19 @@ jQuery(function($) {
 			customizer_repeater_refresh_general_control_values();
 
 			return false;
+		});
+
+		theme_controls.on('change', '.customizer-repeater-icons', function () {
+			if ($(this).find('.customizer-repeater-icon:checked').val() === 'custom') {
+				console.log('here');
+				$(this).parent().siblings('.customizer-repeater-image-control').show();
+
+			} else {
+				console.log('not here');
+				$(this).parent().siblings('.customizer-repeater-image-control').hide();
+			}
+
+			customizer_repeater_refresh_general_control_values();
 		});
 
 		theme_controls.on('keyup', '.customizer-repeater-title-control', function () {

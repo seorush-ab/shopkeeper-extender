@@ -122,13 +122,11 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 						$id 		= !empty( $icon->id ) ? $icon->id : '';
 						$link 		= !empty( $icon->link ) ? $icon->link : '';
 						$title 		= !empty( $icon->title ) ? $icon->title : '';
-						$choice 	= !empty( $icon->choice ) ? $icon->choice : '';
 						$icon_slug 	= !empty( $icon->icon_slug ) ? $icon->icon_slug : '';
 						$image_url 	= !empty( $icon->image_url ) ? $icon->image_url : '';
 
-						$this->image_type_choice( $choice );
-						$this->image_control( $image_url, $choice );
-						$this->theme_default_icon_control( $icon_slug, $choice );
+						$this->icons_control( $icon_slug );
+						$this->image_control( $image_url, $icon_slug );
 
 						$this->input_control( array(
 							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Title:','shopkeeper-extender' ), $this->id, 'customizer_repeater_title_control' ),
@@ -166,8 +164,7 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 				<div class="customizer-repeater-box-content-hidden">
 					<?php
 
-					$this->image_type_choice();
-					$this->theme_default_icon_control();
+					$this->icons_control();
 					$this->image_control();
 
 					$this->input_control( array(
@@ -200,28 +197,6 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 	}
 
 	/**
-	 * Render the image type select.
-	 *
-	 * @param string $value Social media image type.
-	 */
-	private function image_type_choice( $value = 'customizer_repeater_theme_default' ) {
-		?>
-		<span class="customize-control-title">
-			<?php esc_html_e('Image Type:','shopkeeper-extender');?>
-		</span>
-
-		<select class="customizer-repeater-image-choice">
-			<option value="customizer_repeater_theme_default" <?php selected( $value, 'customizer_repeater_theme_default' );?>>
-				<?php esc_html_e( 'Theme Default Icons','shopkeeper-extender' ); ?>
-			</option>
-			<option value="customizer_repeater_image" <?php selected( $value, 'customizer_repeater_image' );?>>
-				<?php esc_html_e( 'Custom Image','shopkeeper-extender' ); ?>
-			</option>
-		</select>
-		<?php
-	}
-
-	/**
 	 * Render the input field.
 	 *
 	 * @param array  $options Input settings.
@@ -238,22 +213,28 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 	 * Render the theme default icon dropdown.
 	 *
 	 * @param string $value Select value.
-	 * @param string $show Determines if the dropdown should be displayed based on image type choice.
 	 */
-	private function theme_default_icon_control( $value = 'facebook', $show = '' ) {
+	private function icons_control( $value = 'facebook' ) {
 		?>
-		<div class="customizer-repeater-theme-default-icon-control" <?php echo ( $show === 'customizer_repeater_image' || empty( $show ) ) ? 'style="display:none;"' : ''; ?>>
+		<div class="customizer-repeater-icon-control">
 			<span class="customize-control-title">
 				<?php esc_html_e('Icon:','shopkeeper-extender'); ?>
 			</span>
 
-			<select class="customizer-repeater-theme-default-icon-choice">
+			<form class="customizer-repeater-icons">
 				<?php foreach( $this->profiles as $profile ) { ?>
-					<option value="<?php esc_attr_e( $profile['slug'] ); ?>" <?php selected( $value, $profile['slug'] ); ?>>
-						<?php esc_html_e( $profile['name'],'shopkeeper-extender'); ?>
-					</option>
+					<div>
+						<input id="<?php esc_attr_e( $profile['slug'] ); ?>" type="radio" name="customizer_repeater_icon" class="customizer-repeater-icon" value="<?php esc_attr_e( $profile['slug'] ); ?>" <?php checked( $value, $profile['slug'] ); ?>
+						style="background-image:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D\'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg\'%20viewBox%3D\'0%200%2050%2050\'%3E%3Cpath%20d%3D\'<?php esc_html_e( $profile['svg_path'] ); ?>\'%20fill%3D\'%23000000\'%2F%3E%3C%2Fsvg%3E');" />
+						<span class="tooltip"><?php esc_attr_e( $profile['name'] ); ?></span>
+					</div>
 				<?php } ?>
-			</select>
+				<div>
+					<input id="custom" type="radio" name="customizer_repeater_icon" class="customizer-repeater-icon" value="custom" <?php checked( $value, 'custom' ); ?>
+					style="background-image:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D\'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg\'%20viewBox%3D\'0%200%2024%2024\'%3E%3Cpath%20d%3D\'M 11 2 L 11 11 L 2 11 L 2 13 L 11 13 L 11 22 L 13 22 L 13 13 L 22 13 L 22 11 L 13 11 L 13 2 Z \'%20fill%3D\'%23000000\'%2F%3E%3C%2Fsvg%3E');" />
+					<span class="tooltip"><?php esc_html_e( 'Custom Icon', 'shopkeeper-extender' ); ?></span>
+				</div>
+			</form>
 		</div>
 		<?php
 	}
@@ -262,11 +243,11 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 	 * Render the image control.
 	 *
 	 * @param string $value Select value.
-	 * @param string $show Determines if the control should be displayed based on image type choice.
+	 * @param string $show Determines if the control should be displayed based on icon choice.
 	 */
-	private function image_control( $value = '', $show = '' ) {
+	private function image_control( $value = '', $icon_slug = '' ) {
 		?>
-		<div class="customizer-repeater-image-control" <?php echo ( $show === 'customizer_repeater_theme_default' || empty( $show ) ) ? 'style="display:none;"' : ''; ?>>
+		<div class="customizer-repeater-image-control" <?php echo ( $icon_slug !== 'custom' ) ? 'style="display:none;"' : ''; ?>>
 			<span class="customize-control-title">
 				<?php esc_html_e('Image:','shopkeeper-extender')?>
 			</span>
