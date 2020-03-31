@@ -475,41 +475,44 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 
 				foreach( $social_media_profiles as $social ) {
 
-					if( 'customizer_repeater_image' === $social->choice ) {
-					?>
+					if( !empty( $social->title ) && !empty( $social->link ) ) {
 
-						<li class="sk_social_icon custom_icon">
-							<a class="sk_social_icon_link" target="_blank" href="<?php echo esc_url( $social->link ); ?>">
-								<img src="<?php echo esc_url( $social->image_url ); ?>" alt="Social Media Profile"
-									width="<?php echo esc_attr( $fontsize ); ?>" height="<?php echo esc_attr( $fontsize ); ?>" />
-							</a>
-						</li>
-
-					<?php } else if( 'customizer_repeater_theme_default' === $social->choice ) {
-
-						$svg_path = '';
-						foreach( $this->social_media_profiles as $social_profile => $val ) {
-							if( $val['slug'] === $social->icon_slug && isset( $val['svg_path'] ) ) {
-								$svg_path = $val['svg_path'];
-							}
-						}
+						if( 'customizer_repeater_image' === $social->choice ) {
 						?>
 
-						<li class="sk_social_icon default_icon">
-							<a class="sk_social_icon_link" target="_blank"
-								href="<?php echo esc_url( $social->link ); ?>">
-								<svg
-									class="<?php echo !empty($color) ? 'has-color' : ''; ?>"
-									xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-									width="<?php echo esc_attr( $fontsize ); ?>" height="<?php echo esc_attr( $fontsize ); ?>"
-									viewBox="0 0 50 50"
-									<?php echo esc_attr( $color ); ?>>
-									<path d="<?php echo esc_attr( $svg_path ); ?>"></path>
-								</svg>
-							</a>
-						</li>
+							<li class="sk_social_icon custom_icon">
+								<a class="sk_social_icon_link" target="_blank" href="<?php echo esc_url( $social->link ); ?>">
+									<img src="<?php echo esc_url( $social->image_url ); ?>" alt="Social Media Profile"
+										width="<?php echo esc_attr( $fontsize ); ?>" height="<?php echo esc_attr( $fontsize ); ?>" />
+								</a>
+							</li>
 
-						<?php
+						<?php } else if( 'customizer_repeater_theme_default' === $social->choice ) {
+
+							$svg_path = '';
+							foreach( $this->social_media_profiles as $social_profile => $val ) {
+								if( $val['slug'] === $social->icon_slug && isset( $val['svg_path'] ) ) {
+									$svg_path = $val['svg_path'];
+								}
+							}
+							?>
+
+							<li class="sk_social_icon default_icon">
+								<a class="sk_social_icon_link" target="_blank"
+									href="<?php echo esc_url( $social->link ); ?>">
+									<svg
+										class="<?php echo !empty($color) ? 'has-color' : ''; ?>"
+										xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+										width="<?php echo esc_attr( $fontsize ); ?>" height="<?php echo esc_attr( $fontsize ); ?>"
+										viewBox="0 0 50 50"
+										<?php echo esc_attr( $color ); ?>>
+										<path d="<?php echo esc_attr( $svg_path ); ?>"></path>
+									</svg>
+								</a>
+							</li>
+
+							<?php
+						}
 					}
 				}
 				?>
