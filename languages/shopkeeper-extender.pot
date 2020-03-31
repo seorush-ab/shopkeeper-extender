@@ -15,13 +15,12 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: core\n"
 "X-Poedit-SearchPathExcluded-1: includes/vendor\n"
 "X-Poedit-SearchPathExcluded-2: includes/custom-menu\n"
-"X-Poedit-SearchPathExcluded-3: includes/customizer\n"
-"X-Poedit-SearchPathExcluded-4: includes/helpers\n"
+"X-Poedit-SearchPathExcluded-3: includes/helpers\n"
 
 #: includes/addons/class-wc-category-header-image.php:68
 #: includes/addons/class-wc-category-header-image.php:158
@@ -61,259 +60,392 @@ msgstr ""
 msgid "Footer JavaScript Code"
 msgstr ""
 
-#: includes/gbt-blocks/banner/block.js:24
-msgid "Banner"
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:99
+msgid "Add a Profile"
 msgstr ""
 
-#: includes/gbt-blocks/banner/block.js:103
-msgid "Title Color"
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:134
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:174
+#: includes/widgets/social-media.php:62
+msgid "Title:"
 msgstr ""
 
-#: includes/gbt-blocks/banner/block.js:110
-msgid "Subtitle Color"
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:141
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:181
+msgid "Link:"
 msgstr ""
 
-#: includes/gbt-blocks/banner/block.js:117
-msgid "Background Color"
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:151
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:190
+msgid "Remove"
 msgstr ""
 
-#: includes/gbt-blocks/banner/block.js:128
-msgid "Inner Stroke Color"
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:155
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:194
+msgid "Done"
 msgstr ""
 
-#: includes/gbt-blocks/banner/block.js:150
-msgid "General Settings"
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:164
+msgid "Social Media Profile"
 msgstr ""
 
-#: includes/gbt-blocks/banner/block.js:158
-msgid "URL"
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:210
+msgid "Image Type:"
 msgstr ""
 
-#: includes/gbt-blocks/banner/block.js:169
-msgid "Open link in new tab?"
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:215
+msgid "Theme Default Icons"
 msgstr ""
 
-#: includes/gbt-blocks/banner/block.js:185
-msgid "Height"
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:218
+msgid "Custom Image"
 msgstr ""
 
-#: includes/gbt-blocks/banner/block.js:196
-msgid "Font Settings"
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:247
+msgid "Icon:"
 msgstr ""
 
-#: includes/gbt-blocks/banner/block.js:208
-#: includes/gbt-blocks/slider/blocks/slide.js:202
-msgid "Title Font Size"
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:271
+msgid "Image:"
 msgstr ""
 
-#: includes/gbt-blocks/banner/block.js:223
-msgid "Subtitle Font Size"
-msgstr ""
-
-#: includes/gbt-blocks/banner/block.js:234
-msgid "Inner Stroke"
-msgstr ""
-
-#: includes/gbt-blocks/banner/block.js:246
-msgid "Inner Stroke Thickness"
-msgstr ""
-
-#: includes/gbt-blocks/banner/block.js:257
-#: includes/gbt-blocks/slider/blocks/slide.js:229
-#: includes/gbt-blocks/slider/blocks/slider.js:247
-msgid "Colors"
-msgstr ""
-
-#: includes/gbt-blocks/banner/block.js:320
-#: includes/gbt-blocks/slider/blocks/slide.js:263
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:275
+#: includes/gbt-blocks/banner/block.js:324
+#: includes/gbt-blocks/banner/block.min.js:1
+#: includes/gbt-blocks/slider/blocks/slide.js:265
+#: includes/gbt-blocks/slider/blocks/slide.min.js:1
 msgid "Add Image"
 msgstr ""
 
-#: includes/gbt-blocks/banner/block.js:336
-#: includes/gbt-blocks/slider/blocks/slide.js:279
+#: includes/gbt-blocks/banner/block.js:28
+#: includes/gbt-blocks/banner/block.min.js:1
+msgid "Banner"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:107
+#: includes/gbt-blocks/banner/block.min.js:1
+msgid "Title Color"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:114
+#: includes/gbt-blocks/banner/block.min.js:1
+msgid "Subtitle Color"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:121
+#: includes/gbt-blocks/banner/block.min.js:1
+msgid "Background Color"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:132
+#: includes/gbt-blocks/banner/block.min.js:1
+msgid "Inner Stroke Color"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:154
+#: includes/gbt-blocks/banner/block.min.js:1
+msgid "General Settings"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:162
+#: includes/gbt-blocks/banner/block.min.js:1
+msgid "URL"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:173
+#: includes/gbt-blocks/banner/block.min.js:1
+msgid "Open link in new tab?"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:189
+#: includes/gbt-blocks/banner/block.min.js:1
+msgid "Height"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:200
+#: includes/gbt-blocks/banner/block.min.js:1
+msgid "Font Settings"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:212
+#: includes/gbt-blocks/banner/block.min.js:1
+#: includes/gbt-blocks/slider/blocks/slide.js:204
+#: includes/gbt-blocks/slider/blocks/slide.min.js:1
+msgid "Title Font Size"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:227
+#: includes/gbt-blocks/banner/block.min.js:1
+msgid "Subtitle Font Size"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:238
+#: includes/gbt-blocks/banner/block.min.js:1
+msgid "Inner Stroke"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:250
+#: includes/gbt-blocks/banner/block.min.js:1
+msgid "Inner Stroke Thickness"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:261
+#: includes/gbt-blocks/banner/block.min.js:1
+#: includes/gbt-blocks/slider/blocks/slide.js:231
+#: includes/gbt-blocks/slider/blocks/slide.min.js:1
+#: includes/gbt-blocks/slider/blocks/slider.js:251
+#: includes/gbt-blocks/slider/blocks/slider.min.js:1
+msgid "Colors"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:340
+#: includes/gbt-blocks/banner/block.min.js:1
+#: includes/gbt-blocks/slider/blocks/slide.js:281
+#: includes/gbt-blocks/slider/blocks/slide.min.js:1
 msgid "Remove Image"
 msgstr ""
 
-#: includes/gbt-blocks/banner/block.js:371
-#: includes/gbt-blocks/slider/blocks/slide.js:347
+#: includes/gbt-blocks/banner/block.js:375
+#: includes/gbt-blocks/banner/block.min.js:1
+#: includes/gbt-blocks/slider/blocks/slide.js:349
+#: includes/gbt-blocks/slider/blocks/slide.min.js:1
 msgid "Add Title"
 msgstr ""
 
-#: includes/gbt-blocks/banner/block.js:390
-#: includes/gbt-blocks/slider/blocks/slide.js:373
+#: includes/gbt-blocks/banner/block.js:394
+#: includes/gbt-blocks/banner/block.min.js:1
+#: includes/gbt-blocks/slider/blocks/slide.js:375
+#: includes/gbt-blocks/slider/blocks/slide.min.js:1
 msgid "Add Subtitle"
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:21
+#: includes/gbt-blocks/categories_grid/block.js:25
+#: includes/gbt-blocks/categories_grid/block.min.js:1
 msgid "Product Categories - Grid"
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:201
-#: includes/gbt-blocks/posts_grid/block.js:187
+#: includes/gbt-blocks/categories_grid/block.js:205
+#: includes/gbt-blocks/categories_grid/block.min.js:1
+#: includes/gbt-blocks/posts_grid/block.js:196
+#: includes/gbt-blocks/posts_grid/block.min.js:1
 msgid "Update"
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:203
-#: includes/gbt-blocks/posts_grid/block.js:189
+#: includes/gbt-blocks/categories_grid/block.js:207
+#: includes/gbt-blocks/categories_grid/block.min.js:1
+#: includes/gbt-blocks/posts_grid/block.js:198
+#: includes/gbt-blocks/posts_grid/block.min.js:1
 msgid "Updating"
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:421
+#: includes/gbt-blocks/categories_grid/block.js:425
+#: includes/gbt-blocks/categories_grid/block.min.js:1
 msgid "No categories matching."
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:573
+#: includes/gbt-blocks/categories_grid/block.js:577
+#: includes/gbt-blocks/categories_grid/block.min.js:1
 msgid "Source:"
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:576
+#: includes/gbt-blocks/categories_grid/block.js:580
+#: includes/gbt-blocks/categories_grid/block.min.js:1
 msgid "Manually pick"
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:579
+#: includes/gbt-blocks/categories_grid/block.js:583
+#: includes/gbt-blocks/categories_grid/block.min.js:1
 msgid "All Categories"
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:600
+#: includes/gbt-blocks/categories_grid/block.js:604
+#: includes/gbt-blocks/categories_grid/block.min.js:1
 msgid "Search for categories to display"
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:634
+#: includes/gbt-blocks/categories_grid/block.js:638
+#: includes/gbt-blocks/categories_grid/block.min.js:1
 msgid "Selected Products:"
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:651
+#: includes/gbt-blocks/categories_grid/block.js:655
+#: includes/gbt-blocks/categories_grid/block.min.js:1
 msgid "Menu Order"
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:652
-#: includes/gbt-blocks/posts_grid/block.js:406
+#: includes/gbt-blocks/categories_grid/block.js:656
+#: includes/gbt-blocks/categories_grid/block.min.js:1
+#: includes/gbt-blocks/posts_grid/block.js:431
+#: includes/gbt-blocks/posts_grid/block.min.js:1
 msgid "Alphabetical Ascending"
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:653
-#: includes/gbt-blocks/posts_grid/block.js:407
+#: includes/gbt-blocks/categories_grid/block.js:657
+#: includes/gbt-blocks/categories_grid/block.min.js:1
+#: includes/gbt-blocks/posts_grid/block.js:432
+#: includes/gbt-blocks/posts_grid/block.min.js:1
 msgid "Alphabetical Descending"
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:655
-#: includes/gbt-blocks/posts_grid/block.js:411
+#: includes/gbt-blocks/categories_grid/block.js:659
+#: includes/gbt-blocks/categories_grid/block.min.js:1
+#: includes/gbt-blocks/posts_grid/block.js:436
+#: includes/gbt-blocks/posts_grid/block.min.js:1
 msgid "Order By"
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:666
+#: includes/gbt-blocks/categories_grid/block.js:670
+#: includes/gbt-blocks/categories_grid/block.min.js:1
 msgid "How many product categories to display?"
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:679
+#: includes/gbt-blocks/categories_grid/block.js:683
+#: includes/gbt-blocks/categories_grid/block.min.js:1
 msgid "Parent Categories Only"
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:690
+#: includes/gbt-blocks/categories_grid/block.js:694
+#: includes/gbt-blocks/categories_grid/block.min.js:1
 msgid "Hide Empty"
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:720
+#: includes/gbt-blocks/categories_grid/block.js:724
+#: includes/gbt-blocks/categories_grid/block.min.js:1
 msgid "Product Count"
 msgstr ""
 
-#: includes/gbt-blocks/posts_grid/block.js:22
+#: includes/gbt-blocks/posts_grid/block.js:26
+#: includes/gbt-blocks/posts_grid/block.min.js:1
 msgid "Posts Grid"
 msgstr ""
 
-#: includes/gbt-blocks/posts_grid/block.js:391
+#: includes/gbt-blocks/posts_grid/block.js:303
+#: includes/gbt-blocks/posts_grid/block.min.js:1
+#: includes/gbt-blocks/posts_grid/block.php:94
+msgid "Continue Reading"
+msgstr ""
+
+#: includes/gbt-blocks/posts_grid/block.js:416
+#: includes/gbt-blocks/posts_grid/block.min.js:1
 msgid "Categories:"
 msgstr ""
 
-#: includes/gbt-blocks/posts_grid/block.js:408
+#: includes/gbt-blocks/posts_grid/block.js:433
+#: includes/gbt-blocks/posts_grid/block.min.js:1
 msgid "Date Ascending"
 msgstr ""
 
-#: includes/gbt-blocks/posts_grid/block.js:409
+#: includes/gbt-blocks/posts_grid/block.js:434
+#: includes/gbt-blocks/posts_grid/block.min.js:1
 msgid "Date Descending"
 msgstr ""
 
-#: includes/gbt-blocks/posts_grid/block.js:430
+#: includes/gbt-blocks/posts_grid/block.js:455
+#: includes/gbt-blocks/posts_grid/block.min.js:1
 msgid "Number of Posts"
 msgstr ""
 
-#: includes/gbt-blocks/posts_grid/block.js:461
+#: includes/gbt-blocks/posts_grid/block.js:486
+#: includes/gbt-blocks/posts_grid/block.min.js:1
 msgid "Columns"
 msgstr ""
 
-#: includes/gbt-blocks/slider/blocks/slide.js:30
+#: includes/gbt-blocks/posts_grid/block.js:496
+#: includes/gbt-blocks/posts_grid/block.min.js:1
+msgid "Post Excerpts"
+msgstr ""
+
+#: includes/gbt-blocks/slider/blocks/slide.js:32
+#: includes/gbt-blocks/slider/blocks/slide.min.js:1
 msgid "Slide"
 msgstr ""
 
-#: includes/gbt-blocks/slider/blocks/slide.js:114
+#: includes/gbt-blocks/slider/blocks/slide.js:116
+#: includes/gbt-blocks/slider/blocks/slide.min.js:1
 msgid "Title & Description"
 msgstr ""
 
-#: includes/gbt-blocks/slider/blocks/slide.js:121
+#: includes/gbt-blocks/slider/blocks/slide.js:123
+#: includes/gbt-blocks/slider/blocks/slide.min.js:1
 msgid "Slide Background"
 msgstr ""
 
-#: includes/gbt-blocks/slider/blocks/slide.js:132
-#: includes/gbt-blocks/slider/blocks/slide.js:399
+#: includes/gbt-blocks/slider/blocks/slide.js:134
+#: includes/gbt-blocks/slider/blocks/slide.js:401
+#: includes/gbt-blocks/slider/blocks/slide.min.js:1
 msgid "Button Text"
 msgstr ""
 
-#: includes/gbt-blocks/slider/blocks/slide.js:139
+#: includes/gbt-blocks/slider/blocks/slide.js:141
+#: includes/gbt-blocks/slider/blocks/slide.min.js:1
 msgid "Button Background"
 msgstr ""
 
-#: includes/gbt-blocks/slider/blocks/slide.js:166
+#: includes/gbt-blocks/slider/blocks/slide.js:168
+#: includes/gbt-blocks/slider/blocks/slide.min.js:1
 msgid "Slide Link"
 msgstr ""
 
-#: includes/gbt-blocks/slider/blocks/slide.js:179
+#: includes/gbt-blocks/slider/blocks/slide.js:181
+#: includes/gbt-blocks/slider/blocks/slide.min.js:1
 msgid "Slide Button"
 msgstr ""
 
-#: includes/gbt-blocks/slider/blocks/slide.js:217
+#: includes/gbt-blocks/slider/blocks/slide.js:219
+#: includes/gbt-blocks/slider/blocks/slide.min.js:1
 msgid "Description Font Size"
 msgstr ""
 
-#: includes/gbt-blocks/slider/blocks/slider.js:26
+#: includes/gbt-blocks/slider/blocks/slider.js:30
+#: includes/gbt-blocks/slider/blocks/slider.min.js:1
 msgid "Slider"
 msgstr ""
 
-#: includes/gbt-blocks/slider/blocks/slider.js:143
-#: includes/gbt-blocks/slider/blocks/slider.js:225
+#: includes/gbt-blocks/slider/blocks/slider.js:147
+#: includes/gbt-blocks/slider/blocks/slider.js:229
+#: includes/gbt-blocks/slider/blocks/slider.min.js:1
 msgid "Pagination Bullets"
 msgstr ""
 
-#: includes/gbt-blocks/slider/blocks/slider.js:155
-#: includes/gbt-blocks/slider/blocks/slider.js:236
+#: includes/gbt-blocks/slider/blocks/slider.js:159
+#: includes/gbt-blocks/slider/blocks/slider.js:240
+#: includes/gbt-blocks/slider/blocks/slider.min.js:1
 msgid "Navigation Arrows"
 msgstr ""
 
-#: includes/gbt-blocks/slider/blocks/slider.js:182
+#: includes/gbt-blocks/slider/blocks/slider.js:186
+#: includes/gbt-blocks/slider/blocks/slider.min.js:1
 msgid "Full Height"
 msgstr ""
 
-#: includes/gbt-blocks/slider/blocks/slider.js:199
+#: includes/gbt-blocks/slider/blocks/slider.js:203
+#: includes/gbt-blocks/slider/blocks/slider.min.js:1
 msgid "Custom Desktop Height"
 msgstr ""
 
-#: includes/gbt-blocks/slider/blocks/slider.js:214
+#: includes/gbt-blocks/slider/blocks/slider.js:218
+#: includes/gbt-blocks/slider/blocks/slider.min.js:1
 msgid "Number of Slides"
 msgstr ""
 
-#: includes/gbt-blocks/social_media_profiles/block.js:25
+#: includes/gbt-blocks/social_media_profiles/block.js:28
+#: includes/gbt-blocks/social_media_profiles/block.min.js:1
 msgid "Social Media Profiles"
 msgstr ""
 
-#: includes/gbt-blocks/social_media_profiles/block.js:70
+#: includes/gbt-blocks/social_media_profiles/block.js:73
+#: includes/gbt-blocks/social_media_profiles/block.min.js:1
 msgid "Icons Font Size"
 msgstr ""
 
-#: includes/gbt-blocks/social_media_profiles/block.js:80
 #: includes/gbt-blocks/social_media_profiles/block.js:83
+#: includes/gbt-blocks/social_media_profiles/block.js:86
+#: includes/gbt-blocks/social_media_profiles/block.min.js:1
 msgid "Icons Color"
 msgstr ""
 
-#: includes/gbt-blocks/social_media_profiles/block.js:122
+#: includes/gbt-blocks/social_media_profiles/block.js:125
+#: includes/gbt-blocks/social_media_profiles/block.min.js:1
 msgid "Setup social profile links under Appearance > Customize > Social Media"
 msgstr ""
 
@@ -335,23 +467,23 @@ msgstr ""
 msgid "Permalink to %s"
 msgstr ""
 
-#: includes/social-media/class-social-media.php:344
+#: includes/social-media/class-social-media.php:373
 msgid "Top Bar Social Icons"
 msgstr ""
 
-#: includes/social-media/class-social-media.php:363
+#: includes/social-media/class-social-media.php:395
 msgid "Social Networking Icons"
 msgstr ""
 
-#: includes/social-media/class-social-media.php:373
+#: includes/social-media/class-social-media.php:405
 msgid "Social Media"
 msgstr ""
 
-#: includes/social-sharing/class-social-sharing.php:109
+#: includes/social-sharing/class-social-sharing.php:112
 msgid "Social Sharing Options"
 msgstr ""
 
-#: includes/social-sharing/class-social-sharing.php:128
+#: includes/social-sharing/class-social-sharing.php:131
 msgid "Share this product"
 msgstr ""
 
@@ -365,8 +497,4 @@ msgstr ""
 
 #: includes/widgets/social-media.php:57
 msgid "Get Connected"
-msgstr ""
-
-#: includes/widgets/social-media.php:62
-msgid "Title:"
 msgstr ""

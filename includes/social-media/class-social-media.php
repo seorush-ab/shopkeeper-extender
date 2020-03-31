@@ -477,7 +477,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 
 					if( !empty( $social->title ) && !empty( $social->link ) ) {
 
-						if( 'customizer_repeater_image' === $social->choice ) {
+						if( 'customizer_repeater_image' === $social->choice && !empty( $social->image_url ) ) {
 						?>
 
 							<li class="sk_social_icon custom_icon">
