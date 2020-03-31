@@ -125,6 +125,8 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 						$icon_slug 	= !empty( $icon->icon_slug ) ? $icon->icon_slug : '';
 						$image_url 	= !empty( $icon->image_url ) ? $icon->image_url : '';
 
+						$show_title = ( 'custom' === $icon_slug ) ? true : false;
+
 						$this->icons_control( $icon_slug );
 						$this->image_control( $image_url, $icon_slug );
 
@@ -133,7 +135,7 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 							'class' => 'customizer-repeater-title-control',
 							'type'  => apply_filters('customizer_repeater_input_types_filter', '', $this->id, 'customizer_repeater_title_control' ),
 							'sanitize_callback' => 'esc_html',
-						), $title );
+						), $title, $show_title );
 
 						$this->input_control( array(
 							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Link:','shopkeeper-extender' ), $this->id, 'customizer_repeater_link_control' ),
@@ -172,7 +174,7 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 						'class' => 'customizer-repeater-title-control',
 						'type'  => apply_filters('customizer_repeater_input_types_filter', '', $this->id, 'customizer_repeater_title_control' ),
 						'sanitize_callback' => 'esc_html',
-					) );
+					), '', false );
 
 					$this->input_control( array(
 						'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Link:','shopkeeper-extender' ), $this->id, 'customizer_repeater_link_control' ),
@@ -194,6 +196,8 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 			</div>
 			<?php
 		}
+
+		return;
 	}
 
 	/**
@@ -202,11 +206,15 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 	 * @param array  $options Input settings.
 	 * @param string $value Input value.
 	 */
-	 private function input_control( $options, $value = '' ) {
+	 private function input_control( $options, $value = '', $show = true ) {
 		?>
-		<span class="customize-control-title"><?php esc_html_e( $options['label'] ); ?></span>
-		<input type="text" value="<?php esc_attr_e( $value ); ?>" class="<?php esc_attr_e( $options['class'] ); ?>" placeholder="<?php esc_attr_e( $options['label'] ); ?>"/>
+		<div class="<?php esc_attr_e( $options['class'] ); ?>-wrapper" <?php echo !$show ? 'style="display:none;"' : ''; ?>>
+			<span class="customize-control-title"><?php esc_html_e( $options['label'] ); ?></span>
+			<input type="text" value="<?php esc_attr_e( $value ); ?>" class="<?php esc_attr_e( $options['class'] ); ?>" placeholder="<?php esc_attr_e( $options['label'] ); ?>"/>
+		</div>
 		<?php
+
+		return;
 	}
 
 	/**
@@ -237,6 +245,8 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 			</form>
 		</div>
 		<?php
+
+		return;
 	}
 
 	/**
@@ -256,6 +266,8 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 			<input type="button" class="button button-secondary customizer-repeater-custom-media-button" value="<?php esc_attr_e( 'Add Image','shopkeeper-extender' ); ?>" />
 		</div>
 		<?php
+
+		return;
 	}
 
 	/**
@@ -275,5 +287,7 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 			plugins_url( 'assets/js/customizer_repeater.js', __FILE__ ),
 			array( 'jquery', 'jquery-ui-draggable' )
 		);
+
+		return;
 	}
 }

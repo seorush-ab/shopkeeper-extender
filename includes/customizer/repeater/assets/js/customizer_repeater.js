@@ -188,8 +188,6 @@ jQuery(function($) {
 
 					field.find('.customizer-repeater-customize-control-title').html('Social Media Profile');
 
-					field.find('.customizer-repeater-image-control').hide();
-
 					/*Show delete box button because it's not the first box*/
 					field.find('.social-repeater-general-control-remove-field').show();
 
@@ -225,8 +223,8 @@ jQuery(function($) {
 
 			if (typeof $(this).parent() !== 'undefined') {
 				if( $(this).parents('.customizer-repeater-general-control-repeater').find('.customizer-repeater-general-control-repeater-container').length === 1 ) {
-					$(this).siblings('.customizer-repeater-link-control').val('');
-					$(this).siblings('.customizer-repeater-title-control').val('');
+					$(this).siblings('.customizer-repeater-link-control-wrapper').find('.customizer-repeater-link-control').val('');
+					$(this).siblings('.customizer-repeater-title-control-wrapper').find('.customizer-repeater-title-control').val('');
 					$(this).siblings('.customizer-repeater-image-control').find('.custom-media-url').val('');
 					$(this).parent().siblings('.customizer-repeater-customize-control-title').html('Social Media Profile');
 				} else {
@@ -240,13 +238,25 @@ jQuery(function($) {
 		});
 
 		theme_controls.on('change', '.customizer-repeater-icons', function () {
+			// If icon is changed, update the dropdown title.
 			if ($(this).find('.customizer-repeater-icon:checked').val() === 'custom') {
-				console.log('here');
 				$(this).parent().siblings('.customizer-repeater-image-control').show();
-
+				$(this).parent().siblings('.customizer-repeater-title-control-wrapper').show();
+				var title = $(this).parent().siblings('.customizer-repeater-title-control-wrapper').find('.customizer-repeater-title-control').html();
+				if( title === '' ) {
+					title = 'Custom';
+				}
+				$(this).parents('.customizer-repeater-general-control-repeater-container').find('.customizer-repeater-title-control').val('');
+				$(this).parents('.customizer-repeater-general-control-repeater-container').find('.customizer-repeater-customize-control-title').html(title);
 			} else {
-				console.log('not here');
 				$(this).parent().siblings('.customizer-repeater-image-control').hide();
+				$(this).parent().siblings('.customizer-repeater-title-control-wrapper').hide();
+				var title = $(this).find('.customizer-repeater-icon:checked').siblings('.tooltip').html();
+				if( title === '' ) {
+					title = 'Social Media Profile';
+				}
+				$(this).parents('.customizer-repeater-general-control-repeater-container').find('.customizer-repeater-title-control').val(title);
+				$(this).parents('.customizer-repeater-general-control-repeater-container').find('.customizer-repeater-customize-control-title').html(title);
 			}
 
 			customizer_repeater_refresh_general_control_values();
@@ -255,9 +265,9 @@ jQuery(function($) {
 		theme_controls.on('keyup', '.customizer-repeater-title-control', function () {
 			customizer_repeater_refresh_general_control_values();
 			if( '' != $(this).val() ) {
-				$(this).parent().parent().find('.customizer-repeater-customize-control-title').html($(this).val());
+				$(this).parents('.customizer-repeater-general-control-repeater-container').find('.customizer-repeater-customize-control-title').html($(this).val());
 			} else {
-				$(this).parent().parent().find('.customizer-repeater-customize-control-title').html('Social Media Profile');
+				$(this).parents('.customizer-repeater-general-control-repeater-container').find('.customizer-repeater-customize-control-title').html('Social Media Profile');
 			}
 		});
 
