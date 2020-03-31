@@ -125,7 +125,7 @@ jQuery(function($) {
                 var title = $(this).find('.customizer-repeater-title-control').val();
                 var id = $(this).find('.social-repeater-box-id').val();
                 if (!id) {
-                    id = 'social-repeater-' + customizer_repeater_uniqid();
+                    id = 'social-' + customizer_repeater_uniqid();
                     $(this).find('.social-repeater-box-id').val(id);
                 }
 
@@ -179,7 +179,7 @@ jQuery(function($) {
 	    /* This adds a new box to repeater */
 	    theme_controls.on('click', '.customizer-repeater-new-field', function () {
 	        var th = $(this).parent();
-	        var id = 'customizer-repeater-' + customizer_repeater_uniqid();
+	        var id = 'social-' + customizer_repeater_uniqid();
 	        if (typeof th !== 'undefined') {
 	            /* Clone the first box*/
 	            var field = th.find('.customizer-repeater-general-control-repeater-container:first').clone( true, true );

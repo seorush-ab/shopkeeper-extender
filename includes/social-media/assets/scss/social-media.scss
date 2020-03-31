@@ -23,19 +23,24 @@ ul.sk_social_icons_list
 	}
 
 	li.sk_social_icon
-	{	
+	{
 		display: inline-block;
 		list-style: none;
 		line-height: 1;
 		margin: 10px 30px 10px 0;
+		vertical-align: middle;
 
 		&:last-child
 		{
 			margin-right: 0;
+			margin-bottom: 10px;
 		}
 
 		a.sk_social_icon_link
 		{
+			display: block;
+			overflow: visible;
+
 			&:hover
 			{
 				i
@@ -116,7 +121,7 @@ ul.sk_social_icons_list
 	ul.sk_social_icons_list
 	{
 		li.sk_social_icon
-		{	
+		{
 			margin: 10px 0 10px 30px;
 
 			&:last-child

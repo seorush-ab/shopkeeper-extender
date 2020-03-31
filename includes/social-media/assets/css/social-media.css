@@ -14,15 +14,20 @@ ul.sk_social_icons_list {
     display: inline-block;
     list-style: none;
     line-height: 1;
-    margin: 10px 30px 10px 0; }
+    margin: 10px 30px 10px 0;
+    vertical-align: middle; }
     ul.sk_social_icons_list li.sk_social_icon:last-child {
-      margin-right: 0; }
-    ul.sk_social_icons_list li.sk_social_icon a.sk_social_icon_link:hover i {
-      opacity: .75; }
-    ul.sk_social_icons_list li.sk_social_icon a.sk_social_icon_link i {
-      -webkit-transition: opacity .2s;
-      -o-transition: opacity .2s;
-      transition: opacity .2s; }
+      margin-right: 0;
+      margin-bottom: 10px; }
+    ul.sk_social_icons_list li.sk_social_icon a.sk_social_icon_link {
+      display: block;
+      overflow: visible; }
+      ul.sk_social_icons_list li.sk_social_icon a.sk_social_icon_link:hover i {
+        opacity: .75; }
+      ul.sk_social_icons_list li.sk_social_icon a.sk_social_icon_link i {
+        -webkit-transition: opacity .2s;
+        -o-transition: opacity .2s;
+        transition: opacity .2s; }
 
 .site-top-bar-social-icons-wrapper {
   display: block;

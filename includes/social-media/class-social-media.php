@@ -422,7 +422,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 					array(
 						'section' => 'social_media',
 						'profiles' => $this->social_media_profiles,
-						'priority' => 1,
+						'priority' => 10,
 					)
 				)
 			);
@@ -458,7 +458,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 		    $color = '';
 		    if( $type == 'block') {
 			    if( !empty($fontcolor) ) {
-			    	$color = 'fill="' . $fontcolor . '"';
+			    	$color = 'fill=' . $fontcolor;
 				}
 		    }
 
@@ -470,54 +470,48 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 
 				<?php
 
-				$customizer_repeater_example = get_option( 'sk_social_media_repeater', json_encode( array() ) );
-			      /*This returns a json so we have to decode it*/
+				$social_media_encoded_list = get_option( 'sk_social_media_repeater', json_encode( array() ) );
+				$social_media_profiles 	   = json_decode( $social_media_encoded_list );
 
-			      $customizer_repeater_example_decoded = json_decode($customizer_repeater_example);
+				foreach( $social_media_profiles as $social ) {
 
-			      foreach($customizer_repeater_example_decoded as $repeater_item){
-
-					if( 'customizer_repeater_image' === $repeater_item->choice ) {
+					if( 'customizer_repeater_image' === $social->choice ) {
 					?>
 
-						  <li class="sk_social_icon icon_">
-							  <a class="sk_social_icon_link" target="_blank"
-								  href="<?php echo $repeater_item->link; ?>">
-								  <img src="<?php echo $repeater_item->image_url; ?>" />
-							  </a>
-						  </li>
+						<li class="sk_social_icon custom_icon">
+							<a class="sk_social_icon_link" target="_blank" href="<?php echo esc_url( $social->link ); ?>">
+								<img src="<?php echo esc_url( $social->image_url ); ?>" alt="Social Media Profile"
+									width="<?php echo esc_attr( $fontsize ); ?>" height="<?php echo esc_attr( $fontsize ); ?>" />
+							</a>
+						</li>
 
-					<?php }
+					<?php } else if( 'customizer_repeater_theme_default' === $social->choice ) {
 
-					if( 'customizer_repeater_theme_default' === $repeater_item->choice ) {
+						$svg_path = '';
+						foreach( $this->social_media_profiles as $social_profile => $val ) {
+							if( $val['slug'] === $social->icon_slug && isset( $val['svg_path'] ) ) {
+								$svg_path = $val['svg_path'];
+							}
+						}
+						?>
 
-						$profile['svg_path'] = '';
-						foreach ($this->social_media_profiles as $social => $val) {
-					       if ($val['slug'] === $repeater_item->icon_slug) {
-					           $profile = $val;
-					       }
-					   }
+						<li class="sk_social_icon default_icon">
+							<a class="sk_social_icon_link" target="_blank"
+								href="<?php echo esc_url( $social->link ); ?>">
+								<svg
+									class="<?php echo !empty($color) ? 'has-color' : ''; ?>"
+									xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+									width="<?php echo esc_attr( $fontsize ); ?>" height="<?php echo esc_attr( $fontsize ); ?>"
+									viewBox="0 0 50 50"
+									<?php echo esc_attr( $color ); ?>>
+									<path d="<?php echo esc_attr( $svg_path ); ?>"></path>
+								</svg>
+							</a>
+						</li>
 
-					?>
-
-					<li class="sk_social_icon icon_">
-						<a class="sk_social_icon_link" target="_blank"
-							href="<?php echo $repeater_item->link; ?>">
-							<svg
-								class="<?php echo !empty($color) ? 'has-color' : ''; ?>"
-								xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-								width="<?php echo $fontsize; ?>" height="<?php echo $fontsize; ?>"
-								viewBox="0 0 50 50"
-								<?php echo $color; ?>>
-								<path d="<?php echo $profile['svg_path']; ?>"></path>
-							</svg>
-						</a>
-					</li>
-
-					<?php
+						<?php
 					}
-			      }
-
+				}
 				?>
 
 	        </ul>
