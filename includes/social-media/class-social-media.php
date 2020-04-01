@@ -474,7 +474,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 
 				foreach( $social_media_profiles as $social ) {
 
-					if( !empty( $social->link ) ) {
+					if( !empty( $social->link ) && !empty($social->icon_slug) ) {
 
 						if( 'custom' === $social->icon_slug && !empty( $social->image_url ) ) {
 						?>
@@ -494,23 +494,26 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 									$svg_path = $val['svg_path'];
 								}
 							}
-							?>
 
-							<li class="sk_social_icon default_icon">
-								<a class="sk_social_icon_link" target="_blank"
-									href="<?php echo esc_url( $social->link ); ?>">
-									<svg
-										class="<?php echo !empty($color) ? 'has-color' : ''; ?>"
-										xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-										width="<?php echo esc_attr( $fontsize ); ?>" height="<?php echo esc_attr( $fontsize ); ?>"
-										viewBox="0 0 50 50"
-										<?php echo esc_attr( $color ); ?>>
-										<path d="<?php echo esc_attr( $svg_path ); ?>"></path>
-									</svg>
-								</a>
-							</li>
+							if( !empty($svg_path) ) {
+								?>
 
-							<?php
+								<li class="sk_social_icon default_icon">
+									<a class="sk_social_icon_link" target="_blank"
+										href="<?php echo esc_url( $social->link ); ?>">
+										<svg
+											class="<?php echo !empty($color) ? 'has-color' : ''; ?>"
+											xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+											width="<?php echo esc_attr( $fontsize ); ?>" height="<?php echo esc_attr( $fontsize ); ?>"
+											viewBox="0 0 50 50"
+											<?php echo esc_attr( $color ); ?>>
+											<path d="<?php echo esc_attr( $svg_path ); ?>"></path>
+										</svg>
+									</a>
+								</li>
+
+								<?php
+							}
 						}
 					}
 				}

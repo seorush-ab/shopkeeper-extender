@@ -194,7 +194,6 @@ jQuery(function($) {
 
 					/*Remove icon value, set it to first*/
 					field.find('.customizer-repeater-icon').attr( 'checked', false );
-					field.find('.customizer-repeater-icon:first').prop( 'checked', true );
 
 					/*Remove value from link field*/
 					field.find('.customizer-repeater-link-control').val('');
