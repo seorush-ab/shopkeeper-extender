@@ -73,6 +73,18 @@
 		margin-top: 0;
 	}
 
+	.customizer-repeater-image-control {
+		.custom-media-url-preview {
+			display: block;
+			margin-top: 0.5em;
+			max-width: 60px !important;
+		}
+
+		.customizer-repeater-custom-media-button {
+			margin-top: 1em;
+		}
+	}
+
 	.customizer-repeater-icons {
 		display: grid;
 		grid-template-columns: repeat(6, 1fr);
@@ -209,8 +221,4 @@ button.customizer-repeater-new-field {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	}
-}
-
-.customizer-repeater-image-control .customizer-repeater-custom-media-button {
-	margin-top: 1em;
 }

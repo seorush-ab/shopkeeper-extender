@@ -27,12 +27,12 @@ jQuery(function($) {
 
 		$('body').on('click', button_class, function () {
 			var button_id = '#' + $(this).attr('id');
-			var display_field = $(this).parent().children('input:text');
+			var display_field = $(this).parent().children('input:hidden');
 			var _custom_media = true;
 
 			wp.media.editor.send.attachment = function (props, attachment) {
 
-				if (_custom_media) {
+				if (_custom_media && props.link != 'file') {
 					if (typeof display_field !== 'undefined') {
 						switch (props.size) {
 							case 'full':
@@ -177,6 +177,10 @@ jQuery(function($) {
 
 		/* If image is changed */
 		theme_controls.on('change', '.custom-media-url', function () {
+			if( $(this).val() != '' ) {
+				$(this).siblings('.custom-media-url-preview').attr( 'src', $(this).val() );
+				$(this).siblings('.customizer-repeater-custom-media-button').val('Change Image');
+			}
 			customizer_repeater_refresh_general_control_values();
 
 			return false;

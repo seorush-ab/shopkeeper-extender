@@ -232,13 +232,13 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 			<form class="customizer-repeater-icons">
 				<?php foreach( $this->profiles as $profile ) { ?>
 					<div>
-						<input id="<?php esc_attr_e( $profile['slug'] ); ?>" type="radio" name="customizer_repeater_icon" class="customizer-repeater-icon" value="<?php esc_attr_e( $profile['slug'] ); ?>" <?php checked( $value, $profile['slug'] ); ?>
+						<input type="radio" name="customizer_repeater_icon" class="customizer-repeater-icon" value="<?php esc_attr_e( $profile['slug'] ); ?>" <?php checked( $value, $profile['slug'] ); ?>
 						style="background-image:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D\'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg\'%20viewBox%3D\'0%200%2050%2050\'%3E%3Cpath%20d%3D\'<?php esc_html_e( $profile['svg_path'] ); ?>\'%20fill%3D\'%23000000\'%2F%3E%3C%2Fsvg%3E');" />
 						<span class="tooltip"><?php esc_attr_e( $profile['name'] ); ?></span>
 					</div>
 				<?php } ?>
 				<div>
-					<input id="custom" type="radio" name="customizer_repeater_icon" class="customizer-repeater-icon" value="custom" <?php checked( $value, 'custom' ); ?>
+					<input type="radio" name="customizer_repeater_icon" class="customizer-repeater-icon" value="custom" <?php checked( $value, 'custom' ); ?>
 					style="background-image:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D\'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg\'%20viewBox%3D\'0%200%2024%2024\'%3E%3Cpath%20d%3D\'M 11 2 L 11 11 L 2 11 L 2 13 L 11 13 L 11 22 L 13 22 L 13 13 L 22 13 L 22 11 L 13 11 L 13 2 Z \'%20fill%3D\'%23000000\'%2F%3E%3C%2Fsvg%3E');" />
 					<span class="tooltip"><?php esc_html_e( 'Custom Icon', 'shopkeeper-extender' ); ?></span>
 				</div>
@@ -262,7 +262,8 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 				<?php esc_html_e('Image:','shopkeeper-extender')?>
 			</span>
 
-			<input type="text" class="widefat custom-media-url" value="<?php esc_attr_e( $value ); ?>">
+			<input type="hidden" class="widefat custom-media-url" value="<?php echo esc_url( $value ); ?>">
+			<img class="custom-media-url-preview" src="<?php echo esc_url( $value ); ?>" />
 			<input type="button" class="button button-secondary customizer-repeater-custom-media-button" value="<?php esc_attr_e( 'Add Image','shopkeeper-extender' ); ?>" />
 		</div>
 		<?php
