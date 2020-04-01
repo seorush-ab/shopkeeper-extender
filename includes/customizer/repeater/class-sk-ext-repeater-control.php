@@ -264,7 +264,7 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 
 			<input type="hidden" class="widefat custom-media-url" value="<?php echo esc_url( $value ); ?>">
 			<img class="custom-media-url-preview" src="<?php echo esc_url( $value ); ?>" />
-			<input type="button" class="button button-secondary customizer-repeater-custom-media-button" value="<?php esc_attr_e( 'Add Image','shopkeeper-extender' ); ?>" />
+			<input type="button" class="button button-secondary customizer-repeater-custom-media-button" value="<?php echo !empty($value) ? esc_attr( 'Change Image','shopkeeper-extender' ) : esc_attr( 'Add Image','shopkeeper-extender' ); ?>" />
 		</div>
 		<?php
 

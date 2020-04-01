@@ -74,14 +74,16 @@
 	}
 
 	.customizer-repeater-image-control {
+		.customize-control-title {
+			margin-bottom: 0.5em;
+		}
 		.custom-media-url-preview {
 			display: block;
-			margin-top: 0.5em;
 			max-width: 60px !important;
 		}
 
 		.customizer-repeater-custom-media-button {
-			margin-top: 1em;
+			margin-top: 0.75em;
 		}
 	}
 
