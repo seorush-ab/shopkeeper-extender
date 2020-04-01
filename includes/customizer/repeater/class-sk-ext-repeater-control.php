@@ -210,7 +210,7 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 		?>
 		<div class="<?php esc_attr_e( $options['class'] ); ?>-wrapper" <?php echo !$show ? 'style="display:none;"' : ''; ?>>
 			<span class="customize-control-title"><?php esc_html_e( $options['label'] ); ?></span>
-			<input type="text" value="<?php esc_attr_e( $value ); ?>" class="<?php esc_attr_e( $options['class'] ); ?>" placeholder="<?php esc_attr_e( $options['label'] ); ?>"/>
+			<input type="text" value="<?php esc_attr_e( $value ); ?>" class="<?php esc_attr_e( $options['class'] ); ?>"/>
 		</div>
 		<?php
 
