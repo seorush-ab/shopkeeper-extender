@@ -28,6 +28,7 @@ ul.sk_social_icons_list
 		list-style: none;
 		line-height: 1;
 		margin: 10px 30px 10px 0;
+		padding-top: 0 !important;
 		vertical-align: middle;
 
 		&:last-child
@@ -40,6 +41,7 @@ ul.sk_social_icons_list
 		{
 			display: block;
 			overflow: visible;
+			line-height: 0;
 
 			&:hover
 			{
@@ -78,7 +80,7 @@ ul.sk_social_icons_list
 				margin-right: 0;
 			}
 
-			svg
+			svg, img
 			{
 				width: 16px !important;
 				height: 16px !important;
