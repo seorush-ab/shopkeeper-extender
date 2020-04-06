@@ -31,6 +31,25 @@ if ( ! function_exists( 'gbt_18_sk_categories_grid_editor_assets' ) ) {
 }
 
 //==============================================================================
+//	Enqueue Frontend Assets
+//==============================================================================
+add_action( 'enqueue_block_assets', 'gbt_18_sk_categories_grid_assets' );
+if ( ! function_exists( 'gbt_18_sk_categories_grid_assets' ) ) {
+	function gbt_18_sk_categories_grid_assets() {
+
+		$theme = wp_get_theme();
+		if( $theme->template != 'shopkeeper' ) {
+			wp_enqueue_style(
+				'gbt_18_sk_categories_grid_styles',
+				plugins_url( 'assets/css/styles'.SK_EXT_ENQUEUE_SUFFIX.'.css', dirname(__FILE__) ),
+				array(),
+				filemtime(plugin_dir_path(__FILE__) . '../assets/css/styles'.SK_EXT_ENQUEUE_SUFFIX.'.css')
+			);
+		}
+	}
+}
+
+//==============================================================================
 //	Register Block
 //==============================================================================
 if ( function_exists( 'register_block_type' ) ) {
