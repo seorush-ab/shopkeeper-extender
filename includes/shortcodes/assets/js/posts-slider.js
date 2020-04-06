@@ -5,7 +5,7 @@ jQuery(function($) {
 	$('.from-the-blog.swiper-container').each(function() {
 
 		var myPostsSwiper = new Swiper($(this), {
-			slidesPerView: 3,
+			slidesPerView: 1,
 			loop: true,
 			breakpoints: {
 				1024: {
@@ -14,7 +14,6 @@ jQuery(function($) {
 				640: {
 					slidesPerView: 2,
 				},
-
 				480: {
 					slidesPerView: 1,
 				},
