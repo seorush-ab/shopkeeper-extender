@@ -53,8 +53,8 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_categories_grid' ) ) {
 		$cat_number = count($product_categories);
 
 		if ( $product_categories ) : ?>
-			<div class="gbt_18_sk_categories_grid align<?php echo $align; ?>">
-				<div class="gbt_18_sk_categories_grid_wrapper">
+			<div class="categories_grid align<?php echo $align; ?>">
+				<div class="categories_grid_wrapper">
 					<?php foreach ($product_categories as $category):
 
 						$thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
@@ -86,15 +86,15 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_categories_grid' ) ) {
 									$cat_class = "more_than_6";
 								}
 						} ?>
-			            <div class="gbt_18_sk_category_<?php echo $cat_class; ?>">
-							<div class="gbt_18_sk_category_grid_box">
-								<span class="gbt_18_sk_category_item_bkg" style="background-image:url(<?php echo esc_url($image); ?>)"></span>
-								<a href="<?php echo get_term_link( $category->slug, 'product_cat' ); ?>" class="gbt_18_sk_category_item" >
-									<h4 class="gbt_18_sk_category_name"><?php echo esc_html($category->name); ?>
+			            <div class="category_<?php echo $cat_class; ?>">
+							<div class="category_grid_box">
+								<span class="category_item_bkg" style="background-image:url(<?php echo esc_url($image); ?>)"></span>
+								<a href="<?php echo get_term_link( $category->slug, 'product_cat' ); ?>" class="category_item" >
+									<span class="category_name"><?php echo esc_html($category->name); ?>
 										<?php if ( $productCount ) { ?>
-											<span class="gbt_18_sk_category_count"><?php echo esc_html($category->count); ?></span>
+											<span class="category_count"><?php echo esc_html($category->count); ?></span>
 										<?php } ?>
-									</h4>
+									</span>
 								</a>
 							</div>
 						</div>

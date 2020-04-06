@@ -646,59 +646,59 @@
 							),
 						),
 						attributes.queryDisplayType === 'all_categories' && [
-						el(
-							SelectControl,
-							{
-								key: 'categories-grid-order-by',
-								options:
-									[
-										{ value: 'menu_order',  label: i18n.__('Menu Order', 'shopkeeper-extender' ) },
-										{ value: 'title_asc',   label: i18n.__( 'Alphabetical Ascending', 'shopkeeper-extender' ) },
-										{ value: 'title_desc',  label: i18n.__( 'Alphabetical Descending', 'shopkeeper-extender' ) },
-									],
-	              				label: i18n.__( 'Order By', 'shopkeeper-extender' ),
-	              				value: attributes.orderby,
-	              				onChange: function( value ) {
-	              					props.setAttributes( { orderby: value } );
+							el(
+								SelectControl,
+								{
+									key: 'categories-grid-order-by',
+									options:
+										[
+											{ value: 'menu_order',  label: i18n.__('Menu Order', 'shopkeeper-extender' ) },
+											{ value: 'title_asc',   label: i18n.__( 'Alphabetical Ascending', 'shopkeeper-extender' ) },
+											{ value: 'title_desc',  label: i18n.__( 'Alphabetical Descending', 'shopkeeper-extender' ) },
+										],
+		              				label: i18n.__( 'Order By', 'shopkeeper-extender' ),
+		              				value: attributes.orderby,
+		              				onChange: function( value ) {
+		              					props.setAttributes( { orderby: value } );
+									},
+								}
+							),
+							el(
+								TextControl,
+								{
+									key: 'categories-grid-display-number',
+		              				label: i18n.__( 'How many product categories to display?', 'shopkeeper-extender' ),
+		              				type: 'number',
+		              				value: attributes.limit,
+		              				onChange: function( value ) {
+		              					props.setAttributes( { limit: value } );
+									},
 								},
-							}
-						),
-						el(
-							TextControl,
-							{
-								key: 'categories-grid-display-number',
-	              				label: i18n.__( 'How many product categories to display?', 'shopkeeper-extender' ),
-	              				type: 'number',
-	              				value: attributes.limit,
-	              				onChange: function( value ) {
-	              					props.setAttributes( { limit: value } );
-								},
-							},
-						),
-						el(
-							ToggleControl,
-							{
-								id: "categories-grid-display",
-								key: 'categories-grid-display',
-	              				label: i18n.__( 'Parent Categories Only', 'shopkeeper-extender' ),
-	              				checked: attributes.parentOnly,
-	              				onChange: function( value ) {
-		              				props.setAttributes( { parentOnly: value } );
-								},
-							}
-						),
-						el(
-							ToggleControl,
-							{
-								key: "categories-grid-hide-empty",
-	              				label: i18n.__( 'Hide Empty', 'shopkeeper-extender' ),
-	              				checked: attributes.hideEmpty,
-	              				onChange: function( value ) {
-	              					props.setAttributes( { hideEmpty: value } );
-								},
-							}
-						),
-					],
+							),
+							el(
+								ToggleControl,
+								{
+									id: "categories-grid-display",
+									key: 'categories-grid-display',
+		              				label: i18n.__( 'Parent Categories Only', 'shopkeeper-extender' ),
+		              				checked: attributes.parentOnly,
+		              				onChange: function( value ) {
+			              				props.setAttributes( { parentOnly: value } );
+									},
+								}
+							),
+							el(
+								ToggleControl,
+								{
+									key: "categories-grid-hide-empty",
+		              				label: i18n.__( 'Hide Empty', 'shopkeeper-extender' ),
+		              				checked: attributes.hideEmpty,
+		              				onChange: function( value ) {
+		              					props.setAttributes( { hideEmpty: value } );
+									},
+								}
+							),
+						],
 					/* All products */
 
 					/* Load all products */
@@ -715,18 +715,18 @@
 							},
 							_isLoadingText(),
 						),
-					),
-					el( 'hr', {} ),
-					el(
-						ToggleControl,
-						{
-							key: "categories-grid-product-count",
-              				label: i18n.__( 'Product Count', 'shopkeeper-extender' ),
-              				checked: attributes.productCount,
-              				onChange: function( value ) {
-              					props.setAttributes({ productCount: value });
-							},
-						}
+						el( 'hr', {} ),
+						el(
+							ToggleControl,
+							{
+								key: "categories-grid-product-count",
+	              				label: i18n.__( 'Product Count', 'shopkeeper-extender' ),
+	              				checked: attributes.productCount,
+	              				onChange: function( value ) {
+	              					props.setAttributes({ productCount: value });
+								},
+							}
+						),
 					),
 				),
 				el(
