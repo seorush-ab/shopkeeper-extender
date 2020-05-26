@@ -133,9 +133,10 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 
 				<div class="product_socials_wrapper_inner">
 
-					<a href="//www.facebook.com/sharer.php?u=<?php the_permalink(); ?>"
-						target="_blank"
-						class="social_media social_media_facebook">
+					<a target="_blank"
+						class="social_media social_media_facebook"
+						href="https://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>&p[title]=<?php echo esc_attr( $product->get_name() ); ?>"
+						title="<?php esc_html_e( 'Facebook', 'shopkeeper-extender' ); ?>">
 						<svg
                     		xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 							width="16" height="16"
@@ -144,9 +145,10 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 						</svg>
 					</a>
 
-					<a href="//twitter.com/share?url=<?php the_permalink(); ?>"
-						target="_blank"
-						class="social_media social_media_twitter">
+					<a target="_blank"
+						class="social_media social_media_twitter"
+						href="https://twitter.com/share?url=<?php the_permalink(); ?>&amp;text=<?php echo esc_html( $product->get_short_description() ); ?>"
+						title="<?php esc_html_e( 'Twitter', 'shopkeeper-extender' ); ?>">
 						<svg
                     		xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 							width="16" height="16"
@@ -155,9 +157,10 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 						</svg>
 					</a>
 
-					<a href="//pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&amp;media=<?php echo esc_url($src[0]) ?>&amp;description=<?php echo urlencode(get_the_title()); ?>"
-						target="_blank"
-						class="social_media social_media_pinterest">
+					<a target="_blank"
+						class="social_media social_media_pinterest"
+						href="http://pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&amp;description=<?php echo esc_html( $product->get_short_description() ); ?>&amp;media=<?php echo esc_url( wp_get_attachment_url($product->get_image_id()) ); ?>"
+						title="<?php esc_html_e( 'Pinterest', 'yith-woocommerce-wishlist' ); ?>">
 						<svg
                     		xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 							width="16" height="16"
