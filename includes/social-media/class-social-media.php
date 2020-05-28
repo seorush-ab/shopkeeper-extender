@@ -372,6 +372,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 							'label'       => esc_attr__( 'Top Bar Social Icons', 'shopkeeper-extender' ),
 							'section'     => 'top_bar',
 							'priority'    => 20,
+							'active_callback' => 'sk_ext_is_topbar_enabled'
 						)
 					)
 				);

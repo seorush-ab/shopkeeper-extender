@@ -51,3 +51,11 @@ function sk_sanitize_repeater( $input ) {
 
 	return $input;
 }
+
+/**
+ * Checks if topbar is enabled.
+ */
+function sk_ext_is_topbar_enabled(){
+
+    return get_theme_mod( 'top_bar_switch', false );
+}
