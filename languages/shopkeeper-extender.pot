@@ -15,7 +15,7 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.3.1\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: core\n"
 "X-Poedit-SearchPathExcluded-1: includes/vendor\n"
@@ -65,23 +65,23 @@ msgid "Add a Profile"
 msgstr ""
 
 #: includes/customizer/repeater/class-sk-ext-repeater-control.php:134
-#: includes/customizer/repeater/class-sk-ext-repeater-control.php:174
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:173
 #: includes/widgets/social-media.php:62
 msgid "Title:"
 msgstr ""
 
 #: includes/customizer/repeater/class-sk-ext-repeater-control.php:141
-#: includes/customizer/repeater/class-sk-ext-repeater-control.php:181
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:180
 msgid "Link:"
 msgstr ""
 
 #: includes/customizer/repeater/class-sk-ext-repeater-control.php:151
-#: includes/customizer/repeater/class-sk-ext-repeater-control.php:190
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:189
 msgid "Remove"
 msgstr ""
 
 #: includes/customizer/repeater/class-sk-ext-repeater-control.php:155
-#: includes/customizer/repeater/class-sk-ext-repeater-control.php:194
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:193
 msgid "Done"
 msgstr ""
 
@@ -89,32 +89,16 @@ msgstr ""
 msgid "Social Media Profile"
 msgstr ""
 
-#: includes/customizer/repeater/class-sk-ext-repeater-control.php:210
-msgid "Image Type:"
-msgstr ""
-
-#: includes/customizer/repeater/class-sk-ext-repeater-control.php:215
-msgid "Theme Default Icons"
-msgstr ""
-
-#: includes/customizer/repeater/class-sk-ext-repeater-control.php:218
-msgid "Custom Image"
-msgstr ""
-
-#: includes/customizer/repeater/class-sk-ext-repeater-control.php:247
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:229
 msgid "Icon:"
 msgstr ""
 
-#: includes/customizer/repeater/class-sk-ext-repeater-control.php:271
-msgid "Image:"
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:243
+msgid "Custom Icon"
 msgstr ""
 
-#: includes/customizer/repeater/class-sk-ext-repeater-control.php:275
-#: includes/gbt-blocks/banner/block.js:324
-#: includes/gbt-blocks/banner/block.min.js:1
-#: includes/gbt-blocks/slider/blocks/slide.js:265
-#: includes/gbt-blocks/slider/blocks/slide.min.js:1
-msgid "Add Image"
+#: includes/customizer/repeater/class-sk-ext-repeater-control.php:262
+msgid "Image:"
 msgstr ""
 
 #: includes/gbt-blocks/banner/block.js:28
@@ -196,6 +180,13 @@ msgstr ""
 #: includes/gbt-blocks/slider/blocks/slider.js:251
 #: includes/gbt-blocks/slider/blocks/slider.min.js:1
 msgid "Colors"
+msgstr ""
+
+#: includes/gbt-blocks/banner/block.js:324
+#: includes/gbt-blocks/banner/block.min.js:1
+#: includes/gbt-blocks/slider/blocks/slide.js:265
+#: includes/gbt-blocks/slider/blocks/slide.min.js:1
+msgid "Add Image"
 msgstr ""
 
 #: includes/gbt-blocks/banner/block.js:340
@@ -309,7 +300,7 @@ msgstr ""
 msgid "Hide Empty"
 msgstr ""
 
-#: includes/gbt-blocks/categories_grid/block.js:724
+#: includes/gbt-blocks/categories_grid/block.js:723
 #: includes/gbt-blocks/categories_grid/block.min.js:1
 msgid "Product Count"
 msgstr ""
@@ -467,7 +458,7 @@ msgstr ""
 msgid "Permalink to %s"
 msgstr ""
 
-#: includes/social-media/class-social-media.php:373
+#: includes/social-media/class-social-media.php:372
 msgid "Top Bar Social Icons"
 msgstr ""
 
@@ -485,6 +476,18 @@ msgstr ""
 
 #: includes/social-sharing/class-social-sharing.php:131
 msgid "Share this product"
+msgstr ""
+
+#: includes/social-sharing/class-social-sharing.php:139
+msgid "Facebook"
+msgstr ""
+
+#: includes/social-sharing/class-social-sharing.php:151
+msgid "Twitter"
+msgstr ""
+
+#: includes/social-sharing/class-social-sharing.php:163
+msgid "Pinterest"
 msgstr ""
 
 #: includes/widgets/social-media.php:18
