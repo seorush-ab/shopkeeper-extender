@@ -426,6 +426,19 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 					)
 				)
 			);
+
+			// Abort if selective refresh is not available.
+			if ( ! isset( $wp_customize->selective_refresh ) ) {
+				return;
+			}
+
+			$wp_customize->selective_refresh->add_partial( 'sk_social_media_repeater', array(
+				'selector' => '.site-top-bar-social-icons-wrapper ul.sk_social_icons_list',
+				'settings' => 'sk_social_media_repeater',
+				'render_callback' => function() {
+					echo sk_social_media_shortcode();
+				},
+			) );
 		}
 
 		/**

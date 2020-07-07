@@ -15,6 +15,7 @@ class SK_Extender_Custom_Menu_Output extends Walker_Nav_Menu {
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
 
 		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
+		$class_names .= ( 0 === $depth && 'megamenu' === $item->megamenu) ? ' mega-menu' : '';
 		$class_names = ' class="'. esc_attr( $class_names ) . '"';
 
 		$output .= $indent . '<li id="shopkeeper-menu-item-'. $item->ID . '"' . $value . $class_names .'>';

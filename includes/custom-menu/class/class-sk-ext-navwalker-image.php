@@ -19,6 +19,7 @@ add_action( 'wp_nav_menu_item_custom_fields', 'sk_ext_add_custom_fields_admin_ht
  */
 function sk_ext_add_custom_nav_fields( $menu_item ) {
 	$menu_item->background_url = get_post_meta( $menu_item->ID, '_menu_item_background_url', true );
+	$menu_item->megamenu 		= get_post_meta( $menu_item->ID, '_menu_item_megamenu', 'false' );
 
 	return $menu_item;
 }
@@ -29,6 +30,13 @@ function sk_ext_add_custom_nav_fields( $menu_item ) {
 function sk_ext_update_custom_nav_fields( $menu_id, $menu_item_db_id, $args ) {
 	if( !isset($_REQUEST['menu-item-background_url']) || empty($_REQUEST['menu-item-background_url']) ) {
 		return;
+	}
+
+	if ( !empty( $_REQUEST['menu-item-megamenu']) && isset($_REQUEST['menu-item-megamenu'][$menu_item_db_id]) ) {
+		$megamenu_value = $_REQUEST['menu-item-megamenu'][$menu_item_db_id];
+		update_post_meta( $menu_item_db_id, '_menu_item_megamenu', $megamenu_value );
+	} else {
+		update_post_meta( $menu_item_db_id, '_menu_item_megamenu', 'false' );
 	}
 
 	if ( isset($_REQUEST['menu-item-background_url'][$menu_item_db_id]) ) {
@@ -229,6 +237,14 @@ if( !class_exists('SK_Ext_Walker_Nav_Menu_With_Image')) {
 							<?php esc_html_e( 'Open link in a new tab', 'shopkeeper-extender' ); ?>
 						</label>
 					</p>
+					<?php if( $depth === 0) { ?>
+						<p class="field-megamenu description description-wide">
+			                <label for="edit-menu-item-megamenu-<?php echo esc_attr( $item_id ); ?>">
+			                    <input type="checkbox" id="edit-menu-item-megamenu-<?php echo esc_attr( $item_id ); ?>" value="megamenu" name="menu-item-megamenu[<?php echo esc_attr( $item_id ); ?>]" <?php checked( $item->megamenu, 'megamenu' ); ?> />
+								<?php esc_html_e( 'Is Mega Menu', 'shopkeeper-extender' ); ?>
+							</label>
+			            </p>
+					<?php } ?>
 					<p class="field-css-classes description description-thin">
 						<label for="edit-menu-item-classes-<?php echo $item_id; ?>">
 							<?php esc_html_e( 'CSS Classes (optional)', 'shopkeeper-extender' ); ?><br />
