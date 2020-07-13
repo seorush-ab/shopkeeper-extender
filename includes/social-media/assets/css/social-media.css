@@ -36,11 +36,9 @@ ul.sk_social_icons_list {
   float: right;
   padding: 8px 0; }
   .site-top-bar-social-icons-wrapper ul.sk_social_icons_list {
-    margin: 0; }
+    margin: 0 0 0 50px; }
     .site-top-bar-social-icons-wrapper ul.sk_social_icons_list li.sk_social_icon {
       margin: 5px 10px 5px 0; }
-      .site-top-bar-social-icons-wrapper ul.sk_social_icons_list li.sk_social_icon:first-child {
-        padding-left: 50px; }
       .site-top-bar-social-icons-wrapper ul.sk_social_icons_list li.sk_social_icon:last-child {
         margin-right: 0; }
       .site-top-bar-social-icons-wrapper ul.sk_social_icons_list li.sk_social_icon svg, .site-top-bar-social-icons-wrapper ul.sk_social_icons_list li.sk_social_icon img {

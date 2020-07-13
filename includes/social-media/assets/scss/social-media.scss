@@ -68,15 +68,11 @@ ul.sk_social_icons_list
 
 	ul.sk_social_icons_list
 	{
-		margin: 0;
+		margin: 0 0 0 50px;
 
 		li.sk_social_icon
 		{
 			margin: 5px 10px 5px 0;
-
-			&:first-child {
-				padding-left: 50px;
-			}
 
 			&:last-child
 			{
