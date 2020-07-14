@@ -65,7 +65,7 @@ jQuery(function($) {
             this.tl = new TimelineMax({
                 onStart: () => {
                     this.DOM.reveal.style.opacity = 1;
-                    TweenMax.set(this.DOM.el, {zIndex: 9999});
+                    // TweenMax.set(this.DOM.el, {zIndex: 9999});
                 }
             })
             .add('begin')
@@ -92,10 +92,10 @@ jQuery(function($) {
 
             this.tl = new TimelineMax({
                 onStart: () => {
-                    TweenMax.set(this.DOM.el, {zIndex: 9999});
+                    // TweenMax.set(this.DOM.el, {zIndex: 9999});
                 },
                 onComplete: () => {
-                    TweenMax.set(this.DOM.el, {zIndex: ''});
+                    // TweenMax.set(this.DOM.el, {zIndex: ''});
                     TweenMax.set(this.DOM.reveal, {opacity: 0});
                 }
             })
