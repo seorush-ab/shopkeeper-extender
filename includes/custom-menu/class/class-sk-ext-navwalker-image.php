@@ -237,7 +237,7 @@ if( !class_exists('SK_Ext_Walker_Nav_Menu_With_Image')) {
 							<?php esc_html_e( 'Open link in a new tab', 'shopkeeper-extender' ); ?>
 						</label>
 					</p>
-					<?php if( $depth === 0) { ?>
+					<?php if( $depth === 0 ) { ?>
 						<p class="field-megamenu description description-wide">
 			                <label for="edit-menu-item-megamenu-<?php echo esc_attr( $item_id ); ?>">
 			                    <input type="checkbox" id="edit-menu-item-megamenu-<?php echo esc_attr( $item_id ); ?>" value="megamenu" name="menu-item-megamenu[<?php echo esc_attr( $item_id ); ?>]" <?php checked( $item->megamenu, 'megamenu' ); ?> />
