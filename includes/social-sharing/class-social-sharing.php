@@ -37,6 +37,28 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 					$this->getbowtied_single_share_product();
 				}
 			}, 50 );
+
+			add_action( 'wp_head', array( $this, 'sk_add_facebook_meta' ), 10 );
+		}
+
+		public function sk_add_facebook_meta() {
+			if ( is_single() && is_product() ) {
+				$product = wc_get_product(get_the_ID());
+				$image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'large' );
+				$image = isset($image[0]) ? $image[0] : '';
+				$description = wp_strip_all_tags(wpautop(str_replace('&nbsp;', '', $product->get_short_description())));
+				?>
+
+				<meta property="og:url" content="<?php the_permalink(); ?>">
+				<meta property="og:type" content="product">
+				<meta property="og:title" content="<?php the_title(); ?>">
+				<meta property="og:description" content="<?php esc_html_e($description); ?>">
+				<meta property="og:image" content="<?php esc_attr_e($image); ?>">
+
+				<?php
+			}
+
+			return;
 		}
 
 		/**
@@ -121,21 +143,21 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 
 		    global $post, $product;
 
-			$src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), false, '');
-
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'large' );
+			$image = isset($image[0]) ? $image[0] : '';
 			?>
 
 		    <div class="product_socials_wrapper show-share-text-on-mobiles">
 
 				<div class="share-product-text">
-					<?php _e( 'Share this product', 'shopkeeper-extender'); ?>
+					<?php esc_html_e( 'Share this product', 'shopkeeper-extender'); ?>
 				</div>
 
 				<div class="product_socials_wrapper_inner">
 
 					<a target="_blank"
 						class="social_media social_media_facebook"
-						href="https://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>&p[title]=<?php echo esc_attr( $product->get_name() ); ?>"
+						href="https://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>"
 						title="<?php esc_html_e( 'Facebook', 'shopkeeper-extender' ); ?>">
 						<svg
                     		xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -147,7 +169,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 
 					<a target="_blank"
 						class="social_media social_media_twitter"
-						href="https://twitter.com/share?url=<?php the_permalink(); ?>&amp;text=<?php echo wp_strip_all_tags( $product->get_short_description() ); ?>"
+						href="https://twitter.com/share?url=<?php the_permalink(); ?>&amp;text=<?php the_title(); ?>"
 						title="<?php esc_html_e( 'Twitter', 'shopkeeper-extender' ); ?>">
 						<svg
                     		xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -159,8 +181,9 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 
 					<a target="_blank"
 						class="social_media social_media_pinterest"
-						href="http://pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&amp;description=<?php echo wp_strip_all_tags( $product->get_short_description() ); ?>&amp;media=<?php echo esc_url( wp_get_attachment_url($product->get_image_id()) ); ?>"
-						title="<?php esc_html_e( 'Pinterest', 'shopkeeper-extender' ); ?>">
+						href="http://pinterest.com/pin/create/button/?url=<?php urlencode(the_permalink()); ?>&amp;description=<?php the_title(); ?>&amp;media=<?php esc_attr_e($image); ?>"
+						title="<?php esc_html_e( 'Pinterest', 'shopkeeper-extender' ); ?>"
+						count-layout=”vertical”>
 						<svg
                     		xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 							width="16" height="16"
