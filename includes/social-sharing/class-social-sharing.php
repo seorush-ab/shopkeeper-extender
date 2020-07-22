@@ -147,7 +147,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 
 					<a target="_blank"
 						class="social_media social_media_twitter"
-						href="https://twitter.com/share?url=<?php the_permalink(); ?>&amp;text=<?php echo esc_html( $product->get_short_description() ); ?>"
+						href="https://twitter.com/share?url=<?php the_permalink(); ?>&amp;text=<?php echo wp_strip_all_tags( $product->get_short_description() ); ?>"
 						title="<?php esc_html_e( 'Twitter', 'shopkeeper-extender' ); ?>">
 						<svg
                     		xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -159,7 +159,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 
 					<a target="_blank"
 						class="social_media social_media_pinterest"
-						href="http://pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&amp;description=<?php echo esc_html( $product->get_short_description() ); ?>&amp;media=<?php echo esc_url( wp_get_attachment_url($product->get_image_id()) ); ?>"
+						href="http://pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&amp;description=<?php echo wp_strip_all_tags( $product->get_short_description() ); ?>&amp;media=<?php echo esc_url( wp_get_attachment_url($product->get_image_id()) ); ?>"
 						title="<?php esc_html_e( 'Pinterest', 'shopkeeper-extender' ); ?>">
 						<svg
                     		xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
