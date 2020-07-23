@@ -44,18 +44,20 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 		public function sk_add_facebook_meta() {
 			if ( is_single() && is_product() ) {
 				$product = wc_get_product(get_the_ID());
-				$image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'large' );
-				$image = isset($image[0]) ? $image[0] : '';
-				$description = wp_strip_all_tags(wpautop(str_replace('&nbsp;', '', $product->get_short_description())));
-				?>
+				if( $product ) {
+					$image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'large' );
+					$image = isset($image[0]) ? $image[0] : '';
+					$description = wp_strip_all_tags(wpautop(str_replace('&nbsp;', '', $product->get_short_description())));
+					?>
 
-				<meta property="og:url" content="<?php the_permalink(); ?>">
-				<meta property="og:type" content="product">
-				<meta property="og:title" content="<?php the_title(); ?>">
-				<meta property="og:description" content="<?php esc_html_e($description); ?>">
-				<meta property="og:image" content="<?php esc_attr_e($image); ?>">
+					<meta property="og:url" content="<?php the_permalink(); ?>">
+					<meta property="og:type" content="product">
+					<meta property="og:title" content="<?php the_title(); ?>">
+					<meta property="og:description" content="<?php esc_html_e($description); ?>">
+					<meta property="og:image" content="<?php esc_attr_e($image); ?>">
 
-				<?php
+					<?php
+				}
 			}
 
 			return;
