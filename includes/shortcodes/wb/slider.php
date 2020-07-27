@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /*
 **	SLIDER
@@ -14,7 +14,7 @@ vc_map( array(
 	"content_element" => true,
 	"params" => array(
         // add params same as with any other content element
-	
+
  		array(
 			"type"			=> "dropdown",
  			"holder"		=> "div",
@@ -24,7 +24,7 @@ vc_map( array(
 			"param_name"	=> "full_height",
 			"value"			=> array('Full Height' => 'yes', 'Custom Height' => 'no'),
  		),
-		
+
  		array(
  			"type"			=> "textfield",
  			"holder"		=> "div",
@@ -273,7 +273,7 @@ vc_map( array(
   				'not_empty' => true,
   			),
 		),
-		
+
 		array(
 			"type"			=> "colorpicker",
 			"holder"		=> "div",
@@ -283,7 +283,7 @@ vc_map( array(
 			"param_name"	=> "bg_color",
 			"value"			=> "#000000",
 		),
-		
+
 		array(
 			"type"			=> "attach_image",
 			"holder"		=> "div",
@@ -312,11 +312,11 @@ vc_map( array(
 ) );
 
 //Your "container" content element should extend WPBakeryShortCodesContainer class to inherit all required functionality
-if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
+if ( class_exists( 'WPBakeryShortCodesContainer' ) && !class_exists( 'WPBakeryShortCode_Slider' ) ) {
     class WPBakeryShortCode_Slider extends WPBakeryShortCodesContainer {
     }
 }
-if ( class_exists( 'WPBakeryShortCode' ) ) {
+if ( class_exists( 'WPBakeryShortCode' ) && !class_exists( 'WPBakeryShortCode_Image_Slide' ) ) {
     class WPBakeryShortCode_Image_Slide extends WPBakeryShortCode {
     }
-} 
+}
