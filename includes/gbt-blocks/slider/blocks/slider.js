@@ -25,6 +25,41 @@
 		PanelColorSettings,
 	} = wp.blockEditor;
 
+	var attributes = {
+		fullHeight: {
+			type: 'boolean',
+			default: false
+		},
+		customHeight: {
+			type: 'number',
+			default: '800',
+		},
+		slides: {
+			type: 'number',
+			default: '3',
+		},
+		pagination: {
+			type: 'boolean',
+			default: true
+		},
+		paginationColor: {
+			type: 'string',
+			default: '#fff'
+		},
+		arrows: {
+			type: 'boolean',
+			default: true
+		},
+		arrowsColor: {
+			type: 'string',
+			default: '#fff'
+		},
+		activeTab: {
+			type: 'number',
+			default: '1'
+		}
+	};
+
 	/* Register Block */
 	registerBlockType( 'getbowtied/sk-slider', {
 		title: i18n.__( 'Slider', 'shopkeeper-extender' ),
@@ -44,40 +79,7 @@
 		supports: {
 			align: [ 'center', 'wide', 'full' ],
 		},
-		attributes: {
-			fullHeight: {
-				type: 'boolean',
-				default: false
-			},
-			customHeight: {
-				type: 'number',
-				default: '800',
-			},
-			slides: {
-				type: 'number',
-				default: '3',
-			},
-			pagination: {
-				type: 'boolean',
-				default: true
-			},
-			paginationColor: {
-				type: 'string',
-				default: '#fff'
-			},
-			arrows: {
-				type: 'boolean',
-				default: true
-			},
-			arrowsColor: {
-				type: 'string',
-				default: '#fff'
-			},
-	        activeTab: {
-	        	type: 'number',
-	        	default: '1'
-	        }
-		},
+		attributes: attributes,
 
 		edit: function( props ) {
 
@@ -369,6 +371,103 @@
 				)
 			);
 		},
+
+		deprecated: [
+			{
+				attributes: attributes,
+
+				save: function( props ) {
+
+					let attributes = props.attributes;
+
+					return el(
+						'div',
+						{
+							key: 'gbt_18_sk_slider_wrapper',
+							className: 'gbt_18_sk_slider_wrapper'
+						},
+						el(
+							'div',
+							{
+								key: 'gbt_18_sk_slider_container',
+								className: attributes.fullHeight ? 'gbt_18_sk_slider swiper-container full_height' : 'gbt_18_sk_slider swiper-container',
+								style:
+								{
+									height: attributes.customHeight + 'px'
+								}
+							},
+							el(
+								'div',
+								{
+									key: 'swiper-wrapper',
+									className: 'swiper-wrapper'
+								},
+								el( InnerBlocks.Content, { key: 'slide-content' } )
+							),
+							!! attributes.arrows && el(
+								'div',
+								{
+									key: 'swiper-button-prev',
+									className: 'swiper-button-prev',
+									style:
+									{
+										color: attributes.arrowsColor
+									}
+								},
+								el( SVG,
+									{
+										className: 'left-arrow-svg',
+										xmlns:'http://www.w3.org/2000/svg',
+										Focusable: 'false',
+										viewBox:'0 0 24 24',
+										style:
+										{
+											fill: attributes.arrowsColor
+										}
+									},
+									el( Path, { d:'M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z' } )
+								),
+							),
+							!! attributes.arrows && el(
+								'div',
+								{
+									key: 'swiper-button-next',
+									className: 'swiper-button-next',
+									style:
+									{
+										color: attributes.arrowsColor
+									}
+								},
+								el( SVG,
+									{
+										className: 'right-arrow-svg',
+										xmlns:'http://www.w3.org/2000/svg',
+										Focusable: 'false',
+										viewBox:'0 0 24 24',
+										style:
+										{
+											fill: attributes.arrowsColor
+										}
+									},
+									el( Path, { d:'M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z' } )
+								),
+							),
+							!! attributes.pagination && el(
+								'div',
+								{
+									key: 'gbt_18_sk_slider_pagination',
+									className: 'gbt_18_sk_slider_pagination',
+									style:
+									{
+										color: attributes.paginationColor
+									}
+								}
+							)
+						)
+					);
+				},
+			}
+		]
 	} );
 
 } )(
