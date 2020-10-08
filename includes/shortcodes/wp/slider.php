@@ -14,8 +14,8 @@ function sk_slider_shortcode($params = array(), $content = null) {
 		'custom_height'	 			=> '',
 		'hide_arrows'				=> '',
 		'hide_bullets'				=> '',
-		'color_navigation_bullets' 	=> '#000;',
-		'color_navigation_arrows'	=> '#000;',
+		'color_navigation_bullets' 	=> '#000000',
+		'color_navigation_arrows'	=> '#000000',
 		'custom_autoplay_speed'		=> 10
 	), $params));
 
@@ -30,15 +30,7 @@ function sk_slider_shortcode($params = array(), $content = null) {
 		$extra_class = 'full_height';
 	}
 
-	$bottom_line = '<style>
-
-						.shortcode_getbowtied_slider .shortcode-slider-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active:after
-						{
-							background-color: '. $color_navigation_bullets . ';
-						}
-
-					</style>';
-
+	$bottom_line = '<style>.shortcode_getbowtied_slider .shortcode-slider-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active:after{background-color: '. $color_navigation_bullets . ';}</style>';
 
 	$getbowtied_slider = $bottom_line . '
 
