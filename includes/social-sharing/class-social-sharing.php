@@ -38,7 +38,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 				}
 			}, 50 );
 
-			if( sk_string_to_bool( get_option( 'sk_sharing_options', 'yes' ) ) && sk_string_to_bool( get_option( 'sk_sharing_options_facebook', 'yes' ) ) ) {
+			if( sk_string_to_bool( get_option( 'sk_sharing_options', 'yes' ) ) && sk_string_to_bool( get_option( 'sk_sharing_options_facebook', 'yes' ) ) && sk_string_to_bool( get_option( 'sk_sharing_options_facebook_meta', 'yes' ) ) ) {
 				add_action( 'wp_head', array( $this, 'sk_add_facebook_meta' ), 10 );
 			}
 		}
@@ -164,6 +164,32 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 						'priority'    => 20,
 						'active_callback' => function() {
 							return sk_string_to_bool( get_option( 'sk_sharing_options', 'yes' ) );
+						}
+					)
+				)
+			);
+
+			// Include Facebook
+			$wp_customize->add_setting( 'sk_sharing_options_facebook_meta', array(
+				'type'		 			=> 'option',
+				'capability' 			=> 'manage_options',
+				'sanitize_callback'    	=> 'sk_sanitize_checkbox',
+				'sanitize_js_callback'  => 'sk_string_to_bool',
+				'transport'				=> 'refresh',
+				'default'	 			=> 'yes',
+			) );
+
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'sk_sharing_options_facebook_meta',
+					array(
+						'type'		  => 'checkbox',
+						'label'       => esc_attr__( 'Facebook Open Graph', 'shopkeeper-extender' ),
+						'section'     => 'product',
+						'priority'    => 20,
+						'active_callback' => function() {
+							return sk_string_to_bool( get_option( 'sk_sharing_options', 'yes' ) ) && sk_string_to_bool( get_option( 'sk_sharing_options_facebook', 'yes' ) );
 						}
 					)
 				)
