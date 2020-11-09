@@ -2,12 +2,12 @@
 Contributors: getbowtied, vanesareinerth, adrianlbs
 Tags: gutenberg, blocks
 Requires at least: 5.0
-Tested up to: 5.5
-Stable tag: 1.6.5
+Tested up to: 5.5.3
+Stable tag: 1.6.6
 Requires PHP: 5.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-~Current Version:1.6.5~
+~Current Version:1.6.6~
 
 Extends the functionality of the Shopkeeper theme by adding theme specific features.
 
@@ -40,6 +40,10 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 - Social Media Profiles
 
 == Changelog ==
+
+= 1.6.6 =
+- New: Option to enable/disable theme's default Facebook Open Graph for product pages
+- Small maintenance updates
 
 = 1.6.5 =
 - Compatibility updates for the upcoming WordPress 5.5
