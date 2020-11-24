@@ -6,6 +6,7 @@
 
 .from_the_blog_title {
   display: block;
+  font-family: var(--global--main-font);
   font-weight: 900;
   text-align: center;
   font-size: 31px;

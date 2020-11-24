@@ -50,6 +50,9 @@
 .gbt_18_sk_slider_wrapper .gbt_18_sk_slider .swiper-slide.right-align .slide-button {
   margin: 0 10% 40px 15%; }
 
+.gbt_18_sk_slider_wrapper .gbt_18_sk_slide_button {
+  font-family: var(--global--main-font); }
+
 .gbt_18_sk_slider_wrapper .swiper-button-prev,
 .gbt_18_sk_slider_wrapper .swiper-button-next,
 .gbt_18_sk_slider_wrapper .quickview-pagination {

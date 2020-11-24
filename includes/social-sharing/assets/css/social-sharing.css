@@ -1,3 +1,9 @@
+.product_socials_wrapper .product_socials_wrapper_inner a {
+  background-color: var(--global--background-color); }
+
+.product_socials_wrapper .share-product-text {
+  font-family: var(--global--main-font); }
+
 @media only screen and (max-width: 1201px) {
   .product_socials_wrapper {
     display: table;
