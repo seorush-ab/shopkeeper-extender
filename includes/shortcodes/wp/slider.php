@@ -32,9 +32,11 @@ function sk_slider_shortcode($params = array(), $content = null) {
 
 	$bottom_line = '<style>.shortcode_getbowtied_slider .shortcode-slider-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active:after{background-color: '. $color_navigation_bullets . ';}</style>';
 
+	$unique = uniqid();
+
 	$getbowtied_slider = $bottom_line . '
 
-		<div class="shortcode_getbowtied_slider swiper-container '.$extra_class.'" style="'.$height.' width: 100%" data-autoplay="'.$custom_autoplay_speed.'">
+		<div class="shortcode_getbowtied_slider swiper-container swiper-'.esc_attr($unique).' '.$extra_class.'" style="'.$height.' width: 100%" data-autoplay="'.$custom_autoplay_speed.'" data-id="'.esc_attr($unique).'">
 			<div class="swiper-wrapper">
 			'.do_shortcode($content).'
 			</div>';

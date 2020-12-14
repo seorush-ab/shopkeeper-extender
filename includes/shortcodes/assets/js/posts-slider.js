@@ -4,7 +4,9 @@ jQuery(function($) {
 
 	$('.from-the-blog.swiper-container').each(function() {
 
-		var myPostsSwiper = new Swiper($(this), {
+		var data_id = $(this).attr('data-id');
+
+		var myPostsSwiper = new Swiper( '.swiper-' + data_id, {
 			slidesPerView: 1,
 			loop: true,
 			breakpoints: {
@@ -19,7 +21,7 @@ jQuery(function($) {
 				},
 			},
 			pagination: {
-			    el: $(this).find('.swiper-pagination'),
+			    el: '.swiper-' + data_id + ' .swiper-pagination',
 			},
 		});
 	});

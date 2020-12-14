@@ -1,5 +1,5 @@
 jQuery(function($) {
-	
+
 	"use strict";
 
 	$('.gbt_18_sk_slider').each(function() {
@@ -11,8 +11,8 @@ jQuery(function($) {
 			autoplay = 10000;
 		}
 
-		var mySwiper = new Swiper ($(this), {
-			
+		var mySwiper = new Swiper( '.gbt_18_sk_slider', {
+
 			// Optional parameters
 		    direction: 'horizontal',
 		    loop: true,
@@ -27,14 +27,14 @@ jQuery(function($) {
 			parallax: true,
 		    // Pagination
 		    pagination: {
-			    el: $(this).find('.gbt_18_sk_slider_pagination'),
+			    el: '.gbt_18_sk_slider .gbt_18_sk_slider_pagination',
 			    type: 'bullets',
 			    clickable: true
 			},
 		    // Navigation
 		    navigation: {
-			    nextEl: '.swiper-button-next',
-			    prevEl: '.swiper-button-prev',
+			    nextEl: '.gbt_18_sk_slider .swiper-button-next',
+			    prevEl: '.gbt_18_sk_slider .swiper-button-prev',
 			},
 		});
 
