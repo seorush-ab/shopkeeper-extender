@@ -28,20 +28,33 @@ function sk_ext_add_custom_nav_fields( $menu_item ) {
  * Save menu custom fields.
  */
 function sk_ext_update_custom_nav_fields( $menu_id, $menu_item_db_id, $args ) {
-	if( !isset($_REQUEST['menu-item-background_url']) || empty($_REQUEST['menu-item-background_url']) ) {
-		return;
-	}
 
-	if ( !empty( $_REQUEST['menu-item-megamenu']) && isset($_REQUEST['menu-item-megamenu'][$menu_item_db_id]) ) {
-		$megamenu_value = $_REQUEST['menu-item-megamenu'][$menu_item_db_id];
-		update_post_meta( $menu_item_db_id, '_menu_item_megamenu', $megamenu_value );
-	} else {
-		update_post_meta( $menu_item_db_id, '_menu_item_megamenu', 'false' );
-	}
+	$data = stripslashes($_REQUEST["nav-menu-data"]);
+	$data = json_decode($data, true);
 
-	if ( isset($_REQUEST['menu-item-background_url'][$menu_item_db_id]) ) {
-		$background_url_value = $_REQUEST['menu-item-background_url'][$menu_item_db_id];
-		update_post_meta( $menu_item_db_id, '_menu_item_background_url', $background_url_value );
+	if( is_array($data) && !empty($data) ) {
+
+		$bg_key = array_search( 'menu-item-background_url['.$menu_item_db_id.']', array_column($data, 'name') );
+		if( isset($bg_key) && !empty($bg_key) ) {
+			$background_url = $data[$bg_key]['value'];
+		}
+
+		$mm_key = array_search( 'menu-item-megamenu['.$menu_item_db_id.']', array_column($data, 'name') );
+		if( isset($mm_key) && !empty($mm_key) ) {
+			$megamenu = $data[$mm_key]['value'];
+		}
+
+		if ( !empty( $megamenu ) && isset( $megamenu ) ) {
+			update_post_meta( $menu_item_db_id, '_menu_item_megamenu', $megamenu );
+		} else {
+			update_post_meta( $menu_item_db_id, '_menu_item_megamenu', 'false' );
+		}
+
+		if ( isset($background_url) && !empty($background_url) ) {
+			update_post_meta( $menu_item_db_id, '_menu_item_background_url', $background_url );
+		} else {
+			update_post_meta( $menu_item_db_id, '_menu_item_background_url', '' );
+		}
 	}
 }
 
