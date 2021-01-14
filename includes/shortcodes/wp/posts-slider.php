@@ -16,12 +16,14 @@ function sk_posts_slider_shortcode($atts, $content = null) {
 
 	ob_start();
 
+	$unique = uniqid();
+
 	?>
 
 	<div class="row">
     <div class="from-the-blog-wrapper">
 
-        <div class="from-the-blog swiper-container">
+        <div class="from-the-blog swiper-container swiper-<?php echo esc_attr($unique); ?>" data-id="<?php echo esc_attr($unique); ?>">
 	        <div class="swiper-wrapper">
 
 				<?php

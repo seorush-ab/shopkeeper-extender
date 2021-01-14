@@ -8,14 +8,16 @@ if ( $theme->template != 'shopkeeper') {
 
 		wp_register_style(
 			'swiper',
-			plugins_url( 'swiper/css/swiper'.SK_EXT_ENQUEUE_SUFFIX.'.css', __FILE__ ),
+			plugins_url( 'swiper/css/swiper.min.css', __FILE__ ),
 			array(),
-			filemtime(plugin_dir_path(__FILE__) . 'swiper/css/swiper'.SK_EXT_ENQUEUE_SUFFIX.'.css')
+			'6.4.1'
 		);
 		wp_register_script(
 			'swiper',
-			plugins_url( 'swiper/js/swiper'.SK_EXT_ENQUEUE_SUFFIX.'.js', __FILE__ ),
-			array()
+			plugins_url( 'swiper/js/swiper.min.js', __FILE__ ),
+			array(),
+			'6.4.1',
+			true
 		);
 	}
 }

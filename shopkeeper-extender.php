@@ -79,7 +79,7 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 			include_once( dirname( __FILE__ ) . '/includes/gbt-blocks/index.php' );
 
             // Shopkeeper Dependent Components
-			if( function_exists('shopkeeper_theme_slug') ) {
+			if( class_exists('Shopkeeper') ) {
 
 				//Custom Menu
 				include_once( dirname( __FILE__ ) . '/includes/custom-menu/index.php' );
