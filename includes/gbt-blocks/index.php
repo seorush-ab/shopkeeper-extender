@@ -31,5 +31,6 @@ if( is_plugin_active( 'woocommerce/woocommerce.php') ) {
 	include_once( dirname( __FILE__ ) . '/categories_grid/block.php' );
 }
 
+include_once( dirname( __FILE__ ) . '/posts_grid/block.php' );
 include_once( dirname( __FILE__ ) . '/banner/block.php' );
 include_once( dirname( __FILE__ ) . '/slider/block.php' );
