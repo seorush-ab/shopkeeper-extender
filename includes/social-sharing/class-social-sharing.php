@@ -32,11 +32,11 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 			$this->enqueue_styles();
 			$this->customizer_options();
 
-			add_filter( 'getbowtied_woocommerce_before_single_product_summary_data_tabs', function() {
+			add_action( 'woocommerce_single_product_summary', function() {
 				if ( sk_string_to_bool( get_option( 'sk_sharing_options', 'yes' ) ) ) {
 					$this->getbowtied_single_share_product();
 				}
-			}, 50 );
+			}, 100 );
 
 			if( sk_string_to_bool( get_option( 'sk_sharing_options', 'yes' ) ) && sk_string_to_bool( get_option( 'sk_sharing_options_facebook', 'yes' ) ) && sk_string_to_bool( get_option( 'sk_sharing_options_facebook_meta', 'yes' ) ) ) {
 				add_action( 'wp_head', array( $this, 'sk_add_facebook_meta' ), 10 );

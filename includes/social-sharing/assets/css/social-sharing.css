@@ -4,30 +4,39 @@
 .product_socials_wrapper .share-product-text {
   font-family: var(--global--main-font); }
 
-@media only screen and (max-width: 1201px) {
+@media only screen and (max-width: 63.9375em) {
   .product_socials_wrapper {
-    display: table;
-    width: 100%;
+    border-top: 1px solid var(--global--text-ultra-light-color);
+    display: block;
+    padding: 1.25rem 0;
+    overflow: hidden;
     text-align: center;
-    padding: 20px 0;
-    border-top-width: 1px;
-    border-top-style: solid; }
+    width: auto;
+    white-space: nowrap; }
     .product_socials_wrapper .share-product-text,
     .product_socials_wrapper .product_socials_wrapper_inner {
-      display: table-cell;
-      vertical-align: middle;
+      display: inline-block;
       width: 50%; }
     .product_socials_wrapper .share-product-text {
+      color: var(--global--text-dark-color);
       font-size: 10px;
-      text-transform: uppercase;
       font-weight: bold;
+      line-height: 1.5;
+      text-transform: uppercase;
       text-align: left; }
     .product_socials_wrapper .product_socials_wrapper_inner {
       text-align: right; }
       .product_socials_wrapper .product_socials_wrapper_inner a {
-        padding-right: 10px; } }
+        padding-right: 15px; }
+        .product_socials_wrapper .product_socials_wrapper_inner a svg {
+          fill: var(--global--headings-color);
+          -webkit-transition: all .3s ease;
+          -o-transition: all .3s ease;
+          transition: all .3s ease; }
+        .product_socials_wrapper .product_socials_wrapper_inner a:hover svg {
+          fill: var(--global--accent-color); } }
 
-@media only screen and (min-width: 1201px) {
+@media only screen and (min-width: 64em) {
   .product_socials_wrapper {
     position: fixed;
     top: 430px;
@@ -91,11 +100,3 @@
   100% {
     -webkit-transform: translateX(95px);
     transform: translateX(95px); } }
-
-@media only screen and (max-width: 1024px) {
-  .rtl .product_socials_wrapper_inner {
-    float: left;
-    text-align: left; }
-  .rtl .share-product-text {
-    float: right;
-    text-align: right; } }
