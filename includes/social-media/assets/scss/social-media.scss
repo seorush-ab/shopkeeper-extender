@@ -1,59 +1,42 @@
 // Social Media Icons List
-ul.sk_social_icons_list
-{
+ul.sk_social_icons_list {
 	clear: both;
 	display: block;
-	margin: 15px 0;
+	margin: 0;
 	padding: 0;
 	vertical-align: middle;
 
-	&.left
-	{
+	&.left {
 		text-align:left;
 	}
 
-	&.center
-	{
+	&.center {
 		text-align: center;
 	}
 
-	&.right
-	{
+	&.right {
 		text-align:right;
 	}
 
-	li.sk_social_icon
-	{
+	li.sk_social_icon {
 		display: inline-block;
 		list-style: none;
 		line-height: 1;
-		margin: 10px 30px 10px 0;
-		padding-top: 0 !important;
+		margin: 0 1.25rem 0 0;
 		vertical-align: middle;
 
-		&:last-child
-		{
+		&:last-child {
 			margin-right: 0;
-			margin-bottom: 10px;
 		}
 
-		a.sk_social_icon_link
-		{
+		a.sk_social_icon_link {
 			display: block;
 			overflow: visible;
 			line-height: 0;
+			transition: all .3s ease;
 
-			&:hover
-			{
-				i
-				{
-					opacity: .75;
-				}
-			}
-
-			i
-			{
-				transition: opacity .2s;
+			svg {
+				transition: all .3s ease;
 			}
 		}
 	}
@@ -85,16 +68,6 @@ ul.sk_social_icons_list
 				height: 16px !important;
 			}
 		}
-	}
-}
-
-// Footer
-.footer_socials_wrapper
-{
-	margin-bottom: 21px;
-
-	@media only screen and (min-width: 40.063em) {
-		margin-bottom: 34px;
 	}
 }
 

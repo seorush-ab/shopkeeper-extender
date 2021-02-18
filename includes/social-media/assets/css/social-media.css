@@ -1,7 +1,7 @@
 ul.sk_social_icons_list {
   clear: both;
   display: block;
-  margin: 15px 0;
+  margin: 0;
   padding: 0;
   vertical-align: middle; }
   ul.sk_social_icons_list.left {
@@ -14,22 +14,21 @@ ul.sk_social_icons_list {
     display: inline-block;
     list-style: none;
     line-height: 1;
-    margin: 10px 30px 10px 0;
-    padding-top: 0 !important;
+    margin: 0 1.25rem 0 0;
     vertical-align: middle; }
     ul.sk_social_icons_list li.sk_social_icon:last-child {
-      margin-right: 0;
-      margin-bottom: 10px; }
+      margin-right: 0; }
     ul.sk_social_icons_list li.sk_social_icon a.sk_social_icon_link {
       display: block;
       overflow: visible;
-      line-height: 0; }
-      ul.sk_social_icons_list li.sk_social_icon a.sk_social_icon_link:hover i {
-        opacity: .75; }
-      ul.sk_social_icons_list li.sk_social_icon a.sk_social_icon_link i {
-        -webkit-transition: opacity .2s;
-        -o-transition: opacity .2s;
-        transition: opacity .2s; }
+      line-height: 0;
+      -webkit-transition: all .3s ease;
+      -o-transition: all .3s ease;
+      transition: all .3s ease; }
+      ul.sk_social_icons_list li.sk_social_icon a.sk_social_icon_link svg {
+        -webkit-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        transition: all .3s ease; }
 
 .site-top-bar-social-icons-wrapper {
   display: block;
@@ -44,12 +43,6 @@ ul.sk_social_icons_list {
       .site-top-bar-social-icons-wrapper ul.sk_social_icons_list li.sk_social_icon svg, .site-top-bar-social-icons-wrapper ul.sk_social_icons_list li.sk_social_icon img {
         width: 16px !important;
         height: 16px !important; }
-
-.footer_socials_wrapper {
-  margin-bottom: 21px; }
-  @media only screen and (min-width: 40.063em) {
-    .footer_socials_wrapper {
-      margin-bottom: 34px; } }
 
 .off-canvas ul.sk_social_icons_list li.sk_social_icon {
   margin: 10px 22px 10px 0; }

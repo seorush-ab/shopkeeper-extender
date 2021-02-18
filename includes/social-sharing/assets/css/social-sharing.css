@@ -6,7 +6,7 @@
 
 @media only screen and (max-width: 63.9375em) {
   .product_socials_wrapper {
-    border-top: 1px solid var(--global--text-ultra-light-color);
+    border-top: 1px solid var(--global--text-light-color);
     display: block;
     padding: 1.25rem 0;
     overflow: hidden;
