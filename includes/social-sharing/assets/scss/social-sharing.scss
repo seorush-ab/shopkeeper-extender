@@ -1,4 +1,15 @@
 .product_socials_wrapper {
+    transition: all .5s ease;
+    white-space: nowrap;
+
+    @media only screen and (max-width: 63.9375em) {
+        border-top: 1px solid var(--global--text-light-color);
+        display: block;
+        padding: 1.25rem 0;
+        overflow: hidden;
+        text-align: center;
+        width: auto;
+    }
 
     @media only screen and (min-width: 64em) {
         animation: slide-in-from-left;
@@ -8,14 +19,27 @@
         animation-timing-function: ease-in-out;
         position: fixed;
         top: 50%;
-        right: 100%;
-        transition: all .5s ease;
-        transform: translateZ(0);
+        left: -60px;
+        right: auto;
         z-index: 999;
     }
 
+    &.slide-out {
+        opacity: 0;
+        visibility: hidden;
+    }
+
     .share-product-text {
+        display: inline-block;
+        color: var(--global--text-dark-color);
         font-family: var(--global--main-font);
+        font-size: 10px;
+        font-weight: bold;
+        line-height: 1.5;
+        text-transform: uppercase;
+        text-align: left;
+        width: 50%;
+        vertical-align: middle;
 
         @media only screen and (min-width: 64em) {
             display: none;
@@ -23,100 +47,92 @@
     }
 
     .product_socials_wrapper_inner {
-        transform: translateY(-50%);
+
+        @media only screen and (max-width: 63.9375em) {
+            display: inline-block;
+            text-align: right;
+            width: 50%;
+            vertical-align: middle;
+        }
+
+        @media only screen and (min-width: 64em) {
+            transform: translateY(-50%);
+        }
 
         div.social_media {
-            margin: 10px 0;
+            display: inline-block;
+            margin: 0 10px 0 0;
+            vertical-align: middle;
 
-            &:first-child {
-                margin-top: 0;
+            &:last-child {
+                margin-right: 5px;
             }
 
-            a {
-                @media only screen and (min-width: 64em) {
-                    border: 1px solid var(--global--text-light-color);
-                    border-radius: 50%;
-                    display: block;
-                    width: 46px;
-                    height: 46px;
-                    overflow: hidden;
-                    position: relative;
-                    text-align: center;
-                    text-decoration: none;
-                    white-space: nowrap;
-                    transition: all .8s;
-                    transition-timing-function: cubic-bezier(.4,.08,0,.97);
+            @media only screen and (min-width: 64em) {
+                display: block;
+                margin: 10px 0;
 
-                    svg.social-icon {
-                        position: relative;
-                        top: 12px;
-                    }
-
-                    svg.border-icon {
-                        position: absolute;
-                        left: -1px;
-                        top: -1px;
-
-                        .circle {
-                            stroke: var(--global--headings-color);
-                            stroke-dasharray: 301.59px 301.59px;
-                            stroke-dashoffset: 301.59px;
-                            stroke-width: 5;
-                            transition: all 0.8s;
-                            transition-timing-function: cubic-bezier(.4,.08,0,.97);
-                        }
-                    }
-
-                    &:hover {
-                        border-color: transparent;
-
-                        svg.border-icon .circle {
-                            stroke-dashoffset: 0;
-                        }
-                    }
+                &:first-child {
+                    margin-top: 0;
                 }
             }
-        }
-    }
-
-    @media only screen and (max-width: 63.9375em) {
-        border-top: 1px solid var(--global--text-light-color);
-        display: block;
-        padding: 1.25rem 0;
-        overflow: hidden;
-        text-align: center;
-        width: auto;
-        white-space: nowrap;
-
-        .share-product-text,
-        .product_socials_wrapper_inner {
-            display: inline-block;
-            width: 50%;
-        }
-
-        .share-product-text {
-            color: var(--global--text-dark-color);
-            font-size: 10px;
-            font-weight: bold;
-            line-height: 1.5;
-            text-transform: uppercase;
-            text-align: left;
-        }
-
-        .product_socials_wrapper_inner {
-            text-align: right;
 
             a {
-                padding-right: 15px;
+                background-color: var(--global--background-color);
+                border: 1px solid var(--global--text-light-color);
+                border-radius: 50%;
+                display: block;
+                width: 40px;
+                height: 40px;
+                overflow: hidden;
+                position: relative;
+                text-align: center;
+                text-decoration: none;
+                white-space: nowrap;
+                transition: all .8s;
+                transition-timing-function: cubic-bezier(.4,.08,0,.97);
 
-                svg {
-                    fill: var(--global--headings-color);
-                    transition: all .3s ease;
+                @media only screen and (min-width: 64em) {
+                    width: 46px;
+                    height: 46px;
+                }
+
+                svg.social-icon {
+                    position: relative;
+                    top: 9px;
+
+                    @media only screen and (min-width: 64em) {
+                        top: 12px;
+                    }
+                }
+
+                svg.border-icon {
+                    position: absolute;
+                    left: -1px;
+                    top: -1px;
+                    width: 40px;
+                    height: 40px;
+
+                    @media only screen and (min-width: 64em) {
+                        width: 46px;
+                        height: 46px;
+                    }
+
+                    .circle {
+                        stroke: var(--global--headings-color);
+                        stroke-dasharray: 301.59px 301.59px;
+                        stroke-dashoffset: 301.59px;
+                        stroke-width: 5;
+                        transition: all 0.8s;
+                        transition-timing-function: cubic-bezier(.4,.08,0,.97);
+                    }
                 }
 
                 &:hover {
-                    svg {
-                        fill: var(--global--accent-color);
+                    border-color: transparent;
+
+                    svg.border-icon .circle {
+                        stroke-dashoffset: 0;
                     }
                 }
             }
