@@ -79,7 +79,7 @@
 
             a {
                 background-color: var(--global--background-color);
-                border: 1px solid var(--global--text-light-color);
+                box-shadow: inset 0 0 0 1px var(--global--text-light-color);
                 border-radius: 50%;
                 display: block;
                 width: 40px;
@@ -107,9 +107,11 @@
                 }
 
                 svg.border-icon {
+                    fill: transparent;
                     position: absolute;
-                    left: -1px;
-                    top: -1px;
+                    left: 0;
+                    right: auto;
+                    top: 0;
                     width: 40px;
                     height: 40px;
 
@@ -118,21 +120,22 @@
                         height: 46px;
                     }
 
-                    .circle {
+                    path {
+                        box-sizing: border-box;
                         stroke: var(--global--headings-color);
-                        stroke-dasharray: 301.59px 301.59px;
-                        stroke-dashoffset: 301.59px;
-                        stroke-width: 5;
+                        stroke-dasharray: 307.919, 307.919;
+                        stroke-dashoffset: 307.919;
+                        stroke-width: 3;
                         transition: all 0.8s;
                         transition-timing-function: cubic-bezier(.4,.08,0,.97);
                     }
                 }
 
                 &:hover {
-                    border-color: transparent;
-
-                    svg.border-icon .circle {
-                        stroke-dashoffset: 0;
+                    svg.border-icon {
+                        path {
+                            stroke-dashoffset: 0;
+                        }
                     }
                 }
             }
