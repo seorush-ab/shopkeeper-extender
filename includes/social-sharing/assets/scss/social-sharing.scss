@@ -1,6 +1,5 @@
 .product_socials_wrapper {
     transition: all .5s ease;
-    white-space: nowrap;
 
     @media only screen and (max-width: 63.9375em) {
         border-top: 1px solid var(--global--text-light-color);
@@ -38,7 +37,7 @@
         line-height: 1.5;
         text-transform: uppercase;
         text-align: left;
-        width: 50%;
+        width: 33.9%;
         vertical-align: middle;
 
         @media only screen and (min-width: 64em) {
@@ -51,7 +50,7 @@
         @media only screen and (max-width: 63.9375em) {
             display: inline-block;
             text-align: right;
-            width: 50%;
+            width: 64.9%;
             vertical-align: middle;
         }
 
@@ -61,11 +60,11 @@
 
         div.social_media {
             display: inline-block;
-            margin: 0 10px 0 0;
+            margin: 0 0 0 10px;
             vertical-align: middle;
 
-            &:last-child {
-                margin-right: 5px;
+            &:first-child {
+                margin-left: 0;
             }
 
             @media only screen and (min-width: 64em) {
