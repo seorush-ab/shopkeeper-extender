@@ -36,7 +36,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 				if ( sk_string_to_bool( get_option( 'sk_sharing_options', 'yes' ) ) ) {
 					$this->getbowtied_single_share_product();
 				}
-			}, 100 );
+			}, 50 );
 
 			if( sk_string_to_bool( get_option( 'sk_sharing_options', 'yes' ) ) && sk_string_to_bool( get_option( 'sk_sharing_options_facebook', 'yes' ) ) && sk_string_to_bool( get_option( 'sk_sharing_options_facebook_meta', 'yes' ) ) ) {
 				add_action( 'wp_head', array( $this, 'sk_add_facebook_meta' ), 10 );
