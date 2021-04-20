@@ -38,7 +38,7 @@ if ( ! function_exists( 'gbt_18_sk_categories_grid_assets' ) ) {
 	function gbt_18_sk_categories_grid_assets() {
 
 		$theme = wp_get_theme();
-		if( $theme->template != 'shopkeeper' ) {
+		if( !class_exists('Shopkeeper') ) {
 			wp_enqueue_style(
 				'gbt_18_sk_categories_grid_styles',
 				plugins_url( 'assets/css/styles'.SK_EXT_ENQUEUE_SUFFIX.'.css', dirname(__FILE__) ),

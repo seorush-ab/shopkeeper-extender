@@ -352,7 +352,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 			global $social_media_profiles;
 
 			$theme = wp_get_theme();
-			if ( $theme->template == 'shopkeeper') {
+			if( class_exists('Shopkeeper') ) {
 
 				$wp_customize->add_setting( 'sk_top_bar_social_icons', array(
 					'type'		 			=> 'option',
