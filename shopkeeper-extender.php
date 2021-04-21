@@ -94,6 +94,7 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 
                 // Addons
     			if ( is_plugin_active( 'woocommerce/woocommerce.php') ) {
+                    include_once( dirname( __FILE__ ) . '/includes/addons/class-wc-category-secondary-description.php' );
     				include_once( dirname( __FILE__ ) . '/includes/addons/class-wc-category-header-image.php' );
     			}
 			}

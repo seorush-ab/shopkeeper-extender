@@ -64,7 +64,7 @@ if ( ! class_exists( 'SKCategoryHeaderImage' ) ) :
 			?>
 
 			<div class="form-field">
-				<label><?php _e( 'Header', 'shopkeeper-extender' ); ?></label>
+				<label><?php esc_html_e( 'Header', 'shopkeeper-extender' ); ?></label>
 				<div id="product_cat_header" style="float:left;margin-right:10px;"><img src="<?php echo wc_placeholder_img_src(); ?>" width="60px" height="60px" /></div>
 				<div style="line-height:60px;">
 					<input type="hidden" id="product_cat_header_id" name="product_cat_header_id" />
