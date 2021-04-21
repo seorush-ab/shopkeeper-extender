@@ -116,7 +116,7 @@ if ( ! class_exists( 'SKCategorySecondaryDescription' ) ) :
 				$secondary_description = get_term_meta( $term->term_id, 'product_cat_secondary_description', true );
 				if( $term && !empty($secondary_description) ) {
 					?>
-					<div class="woocommerce-category-secondary-description">
+					<div class="woocommerce-category-secondary-description large-6 large-centered columns">
 						<?php echo wc_format_content( htmlspecialchars_decode($secondary_description) ); ?>
 					</div>
 					<?php
