@@ -42,53 +42,6 @@ ul.sk_social_icons_list {
 	}
 }
 
-// Top Bar
-.site-top-bar-social-icons-wrapper
-{
-	display: block;
-	float: right;
-	padding: 8px 0;
-
-	ul.sk_social_icons_list
-	{
-		margin: 0 0 0 50px;
-
-		li.sk_social_icon
-		{
-			margin: 5px 10px 5px 0;
-
-			&:last-child
-			{
-				margin-right: 0;
-			}
-
-			svg, img
-			{
-				width: 16px !important;
-				height: 16px !important;
-			}
-		}
-	}
-}
-
-// Off-Canvas
-.off-canvas
-{
-	ul.sk_social_icons_list
-	{
-		li.sk_social_icon
-		{
-			margin: 10px 22px 10px 0;
-
-			svg
-			{
-				width: 18px !important;
-				height: 18px !important;
-			}
-		}
-	}
-}
-
 // RTL
 .rtl
 {
