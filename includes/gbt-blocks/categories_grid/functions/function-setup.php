@@ -23,9 +23,9 @@ if ( ! function_exists( 'gbt_18_sk_categories_grid_editor_assets' ) ) {
 
 		wp_register_style(
 			'gbt_18_sk_categories_grid_editor_styles',
-			plugins_url( 'assets/css/editor'.SK_EXT_ENQUEUE_SUFFIX.'.css', dirname(__FILE__) ),
+			plugins_url( 'assets/css/styles.css', dirname(__FILE__) ),
 			array( 'wp-edit-blocks' ),
-			filemtime(plugin_dir_path(__FILE__) . '../assets/css/editor'.SK_EXT_ENQUEUE_SUFFIX.'.css')
+			filemtime(plugin_dir_path(__FILE__) . '../assets/css/styles.css')
 		);
 	}
 }
@@ -41,9 +41,9 @@ if ( ! function_exists( 'gbt_18_sk_categories_grid_assets' ) ) {
 		if( !class_exists('Shopkeeper') ) {
 			wp_enqueue_style(
 				'gbt_18_sk_categories_grid_styles',
-				plugins_url( 'assets/css/styles'.SK_EXT_ENQUEUE_SUFFIX.'.css', dirname(__FILE__) ),
+				plugins_url( 'assets/css/styles.css', dirname(__FILE__) ),
 				array(),
-				filemtime(plugin_dir_path(__FILE__) . '../assets/css/styles'.SK_EXT_ENQUEUE_SUFFIX.'.css')
+				filemtime(plugin_dir_path(__FILE__) . '../assets/css/styles.css')
 			);
 		}
 	}

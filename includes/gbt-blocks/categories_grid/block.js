@@ -18,6 +18,10 @@
 		InspectorControls,
 	} = wp.blockEditor;
 
+	const {
+		ServerSideRender,
+	} = wp.editor;
+
 	const apiFetch = wp.apiFetch;
 
 	/* Register Block */
@@ -702,7 +706,7 @@
 					/* All products */
 
 					/* Load all products */
-						el(
+						attributes.queryDisplayType === 'specific' && el(
 							'button',
 							{
 								className: 'render-results components-button is-button is-default is-primary is-large ' + _isLoading(),
@@ -730,13 +734,21 @@
 					),
 				),
 				el(
-					'div',
+					ServerSideRender,
 					{
-						key: 		'gbt_18_sk_categories_grid',
-						className: 	'gbt_18_sk_categories_grid'
-					},
-					attributes.queryDisplayType == 'all_categories' && attributes.doneFirstPostsLoad === false && getResult(),
-					renderResults(),
+						key: 'sk_categories-grid-render',
+						block: 'getbowtied/sk-categories-grid',
+						attributes: {
+							categoryIDs: attributes.categoryIDs,
+							orderby: attributes.orderby,
+							limit: attributes.limit,
+							columns: attributes.columns,
+							hideEmpty: attributes.hideEmpty,
+							productCount: attributes.productCount,
+							parentOnly: attributes.parentOnly,
+							queryDisplayType: attributes.queryDisplayType,
+						}
+					}
 				),
 			];
 		},
