@@ -18,7 +18,7 @@
         animation-timing-function: ease-in-out;
         position: fixed;
         top: 50%;
-        left: -60px;
+        left: -5rem;
         right: auto;
         z-index: 999;
     }
@@ -144,8 +144,7 @@
 }
 
 @keyframes slide-in-from-left {
-    0%   { transform: translateX(-55px); }
-    50%  { transform: translateX(95px);  }
-    75%  { transform: translateX(95px);  }
-    100% { transform: translateX(95px);  }
+    0%   { transform: translateX(-5rem); }
+    50%  { transform: translateX(7.5rem);  }
+    100% { transform: translateX(7.5rem);  }
 }
