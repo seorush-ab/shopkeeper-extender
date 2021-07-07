@@ -267,14 +267,14 @@
 				el(
 					'div',
 					{
-						key: 'gbt_18_sk_editor_banner',
-						className: 'gbt_18_sk_editor_banner',
+						key: 'gbt_18_sk_banner',
+						className: 'gbt_18_sk_banner',
 					},
 					el(
 						'div',
 						{
-							key: 'gbt_18_sk_editor_banner_wrapper',
-							className: 'gbt_18_sk_editor_banner_wrapper',
+							key: 'gbt_18_sk_banner_wrapper',
+							className: 'gbt_18_sk_banner_wrapper',
 							style:
 							{
 								height: attributes.height + 'px',
@@ -283,13 +283,13 @@
 						el(
 							'div',
 							{
-								key: 'gbt_18_sk_editor_banner_wrapper_inner',
-								className: 'gbt_18_sk_editor_banner_wrapper_inner',
+								key: 'gbt_18_sk_banner_wrapper_inner',
+								className: 'gbt_18_sk_banner_wrapper_inner',
 							},
 							el( 'div',
 								{
-									key: 'gbt_18_sk_editor_banner_background',
-									className: 'gbt_18_sk_editor_banner_background',
+									key: 'gbt_18_sk_banner_background',
+									className: 'gbt_18_sk_banner_background',
 									style:
 									{
 										backgroundColor: attributes.backgroundColor,
@@ -300,7 +300,7 @@
 							el(
 								MediaUpload,
 								{
-									key: 'gbt_18_sk_editor_banner_img_upload',
+									key: 'gbt_18_sk_banner_img_upload',
 									allowedTypes: [ 'image' ],
 									formattingControls: [ 'align' ],
 									buttonProps: { className: 'components-button button button-large' },
@@ -317,8 +317,8 @@
 				              				! attributes.imgID && el(
 				              					Button,
 				              					{
-				              						key: 'gbt_18_sk_editor_banner_add_image_button',
-				              						className: 'button gbt_18_sk_editor_banner_add_image',
+				              						key: 'gbt_18_sk_banner_add_image_button',
+				              						className: 'button gbt_18_sk_banner_add_image',
 				              						onClick: img.open
 				              					},
 				              					i18n.__( 'Add Image', 'shopkeeper-extender' )
@@ -326,8 +326,8 @@
 			              					!! attributes.imgID && el(
 			              						Button,
 												{
-													key: 'gbt_18_sk_editor_banner_remove_image_button',
-													className: 'button gbt_18_sk_editor_banner_remove_image',
+													key: 'gbt_18_sk_banner_remove_image_button',
+													className: 'button gbt_18_sk_banner_remove_image',
 													onClick: function() {
 														img.close;
 														props.setAttributes({
@@ -346,8 +346,8 @@
 							el(
 								'div',
 								{
-									key: 'gbt_18_sk_editor_banner_content',
-									className: 'gbt_18_sk_editor_banner_content',
+									key: 'gbt_18_sk_banner_content',
+									className: 'gbt_18_sk_banner_content',
 									style:
 									{
 										border: attributes.innerStrokeThickness + 'px solid ' + attributes.innerStrokeColor
@@ -356,19 +356,19 @@
 								el(
 									'div',
 									{
-										key: 'gbt_18_sk_editor_banner_text_content',
-										className: 'gbt_18_sk_editor_banner_text_content',
+										key: 'gbt_18_sk_banner_text_content',
+										className: 'gbt_18_sk_banner_text_content',
 									},
 									el(
 										RichText,
 										{
-											key: 'gbt_18_sk_editor_banner_title',
+											key: 'gbt_18_sk_banner_title',
 											style:
 											{
 												color: attributes.titleColor,
 												fontSize: attributes.titleSize + 'px'
 											},
-											className: 'gbt_18_sk_editor_banner_title',
+											className: 'gbt_18_sk_banner_title',
 											tagName: 'h3',
 											format: 'string',
 											value: attributes.title,
@@ -381,13 +381,13 @@
 									el(
 										RichText,
 										{
-											key: 'gbt_18_sk_editor_banner_subtitle',
+											key: 'gbt_18_sk_banner_subtitle',
 											style:
 											{
 												color: attributes.subtitleColor,
 												fontSize: attributes.subtitleSize + 'px'
 											},
-											className: 'gbt_18_sk_editor_banner_subtitle',
+											className: 'gbt_18_sk_banner_subtitle',
 											tagName: 'p',
 											format: 'string',
 											value: attributes.subtitle,

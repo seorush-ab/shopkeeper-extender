@@ -21,7 +21,7 @@ if ( ! function_exists( 'gbt_18_sk_banner_editor_assets' ) ) {
 
 		wp_enqueue_style(
 			'gbt_18_sk_banner_editor_styles',
-			plugins_url( 'assets/css/editor.css', __FILE__ ),
+			plugins_url( 'assets/css/style.css', __FILE__ ),
 			array( 'wp-edit-blocks' )
 		);
 	}
