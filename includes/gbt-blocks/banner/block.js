@@ -152,7 +152,7 @@
 						{
 							key: 'gbt_18_sk_banner_settings_panel',
 							title: i18n.__( 'General Settings', 'shopkeeper-extender' ),
-							initialOpen: false,
+							initialOpen: true,
 						},
 						el(
 							TextControl,

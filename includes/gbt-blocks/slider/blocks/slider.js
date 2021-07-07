@@ -177,9 +177,11 @@
 						key: 'gbt_18_sk_slider_inspector'
 					},
 					el(
-						'div',
+						PanelBody,
 						{
-							className: 'main-inspector-wrapper',
+							key: 'gbt_18_sk_editor_slider_settings',
+							title: 'General Settings',
+							initialOpen: true,
 						},
 						el(
 							ToggleControl,
@@ -246,15 +248,15 @@
 								},
 							}
 						),
-						el(
-							PanelColorSettings,
-							{
-								key: 'gbt_18_sk_slider_arrows_color',
-								title: i18n.__( 'Colors', 'shopkeeper-extender' ),
-								initialOpen: false,
-								colorSettings: getColors()
-							},
-						),
+					),
+					el(
+						PanelColorSettings,
+						{
+							key: 'gbt_18_sk_slider_arrows_color',
+							title: i18n.__( 'Colors', 'shopkeeper-extender' ),
+							initialOpen: false,
+							colorSettings: getColors()
+						},
 					),
 				),
 				el( 'div',
@@ -321,18 +323,6 @@
 								color: attributes.arrowsColor
 							}
 						},
-						el( SVG,
-							{
-								className: 'left-arrow-svg',
-								xmlns:'http://www.w3.org/2000/svg',
-								viewBox:'0 0 24 24',
-								style:
-								{
-									fill: attributes.arrowsColor
-								}
-							},
-							el( Path, { d:'M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z' } )
-						),
 					),
 					!! attributes.arrows && el(
 						'div',
@@ -344,18 +334,6 @@
 								color: attributes.arrowsColor
 							}
 						},
-						el( SVG,
-							{
-								className: 'right-arrow-svg',
-								xmlns:'http://www.w3.org/2000/svg',
-								viewBox:'0 0 24 24',
-								style:
-								{
-									fill: attributes.arrowsColor
-								}
-							},
-							el( Path, { d:'M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z' } )
-						),
 					),
 					!! attributes.pagination && el(
 						'div',
@@ -418,7 +396,6 @@
 									{
 										className: 'left-arrow-svg',
 										xmlns:'http://www.w3.org/2000/svg',
-										Focusable: 'false',
 										viewBox:'0 0 24 24',
 										style:
 										{
@@ -442,7 +419,6 @@
 									{
 										className: 'right-arrow-svg',
 										xmlns:'http://www.w3.org/2000/svg',
-										Focusable: 'false',
 										viewBox:'0 0 24 24',
 										style:
 										{

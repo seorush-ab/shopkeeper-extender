@@ -27,6 +27,74 @@
 		PanelColorSettings,
 	} = wp.blockEditor;
 
+	var attributes = {
+		imgURL: {
+			type: 'string',
+			attribute: 'src',
+			selector: 'img',
+			default: '',
+		},
+		imgID: {
+			type: 'number',
+		},
+		imgAlt: {
+			type: 'string',
+			attribute: 'alt',
+			selector: 'img',
+		},
+		title: {
+			type: 'string',
+			default: 'Slide Title',
+		},
+		titleSize: {
+			type: 'number',
+			default: 64,
+		},
+		description: {
+			type: 'string',
+			default: 'Slide Description'
+		},
+		descriptionSize: {
+			type: 'number',
+			default: 16,
+		},
+		textColor: {
+			type: 'string',
+			default: '#fff'
+		},
+		buttonText: {
+			type: 'string',
+			default: 'Button Text'
+		},
+		slideURL: {
+			type: 'string',
+			default: '#'
+		},
+		slideButton: {
+			type: 'boolean',
+			default: true
+		},
+		buttonTextColor: {
+			type: 'string',
+			default: '#fff'
+		},
+		buttonBgColor: {
+			type: 'string',
+			default: '#000'
+		},
+		backgroundColor: {
+			type: 'string',
+			default: '#24282e'
+		},
+		alignment: {
+			type: 'string',
+			default: 'center'
+		},
+		tabNumber: {
+			type: "number"
+		}
+	};
+
 	/* Register Block */
 	registerBlockType( 'getbowtied/sk-slide', {
 		title: i18n.__( 'Slide', 'shopkeeper-extender' ),
@@ -37,73 +105,7 @@
 			),
 		category: 'shopkeeper',
 		parent: [ 'getbowtied/sk-slider' ],
-		attributes: {
-		    imgURL: {
-	            type: 'string',
-	            attribute: 'src',
-	            selector: 'img',
-	            default: '',
-	        },
-	        imgID: {
-	            type: 'number',
-	        },
-	        imgAlt: {
-	            type: 'string',
-	            attribute: 'alt',
-	            selector: 'img',
-	        },
-	        title: {
-	        	type: 'string',
-	        	default: 'Slide Title',
-	        },
-	        titleSize: {
-	        	type: 'number',
-	        	default: 64,
-	        },
-	        description: {
-	        	type: 'string',
-	        	default: 'Slide Description'
-	        },
-	        descriptionSize: {
-	        	type: 'number',
-	        	default: 16,
-	        },
-	        textColor: {
-	        	type: 'string',
-	        	default: '#fff'
-	        },
-	        buttonText: {
-	        	type: 'string',
-	        	default: 'Button Text'
-	        },
-	        slideURL: {
-	        	type: 'string',
-	        	default: '#'
-	        },
-	        slideButton: {
-	        	type: 'boolean',
-	        	default: true
-	        },
-	        buttonTextColor: {
-	        	type: 'string',
-	        	default: '#fff'
-	        },
-	        buttonBgColor: {
-	        	type: 'string',
-	        	default: '#000'
-	        },
-	        backgroundColor: {
-	        	type: 'string',
-	        	default: '#24282e'
-	        },
-	        alignment: {
-	        	type: 'string',
-	        	default: 'center'
-	        },
-	        tabNumber: {
-                type: "number"
-            }
-		},
+		attributes: attributes,
 
 		edit: function( props ) {
 
@@ -157,9 +159,11 @@
 						key: 'gbt_18_sk_slide_inspector'
 					},
 					el(
-						'div',
+						PanelBody,
 						{
-							className: 'main-inspector-wrapper',
+							key: 'gbt_18_sk_slide_settings_panel',
+							title: i18n.__( 'General Settings', 'shopkeeper-extender' ),
+							initialOpen: true,
 						},
 						el(
 							TextControl,
@@ -173,7 +177,6 @@
 								},
 							},
 						),
-						el( 'hr', {} ),
 						el(
 							ToggleControl,
 							{
@@ -186,52 +189,44 @@
 							}
 						),
 						el(
-							PanelBody,
+							RangeControl,
 							{
-								key: 'gbt_18_sk_editor_slide_text_settings',
-								title: 'Title & Description',
-								initialOpen: false,
-							},
-							el(
-								RangeControl,
-								{
-									key: "gbt_18_sk_editor_slide_title_size",
-									value: attributes.titleSize,
-									allowReset: false,
-									initialPosition: 64,
-									min: 10,
-									max: 72,
-									label: i18n.__( 'Title Font Size', 'shopkeeper-extender' ),
-									onChange: function( newNumber ) {
-										props.setAttributes( { titleSize: newNumber } );
-									},
-								}
-							),
-							el(
-								RangeControl,
-								{
-									key: "gbt_18_sk_editor_slide_description_size",
-									value: attributes.descriptionSize,
-									allowReset: false,
-									initialPosition: 16,
-									min: 10,
-									max: 72,
-									label: i18n.__( 'Description Font Size', 'shopkeeper-extender' ),
-									onChange: function( newNumber ) {
-										props.setAttributes( { descriptionSize: newNumber } );
-									},
-								}
-							),
+								key: "gbt_18_sk_editor_slide_title_size",
+								value: attributes.titleSize,
+								allowReset: false,
+								initialPosition: 64,
+								min: 10,
+								max: 72,
+								label: i18n.__( 'Title Font Size', 'shopkeeper-extender' ),
+								onChange: function( newNumber ) {
+									props.setAttributes( { titleSize: newNumber } );
+								},
+							}
 						),
 						el(
-							PanelColorSettings,
+							RangeControl,
 							{
-								key: 'gbt_18_sk_editor_slide_colors',
-								initialOpen: false,
-								title: i18n.__( 'Colors', 'shopkeeper-extender' ),
-								colorSettings: getColors()
-							},
+								key: "gbt_18_sk_editor_slide_description_size",
+								value: attributes.descriptionSize,
+								allowReset: false,
+								initialPosition: 16,
+								min: 10,
+								max: 72,
+								label: i18n.__( 'Description Font Size', 'shopkeeper-extender' ),
+								onChange: function( newNumber ) {
+									props.setAttributes( { descriptionSize: newNumber } );
+								},
+							}
 						),
+					),
+					el(
+						PanelColorSettings,
+						{
+							key: 'gbt_18_sk_editor_slide_colors',
+							initialOpen: false,
+							title: i18n.__( 'Colors', 'shopkeeper-extender' ),
+							colorSettings: getColors()
+						},
 					),
 				),
 				el( 'div',
@@ -396,7 +391,7 @@
 											},
 											className: 'gbt_18_sk_editor_slide_button_input',
 											format: 'string',
-											tagName: 'h5',
+											tagName: 'span',
 											value: attributes.buttonText,
 											placeholder: i18n.__( 'Button Text', 'shopkeeper-extender' ),
 											onChange: function( newText) {
@@ -458,7 +453,7 @@
 									color: attributes.textColor
 								},
 							},
-							i18n.__( attributes.title, 'shopkeeper-extender' )
+							el( RichText.Content, { tag: 'h2', value: i18n.__( attributes.title, 'shopkeeper-extender' ) } )
 						),
 						attributes.description != '' && el( 'p',
 							{
@@ -470,12 +465,12 @@
 									color: attributes.textColor
 								},
 							},
-							i18n.__( attributes.description, 'shopkeeper-extender' )
+							el( RichText.Content, { tag: 'p', value: i18n.__( attributes.description, 'shopkeeper-extender' ) } )
 						),
 						!! attributes.slideButton && attributes.buttonText != '' && el( 'a',
 							{
 								key: 		'gbt_18_sk_slide_button',
-								className: 	'gbt_18_sk_slide_button slide-button',
+								className: 	'gbt_18_sk_slide_button slide-button button',
 								href: attributes.slideURL,
 								style:
 								{
@@ -489,6 +484,86 @@
 				)
 			);
 		},
+
+		deprecated: [
+			{
+				attributes: attributes,
+
+				save: function( props ) {
+
+					let attributes = props.attributes;
+
+					return el( 'div',
+						{
+							key: 		'gbt_18_sk_swiper_slide',
+							className: 	'gbt_18_sk_swiper_slide swiper-slide ' + attributes.alignment,
+							style:
+							{
+								backgroundColor: attributes.backgroundColor,
+								backgroundImage: 'url(' + attributes.imgURL + ')',
+								color: attributes.textColor
+							}
+						},
+						! attributes.slideButton && attributes.slideURL != '' && el( 'a',
+							{
+								key: 		'gbt_18_sk_slide_fullslidelink',
+								className: 	'fullslidelink',
+								href: 		attributes.slideURL
+							}
+						),
+						el( 'div',
+							{
+								key: 		'gbt_18_sk_slide_content',
+								className: 	'gbt_18_sk_slide_content slider-content' //data-swiper-parallax="-1000"
+							},
+							el( 'div',
+								{
+									key: 		'gbt_18_sk_slide_content_wrapper',
+									className: 	'gbt_18_sk_slide_content_wrapper slider-content-wrapper'
+								},
+								attributes.title != '' && el( 'h2',
+									{
+										key: 		'gbt_18_sk_slide_title',
+										className: 	'gbt_18_sk_slide_title slide-title',
+										style:
+										{
+											fontSize: attributes.titleSize,
+											color: attributes.textColor
+										},
+									},
+									i18n.__( attributes.title, 'shopkeeper-extender' )
+								),
+								attributes.description != '' && el( 'p',
+									{
+										key: 		'gbt_18_sk_slide_description',
+										className: 	'gbt_18_sk_slide_description slide-description',
+										style:
+										{
+											fontSize: attributes.descriptionSize,
+											color: attributes.textColor
+										},
+									},
+									i18n.__( attributes.description, 'shopkeeper-extender' )
+								),
+								!! attributes.slideButton && attributes.buttonText != '' && el( 'a',
+									{
+										key: 		'gbt_18_sk_slide_button',
+										className: 	'gbt_18_sk_slide_button slide-button',
+										href: attributes.slideURL,
+										style:
+										{
+											backgroundColor: attributes.buttonBgColor,
+											color: attributes.buttonTextColor
+										},
+									},
+									i18n.__( attributes.buttonText, 'shopkeeper-extender' )
+								)
+							)
+						)
+					);
+				}
+			}
+		]
 	} );
 
 } )(

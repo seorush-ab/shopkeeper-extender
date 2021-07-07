@@ -1,7 +1,12 @@
 .main-inspector-wrapper {
-        border-top: 1px solid #e2e4e7;
-        margin-top: 15px;
-        padding: 15px 15px 0;
+    border-top: 1px solid #e2e4e7;
+    margin-top: 15px;
+    padding-top: 15px;
+
+    > .components-base-control {
+        padding: 0 15px;
+    }
+
     .products-ajax-search-wrapper {
         position: relative;
 
@@ -15,7 +20,6 @@
                 display: inline-block;
                 width: 20px;
                 height: 20px;
-                // font-size: 20px;
                 line-height: 1;
                 font-family: dashicons;
                 text-decoration: inherit;
