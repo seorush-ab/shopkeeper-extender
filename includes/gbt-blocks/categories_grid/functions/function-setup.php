@@ -57,37 +57,57 @@ if ( function_exists( 'register_block_type' ) ) {
 		'editor_style'  	=> 'gbt_18_sk_categories_grid_editor_styles',
 		'editor_script'		=> 'gbt_18_sk_categories_grid_script',
 		'attributes'      	=> array(
-			'queryDisplayType'				=> array(
-				'type'						=> 'string',
-				'default'					=> 'all_categories',
-			),
 			'categoryIDs'					=> array(
 				'type'						=> 'string',
 				'default'					=> '',
 			),
-			'orderby' 						=> array(
+			'queryCategories' 				=> array(
+                'type'                      => 'string',
+                'default'                   => '',
+            ),
+			'queryCategoriesLast' 			=> array(
+                'type'                      => 'string',
+                'default'                   => '',
+            ),
+			'queryDisplayType'				=> array(
 				'type'						=> 'string',
-				'default'					=> 'menu_order',
+				'default'					=> 'all_categories',
 			),
-			'limit'							=> array(
-				'type'						=> 'integer',
-				'default'					=> 8,
+			'isLoading'  					=> array(
+				'type'    					=> 'boolean',
+				'default' 					=> false,
+			),
+			'querySearchString'				=> array(
+				'type'						=> 'string',
+				'default'					=> '',
+			),
+			'querySearchNoResults'			=> array(
+				'type'						=> 'boolean',
+				'default'					=> false,
+			),
+			'parentOnly'					=> array(
+				'type'						=> 'boolean',
+				'default'					=> false,
 			),
 			'hideEmpty'  					=> array(
 				'type'    					=> 'boolean',
 				'default' 					=> false,
 			),
+			'orderby' 						=> array(
+				'type'						=> 'string',
+				'default'					=> 'menu_order',
+			),
 			'productCount'  				=> array(
 				'type'    					=> 'boolean',
 				'default' 					=> true,
 			),
+			'limit'							=> array(
+				'type'						=> 'integer',
+				'default'					=> 8,
+			),
 			'columns'						=> array(
 				'type'						=> 'number',
 				'default'					=> '3'
-			),
-			'parentOnly'					=> array(
-				'type'						=> 'boolean',
-				'default'					=> false,
 			),
 			'align'							=> array(
 				'type'						=> 'string',

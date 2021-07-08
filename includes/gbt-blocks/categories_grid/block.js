@@ -79,10 +79,6 @@
 				default: [],
 			},
 		/* Order by */
-			queryOrder: {
-				type: 'string',
-				default: '',
-			},
 			parentOnly: {
 				type: 'bool',
 				default: false,
@@ -96,11 +92,6 @@
 				default: 'menu_order',
 			},
 			productCount: {
-				type: 'bool',
-				default: true,
-			},
-		/* First Load */
-			firstLoad: {
 				type: 'bool',
 				default: true,
 			},
@@ -554,13 +545,19 @@
 						block: 'getbowtied/sk-categories-grid',
 						attributes: {
 							categoryIDs: attributes.categoryIDs,
+							queryCategories: attributes.queryCategories,
+							queryCategoriesLast: attributes.queryCategoriesLast,
+							queryDisplayType: attributes.queryDisplayType,
+							isLoading: attributes.isLoading,
+							querySearchString: attributes.querySearchString,
+							querySearchNoResults: attributes.querySearchNoResults,
+							parentOnly: attributes.parentOnly,
+							hideEmpty: attributes.hideEmpty,
 							orderby: attributes.orderby,
+							productCount: attributes.productCount,
 							limit: attributes.limit,
 							columns: attributes.columns,
-							hideEmpty: attributes.hideEmpty,
-							productCount: attributes.productCount,
-							parentOnly: attributes.parentOnly,
-							queryDisplayType: attributes.queryDisplayType,
+							align: attributes.align
 						}
 					}
 				),
