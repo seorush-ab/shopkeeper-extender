@@ -33,12 +33,12 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 			$this->customizer_options();
 
 			add_action( 'woocommerce_single_product_summary', function() {
-				if ( sk_string_to_bool( get_option( 'sk_sharing_options', 'yes' ) ) ) {
+				if ( SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options', 'yes' ) ) ) {
 					$this->getbowtied_single_share_product();
 				}
 			}, 50 );
 
-			if( sk_string_to_bool( get_option( 'sk_sharing_options', 'yes' ) ) && sk_string_to_bool( get_option( 'sk_sharing_options_facebook', 'yes' ) ) && sk_string_to_bool( get_option( 'sk_sharing_options_facebook_meta', 'yes' ) ) ) {
+			if( SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options', 'yes' ) ) && SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options_facebook', 'yes' ) ) && SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options_facebook_meta', 'yes' ) ) ) {
 				add_action( 'wp_head', array( $this, 'sk_add_facebook_meta' ), 10 );
 			}
 		}
@@ -124,8 +124,8 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 			$wp_customize->add_setting( 'sk_sharing_options', array(
 				'type'		 			=> 'option',
 				'capability' 			=> 'manage_options',
-				'sanitize_callback'    	=> 'sk_sanitize_checkbox',
-				'sanitize_js_callback'  => 'sk_string_to_bool',
+				'sanitize_callback'    	=> 'SKSocialSharing::sanitize_checkbox',
+				'sanitize_js_callback'  => 'SKSocialSharing::string_to_bool',
 				'transport'				=> 'refresh',
 				'default'	 			=> 'yes',
 			) );
@@ -147,8 +147,8 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 			$wp_customize->add_setting( 'sk_sharing_options_facebook', array(
 				'type'		 			=> 'option',
 				'capability' 			=> 'manage_options',
-				'sanitize_callback'    	=> 'sk_sanitize_checkbox',
-				'sanitize_js_callback'  => 'sk_string_to_bool',
+				'sanitize_callback'    	=> 'SKSocialSharing::sanitize_checkbox',
+				'sanitize_js_callback'  => 'SKSocialSharing::string_to_bool',
 				'transport'				=> 'refresh',
 				'default'	 			=> 'yes',
 			) );
@@ -163,7 +163,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 						'section'     => 'product',
 						'priority'    => 20,
 						'active_callback' => function() {
-							return sk_string_to_bool( get_option( 'sk_sharing_options', 'yes' ) );
+							return SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options', 'yes' ) );
 						}
 					)
 				)
@@ -173,8 +173,8 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 			$wp_customize->add_setting( 'sk_sharing_options_facebook_meta', array(
 				'type'		 			=> 'option',
 				'capability' 			=> 'manage_options',
-				'sanitize_callback'    	=> 'sk_sanitize_checkbox',
-				'sanitize_js_callback'  => 'sk_string_to_bool',
+				'sanitize_callback'    	=> 'SKSocialSharing::sanitize_checkbox',
+				'sanitize_js_callback'  => 'SKSocialSharing::string_to_bool',
 				'transport'				=> 'refresh',
 				'default'	 			=> 'yes',
 			) );
@@ -189,7 +189,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 						'section'     => 'product',
 						'priority'    => 20,
 						'active_callback' => function() {
-							return sk_string_to_bool( get_option( 'sk_sharing_options', 'yes' ) ) && sk_string_to_bool( get_option( 'sk_sharing_options_facebook', 'yes' ) );
+							return SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options', 'yes' ) ) && SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options_facebook', 'yes' ) );
 						}
 					)
 				)
@@ -199,8 +199,8 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 			$wp_customize->add_setting( 'sk_sharing_options_twitter', array(
 				'type'		 			=> 'option',
 				'capability' 			=> 'manage_options',
-				'sanitize_callback'    	=> 'sk_sanitize_checkbox',
-				'sanitize_js_callback'  => 'sk_string_to_bool',
+				'sanitize_callback'    	=> 'SKSocialSharing::sanitize_checkbox',
+				'sanitize_js_callback'  => 'SKSocialSharing::string_to_bool',
 				'transport'				=> 'refresh',
 				'default'	 			=> 'yes',
 			) );
@@ -215,7 +215,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 						'section'     => 'product',
 						'priority'    => 20,
 						'active_callback' => function() {
-							return sk_string_to_bool( get_option( 'sk_sharing_options', 'yes' ) );
+							return SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options', 'yes' ) );
 						}
 					)
 				)
@@ -225,8 +225,8 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 			$wp_customize->add_setting( 'sk_sharing_options_pinterest', array(
 				'type'		 			=> 'option',
 				'capability' 			=> 'manage_options',
-				'sanitize_callback'    	=> 'sk_sanitize_checkbox',
-				'sanitize_js_callback'  => 'sk_string_to_bool',
+				'sanitize_callback'    	=> 'SKSocialSharing::sanitize_checkbox',
+				'sanitize_js_callback'  => 'SKSocialSharing::string_to_bool',
 				'transport'				=> 'refresh',
 				'default'	 			=> 'yes',
 			) );
@@ -241,7 +241,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 						'section'     => 'product',
 						'priority'    => 20,
 						'active_callback' => function() {
-							return sk_string_to_bool( get_option( 'sk_sharing_options', 'yes' ) );
+							return SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options', 'yes' ) );
 						}
 					)
 				)
@@ -264,7 +264,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 
 				<div class="product_socials_wrapper_inner">
 
-					<?php if( sk_string_to_bool( get_option( 'sk_sharing_options_facebook', 'yes' ) ) ) { ?>
+					<?php if( SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options_facebook', 'yes' ) ) ) { ?>
 						<div class="social_media social_media_facebook">
 							<a target="_blank"
 								class="icon"
@@ -284,7 +284,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 						</div>
 					<?php } ?>
 
-					<?php if( sk_string_to_bool( get_option( 'sk_sharing_options_twitter', 'yes' ) ) ) { ?>
+					<?php if( SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options_twitter', 'yes' ) ) ) { ?>
 						<div class="social_media social_media_twitter">
 							<a target="_blank"
 								class="icon"
@@ -304,7 +304,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 						</div>
 					<?php } ?>
 
-					<?php if( sk_string_to_bool( get_option( 'sk_sharing_options_pinterest', 'yes' ) ) ) { ?>
+					<?php if( SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options_pinterest', 'yes' ) ) ) { ?>
 						<div class="social_media social_media_pinterest">
 							<a target="_blank"
 								class="icon"
@@ -330,6 +330,28 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 			</div>
 
 		<?php
+		}
+
+		/**
+		 * Sanitize checkbox control.
+		 *
+		 * @param boolean $bool the input value.
+		 * @return string sanitized value.
+		 */
+		public static function sanitize_checkbox( $bool ) {
+			$bool = is_bool( $bool ) ? $bool : ( 'yes' === $bool || 1 === $bool || 'true' === $bool || '1' === $bool );
+
+			return true === $bool ? 'yes' : 'no';
+		}
+
+		/**
+		 * Convert string to boolean.
+		 *
+		 * @param string $string The string.
+		 * @return boolean Converted value.
+		 */
+		public static function string_to_bool( $string ) {
+			return is_bool( $string ) ? $string : ( 'yes' === $string || 1 === $string || 'true' === $string || '1' === $string );
 		}
 	}
 

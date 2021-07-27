@@ -7,7 +7,11 @@ ul.sk_social_icons_list {
 	vertical-align: middle;
 
 	&.left {
-		text-align:left;
+		text-align: left;
+
+		.rtl & {
+			text-align: right;
+		}
 	}
 
 	&.center {
@@ -15,7 +19,11 @@ ul.sk_social_icons_list {
 	}
 
 	&.right {
-		text-align:right;
+		text-align: right;
+
+		.rtl & {
+			text-align: left;
+		}
 	}
 
 	li.sk_social_icon {
@@ -24,6 +32,10 @@ ul.sk_social_icons_list {
 		line-height: 1;
 		margin: 0 1.25rem 10px 0;
 		vertical-align: middle;
+
+		.rtl & {
+			margin: 0 0 10px 1.25rem;
+		}
 
 		&:last-child {
 			margin-right: 0;
@@ -37,65 +49,6 @@ ul.sk_social_icons_list {
 
 			svg {
 				transition: all .3s ease;
-			}
-		}
-	}
-}
-
-// RTL
-.rtl
-{
-	ul.sk_social_icons_list
-	{
-		li.sk_social_icon
-		{
-			margin: 10px 0 10px 30px;
-
-			&:last-child
-			{
-				margin-left: 0;
-			}
-		}
-	}
-
-	.widget_shopkeeper_social_media
-	{
-		ul.sk_social_icons_list
-		{
-			text-align: right;
-		}
-	}
-
-	.site-top-bar-social-icons-wrapper
-	{
-	    float: left;
-
-	    ul.sk_social_icons_list
-	    {
-	    	padding-left: 0;
-	    	padding-right: 50px;
-
-	    	li.sk_social_icon
-			{
-				margin: 5px  5px 10px;
-
-				&:last-child
-				{
-					margin-left: 0;
-				}
-			}
-	    }
-	}
-
-	.off-canvas
-	{
-		ul.sk_social_icons_list
-		{
-			text-align: right;
-
-			li.sk_social_icon
-			{
-				margin: 10px 0 10px 22px;
 			}
 		}
 	}

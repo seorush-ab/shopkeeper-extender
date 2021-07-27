@@ -57,9 +57,6 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 		*/
 		public function __construct() {
 
-			// Helpers
-			include_once( dirname( __FILE__ ) . '/includes/helpers/helpers.php' );
-
 			// Vendor
 			include_once( dirname( __FILE__ ) . '/includes/vendor/enqueue.php' );
 

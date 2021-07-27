@@ -53,13 +53,13 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 			}
 
 			add_action( 'footer_socials', function() {
-				if( sk_string_to_bool( get_option( 'sk_footer_social_icons', 'yes' ) ) ) {
+				if( SKSocialMedia::string_to_bool( get_option( 'sk_footer_social_icons', 'yes' ) ) ) {
 					echo '<div class="footer_socials_wrapper">' . do_shortcode('[social-media items_align="center"]') . '</div>';
 				}
 			} );
 
 			add_action( 'header_socials', function() {
-				if( sk_string_to_bool( get_option( 'sk_top_bar_social_icons', 'no' ) ) ) {
+				if( SKSocialMedia::string_to_bool( get_option( 'sk_top_bar_social_icons', 'no' ) ) ) {
 					echo '<div class="site-top-bar-social-icons-wrapper">' . do_shortcode('[social-media items_align="right"]') . '</div>';
 				}
 			} );
@@ -87,7 +87,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 		*/
 		protected function enqueue_styles() {
 			add_action( 'wp_enqueue_scripts', function() {
-				wp_enqueue_style('sk-social-media-styles', plugins_url( 'assets/css/social-media'.SK_EXT_ENQUEUE_SUFFIX.'.css', __FILE__ ), NULL );
+				wp_enqueue_style('sk-social-media-styles', plugins_url( 'assets/css/social-media.css', __FILE__ ), NULL );
 			});
 		}
 
@@ -357,8 +357,8 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 				$wp_customize->add_setting( 'sk_top_bar_social_icons', array(
 					'type'		 			=> 'option',
 					'capability' 			=> 'manage_options',
-					'sanitize_callback'    	=> 'sk_sanitize_checkbox',
-					'sanitize_js_callback'  => 'sk_string_to_bool',
+					'sanitize_callback'    	=> 'SKSocialMedia::sanitize_checkbox',
+					'sanitize_js_callback'  => 'SKSocialMedia::string_to_bool',
 					'transport'				=> 'refresh',
 					'default'	 			=> 'no',
 				) );
@@ -372,7 +372,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 							'label'       => esc_attr__( 'Top Bar Social Icons', 'shopkeeper-extender' ),
 							'section'     => 'top_bar',
 							'priority'    => 20,
-							'active_callback' => 'sk_ext_is_topbar_enabled'
+							'active_callback' => 'SKSocialMedia::is_topbar_enabled'
 						)
 					)
 				);
@@ -380,8 +380,8 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 				$wp_customize->add_setting( 'sk_footer_social_icons', array(
 					'type'		 			=> 'option',
 					'capability' 			=> 'manage_options',
-					'sanitize_callback'    	=> 'sk_sanitize_checkbox',
-					'sanitize_js_callback'  => 'sk_string_to_bool',
+					'sanitize_callback'    	=> 'SKSocialMedia::sanitize_checkbox',
+					'sanitize_js_callback'  => 'SKSocialMedia::string_to_bool',
 					'transport'				=> 'refresh',
 					'default'	 			=> 'yes',
 				) );
@@ -409,7 +409,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 			// Fields
 			$wp_customize->add_setting( 'sk_social_media_repeater', array(
 				'type'		 		=> 'option',
-				'sanitize_callback' => 'sk_sanitize_repeater',
+				'sanitize_callback' => 'SKSocialMedia::sanitize_repeater',
 				'capability' 		=> 'manage_options',
 				'transport'  		=> 'refresh',
 				'default' 			=> json_encode( array() ),
@@ -577,6 +577,60 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 				   )
 				)
 			);
+		}
+
+		/**
+		 * Checks if topbar is enabled.
+		 *
+		 * @return boolean Enabled topbar.
+		 */
+		public static function is_topbar_enabled(){
+
+			return get_theme_mod( 'top_bar_switch', false );
+		}
+
+		/**
+		 * Sanitize repeater control.
+		 *
+		 * @param string $input the input value.
+		 * @return string sanitized value.
+		 */
+		public static function sanitize_repeater( $input ) {
+			$input_decoded = json_decode($input,true);
+
+			if(!empty($input_decoded)) {
+				foreach ($input_decoded as $boxk => $box ){
+					foreach ($box as $key => $value){
+						$input_decoded[$boxk][$key] = wp_kses_post( force_balance_tags( $value ) );
+					}
+				}
+
+				return json_encode($input_decoded);
+			}
+
+			return $input;
+		}
+
+		/**
+		 * Sanitize checkbox control.
+		 *
+		 * @param boolean $bool the input value.
+		 * @return string sanitized value.
+		 */
+		public static function sanitize_checkbox( $bool ) {
+			$bool = is_bool( $bool ) ? $bool : ( 'yes' === $bool || 1 === $bool || 'true' === $bool || '1' === $bool );
+
+			return true === $bool ? 'yes' : 'no';
+		}
+
+		/**
+		 * Convert string to boolean.
+		 *
+		 * @param string $string The string.
+		 * @return boolean Converted value.
+		 */
+		public static function string_to_bool( $string ) {
+			return is_bool( $string ) ? $string : ( 'yes' === $string || 1 === $string || 'true' === $string || '1' === $string );
 		}
 	}
 

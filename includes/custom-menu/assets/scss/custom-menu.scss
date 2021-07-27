@@ -15,10 +15,16 @@ a.has-hover-img {
 	height: auto;
 	top: 0;
 	left: 0;
+    right: auto;
 	pointer-events: none;
 	opacity: 0;
     transition: none;
     z-index: 9999;
+
+    .rtl & {
+        left: auto;
+        right: 0;
+    }
 
     &.showed{
         box-shadow: 0px 7px 52px -12px rgba(0, 0, 0, 0.36);
