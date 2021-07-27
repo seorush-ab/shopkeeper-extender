@@ -11,16 +11,29 @@
     }
 
     @media only screen and (min-width: 64em) {
-        animation: slide-in-from-left;
-        animation-duration: 3s;
-        animation-delay: 1.5s;
-        animation-fill-mode: forwards;
-        animation-timing-function: ease-in-out;
         position: fixed;
         top: 50%;
-        left: -5rem;
-        right: auto;
         z-index: 999;
+
+        .ltr & {
+            animation: sk-ext-slide-in-from-left;
+            animation-duration: 3s;
+            animation-delay: 1.5s;
+            animation-fill-mode: forwards;
+            animation-timing-function: ease-in-out;
+            left: -5rem;
+            right: auto;
+        }
+
+        .rtl & {
+            animation: sk-ext-slide-in-from-right;
+            animation-duration: 3s;
+            animation-delay: 1.5s;
+            animation-fill-mode: forwards;
+            animation-timing-function: ease-in-out;
+            right: -5rem;
+            left: auto;
+        }
     }
 
     &.slide-out {
@@ -32,13 +45,17 @@
         display: inline-block;
         color: var(--global--text-dark-color);
         font-family: var(--global--main-font);
-        font-size: 10px;
-        font-weight: bold;
+        font-size: 11px;
+        font-weight: var(--global--headings-font-weight);
         line-height: 1.5;
         text-transform: uppercase;
         text-align: left;
         width: 43%;
         vertical-align: middle;
+
+        .rtl & {
+            text-align: right;
+        }
 
         @media only screen and (min-width: 64em) {
             display: none;
@@ -52,6 +69,10 @@
             text-align: right;
             width: 55%;
             vertical-align: middle;
+
+            .rtl & {
+                text-align: left;
+            }
         }
 
         @media only screen and (min-width: 64em) {
@@ -63,6 +84,10 @@
             margin: 0 0 0 10px;
             vertical-align: middle;
 
+            .rtl & {
+                margin: 0 10px 0 0;
+            }
+
             &:first-child {
                 margin-left: 0;
             }
@@ -70,6 +95,10 @@
             @media only screen and (min-width: 64em) {
                 display: block;
                 margin: 10px 0;
+
+                .rtl & {
+                    margin: 10px 0;
+                }
 
                 &:first-child {
                     margin-top: 0;
@@ -115,6 +144,11 @@
                     width: 41px;
                     height: 41px;
 
+                    .rtl & {
+                        right: 0;
+                        left: auto;
+                    }
+
                     @media only screen and (min-width: 64em) {
                         width: 46px;
                         height: 46px;
@@ -143,8 +177,14 @@
     }
 }
 
-@keyframes slide-in-from-left {
+@keyframes sk-ext-slide-in-from-left {
     0%   { transform: translateX(-5rem); }
     50%  { transform: translateX(7.5rem);  }
     100% { transform: translateX(7.5rem);  }
+}
+
+@keyframes sk-ext-slide-in-from-right {
+    0%   { transform: translateX(5rem);  }
+	50%  { transform: translateX(-7.5rem); }
+	100% { transform: translateX(-7.5rem); }
 }
