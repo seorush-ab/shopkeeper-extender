@@ -1,8 +1,6 @@
 <?php
 
-//==============================================================================
-//	Main Editor Styles
-//==============================================================================
+//	Main Editor Styles.
 add_action( 'enqueue_block_editor_assets', function() {
 	wp_enqueue_style(
 		'getbowtied-sk-blocks-editor-styles',
@@ -11,9 +9,7 @@ add_action( 'enqueue_block_editor_assets', function() {
 	);
 });
 
-//==============================================================================
-//	Main JS
-//==============================================================================
+//	Main JS.
 add_action( 'enqueue_block_editor_assets', function() {
     wp_enqueue_script(
 	'getbowtied-sk-blocks-editor-scripts',
@@ -22,14 +18,6 @@ add_action( 'enqueue_block_editor_assets', function() {
 	);
 });
 
-//==============================================================================
-//	Blocks
-//==============================================================================
-
-// WooCommerce Dependent Blocks
-if( is_plugin_active( 'woocommerce/woocommerce.php') ) {
-	include_once( dirname( __FILE__ ) . '/categories_grid/block.php' );
-}
-
+//	Blocks.
 include_once( dirname( __FILE__ ) . '/banner/block.php' );
 include_once( dirname( __FILE__ ) . '/slider/block.php' );
