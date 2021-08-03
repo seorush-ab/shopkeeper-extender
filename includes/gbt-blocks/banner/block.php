@@ -1,23 +1,28 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
-//==============================================================================
-//	Enqueue Editor Assets
-//==============================================================================
+// ==============================================================================
+// Enqueue Editor Assets
+// ==============================================================================
 add_action( 'enqueue_block_editor_assets', 'gbt_18_sk_banner_editor_assets' );
 if ( ! function_exists( 'gbt_18_sk_banner_editor_assets' ) ) {
 	function gbt_18_sk_banner_editor_assets() {
 
 		wp_register_script(
 			'gbt_18_sk_banner_script',
-			plugins_url( 'block'.SK_EXT_ENQUEUE_SUFFIX.'.js', __FILE__ ),
+			plugins_url( 'block' . SK_EXT_ENQUEUE_SUFFIX . '.js', __FILE__ ),
 			array( 'wp-blocks', 'wp-components', 'wp-editor', 'wp-i18n', 'wp-element' )
 		);
 
-		add_action( 'init', function() {
-			wp_set_script_translations( 'gbt_18_sk_banner_script', 'shopkeeper-extender', plugin_dir_path( __FILE__ ) . 'languages' );
-		});
+		add_action(
+			'init',
+			function() {
+				wp_set_script_translations( 'gbt_18_sk_banner_script', 'shopkeeper-extender', plugin_dir_path( __FILE__ ) . 'languages' );
+			}
+		);
 
 		wp_register_style(
 			'gbt_18_sk_banner_editor_styles',
@@ -27,9 +32,9 @@ if ( ! function_exists( 'gbt_18_sk_banner_editor_assets' ) ) {
 	}
 }
 
-//==============================================================================
-//	Enqueue Frontend Assets
-//==============================================================================
+// ==============================================================================
+// Enqueue Frontend Assets
+// ==============================================================================
 add_action( 'enqueue_block_assets', 'gbt_18_sk_banner_assets' );
 if ( ! function_exists( 'gbt_18_sk_banner_assets' ) ) {
 	function gbt_18_sk_banner_assets() {
@@ -42,13 +47,16 @@ if ( ! function_exists( 'gbt_18_sk_banner_assets' ) ) {
 	}
 }
 
-//==============================================================================
-//	Register Block
-//==============================================================================
+// ==============================================================================
+// Register Block
+// ==============================================================================
 if ( function_exists( 'register_block_type' ) ) {
-	register_block_type( 'getbowtied/sk-banner', array(
-		'style'				=> 'gbt_18_sk_banner_styles',
-		'editor_style'  	=> 'gbt_18_sk_banner_editor_styles',
-		'editor_script'		=> 'gbt_18_sk_banner_script',
-	) );
+	register_block_type(
+		'getbowtied/sk-banner',
+		array(
+			'style'         => 'gbt_18_sk_banner_styles',
+			'editor_style'  => 'gbt_18_sk_banner_editor_styles',
+			'editor_script' => 'gbt_18_sk_banner_script',
+		)
+	);
 }

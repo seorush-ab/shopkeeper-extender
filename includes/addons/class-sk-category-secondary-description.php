@@ -1,29 +1,34 @@
 <?php
+/**
+ * Adds a Secondary Description to WooCommerce Product Category.
+ *
+ * @package  shopkeeper-extender
+ */
 
-if ( ! class_exists( 'SKCategorySecondaryDescription' ) ) :
+if ( ! class_exists( 'SK_Category_Secondary_Description' ) ) :
 
 	/**
-	 * SKCategorySecondaryDescription class.
+	 * SK_Category_Secondary_Description class.
 	 *
 	 * Adds a Secondary Description to WooCommerce Product Category.
 	 *
 	 * @since 2.0
-	*/
-	class SKCategorySecondaryDescription {
+	 */
+	class SK_Category_Secondary_Description {
 
 		/**
 		 * The single instance of the class.
 		 *
 		 * @since 2.0
-		 * @var SKCategorySecondaryDescription
-		*/
-		protected static $_instance = null;
+		 * @var SK_Category_Secondary_Description
+		 */
+		protected static $instance = null;
 
 		/**
-		 * SKCategorySecondaryDescription constructor.
+		 * SK_Category_Secondary_Description constructor.
 		 *
 		 * @since 1.4
-		*/
+		 */
 		public function __construct() {
 			add_action( 'product_cat_add_form_fields', array( $this, 'woocommerce_add_category_secondary_description' ), 10, 2 );
 			add_action( 'product_cat_edit_form_fields', array( $this, 'woocommerce_edit_category_secondary_description' ), 10, 2 );
@@ -34,17 +39,17 @@ if ( ! class_exists( 'SKCategorySecondaryDescription' ) ) :
 		}
 
 		/**
-		 * Ensures only one instance of SKCategorySecondaryDescription is loaded or can be loaded.
+		 * Ensures only one instance of SK_Category_Secondary_Description is loaded or can be loaded.
 		 *
 		 * @since 2.0
 		 *
-		 * @return SKCategorySecondaryDescription
-		*/
+		 * @return SK_Category_Secondary_Description
+		 */
 		public static function instance() {
-			if ( is_null( self::$_instance ) ) {
-				self::$_instance = new self();
+			if ( is_null( self::$instance ) ) {
+				self::$instance = new self();
 			}
-			return self::$_instance;
+			return self::$instance;
 		}
 
 		/**
@@ -52,7 +57,7 @@ if ( ! class_exists( 'SKCategorySecondaryDescription' ) ) :
 		 *
 		 * @since 2.0
 		 * @return void
-		*/
+		 */
 		public function woocommerce_add_category_secondary_description() {
 			?>
 			<tr class="form-field">
@@ -70,10 +75,11 @@ if ( ! class_exists( 'SKCategorySecondaryDescription' ) ) :
 		/**
 		 * Category Secondary Description Edit fields.
 		 *
+		 * @param string $term The term.
 		 * @since 2.0
 		 * @return void
-		*/
-		public function woocommerce_edit_category_secondary_description($term) {
+		 */
+		public function woocommerce_edit_category_secondary_description( $term ) {
 			$secondary_description = htmlspecialchars_decode( get_term_meta( $term->term_id, 'product_cat_secondary_description', true ) );
 			?>
 			<tr class="form-field">
@@ -81,7 +87,7 @@ if ( ! class_exists( 'SKCategorySecondaryDescription' ) ) :
 					<label for="product_cat_secondary_description"><?php esc_html_e( 'Secondary Description', 'shopkeeper-extender' ); ?></label>
 				</th>
 				<td>
-					<textarea name="product_cat_secondary_description" id="product_cat_secondary_description" rows="5" cols="40"><?php echo esc_html($secondary_description); ?></textarea>
+					<textarea name="product_cat_secondary_description" id="product_cat_secondary_description" rows="5" cols="40"><?php echo esc_html( $secondary_description ); ?></textarea>
 					<p class="description"><?php esc_html_e( 'The description will be displayed below the product list.', 'shopkeeper-extender' ); ?></p>
 				</td>
 			</tr>
@@ -93,31 +99,33 @@ if ( ! class_exists( 'SKCategorySecondaryDescription' ) ) :
 		 *
 		 * @since 2.0
 		 *
-		 * @param mixed $term_id Term ID being saved
-		 * @param mixed $tt_id
-		 * @param mixed $taxonomy Taxonomy of the term being saved
+		 * @param mixed $term_id Term ID being saved.
+		 * @param mixed $tt_id TT ID.
+		 * @param mixed $taxonomy Taxonomy of the term being saved.
 		 *
 		 * @return void
 		 */
 		public function woocommerce_category_secondary_description_save( $term_id, $tt_id, $taxonomy ) {
-			if ( isset( $_POST['product_cat_secondary_description'] ) )
-				update_term_meta( $term_id, 'product_cat_secondary_description', wp_kses_post( stripslashes( $_POST['product_cat_secondary_description'] ) ) );
+			if ( isset( $_POST['product_cat_secondary_description'] ) ) {
+				update_term_meta( $term_id, 'product_cat_secondary_description', wp_kses_post( wp_unslash( $_POST['product_cat_secondary_description'] ) ) );
+			}
 		}
 
 		/**
 		 * Category Secondary Description Output.
 		 *
+		 * @param string $term The term.
 		 * @since 2.0
 		 * @return void
-		*/
-		public function woocommerce_category_secondary_description_output($term) {
+		 */
+		public function woocommerce_category_secondary_description_output( $term ) {
 			if ( is_product_taxonomy() ) {
-				$term = get_queried_object();
+				$term                  = get_queried_object();
 				$secondary_description = get_term_meta( $term->term_id, 'product_cat_secondary_description', true );
-				if( $term && !empty($secondary_description) ) {
+				if ( $term && ! empty( $secondary_description ) ) {
 					?>
 					<div class="woocommerce-category-secondary-description large-8 xlarge-6 large-centered columns">
-						<?php echo wc_format_content( htmlspecialchars_decode($secondary_description) ); ?>
+						<?php echo wp_kses_post( wc_format_content( htmlspecialchars_decode( $secondary_description ) ) ); ?>
 					</div>
 					<?php
 				}
@@ -127,4 +135,4 @@ if ( ! class_exists( 'SKCategorySecondaryDescription' ) ) :
 
 endif;
 
-$sk_wc_cat_header = new SKCategorySecondaryDescription;
+$sk_wc_cat_header = new SK_Category_Secondary_Description();

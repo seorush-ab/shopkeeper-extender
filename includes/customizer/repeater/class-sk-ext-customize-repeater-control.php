@@ -17,7 +17,7 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 	/**
 	 * Social Field ID.
 	 *
-     * @var string
+	 * @var string
 	 */
 	public $id;
 
@@ -26,7 +26,7 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 	 *
 	 * Used for icons dropdown list.
 	 *
-     * @var array
+	 * @var array
 	 */
 	public $profiles = array();
 
@@ -45,11 +45,11 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 
 		parent::__construct( $manager, $id, $args );
 
-		if ( !empty( $args['profiles'] ) ) {
+		if ( ! empty( $args['profiles'] ) ) {
 			$this->profiles = $args['profiles'];
 		}
 
-		if ( !empty( $id ) ) {
+		if ( ! empty( $id ) ) {
 			$this->id = $id;
 		}
 	}
@@ -64,7 +64,7 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 
 		// Get values.
 		$values = $this->value();
-		$json = json_decode( $values );
+		$json   = json_decode( $values );
 
 		if ( ! is_array( $json ) ) {
 			$json = array( $values );
@@ -73,27 +73,31 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 
 		<div class="customizer-repeater-general-control-repeater customizer-repeater-general-control-droppable">
 			<?php
-			if ( ( count( $json ) == 1 && '' === $json[0] ) || empty( $json ) ) {
+			if ( ( 1 === count( $json ) && '' === $json[0] ) || empty( $json ) ) {
 				if ( ! empty( $this_default ) ) {
-					$this->iterate_array( $this_default ); ?>
+					$this->iterate_array( $this_default );
+					?>
 					<input type="hidden"
 					id="customizer-repeater-<?php echo esc_attr( $this->id ); ?>-colector" <?php esc_attr( $this->link() ); ?>
 					class="customizer-repeater-colector"
-					value="<?php echo esc_textarea( json_encode( $this_default ) ); ?>"/>
+					value="<?php echo esc_textarea( wp_json_encode( $this_default ) ); ?>"/>
 					<?php
 				} else {
-					$this->iterate_array(); ?>
+					$this->iterate_array();
+					?>
 					<input type="hidden"
 					id="customizer-repeater-<?php echo esc_attr( $this->id ); ?>-colector" <?php esc_attr( $this->link() ); ?>
 					class="customizer-repeater-colector"/>
 					<?php
 				}
 			} else {
-				$this->iterate_array( $json ); ?>
+				$this->iterate_array( $json );
+				?>
 				<input type="hidden" id="customizer-repeater-<?php echo esc_attr( $this->id ); ?>-colector" <?php esc_attr( $this->link() ); ?>
 				class="customizer-repeater-colector" value="<?php echo esc_textarea( $this->value() ); ?>"/>
 				<?php
-			} ?>
+			}
+			?>
 		</div>
 		<button type="button" class="button add_field customizer-repeater-new-field">
 			<?php esc_html_e( 'Add a Profile', 'shopkeeper-extender' ); ?>
@@ -109,40 +113,47 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 	 */
 	private function iterate_array( $array = array() ) {
 
-		if( !empty( $array ) ) {
-			foreach( $array as $icon ) {
+		if ( ! empty( $array ) ) {
+			foreach ( $array as $icon ) {
 				?>
 				<div class="customizer-repeater-general-control-repeater-container customizer-repeater-draggable">
 					<div class="customizer-repeater-customize-control-title">
-						<?php echo !empty( $icon->title ) ? esc_html( $icon->title ) : esc_html( 'Social Media Profile', 'shopkeeper-extender' ); ?>
+						<?php echo ! empty( $icon->title ) ? esc_html( $icon->title ) : esc_html__( 'Social Media Profile', 'shopkeeper-extender' ); ?>
 					</div>
 					<div class="customizer-repeater-box-content-hidden">
 						<?php
 
-						$id 		= !empty( $icon->id ) ? $icon->id : '';
-						$link 		= !empty( $icon->link ) ? $icon->link : '';
-						$title 		= !empty( $icon->title ) ? $icon->title : '';
-						$icon_slug 	= !empty( $icon->icon_slug ) ? $icon->icon_slug : '';
-						$image_url 	= !empty( $icon->image_url ) ? $icon->image_url : '';
+						$id        = ! empty( $icon->id ) ? $icon->id : '';
+						$link      = ! empty( $icon->link ) ? $icon->link : '';
+						$title     = ! empty( $icon->title ) ? $icon->title : '';
+						$icon_slug = ! empty( $icon->icon_slug ) ? $icon->icon_slug : '';
+						$image_url = ! empty( $icon->image_url ) ? $icon->image_url : '';
 
 						$show_title = ( 'custom' === $icon_slug ) ? true : false;
 
 						$this->icons_control( $icon_slug );
 						$this->image_control( $image_url, $icon_slug );
 
-						$this->input_control( array(
-							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Title:','shopkeeper-extender' ), $this->id, 'customizer_repeater_title_control' ),
-							'class' => 'customizer-repeater-title-control',
-							'type'  => apply_filters('customizer_repeater_input_types_filter', '', $this->id, 'customizer_repeater_title_control' ),
-							'sanitize_callback' => 'esc_html',
-						), $title, $show_title );
+						$this->input_control(
+							array(
+								'label'             => apply_filters( 'repeater_input_labels_filter', esc_html__( 'Title:', 'shopkeeper-extender' ), $this->id, 'customizer_repeater_title_control' ),
+								'class'             => 'customizer-repeater-title-control',
+								'type'              => apply_filters( 'customizer_repeater_input_types_filter', '', $this->id, 'customizer_repeater_title_control' ),
+								'sanitize_callback' => 'esc_html',
+							),
+							$title,
+							$show_title
+						);
 
-						$this->input_control( array(
-							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Link:','shopkeeper-extender' ), $this->id, 'customizer_repeater_link_control' ),
-							'class' => 'customizer-repeater-link-control',
-							'type'  => apply_filters('customizer_repeater_input_types_filter', '', $this->id, 'customizer_repeater_link_control' ),
-							'sanitize_callback' => 'esc_url_raw',
-						), $link );
+						$this->input_control(
+							array(
+								'label'             => apply_filters( 'repeater_input_labels_filter', esc_html__( 'Link:', 'shopkeeper-extender' ), $this->id, 'customizer_repeater_link_control' ),
+								'class'             => 'customizer-repeater-link-control',
+								'type'              => apply_filters( 'customizer_repeater_input_types_filter', '', $this->id, 'customizer_repeater_link_control' ),
+								'sanitize_callback' => 'esc_url_raw',
+							),
+							$link
+						);
 
 						?>
 
@@ -158,7 +169,8 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 				</div>
 				<?php
 			}
-		} else { ?>
+		} else {
+			?>
 			<div class="customizer-repeater-general-control-repeater-container">
 				<div class="customizer-repeater-customize-control-title">
 					<?php esc_html_e( 'Social Media Profile', 'shopkeeper-extender' ); ?>
@@ -169,19 +181,25 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 					$this->icons_control();
 					$this->image_control();
 
-					$this->input_control( array(
-						'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Title:','shopkeeper-extender' ), $this->id, 'customizer_repeater_title_control' ),
-						'class' => 'customizer-repeater-title-control',
-						'type'  => apply_filters('customizer_repeater_input_types_filter', '', $this->id, 'customizer_repeater_title_control' ),
-						'sanitize_callback' => 'esc_html',
-					), '', false );
+					$this->input_control(
+						array(
+							'label'             => apply_filters( 'repeater_input_labels_filter', esc_html__( 'Title:', 'shopkeeper-extender' ), $this->id, 'customizer_repeater_title_control' ),
+							'class'             => 'customizer-repeater-title-control',
+							'type'              => apply_filters( 'customizer_repeater_input_types_filter', '', $this->id, 'customizer_repeater_title_control' ),
+							'sanitize_callback' => 'esc_html',
+						),
+						'',
+						false
+					);
 
-					$this->input_control( array(
-						'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Link:','shopkeeper-extender' ), $this->id, 'customizer_repeater_link_control' ),
-						'class' => 'customizer-repeater-link-control',
-						'type'  => apply_filters('customizer_repeater_input_types_filter', '', $this->id, 'customizer_repeater_link_control' ),
-						'sanitize_callback' => 'esc_url_raw',
-					) );
+					$this->input_control(
+						array(
+							'label'             => apply_filters( 'repeater_input_labels_filter', esc_html__( 'Link:', 'shopkeeper-extender' ), $this->id, 'customizer_repeater_link_control' ),
+							'class'             => 'customizer-repeater-link-control',
+							'type'              => apply_filters( 'customizer_repeater_input_types_filter', '', $this->id, 'customizer_repeater_link_control' ),
+							'sanitize_callback' => 'esc_url_raw',
+						)
+					);
 
 					?>
 					<input type="hidden" class="social-repeater-box-id">
@@ -196,25 +214,22 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 			</div>
 			<?php
 		}
-
-		return;
 	}
 
 	/**
 	 * Render the input field.
 	 *
-	 * @param array  $options Input settings.
-	 * @param string $value Input value.
+	 * @param array   $options Input settings.
+	 * @param string  $value Input value.
+	 * @param boolean $show Display.
 	 */
-	 private function input_control( $options, $value = '', $show = true ) {
+	private function input_control( $options, $value = '', $show = true ) {
 		?>
-		<div class="<?php esc_attr_e( $options['class'] ); ?>-wrapper" <?php echo !$show ? 'style="display:none;"' : ''; ?>>
-			<span class="customize-control-title"><?php esc_html_e( $options['label'] ); ?></span>
-			<input type="text" value="<?php esc_attr_e( $value ); ?>" class="<?php esc_attr_e( $options['class'] ); ?>"/>
+		<div class="<?php echo esc_html( wp_kses_post( $options['class'] ) ); ?>-wrapper" <?php echo ! $show ? 'style="display:none;"' : ''; ?>>
+			<span class="customize-control-title"><?php echo esc_html( wp_kses_post( $options['label'] ) ); ?></span>
+			<input type="text" value="<?php echo esc_html( wp_kses_post( $value ) ); ?>" class="<?php echo esc_html( wp_kses_post( $options['class'] ) ); ?>"/>
 		</div>
 		<?php
-
-		return;
 	}
 
 	/**
@@ -226,15 +241,15 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 		?>
 		<div class="customizer-repeater-icon-control">
 			<span class="customize-control-title">
-				<?php esc_html_e('Icon:','shopkeeper-extender'); ?>
+				<?php esc_html_e( 'Icon:', 'shopkeeper-extender' ); ?>
 			</span>
 
 			<form class="customizer-repeater-icons">
-				<?php foreach( $this->profiles as $profile ) { ?>
+				<?php foreach ( $this->profiles as $profile ) { ?>
 					<div>
-						<input type="radio" name="customizer_repeater_icon" class="customizer-repeater-icon" value="<?php esc_attr_e( $profile['slug'] ); ?>" <?php checked( $value, $profile['slug'] ); ?>
-						style="background-image:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D\'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg\'%20viewBox%3D\'0%200%2050%2050\'%3E%3Cpath%20d%3D\'<?php esc_html_e( $profile['svg_path'] ); ?>\'%20fill%3D\'%23000000\'%2F%3E%3C%2Fsvg%3E');" />
-						<span class="tooltip"><?php esc_attr_e( $profile['name'] ); ?></span>
+						<input type="radio" name="customizer_repeater_icon" class="customizer-repeater-icon" value="<?php echo esc_html( wp_kses_post( $profile['slug'] ) ); ?>" <?php checked( $value, $profile['slug'] ); ?>
+						style="background-image:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D\'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg\'%20viewBox%3D\'0%200%2050%2050\'%3E%3Cpath%20d%3D\'<?php echo wp_kses_post( $profile['svg_path'] ); ?>\'%20fill%3D\'%23000000\'%2F%3E%3C%2Fsvg%3E');" />
+						<span class="tooltip"><?php echo esc_html( wp_kses_post( $profile['name'] ) ); ?></span>
 					</div>
 				<?php } ?>
 				<div>
@@ -245,36 +260,32 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 			</form>
 		</div>
 		<?php
-
-		return;
 	}
 
 	/**
 	 * Render the image control.
 	 *
 	 * @param string $value Select value.
-	 * @param string $show Determines if the control should be displayed based on icon choice.
+	 * @param string $icon_slug Determines if the control should be displayed based on icon choice.
 	 */
 	private function image_control( $value = '', $icon_slug = '' ) {
 		?>
-		<div class="customizer-repeater-image-control" <?php echo ( $icon_slug !== 'custom' ) ? 'style="display:none;"' : ''; ?>>
+		<div class="customizer-repeater-image-control" <?php echo ( 'custom' !== $icon_slug ) ? 'style="display:none;"' : ''; ?>>
 			<span class="customize-control-title">
-				<?php esc_html_e('Image:','shopkeeper-extender')?>
+				<?php esc_html_e( 'Image:', 'shopkeeper-extender' ); ?>
 			</span>
 
 			<input type="hidden" class="widefat custom-media-url" value="<?php echo esc_url( $value ); ?>">
 			<img class="custom-media-url-preview" src="<?php echo esc_url( $value ); ?>" />
-			<input type="button" class="button button-secondary customizer-repeater-custom-media-button" value="<?php echo !empty($value) ? esc_attr( 'Change Image','shopkeeper-extender' ) : esc_attr( 'Add Image','shopkeeper-extender' ); ?>" />
+			<input type="button" class="button button-secondary customizer-repeater-custom-media-button" value="<?php echo ! empty( $value ) ? esc_attr__( 'Change Image', 'shopkeeper-extender' ) : esc_attr__( 'Add Image', 'shopkeeper-extender' ); ?>" />
 		</div>
 		<?php
-
-		return;
 	}
 
 	/**
 	 * Enqueue control related scripts/styles.
 	 */
-	 public function enqueue() {
+	public function enqueue() {
 
 		wp_enqueue_style(
 			'sk-ext-customizer-repeater-styles',
@@ -286,9 +297,9 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 		wp_enqueue_script(
 			'sk-ext-customizer-repeater-script',
 			plugins_url( 'assets/js/customizer_repeater.js', __FILE__ ),
-			array( 'jquery', 'jquery-ui-draggable' )
+			array( 'jquery', 'jquery-ui-draggable' ),
+			SK_EXT_VERSION,
+			true
 		);
-
-		return;
 	}
 }
