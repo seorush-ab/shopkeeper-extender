@@ -3,8 +3,6 @@
 // [banner]
 function sk_banner_shortcode( $params = array(), $content = null ) {
 
-	wp_enqueue_style( 'shopkeeper-banner-shortcode-styles' );
-
 	extract(
 		shortcode_atts(
 			array(
@@ -49,7 +47,7 @@ function sk_banner_shortcode( $params = array(), $content = null ) {
 		<div class="shortcode_banner_simple_height ' . $banner_with_img . '" ' . $link_tab . ' style="height:' . $height . 'px;">
 			<div class="shortcode_banner_simple_height_inner">
 				<div class="shortcode_banner_simple_height_bkg" style="background-color:' . $bg_color . '; background-image:url(' . $bg_image . ')"></div>
-			
+
 				<div class="shortcode_banner_simple_height_inside" style="border: ' . $inner_stroke . 'px solid ' . $inner_stroke_color . '">
 					<div class="shortcode_banner_simple_height_content">
 						<div><h3 class="banner_title" style="color:' . $title_color . '">' . wp_kses_post( $title ) . '</h3></div>

@@ -6,9 +6,6 @@ function sk_posts_slider_shortcode( $atts, $content = null ) {
 	wp_enqueue_style( 'swiper' );
 	wp_enqueue_script( 'swiper' );
 
-	wp_enqueue_style( 'shopkeeper-posts-slider-shortcode-styles' );
-	wp_enqueue_script( 'shopkeeper-posts-slider-shortcode-script' );
-
 	extract(
 		shortcode_atts(
 			array(

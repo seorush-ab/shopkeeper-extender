@@ -1,24 +1,29 @@
 <?php
+/**
+ * Social Sharing.
+ *
+ * @package shopkeeper-extender
+ */
 
-if ( ! class_exists( 'SKSocialSharing' ) ) :
+if ( ! class_exists( 'SK_Social_Sharing' ) ) :
 
 	/**
-	 * SKSocialSharing class.
+	 * SK_Social_Sharing class.
 	 *
 	 * @since 1.4.2
 	 */
-	class SKSocialSharing {
+	class SK_Social_Sharing {
 
 		/**
 		 * The single instance of the class.
 		 *
 		 * @since 1.4.2
-		 * @var SKSocialSharing
+		 * @var SK_Social_Sharing
 		 */
-		protected static $_instance = null;
+		protected static $instance = null;
 
 		/**
-		 * SKSocialSharing constructor.
+		 * SK_Social_Sharing constructor.
 		 *
 		 * @since 1.4.2
 		 */
@@ -29,13 +34,12 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 				update_option( 'sk_social_sharing_options_import', true );
 			}
 
-			$this->enqueue_styles();
 			$this->customizer_options();
 
 			add_action(
 				'woocommerce_single_product_summary',
 				function() {
-					if ( SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options', 'yes' ) ) ) {
+					if ( SK_Social_Sharing::string_to_bool( get_option( 'sk_sharing_options', 'yes' ) ) ) {
 						$this->getbowtied_single_share_product();
 					}
 				},
@@ -47,6 +51,11 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 			}
 		}
 
+		/**
+		 * Add Facebook Meta.
+		 *
+		 * @since 1.4.2
+		 */
 		public function sk_add_facebook_meta() {
 			if ( is_single() && is_product() ) {
 				$product = wc_get_product( get_the_ID() );
@@ -59,43 +68,26 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 					<meta property="og:url" content="<?php the_permalink(); ?>">
 					<meta property="og:type" content="product">
 					<meta property="og:title" content="<?php the_title(); ?>">
-					<meta property="og:description" content="<?php esc_html_e( $description ); ?>">
-					<meta property="og:image" content="<?php esc_attr_e( $image ); ?>">
+					<meta property="og:description" content="<?php echo esc_html( wp_kses_post( $description ) ); ?>">
+					<meta property="og:image" content="<?php echo esc_attr( wp_kses_post( $image ) ); ?>">
 
 					<?php
 				}
 			}
-
-			return;
 		}
 
 		/**
-		 * Ensures only one instance of SKSocialSharing is loaded or can be loaded.
+		 * Ensures only one instance of SK_Social_Sharing is loaded or can be loaded.
 		 *
 		 * @since 1.4.2
 		 *
-		 * @return SKSocialSharing
+		 * @return SK_Social_Sharing
 		 */
 		public static function instance() {
-			if ( is_null( self::$_instance ) ) {
-				self::$_instance = new self();
+			if ( is_null( self::$instance ) ) {
+				self::$instance = new self();
 			}
-			return self::$_instance;
-		}
-
-		/**
-		 * Enqueue styles.
-		 *
-		 * @since 1.4.2
-		 * @return void
-		 */
-		protected function enqueue_styles() {
-			add_action(
-				'wp_enqueue_scripts',
-				function() {
-					wp_enqueue_style( 'sk-social-sharing-styles', plugins_url( 'assets/css/social-sharing.css', __FILE__ ), null );
-				}
-			);
+			return self::$instance;
 		}
 
 		/**
@@ -122,6 +114,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 		/**
 		 * Creates customizer options.
 		 *
+		 * @param object $wp_customize WP Customize.
 		 * @since 1.4.2
 		 * @return void
 		 */
@@ -133,8 +126,8 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 				array(
 					'type'                 => 'option',
 					'capability'           => 'manage_options',
-					'sanitize_callback'    => 'SKSocialSharing::sanitize_checkbox',
-					'sanitize_js_callback' => 'SKSocialSharing::string_to_bool',
+					'sanitize_callback'    => 'SK_Social_Sharing::sanitize_checkbox',
+					'sanitize_js_callback' => 'SK_Social_Sharing::string_to_bool',
 					'transport'            => 'refresh',
 					'default'              => 'yes',
 				)
@@ -153,14 +146,14 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 				)
 			);
 
-			// Include Facebook
+			// Include Facebook.
 			$wp_customize->add_setting(
 				'sk_sharing_options_facebook',
 				array(
 					'type'                 => 'option',
 					'capability'           => 'manage_options',
-					'sanitize_callback'    => 'SKSocialSharing::sanitize_checkbox',
-					'sanitize_js_callback' => 'SKSocialSharing::string_to_bool',
+					'sanitize_callback'    => 'SK_Social_Sharing::sanitize_checkbox',
+					'sanitize_js_callback' => 'SK_Social_Sharing::string_to_bool',
 					'transport'            => 'refresh',
 					'default'              => 'yes',
 				)
@@ -176,20 +169,20 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 						'section'         => 'product',
 						'priority'        => 20,
 						'active_callback' => function() {
-							return SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options', 'yes' ) );
+							return SK_Social_Sharing::string_to_bool( get_option( 'sk_sharing_options', 'yes' ) );
 						},
 					)
 				)
 			);
 
-			// Include Facebook
+			// Include Facebook.
 			$wp_customize->add_setting(
 				'sk_sharing_options_facebook_meta',
 				array(
 					'type'                 => 'option',
 					'capability'           => 'manage_options',
-					'sanitize_callback'    => 'SKSocialSharing::sanitize_checkbox',
-					'sanitize_js_callback' => 'SKSocialSharing::string_to_bool',
+					'sanitize_callback'    => 'SK_Social_Sharing::sanitize_checkbox',
+					'sanitize_js_callback' => 'SK_Social_Sharing::string_to_bool',
 					'transport'            => 'refresh',
 					'default'              => 'yes',
 				)
@@ -205,20 +198,20 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 						'section'         => 'product',
 						'priority'        => 20,
 						'active_callback' => function() {
-							return SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options', 'yes' ) ) && SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options_facebook', 'yes' ) );
+							return SK_Social_Sharing::string_to_bool( get_option( 'sk_sharing_options', 'yes' ) ) && SK_Social_Sharing::string_to_bool( get_option( 'sk_sharing_options_facebook', 'yes' ) );
 						},
 					)
 				)
 			);
 
-			// Include Twitter
+			// Include Twitter.
 			$wp_customize->add_setting(
 				'sk_sharing_options_twitter',
 				array(
 					'type'                 => 'option',
 					'capability'           => 'manage_options',
-					'sanitize_callback'    => 'SKSocialSharing::sanitize_checkbox',
-					'sanitize_js_callback' => 'SKSocialSharing::string_to_bool',
+					'sanitize_callback'    => 'SK_Social_Sharing::sanitize_checkbox',
+					'sanitize_js_callback' => 'SK_Social_Sharing::string_to_bool',
 					'transport'            => 'refresh',
 					'default'              => 'yes',
 				)
@@ -234,20 +227,20 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 						'section'         => 'product',
 						'priority'        => 20,
 						'active_callback' => function() {
-							return SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options', 'yes' ) );
+							return SK_Social_Sharing::string_to_bool( get_option( 'sk_sharing_options', 'yes' ) );
 						},
 					)
 				)
 			);
 
-			// Include Pinterest
+			// Include Pinterest.
 			$wp_customize->add_setting(
 				'sk_sharing_options_pinterest',
 				array(
 					'type'                 => 'option',
 					'capability'           => 'manage_options',
-					'sanitize_callback'    => 'SKSocialSharing::sanitize_checkbox',
-					'sanitize_js_callback' => 'SKSocialSharing::string_to_bool',
+					'sanitize_callback'    => 'SK_Social_Sharing::sanitize_checkbox',
+					'sanitize_js_callback' => 'SK_Social_Sharing::string_to_bool',
 					'transport'            => 'refresh',
 					'default'              => 'yes',
 				)
@@ -263,13 +256,19 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 						'section'         => 'product',
 						'priority'        => 20,
 						'active_callback' => function() {
-							return SKSocialSharing::string_to_bool( get_option( 'sk_sharing_options', 'yes' ) );
+							return SK_Social_Sharing::string_to_bool( get_option( 'sk_sharing_options', 'yes' ) );
 						},
 					)
 				)
 			);
 		}
 
+		/**
+		 * Product social buttons.
+		 *
+		 * @since 1.4.2
+		 * @return void
+		 */
 		public function getbowtied_single_share_product() {
 
 			global $post, $product;
@@ -330,7 +329,7 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 						<div class="social_media social_media_pinterest">
 							<a target="_blank"
 								class="icon"
-								href="http://pinterest.com/pin/create/button/?url=<?php urlencode( the_permalink() ); ?>&amp;description=<?php the_title(); ?>&amp;media=<?php esc_attr_e( $image ); ?>"
+								href="http://pinterest.com/pin/create/button/?url=<?php echo esc_url( the_permalink() ); ?>&amp;description=<?php the_title(); ?>&amp;media=<?php echo esc_attr( wp_kses_post( $image ) ); ?>"
 								title="<?php esc_html_e( 'Pinterest', 'shopkeeper-extender' ); ?>"
 								count-layout=”vertical”>
 								<svg
@@ -379,4 +378,4 @@ if ( ! class_exists( 'SKSocialSharing' ) ) :
 
 endif;
 
-$sk_social_sharing = new SKSocialSharing();
+$sk_social_sharing = new SK_Social_Sharing();

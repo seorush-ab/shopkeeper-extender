@@ -1,26 +1,35 @@
 <?php
+/**
+ * Slider Block.
+ *
+ * @package shopkeeper-extender
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
-// ==============================================================================
-// Enqueue Editor Assets
-// ==============================================================================
 add_action( 'enqueue_block_editor_assets', 'gbt_18_sk_slider_editor_assets' );
 if ( ! function_exists( 'gbt_18_sk_slider_editor_assets' ) ) {
+	/**
+	 * Enqueue Editor Assets.
+	 */
 	function gbt_18_sk_slider_editor_assets() {
 
 		wp_enqueue_script(
 			'gbt_18_sk_slide_script',
 			plugins_url( 'blocks/slide' . SK_EXT_ENQUEUE_SUFFIX . '.js', __FILE__ ),
-			array( 'wp-blocks', 'wp-i18n', 'wp-element' )
+			array( 'wp-blocks', 'wp-i18n', 'wp-element' ),
+			SK_EXT_VERSION,
+			true
 		);
 
 		wp_enqueue_script(
 			'gbt_18_sk_slider_script',
 			plugins_url( 'blocks/slider' . SK_EXT_ENQUEUE_SUFFIX . '.js', __FILE__ ),
-			array( 'wp-blocks', 'wp-i18n', 'wp-element' )
+			array( 'wp-blocks', 'wp-i18n', 'wp-element' ),
+			SK_EXT_VERSION,
+			true
 		);
 
 		add_action(
@@ -40,11 +49,11 @@ if ( ! function_exists( 'gbt_18_sk_slider_editor_assets' ) ) {
 	}
 }
 
-// ==============================================================================
-// Enqueue Frontend Assets
-// ==============================================================================
 add_action( 'enqueue_block_assets', 'gbt_18_sk_slider_assets' );
 if ( ! function_exists( 'gbt_18_sk_slider_assets' ) ) {
+	/**
+	 * Enqueue Frontend Assets.
+	 */
 	function gbt_18_sk_slider_assets() {
 
 		wp_enqueue_style(
@@ -64,7 +73,9 @@ if ( ! function_exists( 'gbt_18_sk_slider_assets' ) ) {
 		wp_enqueue_script(
 			'gbt_18_sk_slider_script',
 			plugins_url( 'assets/js/slider' . SK_EXT_ENQUEUE_SUFFIX . '.js', __FILE__ ),
-			array( 'jquery' )
+			array( 'jquery' ),
+			SK_EXT_VERSION,
+			true
 		);
 	}
 }

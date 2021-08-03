@@ -66,20 +66,37 @@ if ( ! class_exists( 'Shopkeeper_Extender' ) ) :
 		 */
 		public function __construct() {
 
-			// Vendor.
-			include_once dirname( __FILE__ ) . '/includes/vendor/enqueue.php';
+			add_action( 'wp_enqueue_scripts', array( $this, 'add_plugin_styles' ), 99 );
+			add_action( 'wp_enqueue_scripts', array( $this, 'add_vendor_scripts' ), 99 );
+			add_action( 'after_setup_theme', array( $this, 'load_plugin_files' ) );
 
+			// Add Shortcodes to WP Bakery.
+			if ( defined( 'WPB_VC_VERSION' ) ) {
+				add_action( 'init', array( $this, 'add_wpbakery_shortcodes' ) );
+			}
+		}
+
+		/**
+		 * Load Plugin Files.
+		 */
+		public function load_plugin_files() {
 			// Customizer.
 			include_once dirname( __FILE__ ) . '/includes/customizer/repeater/class-sk-ext-customize-repeater-control.php';
 
 			// Shortcodes.
-			include_once dirname( __FILE__ ) . '/includes/shortcodes/index.php';
+			include_once dirname( __FILE__ ) . '/includes/shortcodes/wp/posts-slider.php';
+			include_once dirname( __FILE__ ) . '/includes/shortcodes/wp/banner.php';
+			include_once dirname( __FILE__ ) . '/includes/shortcodes/wp/slider.php';
+
+			if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+				include_once dirname( __FILE__ ) . '/includes/shortcodes/wc/categories-grid.php';
+			}
 
 			// Social Media.
-			include_once dirname( __FILE__ ) . '/includes/social-media/class-social-media.php';
+			include_once dirname( __FILE__ ) . '/includes/social-media/class-sk-social-media.php';
 
 			// Widgets.
-			include_once 'includes/widgets/social-media.php';
+			include_once 'includes/widgets/class-sk-social-media-widget.php';
 
 			// Gutenberg Blocks.
 			include_once dirname( __FILE__ ) . '/includes/gbt-blocks/index.php';
@@ -93,24 +110,57 @@ if ( ! class_exists( 'Shopkeeper_Extender' ) ) :
 				// Custom Code Section.
 				include_once dirname( __FILE__ ) . '/includes/custom-code/class-sk-custom-code.php';
 
-				// Social Sharing Buttons.
 				if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
-					include_once dirname( __FILE__ ) . '/includes/social-sharing/class-social-sharing.php';
-				}
+					// Social Sharing Buttons.
+					include_once dirname( __FILE__ ) . '/includes/social-sharing/class-sk-social-sharing.php';
 
-				// Addons.
-				if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+					// Addons.
 					include_once dirname( __FILE__ ) . '/includes/addons/class-sk-category-secondary-description.php';
 					include_once dirname( __FILE__ ) . '/includes/addons/class-sk-category-header-image.php';
 				}
 			}
 		}
+
+		/**
+		 * Add Plugin Styles.
+		 */
+		public function add_plugin_styles() {
+
+			wp_enqueue_style( 'shopkeeper-extender', plugins_url( 'assets/css/styles.css', __FILE__ ), null, SK_EXT_VERSION, 'all' );
+		}
+
+		/**
+		 * Add Vendor Scripts.
+		 */
+		public function add_vendor_scripts() {
+			wp_register_style(
+				'swiper',
+				plugins_url( 'assets/swiper/css/swiper.min.css', __FILE__ ),
+				array(),
+				'6.4.1'
+			);
+			wp_register_script(
+				'swiper',
+				plugins_url( 'assets/swiper/js/swiper.min.js', __FILE__ ),
+				array(),
+				'6.4.1',
+				true
+			);
+		}
+
+		/**
+		 * Add WPBakery Elements.
+		 */
+		public function add_wpbakery_shortcodes() {
+			include_once dirname( __FILE__ ) . '/includes/shortcodes/wb/posts-slider.php';
+			include_once dirname( __FILE__ ) . '/includes/shortcodes/wb/banner.php';
+			include_once dirname( __FILE__ ) . '/includes/shortcodes/wb/slider.php';
+
+			if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+				include_once dirname( __FILE__ ) . '/includes/shortcodes/wb/categories-grid.php';
+			}
+		}
 	}
 endif;
 
-add_action(
-	'after_setup_theme',
-	function() {
-		$shopkeeper_extender = new Shopkeeper_Extender();
-	}
-);
+$shopkeeper_extender = new Shopkeeper_Extender();

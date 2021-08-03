@@ -1,13 +1,18 @@
 <?php
+/**
+ * Social Media.
+ *
+ * @package shopkeeper-extender
+ */
 
-if ( ! class_exists( 'SKSocialMedia' ) ) :
+if ( ! class_exists( 'SK_Social_Media' ) ) :
 
 	/**
-	 * SKSocialMedia class.
+	 * SK_Social_Media class.
 	 *
 	 * @since 1.4
 	 */
-	class SKSocialMedia {
+	class SK_Social_Media {
 
 		/**
 		 * List of social media profiles.
@@ -21,12 +26,12 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 		 * The single instance of the class.
 		 *
 		 * @since 1.4
-		 * @var SKSocialMedia
+		 * @var SK_Social_Media
 		 */
-		protected static $_instance = null;
+		protected static $instance = null;
 
 		/**
-		 * SKSocialMedia constructor.
+		 * SK_Social_Media constructor.
 		 *
 		 * @since 1.4
 		 */
@@ -44,7 +49,6 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 				update_option( 'social_media_repeater_option_import', true );
 			}
 
-			$this->enqueue_styles();
 			$this->customizer_options();
 			$this->create_shortcode();
 
@@ -55,7 +59,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 			add_action(
 				'footer_socials',
 				function() {
-					if ( SKSocialMedia::string_to_bool( get_option( 'sk_footer_social_icons', 'yes' ) ) ) {
+					if ( SK_Social_Media::string_to_bool( get_option( 'sk_footer_social_icons', 'yes' ) ) ) {
 						echo '<div class="footer_socials_wrapper">' . do_shortcode( '[social-media items_align="center"]' ) . '</div>';
 					}
 				}
@@ -64,7 +68,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 			add_action(
 				'header_socials',
 				function() {
-					if ( SKSocialMedia::string_to_bool( get_option( 'sk_top_bar_social_icons', 'no' ) ) ) {
+					if ( SK_Social_Media::string_to_bool( get_option( 'sk_top_bar_social_icons', 'no' ) ) ) {
 						echo '<div class="site-top-bar-social-icons-wrapper">' . do_shortcode( '[social-media items_align="right"]' ) . '</div>';
 					}
 				}
@@ -72,32 +76,17 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 		}
 
 		/**
-		 * Ensures only one instance of SKSocialMedia is loaded or can be loaded.
+		 * Ensures only one instance of SK_Social_Media is loaded or can be loaded.
 		 *
 		 * @since 1.4
 		 *
-		 * @return SKSocialMedia
+		 * @return SK_Social_Media
 		 */
 		public static function instance() {
-			if ( is_null( self::$_instance ) ) {
-				self::$_instance = new self();
+			if ( is_null( self::$instance ) ) {
+				self::$instance = new self();
 			}
-			return self::$_instance;
-		}
-
-		/**
-		 * Enqueue styles.
-		 *
-		 * @since 1.4
-		 * @return void
-		 */
-		protected function enqueue_styles() {
-			add_action(
-				'wp_enqueue_scripts',
-				function() {
-					wp_enqueue_style( 'sk-social-media-styles', plugins_url( 'assets/css/social-media.css', __FILE__ ), null );
-				}
-			);
+			return self::$instance;
 		}
 
 		/**
@@ -137,9 +126,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 				}
 			}
 
-			update_option( 'sk_social_media_repeater', json_encode( $repeater_default ) );
-
-			return;
+			update_option( 'sk_social_media_repeater', wp_json_encode( $repeater_default ) );
 		}
 
 		/**
@@ -353,6 +340,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 		/**
 		 * Creates customizer options.
 		 *
+		 * @param object $wp_customize WP Customize.
 		 * @since 1.4
 		 * @return void
 		 */
@@ -368,8 +356,8 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 					array(
 						'type'                 => 'option',
 						'capability'           => 'manage_options',
-						'sanitize_callback'    => 'SKSocialMedia::sanitize_checkbox',
-						'sanitize_js_callback' => 'SKSocialMedia::string_to_bool',
+						'sanitize_callback'    => 'SK_Social_Media::sanitize_checkbox',
+						'sanitize_js_callback' => 'SK_Social_Media::string_to_bool',
 						'transport'            => 'refresh',
 						'default'              => 'no',
 					)
@@ -384,7 +372,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 							'label'           => esc_attr__( 'Top Bar Social Icons', 'shopkeeper-extender' ),
 							'section'         => 'top_bar',
 							'priority'        => 20,
-							'active_callback' => 'SKSocialMedia::is_topbar_enabled',
+							'active_callback' => 'SK_Social_Media::is_topbar_enabled',
 						)
 					)
 				);
@@ -394,8 +382,8 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 					array(
 						'type'                 => 'option',
 						'capability'           => 'manage_options',
-						'sanitize_callback'    => 'SKSocialMedia::sanitize_checkbox',
-						'sanitize_js_callback' => 'SKSocialMedia::string_to_bool',
+						'sanitize_callback'    => 'SK_Social_Media::sanitize_checkbox',
+						'sanitize_js_callback' => 'SK_Social_Media::string_to_bool',
 						'transport'            => 'refresh',
 						'default'              => 'yes',
 					)
@@ -415,7 +403,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 				);
 			}
 
-			// Section
+			// Section.
 			$wp_customize->add_section(
 				'social_media',
 				array(
@@ -424,15 +412,15 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 				)
 			);
 
-			// Fields
+			// Fields.
 			$wp_customize->add_setting(
 				'sk_social_media_repeater',
 				array(
 					'type'              => 'option',
-					'sanitize_callback' => 'SKSocialMedia::sanitize_repeater',
+					'sanitize_callback' => 'SK_Social_Media::sanitize_repeater',
 					'capability'        => 'manage_options',
 					'transport'         => 'refresh',
-					'default'           => json_encode( array() ),
+					'default'           => wp_json_encode( array() ),
 				)
 			);
 
@@ -459,7 +447,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 					'selector'        => '.site-top-bar-social-icons-wrapper ul.sk_social_icons_list',
 					'settings'        => 'sk_social_media_repeater',
 					'render_callback' => function() {
-						echo sk_social_media_shortcode();
+						echo do_shortcode( 'social-media' );
 					},
 				)
 			);
@@ -478,28 +466,28 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 		/**
 		 * Creates social media shortcode.
 		 *
+		 * @param array  $atts The attributes.
+		 * @param string $content The content.
 		 * @since 1.4
 		 * @return string
 		 */
 		public function sk_social_media_shortcode( $atts, $content = null ) {
 			global $social_media_profiles;
 
-			extract(
-				shortcode_atts(
-					array(
-						'items_align' => 'left',
-						'type'        => 'shortcode',
-						'fontsize'    => '24',
-						'fontcolor'   => '#000',
-					),
-					$atts
-				)
+			$attributes = shortcode_atts(
+				array(
+					'items_align' => 'left',
+					'type'        => 'shortcode',
+					'fontsize'    => '24',
+					'fontcolor'   => '#000',
+				),
+				$atts
 			);
 
 			$color = '';
-			if ( $type == 'block' ) {
-				if ( ! empty( $fontcolor ) ) {
-					$color = 'fill=' . $fontcolor;
+			if ( 'block' === $attributes['type'] ) {
+				if ( ! empty( $attributes['fontcolor'] ) ) {
+					$color = 'fill=' . $attributes['fontcolor'];
 				}
 			}
 
@@ -507,11 +495,11 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 
 			?>
 
-			<ul class="sk_social_icons_list <?php echo esc_html( $items_align ); ?>">
+			<ul class="sk_social_icons_list <?php echo esc_html( $attributes['items_align'] ); ?>">
 
 				<?php
 
-				$social_media_encoded_list = get_option( 'sk_social_media_repeater', json_encode( array() ) );
+				$social_media_encoded_list = get_option( 'sk_social_media_repeater', wp_json_encode( array() ) );
 				$social_media_profiles     = json_decode( $social_media_encoded_list );
 
 				foreach ( $social_media_profiles as $social ) {
@@ -524,7 +512,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 							<li class="sk_social_icon custom_icon">
 								<a class="sk_social_icon_link" target="_blank" href="<?php echo esc_url( $social->link ); ?>">
 									<img src="<?php echo esc_url( $social->image_url ); ?>" alt="Social Media Profile"
-										width="<?php echo esc_attr( $fontsize ); ?>" height="<?php echo esc_attr( $fontsize ); ?>" />
+										width="<?php echo esc_attr( $attributes['fontsize'] ); ?>" height="<?php echo esc_attr( $attributes['fontsize'] ); ?>" />
 								</a>
 							</li>
 
@@ -547,7 +535,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 										<svg
 											class="<?php echo ! empty( $color ) ? 'has-color' : ''; ?>"
 											xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-											width="<?php echo esc_attr( $fontsize ); ?>" height="<?php echo esc_attr( $fontsize ); ?>"
+											width="<?php echo esc_attr( $attributes['fontsize'] ); ?>" height="<?php echo esc_attr( $attributes['fontsize'] ); ?>"
 											viewBox="0 0 48 48"
 											<?php echo esc_attr( $color ); ?>>
 											<path d="<?php echo esc_attr( $svg_path ); ?>"></path>
@@ -634,7 +622,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 					}
 				}
 
-				return json_encode( $input_decoded );
+				return wp_json_encode( $input_decoded );
 			}
 
 			return $input;
@@ -665,4 +653,4 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 
 endif;
 
-$sk_social_media = new SKSocialMedia();
+$sk_social_media = new SK_Social_Media();

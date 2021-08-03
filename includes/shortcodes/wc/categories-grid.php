@@ -2,8 +2,6 @@
 
 function sk_product_categories_shortcode( $atts ) {
 
-	wp_enqueue_style( 'shopkeeper-categories-grid-shortcode-styles' );
-
 	extract(
 		shortcode_atts(
 			array(

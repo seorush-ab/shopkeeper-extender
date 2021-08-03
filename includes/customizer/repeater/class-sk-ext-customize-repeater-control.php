@@ -2,7 +2,7 @@
 /**
  * Options Repeater control class
  *
- * @package SK_Customize_Repeater_Control
+ * @package shopkeeper-extender
  */
 
 if ( ! class_exists( 'WP_Customize_Control' ) ) {
