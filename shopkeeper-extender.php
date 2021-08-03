@@ -67,8 +67,12 @@ if ( ! class_exists( 'Shopkeeper_Extender' ) ) :
 		public function __construct() {
 
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_plugin_styles' ), 99 );
+			add_action( 'wp_enqueue_scripts', array( $this, 'add_plugin_scripts' ), 99 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_vendor_scripts' ), 99 );
 			add_action( 'after_setup_theme', array( $this, 'load_plugin_files' ) );
+
+			add_action( 'enqueue_block_editor_assets', array( $this, 'add_block_editor_assets' ) );
+			add_action( 'init', array( $this, 'set_blocks_script_translations' ) );
 
 			// Add Shortcodes to WP Bakery.
 			if ( defined( 'WPB_VC_VERSION' ) ) {
@@ -84,12 +88,12 @@ if ( ! class_exists( 'Shopkeeper_Extender' ) ) :
 			include_once dirname( __FILE__ ) . '/includes/customizer/repeater/class-sk-ext-customize-repeater-control.php';
 
 			// Shortcodes.
-			include_once dirname( __FILE__ ) . '/includes/shortcodes/wp/posts-slider.php';
-			include_once dirname( __FILE__ ) . '/includes/shortcodes/wp/banner.php';
-			include_once dirname( __FILE__ ) . '/includes/shortcodes/wp/slider.php';
+			include_once dirname( __FILE__ ) . '/includes/shortcodes/posts-slider.php';
+			include_once dirname( __FILE__ ) . '/includes/shortcodes/banner.php';
+			include_once dirname( __FILE__ ) . '/includes/shortcodes/slider.php';
 
 			if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
-				include_once dirname( __FILE__ ) . '/includes/shortcodes/wc/categories-grid.php';
+				include_once dirname( __FILE__ ) . '/includes/shortcodes/categories-grid.php';
 			}
 
 			// Social Media.
@@ -97,9 +101,6 @@ if ( ! class_exists( 'Shopkeeper_Extender' ) ) :
 
 			// Widgets.
 			include_once 'includes/widgets/class-sk-social-media-widget.php';
-
-			// Gutenberg Blocks.
-			include_once dirname( __FILE__ ) . '/includes/gbt-blocks/index.php';
 
 			// Shopkeeper Dependent Components.
 			if ( class_exists( 'Shopkeeper' ) ) {
@@ -130,22 +131,45 @@ if ( ! class_exists( 'Shopkeeper_Extender' ) ) :
 		}
 
 		/**
+		 * Add Plugin Scripts.
+		 */
+		public function add_plugin_scripts() {
+
+			wp_enqueue_script( 'shopkeeper-extender', plugins_url( 'assets/js/scripts-dist.js', __FILE__ ), array( 'jquery' ), SK_EXT_VERSION, 'all' );
+		}
+
+		/**
 		 * Add Vendor Scripts.
 		 */
 		public function add_vendor_scripts() {
-			wp_register_style(
+			wp_enqueue_style(
 				'swiper',
-				plugins_url( 'assets/swiper/css/swiper.min.css', __FILE__ ),
+				plugins_url( 'assets/vendor/swiper/css/swiper.min.css', __FILE__ ),
 				array(),
 				'6.4.1'
 			);
-			wp_register_script(
+			wp_enqueue_script(
 				'swiper',
-				plugins_url( 'assets/swiper/js/swiper.min.js', __FILE__ ),
+				plugins_url( 'assets/vendor/swiper/js/swiper.min.js', __FILE__ ),
 				array(),
 				'6.4.1',
 				true
 			);
+		}
+
+		/**
+		 * Add Block Editor Assets.
+		 */
+		public function add_block_editor_assets() {
+			wp_enqueue_style( 'shopkeeper-extender-block-editor', plugins_url( 'assets/css/block-editor-styles.css', __FILE__ ), array( 'wp-edit-blocks' ), SK_EXT_VERSION );
+			wp_enqueue_script( 'shopkeeper-extender-block-editor', plugins_url( 'assets/js/admin/block-editor-scripts-dist.js', __FILE__ ), array( 'wp-blocks', 'jquery' ), SK_EXT_VERSION, true );
+		}
+
+		/**
+		 * Set Blocks Script Translations.
+		 */
+		public function set_blocks_script_translations() {
+			wp_set_script_translations( 'shopkeeper-extender-block-editor', 'shopkeeper-extender', plugin_dir_path( __FILE__ ) . 'languages' );
 		}
 
 		/**

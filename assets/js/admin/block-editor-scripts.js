@@ -5,3 +5,7 @@
 })(
 	window.wp.blocks
 );
+
+//@prepros-append blocks/banner.js
+//@prepros-append blocks/slide.js
+//@prepros-append blocks/slider.js

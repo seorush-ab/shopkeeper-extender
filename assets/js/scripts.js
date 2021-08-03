@@ -1,1 +1,4 @@
-jQuery(function(i){"use strict";i(".from-the-blog").length&&i(".from-the-blog.swiper-container").each(function(){var e=i(this).attr("data-id");new Swiper(".swiper-"+e,{slidesPerView:1,loop:!0,breakpoints:{1024:{slidesPerView:3},640:{slidesPerView:2},480:{slidesPerView:1}},pagination:{el:".swiper-"+e+" .swiper-pagination"}})})}),jQuery(function(t){"use strict";t(".shortcode_getbowtied_slider").length&&t(".shortcode_getbowtied_slider").each(function(){var e=t(this).attr("data-autoplay");t.isNumeric(e)?e*=1e3:e=1e4;var i=t(this).attr("data-id");new Swiper(".swiper-"+i,{direction:"horizontal",loop:!0,grabCursor:!0,preventClicks:!0,preventClicksPropagation:!0,autoplay:{delay:e},speed:600,effect:"slide",parallax:!0,pagination:{el:".swiper-"+i+" .shortcode-slider-pagination",type:"bullets",clickable:!0},navigation:{nextEl:".swiper-"+i+" .swiper-button-next",prevEl:".swiper-"+i+" .swiper-button-prev"}})})});
+//@prepros-prepend blocks/slider.js
+
+//@prepros-prepend shortcodes/posts-slider.js
+//@prepros-prepend shortcodes/slider.js

@@ -1,3 +1,4 @@
+// Tabs.
 .block-editor-block-list__block[data-type="getbowtied/sk-slide"] {
 	display: none;
 }
@@ -77,5 +78,99 @@
 
 	.block-editor-block-list__block[data-type="getbowtied/sk-slide"][data-tab="6"] {
 		display: block;
+	}
+}
+
+// Slider.
+.gbt_18_sk_editor_slider_wrapper {
+
+	.gbt_18_sk_editor_slider_tabs {
+    	text-align: center;
+	    padding-top: 20px;
+    	margin-bottom: -5px;
+
+		a.slide-tab {
+			height: 25px;
+		    width: 25px;
+		    margin-right: 10px;
+		    position: relative;
+		    cursor: pointer;
+	        padding: 7px 7px 9px 7px;
+		    border-radius: 5px;
+		    outline: 0;
+
+		    &:last-child {
+		    	margin-right: 0;
+		    }
+
+		    &:hover {
+		    	background-color: #555d66;
+		    	svg {
+	    		    fill: #fff;
+		    	}
+		    }
+
+			svg {
+				width: 25px;
+				height: 25px;
+			    fill: #555d66;
+		        vertical-align: middle;
+			}
+		}
+	}
+}
+
+// Slide.
+.gbt_18_sk_editor_slide_wrapper {
+    background-size: cover;
+    background-position: center center;
+	max-height: 1000px;
+	width: 100%;
+
+    .gbt_18_sk_editor_slide_content {
+		height: 100%;
+    	word-break: break-word;
+    	margin: auto;
+    	padding: 125px 2.5rem;
+
+		@media all and (min-width: 1024px) {
+			padding: 125px 5rem;
+		}
+
+        .gbt_18_sk_editor_slide_title {
+            margin-bottom: 1.25rem;
+
+			h2 {
+				margin: 0 !important;
+			}
+        }
+
+        .gbt_18_sk_editor_slide_button span {
+			margin-top: 1.25rem !important;
+			margin-bottom: 0 !important;
+			display: inline-block;
+        }
+
+    	.gbt_18_sk_editor_slide_container {
+    		width: 50%;
+
+			&.align-center {
+				margin: 0 auto;
+			}
+
+			&.align-right {
+				margin: 0 0 0 auto;
+			}
+    	}
+    }
+
+	.gbt_18_sk_slide_remove_image_button,
+	.gbt_18_sk_slide_add_image_button {
+		position: absolute;
+	    top: 1.25rem;
+	    left: 1.25rem;
+		opacity: 1;
+		visibility: visible;
+		transition: all .2s ease-in-out;
 	}
 }
