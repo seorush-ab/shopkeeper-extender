@@ -3,13 +3,13 @@
  * Plugin Name:             Shopkeeper Extender
  * Plugin URI:              https://shopkeeper.wp-theme.design/
  * Description:             Extends the functionality of Shopkeeper with theme specific features.
- * Version:                 2.0-beta1
+ * Version:                 2.0
  * Author:                  GetBowtied
  * Author URI:              https://getbowtied.com
  * Text Domain:             shopkeeper-extender
  * Domain Path:             /languages/
  * Requires at least:       5.0
- * Tested up to:            5.5.3
+ * Tested up to:            5.8
  *
  * @package  shopkeeper-extender
  */
@@ -106,7 +106,8 @@ if ( ! class_exists( 'Shopkeeper_Extender' ) ) :
 			if ( class_exists( 'Shopkeeper' ) ) {
 
 				// Custom Menu.
-				include_once dirname( __FILE__ ) . '/includes/custom-menu/index.php';
+				include_once dirname( __FILE__ ) . '/includes/custom-menu/class-sk-ext-navwalker-image.php';
+				include_once dirname( __FILE__ ) . '/includes/custom-menu/class-sk-ext-custom-menu-output.php';
 
 				// Custom Code Section.
 				include_once dirname( __FILE__ ) . '/includes/custom-code/class-sk-custom-code.php';
