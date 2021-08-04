@@ -42,6 +42,8 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 == Changelog ==
 
 = 2.0 =
+- Delete Categories Grid block as we ensure compatibility with PBFW
+- New: Category Secondary Description
 - Shopkeeper 3 compatibility updates
 
 = 1.6.6 =
