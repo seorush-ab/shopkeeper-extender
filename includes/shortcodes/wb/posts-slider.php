@@ -1,6 +1,9 @@
 <?php
-
-// [from_the_blog]
+/**
+ * Posts Slider WPBakery Element.
+ *
+ * @package  shopkeeper-extender
+ */
 
 $args = array(
 	'type'         => 'post',

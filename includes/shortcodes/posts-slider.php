@@ -1,19 +1,27 @@
 <?php
+/**
+ * Posts Slider Shortcode.
+ *
+ * @package  shopkeeper-extender
+ */
 
-// [from_the_blog]
+/**
+ * Posts Slider Shortcode Output.
+ *
+ * @param array $atts The attributes.
+ * @param mixed $content The content.
+ */
 function sk_posts_slider_shortcode( $atts, $content = null ) {
 
 	wp_enqueue_style( 'swiper' );
 	wp_enqueue_script( 'swiper' );
 
-	extract(
-		shortcode_atts(
-			array(
-				'posts'    => '',
-				'category' => '',
-			),
-			$atts
-		)
+	$attributes = shortcode_atts(
+		array(
+			'posts'    => '',
+			'category' => '',
+		),
+		$atts
 	);
 
 	ob_start();
@@ -22,7 +30,6 @@ function sk_posts_slider_shortcode( $atts, $content = null ) {
 
 	?>
 
-	<div class="row">
 	<div class="from-the-blog-wrapper">
 
 		<div class="from-the-blog swiper-container swiper-<?php echo esc_attr( $unique ); ?>" data-id="<?php echo esc_attr( $unique ); ?>">
@@ -33,76 +40,62 @@ function sk_posts_slider_shortcode( $atts, $content = null ) {
 				$args = array(
 					'post_status'    => 'publish',
 					'post_type'      => 'post',
-					'category_name'  => $category,
-					'posts_per_page' => $posts,
+					'category_name'  => $attributes['category'],
+					'posts_per_page' => $attributes['posts'],
 				);
 
-				$recentPosts = new WP_Query( $args );
+				$recent_posts = new WP_Query( $args );
 
-				if ( $recentPosts->have_posts() ) :
+				if ( $recent_posts->have_posts() ) :
 					?>
 
 					<?php
-					while ( $recentPosts->have_posts() ) :
-						$recentPosts->the_post();
+					while ( $recent_posts->have_posts() ) :
+						$recent_posts->the_post();
 						?>
 
-						<?php $post_format = get_post_format( get_the_ID() ); ?>
+						<?php $post_class = ( ! has_post_thumbnail() ) ? 'no_thumb' : ''; ?>
 
 						<div class="swiper-slide">
 
-							<div class="from_the_blog_item <?php echo $post_format ? $post_format : 'standard'; ?> <?php
-							if ( ! has_post_thumbnail() ) :
-								?>
-								no_thumb<?php endif; ?>">
+							<div class="from_the_blog_item <?php echo esc_attr( $post_class ); ?>">
 
 								<a class="from_the_blog_link" href="<?php the_permalink(); ?>">
 									<span class="from_the_blog_img_container">
-										<span class="from_the_blog_overlay"></span>
-
 										<?php
 										if ( has_post_thumbnail() ) :
 											$image_id  = get_post_thumbnail_id();
 											$image_url = wp_get_attachment_image_src( $image_id, 'large', true );
 											?>
-											<span class="from_the_blog_img" style="background-image: url(<?php echo esc_url( $image_url[0] ); ?> );"></span>
-											<span class="with_thumb_icon"></span>
+											<img class="from_the_blog_img" src="<?php echo esc_url( $image_url[0] ); ?>">
 										<?php else : ?>
 											<span class="from_the_blog_noimg"></span>
-											<span class="no_thumb_icon"></span>
 										<?php endif; ?>
 
 									</span>
-									<span class="from_the_blog_title" href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></span>
+									<span class="from_the_blog_title" href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></span>
 								</a>
 
 								<div class="from_the_blog_content">
-									<div class="post_meta_archive">
-										<?php _e( ' by ', 'shopkeeper-extender' ); ?>
-										<a class="url fn n" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"
-											title="<?php echo sprintf( esc_html__( 'View all posts by %s', 'shopkeeper-extender' ), get_the_author() ); ?>"
+									<div class="post_meta_archive entry-meta">
+										<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"
+											title="<?php /* translators: %s: Author */ echo sprintf( esc_html__( 'View all posts by %s', 'shopkeeper-extender' ), get_the_author() ); ?>"
 											rel="author">
 											<?php echo get_the_author(); ?>
 										</a>
-										<?php _e( ' on ', 'shopkeeper-extender' ); ?>
-										<a href="<?php the_permalink(); ?>" rel="bookmark"
-											title="<?php echo sprintf( esc_html__( 'Permalink to %s', 'shopkeeper-extender' ), the_title_attribute( 'echo=0' ) ); ?>">
+										<span class="entry-meta-separator">/</span>
+										<a href="<?php the_permalink(); ?>" rel="bookmark" class="entry-date"
+											title="<?php /* translators: %s: Title */ echo sprintf( esc_html__( 'Permalink to %s', 'shopkeeper-extender' ), the_title_attribute( 'echo=0' ) ); ?>">
 											<?php echo get_the_date(); ?>
 										</a>
 									</div>
 								</div>
-
 							</div>
-
 						</div>
 
 					<?php endwhile; ?>
 
-					<?php
-
-				endif;
-
-				?>
+				<?php endif; ?>
 
 			</div>
 
@@ -111,10 +104,9 @@ function sk_posts_slider_shortcode( $atts, $content = null ) {
 		</div>
 
 	</div>
-	</div>
 
 	<?php
-	wp_reset_query();
+	wp_reset_postdata();
 	$content = ob_get_contents();
 	ob_end_clean();
 

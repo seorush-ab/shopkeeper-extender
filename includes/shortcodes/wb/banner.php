@@ -1,6 +1,9 @@
 <?php
-
-// [banner]
+/**
+ * Banner WPBakery Element.
+ *
+ * @package  shopkeeper-extender
+ */
 
 vc_map(
 	array(
@@ -122,72 +125,14 @@ vc_map(
 				'holder'      => 'div',
 				'class'       => 'hide_in_vc_editor',
 				'admin_label' => true,
-				'heading'     => 'Separator Padding',
-				'param_name'  => 'sep_padding',
-			),
-
-			array(
-				'type'        => 'colorpicker',
-				'holder'      => 'div',
-				'class'       => 'hide_in_vc_editor',
-				'admin_label' => true,
-				'heading'     => 'Separator Color',
-				'param_name'  => 'sep_color',
-			),
-
-			array(
-				'type'        => 'dropdown',
-				'holder'      => 'div',
-				'class'       => 'hide_in_vc_editor',
-				'admin_label' => true,
-				'heading'     => 'With Bullet',
-				'param_name'  => 'with_bullet',
-				'value'       => array(
-					'Yes' => 'yes',
-					'No'  => 'no',
-				),
-				'std'         => 'no',
-			),
-
-			array(
-				'type'        => 'textfield',
-				'holder'      => 'div',
-				'class'       => 'hide_in_vc_editor',
-				'admin_label' => true,
 				'heading'     => 'Bullet Text',
+				'description' => '[Deprecated Option]',
 				'param_name'  => 'bullet_text',
 				'dependency'  => array(
 					'element' => 'with_bullet',
 					'value'   => array( 'yes' ),
 				),
 			),
-
-			array(
-				'type'        => 'colorpicker',
-				'holder'      => 'div',
-				'class'       => 'hide_in_vc_editor',
-				'admin_label' => true,
-				'heading'     => 'Bullet Background Color',
-				'param_name'  => 'bullet_bg_color',
-				'dependency'  => array(
-					'element' => 'with_bullet',
-					'value'   => array( 'yes' ),
-				),
-			),
-
-			array(
-				'type'        => 'colorpicker',
-				'holder'      => 'div',
-				'class'       => 'hide_in_vc_editor',
-				'admin_label' => true,
-				'heading'     => 'Bullet Text Color',
-				'param_name'  => 'bullet_text_color',
-				'dependency'  => array(
-					'element' => 'with_bullet',
-					'value'   => array( 'yes' ),
-				),
-			),
 		),
-
 	)
 );

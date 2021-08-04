@@ -1,10 +1,11 @@
 <?php
+/**
+ * Slider WPBakery Element.
+ *
+ * @package  shopkeeper-extender
+ */
 
-/*
-**	SLIDER
-*/
-
-// Register "container" content element. It will hold all your inner (child) content elements
+// Register "container" content element. It will hold all your inner (child) content elements.
 vc_map(
 	array(
 		'name'            => 'Slider',
@@ -14,7 +15,7 @@ vc_map(
 		'as_parent'       => array( 'only' => 'image_slide' ),
 		'content_element' => true,
 		'params'          => array(
-			// add params same as with any other content element
+			// add params same as with any other content element.
 
 			array(
 				'type'        => 'dropdown',
@@ -94,9 +95,9 @@ vc_map(
 	array(
 		'name'     => 'Image Slide',
 		'base'     => 'image_slide',
-		'as_child' => array( 'only' => 'slider' ), // Use only|except attributes to limit parent (separate multiple values with comma)
+		'as_child' => array( 'only' => 'slider' ), // Use only|except attributes to limit parent (separate multiple values with comma).
 		'params'   => array(
-			// add params same as with any other content element
+			// add params same as with any other content element.
 
 			array(
 				'type'       => 'checkbox',
@@ -318,7 +319,7 @@ vc_map(
 	)
 );
 
-// Your "container" content element should extend WPBakeryShortCodesContainer class to inherit all required functionality
+// Your "container" content element should extend WPBakeryShortCodesContainer class to inherit all required functionality.
 if ( class_exists( 'WPBakeryShortCodesContainer' ) && ! class_exists( 'WPBakeryShortCode_Slider' ) ) {
 	class WPBakeryShortCode_Slider extends WPBakeryShortCodesContainer {
 	}

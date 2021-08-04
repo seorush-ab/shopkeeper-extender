@@ -1,152 +1,141 @@
 <?php
+/**
+ * Slider Shortcode.
+ *
+ * @package  shopkeeper-extender
+ */
 
-// [slider]
+/**
+ * Slider Shortcode Output.
+ *
+ * @param array $params The attributes.
+ * @param mixed $content The content.
+ */
 function sk_slider_shortcode( $params = array(), $content = null ) {
 
 	wp_enqueue_style( 'swiper' );
 	wp_enqueue_script( 'swiper' );
 
-	extract(
-		shortcode_atts(
-			array(
-				'full_height'              => 'yes',
-				'custom_height'            => '',
-				'hide_arrows'              => '',
-				'hide_bullets'             => '',
-				'color_navigation_bullets' => '#000000',
-				'color_navigation_arrows'  => '#000000',
-				'custom_autoplay_speed'    => 10,
-			),
-			$params
-		)
+	$attributes = shortcode_atts(
+		array(
+			'full_height'              => 'yes',
+			'custom_height'            => '',
+			'hide_arrows'              => '',
+			'hide_bullets'             => '',
+			'color_navigation_bullets' => '#000000',
+			'color_navigation_arrows'  => '#000000',
+			'custom_autoplay_speed'    => 10,
+		),
+		$params
 	);
 
-	if ( $full_height == 'no' && ! empty( $custom_height ) ) {
-		$height      = 'height:' . $custom_height . ';';
-		$extra_class = '';
-	} else {
-		$height      = '';
-		$extra_class = 'full_height';
-	}
+	ob_start();
 
-	$bottom_line = '<style>.shortcode_getbowtied_slider .shortcode-slider-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active:after{background-color: ' . $color_navigation_bullets . ';}</style>';
+	$extra_class = ( 'no' === $attributes['full_height'] && ! empty( $attributes['custom_height'] ) ) ? '' : 'full_height';
 
 	$unique = uniqid();
+	?>
 
-	$getbowtied_slider = $bottom_line . '
+	<div class="shortcode_getbowtied_slider swiper-container swiper-<?php echo esc_attr( $unique ); ?> <?php echo esc_attr( $extra_class ); ?>" style="height:<?php echo esc_attr( $attributes['custom_height'] ); ?>px;width: 100%" data-autoplay="<?php echo esc_attr( $attributes['custom_autoplay_speed'] ); ?>" data-id="<?php echo esc_attr( $unique ); ?>">
+		<div class="swiper-wrapper">
+			<?php echo do_shortcode( $content ); ?>
+		</div>
 
-		<div class="shortcode_getbowtied_slider swiper-container swiper-' . esc_attr( $unique ) . ' ' . $extra_class . '" style="' . $height . ' width: 100%" data-autoplay="' . $custom_autoplay_speed . '" data-id="' . esc_attr( $unique ) . '">
-			<div class="swiper-wrapper">
-			' . do_shortcode( $content ) . '
-			</div>';
+		<?php if ( ! $attributes['hide_arrows'] ) { ?>
+			<div style="color:<?php echo esc_attr( $attributes['color_navigation_arrows'] ); ?>" class="swiper-button-prev"></div>
+			<div style="color:<?php echo esc_attr( $attributes['color_navigation_arrows'] ); ?>" class="swiper-button-next"></div>
+		<?php } ?>
 
-	if ( ! $hide_arrows ) :
-			$getbowtied_slider .= '
-				<div style="color: ' . $color_navigation_arrows . '" class="swiper-button-prev"><i class="spk-icon spk-icon-left-arrow-thin-large"></i></div>
-    			<div style="color: ' . $color_navigation_arrows . '" class="swiper-button-next"><i class="spk-icon spk-icon-right-arrow-thin-large"></i></div>';
-	endif;
+		<?php if ( ! $attributes['hide_bullets'] ) { ?>
+			<div style="color:<?php echo esc_attr( $attributes['color_navigation_bullets'] ); ?>" class="shortcode-slider-pagination"></div>
+		<?php } ?>
 
-	if ( ! $hide_bullets ) :
-			$getbowtied_slider .= '
-				<div style="color: ' . $color_navigation_bullets . '" class="shortcode-slider-pagination"></div>';
-	endif;
+	</div>
 
-	$getbowtied_slider .= '</div>';
+	<?php
+	wp_reset_postdata();
+	$content = ob_get_contents();
+	ob_end_clean();
 
-	return $getbowtied_slider;
+	return $content;
 }
-
 add_shortcode( 'slider', 'sk_slider_shortcode' );
 
+/**
+ * Slide Shortcode Output.
+ *
+ * @param array $params The attributes.
+ * @param mixed $content The content.
+ */
 function sk_image_slide_shortcode( $params = array(), $content = null ) {
-	extract(
-		shortcode_atts(
-			array(
-				'title'                   => '',
-				'title_font_size'         => '64px',
-				'title_line_height'       => '',
-				'title_font_family'       => 'primary_font',
-				'description'             => '',
-				'description_font_size'   => '21px',
-				'description_line_height' => '',
-				'description_font_family' => 'primary_font',
-				'text_color'              => '#000000',
-				'button_text'             => '',
-				'button_url'              => '',
-				'link_whole_slide'        => '',
-				'button_color'            => '#000000',
-				'button_text_color'       => '#FFFFFF',
-				'bg_color'                => '#CCCCCC',
-				'bg_image'                => '',
-				'text_align'              => 'left',
 
-			),
-			$params
-		)
+	$attributes = shortcode_atts(
+		array(
+			'title'                   => '',
+			'title_font_size'         => '64px',
+			'title_line_height'       => '',
+			'title_font_family'       => 'primary_font',
+			'description'             => '',
+			'description_font_size'   => '21px',
+			'description_line_height' => '',
+			'description_font_family' => 'primary_font',
+			'text_color'              => '#000000',
+			'button_text'             => '',
+			'button_url'              => '',
+			'link_whole_slide'        => '',
+			'button_color'            => '#000000',
+			'button_text_color'       => '#FFFFFF',
+			'bg_color'                => '#CCCCCC',
+			'bg_image'                => '',
+			'text_align'              => 'left',
+
+		),
+		$params
 	);
 
-	switch ( $text_align ) {
-		case 'left':
-			$class = 'left-align';
-			break;
-		case 'right':
-			$class = 'right-align';
-			break;
-		case 'center':
-			$class = 'center-align';
+	ob_start();
+
+	if ( is_numeric( $attributes['bg_image'] ) ) {
+		$attributes['bg_image'] = wp_get_attachment_url( $attributes['bg_image'] );
 	}
 
-	if ( ! empty( $title ) ) {
-		$title_line_height = $title_line_height ? $title_line_height : $title_font_size;
-		$title             = '<h2 class="' . $title_font_family . '" style="color:' . $text_color . '; font-size:' . $title_font_size . '; line-height: ' . $title_line_height . '">' . $title . '</h2>';
-	} else {
-		$title = '';
-	}
+	?>
 
-	if ( is_numeric( $bg_image ) ) {
-		$bg_image = wp_get_attachment_url( $bg_image );
-	} else {
-		$bg_image = '';
-	}
+	<div class="swiper-slide <?php echo esc_attr( $attributes['text_align'] ); ?>" style="background-color:<?php echo esc_attr( $attributes['bg_color'] ); ?>;background-image:url(<?php echo esc_url( $attributes['bg_image'] ); ?>);color:<?php echo esc_attr( $attributes['text_color'] ); ?>">
+		<?php if ( $attributes['link_whole_slide'] && ! empty( $attributes['button_url'] ) ) { ?>
+			<a href="<?php echo esc_url( $attributes['button_url'] ); ?>" class="fullslidelink"></a>
+		<?php } ?>
 
-	if ( ! empty( $description ) ) {
-		$description_line_height = $description_line_height ? $description_line_height : $description_font_size;
-		$description             = '<p class="' . $description_font_family . '" style="color:' . $text_color . '; font-size:' . $description_font_size . '; line-height: ' . $description_line_height . '">' . $description . '</p>';
-	} else {
-		$description = '';
-	}
+		<div class="slider-content" data-swiper-parallax="-50%">
+			<div class="slider-content-wrapper">
+				<?php if ( ! empty( $attributes['title'] ) ) { ?>
+					<?php $attributes['title_line_height'] = $attributes['title_line_height'] ? $attributes['title_line_height'] : $attributes['title_font_size']; ?>
+					<h2 class="slide-title <?php echo esc_attr( $attributes['title_font_family'] ); ?>" style="color:<?php echo esc_attr( $attributes['text_color'] ); ?>;font-size:<?php echo esc_attr( $attributes['title_font_size'] ); ?>;line-height:<?php echo esc_attr( $attributes['title_line_height'] ); ?>">
+						<?php echo wp_kses_post( $attributes['title'] ); ?>
+					</h2>
+				<?php } ?>
 
-	if ( ! empty( $button_text ) ) {
-		$button = '<a class="button" style="color:' . $button_text_color . ' !important; background: ' . $button_color . ' !important" href="' . $button_url . '">' . $button_text . '</a>';
-	} else {
-		$button = '';
-	}
+				<?php if ( ! empty( $attributes['description'] ) ) { ?>
+					<?php $attributes['description_line_height'] = $attributes['description_line_height'] ? $attributes['description_line_height'] : $attributes['description_font_size']; ?>
+					<p class="slide-description <?php echo esc_attr( $attributes['description_font_family'] ); ?>" style="color:<?php echo esc_attr( $attributes['text_color'] ); ?>;font-size:<?php echo esc_attr( $attributes['description_font_size'] ); ?>;line-height:<?php echo esc_attr( $attributes['description_line_height'] ); ?>">
+						<?php echo wp_kses_post( $attributes['description'] ); ?>
+					</p>
+				<?php } ?>
 
-	if ( $link_whole_slide && ! empty( $button_url ) ) {
-		$slide_link = '<a href="' . $button_url . '" class="fullslidelink"></a>';
-	} else {
-		$slide_link = '';
-	}
+				<?php if ( ! empty( $attributes['button_text'] ) ) { ?>
+					<a class="button" style="color:<?php echo esc_attr( $attributes['button_text_color'] ); ?>; background:<?php echo esc_attr( $attributes['button_color'] ); ?>" href="<?php echo esc_url( $attributes['button_url'] ); ?>">
+						<?php echo esc_html( $attributes['button_text'] ); ?>
+					</a>
+				<?php } ?>
+			</div>
+		</div>
+	</div>
 
-	$getbowtied_image_slide = '
-			<div class="swiper-slide ' . $class . '"
-			style=	"background: ' . $bg_color . ' url(' . $bg_image . ') center center no-repeat ;
-					-webkit-background-size: cover;
-					-moz-background-size: cover;
-					-o-background-size: cover;
-					background-size: cover;
-					color: ' . $text_color . '">
-				' . $slide_link . '
-				<div class="slider-content" data-swiper-parallax="-50%">
-					<div class="slider-content-wrapper">
-						' . wp_kses_post( $title ) . '
-						' . wp_kses_post( $description ) . '
-						' . wp_kses_post( $button ) . '
-					</div>
-				</div>
-			</div>';
+	<?php
+	wp_reset_postdata();
+	$content = ob_get_contents();
+	ob_end_clean();
 
-	return $getbowtied_image_slide;
+	return $content;
 }
-
 add_shortcode( 'image_slide', 'sk_image_slide_shortcode' );

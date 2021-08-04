@@ -1,62 +1,48 @@
 <?php
+/**
+ * Categories Grid Shortcode.
+ *
+ * @package  shopkeeper-extender
+ */
 
-function sk_product_categories_shortcode( $atts ) {
+/**
+ * Categories Grid Shortcode Output.
+ *
+ * @param array $params The attributes.
+ */
+function sk_product_categories_shortcode( $params = array() ) {
 
-	extract(
-		shortcode_atts(
-			array(
-				'product_categories_selection' => 'auto',
-				'ids'                          => '',
-				'number'                       => 12,
-				'order'                        => 'asc',
-				'hide_empty'                   => 1,
-				'show_count'                   => 0,
-				'parent'                       => '0',
-			),
-			$atts
-		)
+	$attributes = shortcode_atts(
+		array(
+			'product_categories_selection' => 'auto',
+			'ids'                          => '',
+			'number'                       => 12,
+			'order'                        => 'asc',
+			'hide_empty'                   => 1,
+			'show_count'                   => 0,
+			'parent'                       => '0',
+		),
+		$params
 	);
 
-	if ( isset( $atts['ids'] ) ) {
-		$ids = explode( ',', $atts['ids'] );
-		$ids = array_map( 'trim', $ids );
-	} else {
-		$ids = array();
-	}
+	$args = array(
+		'taxonomy'   => 'product_cat',
+		'hide_empty' => $attributes['hide_empty'],
+		'number'     => $attributes['number'],
+	);
 
-	$hide_empty = ( $hide_empty == true && $hide_empty == 1 ) ? 1 : 0;
-
-	if ( $product_categories_selection == 'auto' ) {
-
-		$args = array(
-			'orderby'    => 'title',
-			'order'      => $order,
-			'hide_empty' => $hide_empty,
-			'number'     => $number,
-		);
-
-		if ( $parent == 0 ) {
-			$args['parent'] = 0;
-		}
+	if ( 'auto' === $attributes['product_categories_selection'] ) {
+		$args['orderby'] = 'title';
+		$args['order']   = $attributes['order'];
+		$args['parent']  = 0;
 	} else {
 
-		$args = array(
-			'orderby'    => 'include',
-			'hide_empty' => $hide_empty,
-			'include'    => $ids,
-		);
+		if ( isset( $attributes['ids'] ) && ! empty( $attributes['ids'] ) ) {
+			$attributes['ids'] = explode( ',', $attributes['ids'] );
+			$attributes['ids'] = array_map( 'trim', $attributes['ids'] );
 
-		$parent = 999;
-
-	}
-
-	$product_categories = get_terms( 'product_cat', $args );
-
-	if ( $hide_empty ) {
-		foreach ( $product_categories as $key => $category ) {
-			if ( $category->count == 0 ) {
-				unset( $product_categories[ $key ] );
-			}
+			$args['orderby'] = 'include';
+			$args['include'] = $attributes['ids'];
 		}
 	}
 
@@ -64,72 +50,69 @@ function sk_product_categories_shortcode( $atts ) {
 
 	$cat_counter = 0;
 
-	$cat_number = count( $product_categories );
+	$categories = get_terms(
+		'product_cat',
+		$args
+	);
 
-	if ( $product_categories ) {
+	?>
 
-		foreach ( $product_categories as $category ) {
+	<div class="categories_grid">
+
+		<?php
+		foreach ( $categories as $category ) :
 
 			$thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
-			$image        = wp_get_attachment_url( $thumbnail_id );
-			$cat_class    = '';
 
-			$cat_counter++;
+			if ( 'styled_grid' === Shopkeeper_Customizer::get_option( 'category_style', 'styled_grid' ) ) :
+				$cat_counter++;
 
-			switch ( $cat_number ) {
-				case 1:
-					$cat_class = 'one_cat_' . $cat_counter;
-					break;
-				case 2:
-					$cat_class = 'two_cat_' . $cat_counter;
-					break;
-				case 3:
-					$cat_class = 'three_cat_' . $cat_counter;
-					break;
-				case 4:
-					$cat_class = 'four_cat_' . $cat_counter;
-					break;
-				case 5:
-					$cat_class = 'five_cat_' . $cat_counter;
-					break;
-				default:
-					if ( $cat_counter < 7 ) {
-						$cat_class = $cat_counter;
-					} else {
-						$cat_class = 'more_than_6';
-					}
-			}
-
+				switch ( count( $categories ) ) {
+					case 1:
+						$cat_class = 'one_cat_' . $cat_counter;
+						break;
+					case 2:
+						$cat_class = 'two_cat_' . $cat_counter;
+						break;
+					case 3:
+						$cat_class = 'three_cat_' . $cat_counter;
+						break;
+					case 4:
+						$cat_class = 'four_cat_' . $cat_counter;
+						break;
+					case 5:
+						$cat_class = 'five_cat_' . $cat_counter;
+						break;
+					default:
+						$cat_class = ( $cat_counter < 7 ) ? $cat_counter : 'more_than_6';
+						break;
+				}
+			endif;
 			?>
 
-			<div class="category_<?php echo $cat_class; ?>">
+			<div class="category_<?php echo esc_attr( $cat_class ); ?>">
 				<div class="category_grid_box">
-					<span class="category_item_bkg" style="background-image:url(<?php echo esc_url( $image ); ?>)"></span>
-					<a href="<?php echo get_term_link( $category->slug, 'product_cat' ); ?>" class="category_item" >
+					<span class="category_item_bkg" style="background-image:url(<?php echo esc_url( wp_get_attachment_url( $thumbnail_id ) ); ?>)"></span>
+					<a href="<?php echo esc_url( get_term_link( $category->slug, 'product_cat' ) ); ?>" class="category_item">
 						<span class="category_name"><?php echo esc_html( $category->name ); ?>
-							<?php if ( $show_count ) { ?>
+
+							<?php if ( $attributes['show_count'] ) : ?>
 								<span class="category_count"><?php echo esc_html( $category->count ); ?></span>
-							<?php } ?>
+							<?php endif; ?>
 						</span>
 					</a>
 				</div>
 			</div>
 
-			<?php
+		<?php endforeach; ?>
 
-		}
+		<div class="clearfix"></div>
+	</div>
+	<?php
 
-		?>
+	wp_reset_postdata();
 
-			<div class="clearfix"></div>
-
-		<?php
-
-	}
-
-	woocommerce_reset_loop();
-
-	return '<div class="row"><div class="categories_grid">' . ob_get_clean() . '</div></div>';
+	return ob_get_clean();
 }
 
 add_shortcode( 'product_categories_grid', 'sk_product_categories_shortcode' );

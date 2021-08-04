@@ -143,19 +143,24 @@ if ( ! class_exists( 'Shopkeeper_Extender' ) ) :
 		 * Add Vendor Scripts.
 		 */
 		public function add_vendor_scripts() {
-			wp_enqueue_style(
+			wp_register_style(
 				'swiper',
 				plugins_url( 'assets/vendor/swiper/css/swiper.min.css', __FILE__ ),
 				array(),
 				'6.4.1'
 			);
-			wp_enqueue_script(
+			wp_register_script(
 				'swiper',
 				plugins_url( 'assets/vendor/swiper/js/swiper.min.js', __FILE__ ),
 				array(),
 				'6.4.1',
 				true
 			);
+
+			if ( has_block( 'getbowtied/sk-slider' ) ) {
+				wp_enqueue_style( 'swiper' );
+				wp_enqueue_script( 'swiper' );
+			}
 		}
 
 		/**

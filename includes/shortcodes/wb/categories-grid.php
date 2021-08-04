@@ -1,35 +1,29 @@
 <?php
-
-$taxonomy     = 'product_cat';
-$orderby      = 'name';
-$show_count   = 0;      // 1 for yes, 0 for no
-$pad_counts   = 0;      // 1 for yes, 0 for no
-$hierarchical = 1;      // 1 for yes, 0 for no
-$title        = '';
-$empty        = 0;
+/**
+ * Categories Grid WPBakery Element.
+ *
+ * @package  shopkeeper-extender
+ */
 
 $args = array(
-	'taxonomy'     => $taxonomy,
-	'orderby'      => $orderby,
-	'show_count'   => $show_count,
-	'pad_counts'   => $pad_counts,
-	'hierarchical' => $hierarchical,
-	'title_li'     => $title,
-	'hide_empty'   => $empty,
+	'taxonomy'     => 'product_cat',
+	'orderby'      => 'name',
+	'show_count'   => 0,
+	'pad_counts'   => 0,
+	'hierarchical' => 1,
+	'title_li'     => '',
+	'hide_empty'   => 0,
 );
 
 $all_categories = get_categories( $args );
-$cat_list       = array();
 
-foreach ( $all_categories as $cat ) {
-	$cat_list[] = array(
-		'label' => $cat->name,
-		'value' => $cat->term_id,
+$categoryegories_list = array();
+foreach ( $all_categories as $category ) {
+	$categoryegories_list[] = array(
+		'label' => $category->name,
+		'value' => $category->term_id,
 	);
 }
-
-
-// [product_categories_grid]
 
 vc_map(
 	array(
@@ -39,9 +33,6 @@ vc_map(
 		'base'        => 'product_categories_grid',
 		'class'       => '',
 		'icon'        => 'product_categories_grid',
-		// 'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
-		// 'admin_enqueue_css' => array(get_template_directory_uri().'/vc_extend/bartag.css'),
-
 		'params'      => array(
 
 			array(
@@ -82,7 +73,7 @@ vc_map(
 				'settings'    => array(
 					'multiple' => true,
 					'sortable' => true,
-					'values'   => $cat_list,
+					'values'   => $categoryegories_list,
 				),
 				'save_always' => true,
 				'dependency'  => array(
