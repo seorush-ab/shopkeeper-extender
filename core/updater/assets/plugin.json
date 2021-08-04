@@ -1,11 +1,11 @@
 {
 	"name": "Shopkeeper Extender",
-	"version": "1.6.6",
+	"version": "2.0",
 	"download_url": "https://github.com/getbowtied/shopkeeper-extender/zipball/master",
 
 	"homepage": "https://themeforest.net/item/shopkeeper-ecommerce-wp-theme-for-woocommerce/9553045",
 	"requires": "5.0",
-	"tested": "5.5.3",
+	"tested": "5.8",
 	"last_updated": "2020-11-09 15:00:00",
 
 	"author": "GetBowtied",
