@@ -64,30 +64,28 @@ function sk_product_categories_shortcode( $params = array() ) {
 
 			$thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
 
-			if ( 'styled_grid' === Shopkeeper_Customizer::get_option( 'category_style', 'styled_grid' ) ) :
-				$cat_counter++;
+			$cat_counter++;
 
-				switch ( count( $categories ) ) {
-					case 1:
-						$cat_class = 'one_cat_' . $cat_counter;
-						break;
-					case 2:
-						$cat_class = 'two_cat_' . $cat_counter;
-						break;
-					case 3:
-						$cat_class = 'three_cat_' . $cat_counter;
-						break;
-					case 4:
-						$cat_class = 'four_cat_' . $cat_counter;
-						break;
-					case 5:
-						$cat_class = 'five_cat_' . $cat_counter;
-						break;
-					default:
-						$cat_class = ( $cat_counter < 7 ) ? $cat_counter : 'more_than_6';
-						break;
-				}
-			endif;
+			switch ( count( $categories ) ) {
+				case 1:
+					$cat_class = 'one_cat_' . $cat_counter;
+					break;
+				case 2:
+					$cat_class = 'two_cat_' . $cat_counter;
+					break;
+				case 3:
+					$cat_class = 'three_cat_' . $cat_counter;
+					break;
+				case 4:
+					$cat_class = 'four_cat_' . $cat_counter;
+					break;
+				case 5:
+					$cat_class = 'five_cat_' . $cat_counter;
+					break;
+				default:
+					$cat_class = ( $cat_counter < 7 ) ? $cat_counter : 'more_than_6';
+					break;
+			}
 			?>
 
 			<div class="category_<?php echo esc_attr( $cat_class ); ?>">
