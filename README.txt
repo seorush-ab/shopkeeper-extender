@@ -1,13 +1,13 @@
 === Shopkeeper Extender ===
-Contributors: getbowtied, vanesareinerth, adrianlbs
-Tags: gutenberg, blocks
-Requires at least: 5.0
-Tested up to: 5.6
-Stable tag: 1.6.9
-Requires PHP: 5.5.0
+Contributors: getbowtied
+Tags: shopkeeper, wordpress, woocommerce, themes, gutenberg, blocks
+Requires at least: 6.0
+Tested up to: 6.1.1
+Stable tag: 1.7
+Requires PHP: 7.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-~Current Version:1.6.8~
+~Current Version:1.7~
 
 Extends the functionality of the Shopkeeper theme by adding theme specific features.
 
@@ -40,6 +40,10 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 - Social Media Profiles
 
 == Changelog ==
+
+= 1.7 =
+- WordPress 6.1.1 compatibility updates
+- WooCommerce 7.3.0 compatibility updates
 
 = 1.6.9 =
 - Fixed: Custom menu options saving issue
