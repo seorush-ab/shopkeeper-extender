@@ -81,9 +81,6 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
             // Shopkeeper Dependent Components
 			if( function_exists('shopkeeper_theme_slug') ) {
 
-				//Custom Menu
-				include_once( dirname( __FILE__ ) . '/includes/custom-menu/index.php' );
-
                 // Custom Code Section
 				include_once( dirname( __FILE__ ) . '/includes/custom-code/class-custom-code.php' );
 
