@@ -114,9 +114,10 @@ if ( ! class_exists( 'SKCustomCode' ) ) :
 					'sk_custom_code_header_js',
 					array( 
 						'code_type' 	=> 'javascript',
-						'label'       	=> esc_attr__( 'Header JavaScript Code', 'shopkeeper-extender' ),
+						'label'       	=> esc_attr__( '[DEPRECATED] Header JavaScript Code', 'shopkeeper-extender' ),
 						'section'     	=> 'sk_custom_code',
 						'priority'    	=> 10,
+						'description'	=> '<strong style="color:red">We strongly advise against using this feature as it will be removed in the next update.</strong><br /><br />If you have already added any code here, please make sure to transfer it to a specialized plugin, otherwise it will be lost. <br /><br /><a href="https://www.getbowtied.com/documentation/shopkeeper/important-notice/" target="_blank">Read more</a><br /><br />'
 					)
 				)
 			);
@@ -134,9 +135,10 @@ if ( ! class_exists( 'SKCustomCode' ) ) :
 					'sk_custom_code_footer_js',
 					array( 
 						'code_type' 	=> 'javascript',
-						'label'       	=> esc_attr__( 'Footer JavaScript Code', 'shopkeeper-extender' ),
+						'label'       	=> esc_attr__( '[DEPRECATED] Footer JavaScript Code', 'shopkeeper-extender' ),
 						'section'     	=> 'sk_custom_code',
 						'priority'    	=> 10,
+						'description'	=> '<strong style="color:red">We strongly advise against using this feature as it will be removed in the next update.</strong><br /><br />If you have already added any code here, please make sure to transfer it to a specialized plugin, otherwise it will be lost. <br /><br /><a href="https://www.getbowtied.com/documentation/shopkeeper/important-notice/" target="_blank">Read more</a><br /><br />'
 					)
 				)
 			);

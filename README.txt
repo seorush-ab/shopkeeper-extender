@@ -3,7 +3,7 @@ Contributors: getbowtied
 Tags: shopkeeper, wordpress, woocommerce, themes, gutenberg, blocks
 Requires at least: 6.0
 Tested up to: 6.1.1
-Stable tag: 1.7.1
+Stable tag: 1.7.2
 Requires PHP: 7.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -40,6 +40,9 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 - Social Media Profiles
 
 == Changelog ==
+
+= 1.7.2 =
+- Preliminaries for removing "Additional JS" from Customizer. Read more here: https://www.getbowtied.com/documentation/shopkeeper/important-notice/
 
 = 1.7.1 =
 - WordPress 6.1.1 compatibility updates

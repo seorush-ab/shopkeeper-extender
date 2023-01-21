@@ -37,3 +37,9 @@ function sk_ext_is_topbar_enabled(){
 
     return get_theme_mod( 'top_bar_switch', false );
 }
+
+// Other Plugins
+function gbt_other_plugins_enqueue_scripts() {
+   wp_enqueue_script( 'gbt-other-plugins', plugins_url( 'js/other_plugins.js', __FILE__ ), array('jquery') );
+}
+add_action( 'admin_enqueue_scripts', 'gbt_other_plugins_enqueue_scripts' );
