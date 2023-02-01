@@ -7,7 +7,6 @@ Stable tag: 1.8
 Requires PHP: 7.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-~Current Version:1.7~
 
 Extends the functionality of the Shopkeeper theme by adding theme specific features.
 
