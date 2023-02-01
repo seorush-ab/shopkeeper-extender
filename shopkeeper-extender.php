@@ -84,9 +84,6 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 				//Custom Menu
 				include_once( dirname( __FILE__ ) . '/includes/custom-menu/index.php' );
 
-                // Custom Code Section
-				include_once( dirname( __FILE__ ) . '/includes/custom-code/class-custom-code.php' );
-
 				// Social Sharing Buttons
 				if ( is_plugin_active( 'woocommerce/woocommerce.php') ) {
 					include_once( dirname( __FILE__ ) . '/includes/social-sharing/class-social-sharing.php' );
