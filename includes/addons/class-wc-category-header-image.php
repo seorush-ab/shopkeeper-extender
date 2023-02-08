@@ -157,9 +157,9 @@ if ( ! class_exists( 'SKCategoryHeaderImage' ) ) :
 			<tr class="form-field">
 				<th scope="row" valign="top"><label><?php _e( 'Header', 'shopkeeper-extender' ); ?></label></th>
 				<td>
-					<div id="product_cat_header" style="float:left;margin-right:10px;"><img src="<?php echo $image; ?>" width="60px" height="60px" /></div>
+					<div id="product_cat_header" style="float:left;margin-right:10px;"><img src="<?php echo esc_url($image); ?>" width="60px" height="60px" /></div>
 					<div style="line-height:60px;">
-						<input type="hidden" id="product_cat_header_id" name="product_cat_header_id" value="<?php echo $header_id; ?>" />
+						<input type="hidden" id="product_cat_header_id" name="product_cat_header_id" value="<?php echo esc_attr($header_id); ?>" />
 						<button type="submit" class="upload_header_button button"><?php _e( 'Upload/Add image', 'shopkeeper-extender' ); ?></button>
 						<button type="submit" class="remove_header_image_button button"><?php _e( 'Remove image', 'shopkeeper-extender' ); ?></button>
 					</div>
@@ -283,7 +283,7 @@ if ( ! class_exists( 'SKCategoryHeaderImage' ) ) :
 				else
 					$image = wc_placeholder_img_src();
 
-				$columns .= '<img src="' . $image . '" alt="Thumbnail" class="wp-post-image" height="40" width="40" />';
+				$columns .= '<img src="' . $image . '" alt="Thumbnail" class="wp-post-image" height="48" width="48" />';
 
 			}
 
@@ -341,6 +341,14 @@ if ( ! class_exists( 'SKCategoryHeaderImage' ) ) :
 						width: 52px;
 						text-align: center;
 						white-space: nowrap;
+					}
+					table.wp-list-table .column-header img {
+						margin: 0;
+						width: auto;
+						height: auto;
+						max-width: 40px;
+						max-height: 40px;
+						vertical-align: middle;
 					}
 		        </style>';
 		}

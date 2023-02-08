@@ -45,7 +45,7 @@ function sk_posts_slider_shortcode($atts, $content = null) {
 
 	                    <div class="swiper-slide">
 
-		                    <div class="from_the_blog_item <?php echo $post_format ? $post_format: 'standard'; ?> <?php if ( !has_post_thumbnail()) : ?>no_thumb<?php endif; ?>">
+		                    <div class="from_the_blog_item <?php echo esc_attr($post_format) ? esc_attr($post_format): 'standard'; ?> <?php if ( !has_post_thumbnail()) : ?>no_thumb<?php endif; ?>">
 
 								<a class="from_the_blog_link" href="<?php the_permalink() ?>">
 									<span class="from_the_blog_img_container">

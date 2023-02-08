@@ -62,15 +62,15 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_posts_grid' ) ) {
 
 	    if ( !empty($recentPosts) ) : ?>
 
-	        <div class="gbt_18_sk_posts_grid align<?php echo $align; ?>">
+	        <div class="gbt_18_sk_posts_grid align<?php echo esc_attr($align); ?>">
 
-	    		<div class="gbt_18_sk_posts_grid_wrapper columns-<?php echo $columns; ?>">
+	    		<div class="gbt_18_sk_posts_grid_wrapper columns-<?php echo esc_attr($columns); ?>">
 
 		            <?php foreach($recentPosts as $post) : ?>
 
 		                <?php $post_format = get_post_format($post->ID); ?>
 
-		                <div class="gbt_18_sk_posts_grid_item <?php echo $post_format ? $post_format: 'standard'; ?> <?php if ( !has_post_thumbnail($post->ID)) : ?>no_thumb<?php endif; ?>">
+		                <div class="gbt_18_sk_posts_grid_item <?php echo esc_attr($post_format) ? esc_attr($post_format): 'standard'; ?> <?php if ( !has_post_thumbnail($post->ID)) : ?>no_thumb<?php endif; ?>">
 
 							<a class="gbt_18_sk_posts_grid_item_link" href="<?php echo get_post_permalink($post->ID); ?>">
 								<span class="gbt_18_sk_posts_grid_img_container">
@@ -86,7 +86,7 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_posts_grid' ) ) {
 									<?php endif;  ?>
 
 								</span><!--.from_the_blog_img_container-->
-								<h3 class="gbt_18_sk_posts_grid_title" href="<?php echo get_post_permalink($post->ID); ?>"><?php echo $post->post_title; ?></h3>
+								<h3 class="gbt_18_sk_posts_grid_title" href="<?php echo get_post_permalink($post->ID); ?>"><?php echo esc_html($post->post_title); ?></h3>
 							</a>
 							<?php if( $excerpt ) : ?>
 								<p>

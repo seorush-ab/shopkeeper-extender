@@ -119,6 +119,7 @@ jQuery(function($) {
 			th.find('.customizer-repeater-general-control-repeater-container').each(function () {
 
 				var link = $(this).find('.customizer-repeater-link-control').val();
+				var link_title = $(this).find('.customizer-repeater-linktitle-control').val();
 				var image_url = $(this).find('.custom-media-url').val();
 				var icon_slug = $(this).find('.customizer-repeater-icons .customizer-repeater-icon:checked').val();
 				var title = $(this).find('.customizer-repeater-title-control').val();
@@ -131,6 +132,7 @@ jQuery(function($) {
 				if (icon_slug !== '' || image_url !== '' || title !== '' || link !== '') {
 					values.push({
 						'link': link,
+						'link_title': link_title,
 						'image_url': image_url,
 						'icon_slug' : icon_slug,
 						'title': escapeHtml(title),
@@ -202,6 +204,9 @@ jQuery(function($) {
 					/*Remove value from link field*/
 					field.find('.customizer-repeater-link-control').val('');
 
+					/*Remove value from link field*/
+					field.find('.customizer-repeater-linktitle-control').val('');
+
 					/*Set box id*/
 					field.find('.social-repeater-box-id').val(id);
 
@@ -234,6 +239,7 @@ jQuery(function($) {
 				if( $(this).parents('.customizer-repeater-general-control-repeater').find('.customizer-repeater-general-control-repeater-container').length === 1 ) {
 					$(this).siblings('.customizer-repeater-icon-control').find('.customizer-repeater-icon').attr( 'checked', false );
 					$(this).siblings('.customizer-repeater-link-control-wrapper').find('.customizer-repeater-link-control').val('');
+					$(this).siblings('.customizer-repeater-linktitle-control-wrapper').find('.customizer-repeater-linktitle-control').val('');
 					$(this).siblings('.customizer-repeater-title-control-wrapper').find('.customizer-repeater-title-control').val('');
 					$(this).siblings('.customizer-repeater-image-control').find('.custom-media-url').val('');
 					$(this).parent().siblings('.customizer-repeater-customize-control-title').html('Social Media Profile');
@@ -292,6 +298,13 @@ jQuery(function($) {
 
 		/* If link field is changed */
 		theme_controls.on('keyup', '.customizer-repeater-link-control', function () {
+			customizer_repeater_refresh_general_control_values();
+
+			return false;
+		});
+
+		/* If link field is changed */
+		theme_controls.on('keyup', '.customizer-repeater-linktitle-control', function () {
 			customizer_repeater_refresh_general_control_values();
 
 			return false;

@@ -183,10 +183,10 @@ if( !class_exists('SK_Ext_Walker_Nav_Menu_With_Image')) {
 				$submenu_text = 'style="display: none;"';
 
 			?>
-			<li id="menu-item-<?php echo $item_id; ?>" class="<?php echo implode( ' ', $classes ); ?>">
+			<li id="menu-item-<?php echo esc_attr($item_id); ?>" class="<?php echo implode( ' ', $classes ); ?>">
 				<div class="menu-item-bar">
 					<div class="menu-item-handle">
-						<span class="item-title"><span class="menu-item-title"><?php echo esc_html( $title ); ?></span> <span class="is-submenu" <?php echo $submenu_text; ?>><?php esc_html_e( 'sub item', 'shopkeeper-extender' ); ?></span></span>
+						<span class="item-title"><span class="menu-item-title"><?php echo esc_html( $title ); ?></span> <span class="is-submenu" <?php echo strip_tags($submenu_text); ?>><?php esc_html_e( 'sub item', 'shopkeeper-extender' ); ?></span></span>
 						<span class="item-controls">
 							<span class="item-type"><?php echo esc_html( $item->type_label ); ?></span>
 							<span class="item-order hide-if-js">
@@ -216,37 +216,37 @@ if( !class_exists('SK_Ext_Walker_Nav_Menu_With_Image')) {
 									);
 								?>" class="item-move-down" aria-label="<?php esc_html_e( 'Move down', 'shopkeeper-extender' ) ?>">&#8595;</a>
 							</span>
-							<a class="item-edit" id="edit-<?php echo $item_id; ?>" href="<?php
+							<a class="item-edit" id="edit-<?php echo esc_attr($item_id); ?>" href="<?php
 								echo ( isset( $_GET['edit-menu-item'] ) && $item_id == $_GET['edit-menu-item'] ) ? admin_url( 'nav-menus.php' ) : add_query_arg( 'edit-menu-item', $item_id, remove_query_arg( $removed_args, admin_url( 'nav-menus.php#menu-item-settings-' . $item_id ) ) );
 							?>" aria-label="<?php esc_html_e( 'Edit menu item', 'shopkeeper-extender' ); ?>"><span class="screen-reader-text"><?php esc_html_e( 'Edit', 'shopkeeper-extender' ); ?></span></a>
 						</span>
 					</div>
 				</div>
 
-				<div class="menu-item-settings wp-clearfix" id="menu-item-settings-<?php echo $item_id; ?>">
+				<div class="menu-item-settings wp-clearfix" id="menu-item-settings-<?php echo esc_attr($item_id); ?>">
 					<?php if ( 'custom' == $item->type ) : ?>
 						<p class="field-url description description-wide">
-							<label for="edit-menu-item-url-<?php echo $item_id; ?>">
+							<label for="edit-menu-item-url-<?php echo esc_attr($item_id); ?>">
 								<?php esc_html_e( 'URL', 'shopkeeper-extender' ); ?><br />
-								<input type="text" id="edit-menu-item-url-<?php echo $item_id; ?>" class="widefat code edit-menu-item-url" name="menu-item-url[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->url ); ?>" />
+								<input type="text" id="edit-menu-item-url-<?php echo esc_attr($item_id); ?>" class="widefat code edit-menu-item-url" name="menu-item-url[<?php echo esc_attr($item_id); ?>]" value="<?php echo esc_attr( $item->url ); ?>" />
 							</label>
 						</p>
 					<?php endif; ?>
 					<p class="description description-wide">
-						<label for="edit-menu-item-title-<?php echo $item_id; ?>">
+						<label for="edit-menu-item-title-<?php echo esc_attr($item_id); ?>">
 							<?php esc_html_e( 'Navigation Label', 'shopkeeper-extender' ); ?><br />
-							<input type="text" id="edit-menu-item-title-<?php echo $item_id; ?>" class="widefat edit-menu-item-title" name="menu-item-title[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->title ); ?>" />
+							<input type="text" id="edit-menu-item-title-<?php echo esc_attr($item_id); ?>" class="widefat edit-menu-item-title" name="menu-item-title[<?php echo esc_attr($item_id); ?>]" value="<?php echo esc_attr( $item->title ); ?>" />
 						</label>
 					</p>
 					<p class="field-title-attribute field-attr-title description description-wide">
-						<label for="edit-menu-item-attr-title-<?php echo $item_id; ?>">
+						<label for="edit-menu-item-attr-title-<?php echo esc_attr($item_id); ?>">
 							<?php esc_html_e( 'Title Attribute', 'shopkeeper-extender' ); ?><br />
-							<input type="text" id="edit-menu-item-attr-title-<?php echo $item_id; ?>" class="widefat edit-menu-item-attr-title" name="menu-item-attr-title[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->post_excerpt ); ?>" />
+							<input type="text" id="edit-menu-item-attr-title-<?php echo esc_attr($item_id); ?>" class="widefat edit-menu-item-attr-title" name="menu-item-attr-title[<?php echo esc_attr($item_id); ?>]" value="<?php echo esc_attr( $item->post_excerpt ); ?>" />
 						</label>
 					</p>
 					<p class="field-link-target description">
-						<label for="edit-menu-item-target-<?php echo $item_id; ?>">
-							<input type="checkbox" id="edit-menu-item-target-<?php echo $item_id; ?>" value="_blank" name="menu-item-target[<?php echo $item_id; ?>]"<?php checked( $item->target, '_blank' ); ?> />
+						<label for="edit-menu-item-target-<?php echo esc_attr($item_id); ?>">
+							<input type="checkbox" id="edit-menu-item-target-<?php echo esc_attr($item_id); ?>" value="_blank" name="menu-item-target[<?php echo esc_attr($item_id); ?>]"<?php checked( $item->target, '_blank' ); ?> />
 							<?php esc_html_e( 'Open link in a new tab', 'shopkeeper-extender' ); ?>
 						</label>
 					</p>
@@ -259,15 +259,15 @@ if( !class_exists('SK_Ext_Walker_Nav_Menu_With_Image')) {
 			            </p>
 					<?php } ?>
 					<p class="field-css-classes description description-thin">
-						<label for="edit-menu-item-classes-<?php echo $item_id; ?>">
+						<label for="edit-menu-item-classes-<?php echo esc_attr($item_id); ?>">
 							<?php esc_html_e( 'CSS Classes (optional)', 'shopkeeper-extender' ); ?><br />
-							<input type="text" id="edit-menu-item-classes-<?php echo $item_id; ?>" class="widefat code edit-menu-item-classes" name="menu-item-classes[<?php echo $item_id; ?>]" value="<?php echo esc_attr( implode(' ', $item->classes ) ); ?>" />
+							<input type="text" id="edit-menu-item-classes-<?php echo esc_attr($item_id); ?>" class="widefat code edit-menu-item-classes" name="menu-item-classes[<?php echo esc_attr($item_id); ?>]" value="<?php echo esc_attr( implode(' ', $item->classes ) ); ?>" />
 						</label>
 					</p>
 					<p class="field-xfn description description-thin">
-						<label for="edit-menu-item-xfn-<?php echo $item_id; ?>">
+						<label for="edit-menu-item-xfn-<?php echo esc_attr($item_id); ?>">
 							<?php esc_html_e( 'Link Relationship (XFN)', 'shopkeeper-extender' ); ?><br />
-							<input type="text" id="edit-menu-item-xfn-<?php echo $item_id; ?>" class="widefat code edit-menu-item-xfn" name="menu-item-xfn[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->xfn ); ?>" />
+							<input type="text" id="edit-menu-item-xfn-<?php echo esc_attr($item_id); ?>" class="widefat code edit-menu-item-xfn" name="menu-item-xfn[<?php echo esc_attr($item_id); ?>]" value="<?php echo esc_attr( $item->xfn ); ?>" />
 						</label>
 					</p>
 
@@ -278,9 +278,9 @@ if( !class_exists('SK_Ext_Walker_Nav_Menu_With_Image')) {
 					?>
 
 					<p class="field-description description description-wide">
-						<label for="edit-menu-item-description-<?php echo $item_id; ?>">
+						<label for="edit-menu-item-description-<?php echo esc_attr($item_id); ?>">
 							<?php esc_html_e( 'Description', 'shopkeeper-extender' ); ?><br />
-							<textarea id="edit-menu-item-description-<?php echo $item_id; ?>" class="widefat edit-menu-item-description" rows="3" cols="20" name="menu-item-description[<?php echo $item_id; ?>]"><?php echo esc_html( $item->description ); // textarea_escaped ?></textarea>
+							<textarea id="edit-menu-item-description-<?php echo esc_attr($item_id); ?>" class="widefat edit-menu-item-description" rows="3" cols="20" name="menu-item-description[<?php echo esc_attr($item_id); ?>]"><?php echo esc_html( $item->description ); // textarea_escaped ?></textarea>
 							<span class="description"><?php esc_html_e( 'The description will be displayed in the menu if the current theme supports it.', 'shopkeeper-extender' ); ?></span>
 						</label>
 					</p>
@@ -300,7 +300,7 @@ if( !class_exists('SK_Ext_Walker_Nav_Menu_With_Image')) {
 								<?php printf( __('Original: %s', 'shopkeeper-extender'), '<a href="' . esc_attr( $item->url ) . '">' . esc_html( $original_title ) . '</a>' ); ?>
 							</p>
 						<?php endif; ?>
-						<a class="item-delete submitdelete deletion" id="delete-<?php echo $item_id; ?>" href="<?php
+						<a class="item-delete submitdelete deletion" id="delete-<?php echo esc_attr($item_id); ?>" href="<?php
 						echo wp_nonce_url(
 							add_query_arg(
 								array(
@@ -310,16 +310,16 @@ if( !class_exists('SK_Ext_Walker_Nav_Menu_With_Image')) {
 								admin_url( 'nav-menus.php' )
 							),
 							'delete-menu_item_' . $item_id
-						); ?>"><?php esc_html_e( 'Remove', 'shopkeeper-extender' ); ?></a> <span class="meta-sep hide-if-no-js"> | </span> <a class="item-cancel submitcancel hide-if-no-js" id="cancel-<?php echo $item_id; ?>" href="<?php echo esc_url( add_query_arg( array( 'edit-menu-item' => $item_id, 'cancel' => time() ), admin_url( 'nav-menus.php' ) ) );
-							?>#menu-item-settings-<?php echo $item_id; ?>"><?php esc_html_e( 'Cancel', 'shopkeeper-extender' ); ?></a>
+						); ?>"><?php esc_html_e( 'Remove', 'shopkeeper-extender' ); ?></a> <span class="meta-sep hide-if-no-js"> | </span> <a class="item-cancel submitcancel hide-if-no-js" id="cancel-<?php echo esc_attr($item_id); ?>" href="<?php echo esc_url( add_query_arg( array( 'edit-menu-item' => $item_id, 'cancel' => time() ), admin_url( 'nav-menus.php' ) ) );
+							?>#menu-item-settings-<?php echo esc_attr($item_id); ?>"><?php esc_html_e( 'Cancel', 'shopkeeper-extender' ); ?></a>
 					</div>
 
-					<input class="menu-item-data-db-id" type="hidden" name="menu-item-db-id[<?php echo $item_id; ?>]" value="<?php echo $item_id; ?>" />
-					<input class="menu-item-data-object-id" type="hidden" name="menu-item-object-id[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->object_id ); ?>" />
-					<input class="menu-item-data-object" type="hidden" name="menu-item-object[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->object ); ?>" />
-					<input class="menu-item-data-parent-id" type="hidden" name="menu-item-parent-id[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->menu_item_parent ); ?>" />
-					<input class="menu-item-data-position" type="hidden" name="menu-item-position[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->menu_order ); ?>" />
-					<input class="menu-item-data-type" type="hidden" name="menu-item-type[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->type ); ?>" />
+					<input class="menu-item-data-db-id" type="hidden" name="menu-item-db-id[<?php echo esc_attr($item_id); ?>]" value="<?php echo esc_attr($item_id); ?>" />
+					<input class="menu-item-data-object-id" type="hidden" name="menu-item-object-id[<?php echo esc_attr($item_id); ?>]" value="<?php echo esc_attr( $item->object_id ); ?>" />
+					<input class="menu-item-data-object" type="hidden" name="menu-item-object[<?php echo esc_attr($item_id); ?>]" value="<?php echo esc_attr( $item->object ); ?>" />
+					<input class="menu-item-data-parent-id" type="hidden" name="menu-item-parent-id[<?php echo esc_attr($item_id); ?>]" value="<?php echo esc_attr( $item->menu_item_parent ); ?>" />
+					<input class="menu-item-data-position" type="hidden" name="menu-item-position[<?php echo esc_attr($item_id); ?>]" value="<?php echo esc_attr( $item->menu_order ); ?>" />
+					<input class="menu-item-data-type" type="hidden" name="menu-item-type[<?php echo esc_attr($item_id); ?>]" value="<?php echo esc_attr( $item->type ); ?>" />
 				</div><!-- .menu-item-settings-->
 				<ul class="menu-item-transport"></ul>
 			<?php

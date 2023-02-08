@@ -103,6 +103,10 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 				if( get_theme_mod( $social['link'] ) ) {
 					update_option( 'sk_' . $social['link'], get_theme_mod( $social['link'], '' ) );
 				}
+
+				if( get_theme_mod( $social['link_title'] ) ) {
+					update_option( 'sk_' . $social['link_title'], get_theme_mod( $social['link_title'], '' ) );
+				}
 			}
 
 			update_option( 'sk_top_bar_social_icons', get_theme_mod( 'top_bar_social_icons', false ) );
@@ -123,6 +127,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 					$repeater_default[] = array(
 						'icon_slug' => $social['slug'],
 						'link' => get_option( 'sk_' . $social['link'] ),
+						'link_title' => get_option( 'sk_' . $social['link_title'] ),
 						'title' => $social['name'],
 					);
 				}
@@ -494,7 +499,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 						?>
 
 							<li class="sk_social_icon custom_icon">
-								<a class="sk_social_icon_link" target="_blank" href="<?php echo esc_url( $social->link ); ?>">
+								<a class="sk_social_icon_link" target="_blank" href="<?php echo esc_url( $social->link ); ?>" alt="<?php echo esc_attr( $social->link_title ); ?>" title="<?php echo esc_attr( $social->link_title ); ?>">
 									<img src="<?php echo esc_url( $social->image_url ); ?>" alt="Social Media Profile"
 										width="<?php echo esc_attr( $fontsize ); ?>" height="<?php echo esc_attr( $fontsize ); ?>" />
 								</a>
@@ -514,7 +519,7 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 
 								<li class="sk_social_icon default_icon">
 									<a class="sk_social_icon_link" target="_blank"
-										href="<?php echo esc_url( $social->link ); ?>">
+										href="<?php echo esc_url( $social->link ); ?>" alt="<?php echo esc_attr( $social->link_title ); ?>" title="<?php echo esc_attr( $social->link_title ); ?>">
 										<svg
 											class="<?php echo !empty($color) ? 'has-color' : ''; ?>"
 											xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"

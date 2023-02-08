@@ -102,7 +102,7 @@ function sk_product_categories_shortcode( $atts ) {
 
 			?>
 
-			<div class="category_<?php echo $cat_class; ?>">
+			<div class="category_<?php echo esc_attr($cat_class); ?>">
 				<div class="category_grid_box">
 					<span class="category_item_bkg" style="background-image:url(<?php echo esc_url($image); ?>)"></span>
 					<a href="<?php echo get_term_link( $category->slug, 'product_cat' ); ?>" class="category_item" >

@@ -53,7 +53,7 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_categories_grid' ) ) {
 		$cat_number = count($product_categories);
 
 		if ( $product_categories ) : ?>
-			<div class="categories_grid align<?php echo $align; ?>">
+			<div class="categories_grid align<?php echo esc_attr($align); ?>">
 				<div class="categories_grid_wrapper">
 					<?php foreach ($product_categories as $category):
 
@@ -86,7 +86,7 @@ if ( ! function_exists( 'gbt_18_sk_render_frontend_categories_grid' ) ) {
 									$cat_class = "more_than_6";
 								}
 						} ?>
-			            <div class="category_<?php echo $cat_class; ?>">
+			            <div class="category_<?php echo esc_attr($cat_class); ?>">
 							<div class="category_grid_box">
 								<span class="category_item_bkg" style="background-image:url(<?php echo esc_url($image); ?>)"></span>
 								<a href="<?php echo get_term_link( $category->slug, 'product_cat' ); ?>" class="category_item" >

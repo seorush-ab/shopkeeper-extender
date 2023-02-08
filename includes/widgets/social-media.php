@@ -32,14 +32,14 @@ class SK_Social_Media_Widget extends WP_Widget {
 			$title = apply_filters( 'widget_title', $instance['title'] );
 		}
 
-		echo $args['before_widget'];
+		echo wp_kses_post($args['before_widget']);
 		
 		if ( ! empty( $title ) )
-			echo $args['before_title'] . $title . $args['after_title'];
+			echo wp_kses_post($args['before_title'] . $title . $args['after_title']);
 		
 		echo do_shortcode('[social-media items_align="left"]');
 
-		echo $args['after_widget'];
+		echo wp_kses_post($args['after_widget']);
 	}
 
 	/**
@@ -59,8 +59,8 @@ class SK_Social_Media_Widget extends WP_Widget {
 		?>
 		
         <p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'shopkeeper-extender' ); ?></label> 
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+			<label for="<?php echo esc_html($this->get_field_id( 'title' )); ?>"><?php _e( 'Title:', 'shopkeeper-extender' ); ?></label> 
+			<input class="widefat" id="<?php echo esc_html($this->get_field_id( 'title' )); ?>" name="<?php echo esc_html($this->get_field_name( 'title' )); ?>" type="text" value="<?php echo esc_html( $title ); ?>">
 		</p>
 		
 		<?php 

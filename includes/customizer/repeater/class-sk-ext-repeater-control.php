@@ -121,6 +121,7 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 
 						$id 		= !empty( $icon->id ) ? $icon->id : '';
 						$link 		= !empty( $icon->link ) ? $icon->link : '';
+						$link_title = !empty( $icon->link_title ) ? $icon->link_title : '';
 						$title 		= !empty( $icon->title ) ? $icon->title : '';
 						$icon_slug 	= !empty( $icon->icon_slug ) ? $icon->icon_slug : '';
 						$image_url 	= !empty( $icon->image_url ) ? $icon->image_url : '';
@@ -143,6 +144,13 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 							'type'  => apply_filters('customizer_repeater_input_types_filter', '', $this->id, 'customizer_repeater_link_control' ),
 							'sanitize_callback' => 'esc_url_raw',
 						), $link );
+
+						$this->input_control( array(
+							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Link Title:','shopkeeper-extender' ), $this->id, 'customizer_repeater_linktitle_control' ),
+							'class' => 'customizer-repeater-linktitle-control',
+							'type'  => apply_filters('customizer_repeater_input_types_filter', '', $this->id, 'customizer_repeater_linktitle_control' ),
+							'sanitize_callback' => 'esc_url_raw',
+						), $link_title );
 
 						?>
 
@@ -180,6 +188,13 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 						'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Link:','shopkeeper-extender' ), $this->id, 'customizer_repeater_link_control' ),
 						'class' => 'customizer-repeater-link-control',
 						'type'  => apply_filters('customizer_repeater_input_types_filter', '', $this->id, 'customizer_repeater_link_control' ),
+						'sanitize_callback' => 'esc_url_raw',
+					) );
+
+					$this->input_control( array(
+						'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Link Title:','shopkeeper-extender' ), $this->id, 'customizer_repeater_linktitle_control' ),
+						'class' => 'customizer-repeater-linktitle-control',
+						'type'  => apply_filters('customizer_repeater_input_types_filter', '', $this->id, 'customizer_repeater_linktitle_control' ),
 						'sanitize_callback' => 'esc_url_raw',
 					) );
 
