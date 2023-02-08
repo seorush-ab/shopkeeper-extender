@@ -149,7 +149,7 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Link Title:','shopkeeper-extender' ), $this->id, 'customizer_repeater_linktitle_control' ),
 							'class' => 'customizer-repeater-linktitle-control',
 							'type'  => apply_filters('customizer_repeater_input_types_filter', '', $this->id, 'customizer_repeater_linktitle_control' ),
-							'sanitize_callback' => 'esc_url_raw',
+							'sanitize_callback' => 'esc_html',
 						), $link_title );
 
 						?>
@@ -195,7 +195,7 @@ class SK_Ext_Customize_Repeater_Control extends WP_Customize_Control {
 						'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Link Title:','shopkeeper-extender' ), $this->id, 'customizer_repeater_linktitle_control' ),
 						'class' => 'customizer-repeater-linktitle-control',
 						'type'  => apply_filters('customizer_repeater_input_types_filter', '', $this->id, 'customizer_repeater_linktitle_control' ),
-						'sanitize_callback' => 'esc_url_raw',
+						'sanitize_callback' => 'esc_html',
 					) );
 
 					?>
