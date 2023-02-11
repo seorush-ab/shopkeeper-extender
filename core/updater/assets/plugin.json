@@ -1,7 +1,7 @@
 {
 	"name": "Shopkeeper Extender",
 	"version": "2.0",
-	"download_url": "https://github.com/getbowtied/shopkeeper-extender/zipball/master",
+	"download_url": "https://downloads.wordpress.org/plugin/shopkeeper-extender.2.0.zip",
 
 	"homepage": "https://getbowtied.net/shopkeeper-themeforest",
 	"requires": "6.0",
