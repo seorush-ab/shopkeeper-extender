@@ -104,9 +104,9 @@ if ( ! class_exists( 'SKSocialMedia' ) ) :
 					update_option( 'sk_' . $social['link'], get_theme_mod( $social['link'], '' ) );
 				}
 
-				if( get_theme_mod( $social['link_title'] ) ) {
+				/*if( get_theme_mod( $social['link_title'] ) ) {
 					update_option( 'sk_' . $social['link_title'], get_theme_mod( $social['link_title'], '' ) );
-				}
+				}*/
 			}
 
 			update_option( 'sk_top_bar_social_icons', get_theme_mod( 'top_bar_social_icons', false ) );
