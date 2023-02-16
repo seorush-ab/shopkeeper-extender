@@ -27,8 +27,7 @@ if ( ! function_exists( 'gbt_18_sk_posts_grid_editor_assets' ) ) {
 		wp_register_style(
 			'gbt_18_sk_posts_grid_editor_styles',
 			plugins_url( 'assets/css/editor'.SK_EXT_ENQUEUE_SUFFIX.'.css', dirname(__FILE__) ),
-			array( 'wp-edit-blocks' ),
-			filemtime(plugin_dir_path(__FILE__) . '../assets/css/editor'.SK_EXT_ENQUEUE_SUFFIX.'.css')
+			array( 'wp-edit-blocks' )
 		);
 	}
 }
@@ -43,8 +42,7 @@ if ( ! function_exists( 'gbt_18_sk_posts_grid_assets' ) ) {
 		wp_enqueue_style(
 			'gbt_18_sk_posts_grid_styles',
 			plugins_url( 'assets/css/style'.SK_EXT_ENQUEUE_SUFFIX.'.css', dirname(__FILE__) ),
-			array(),
-			filemtime(plugin_dir_path(__FILE__) . '../assets/css/style'.SK_EXT_ENQUEUE_SUFFIX.'.css')
+			array()
 		);
 	}
 }
