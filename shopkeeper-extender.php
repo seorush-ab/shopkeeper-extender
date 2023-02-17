@@ -68,7 +68,7 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 			include_once( 'includes/widgets/social-media.php' );
 
 			// Gutenberg Blocks
-			include_once( dirname( __FILE__ ) . '/includes/gbt-blocks/index.php' );
+			//include_once( dirname( __FILE__ ) . '/includes/gbt-blocks/index.php' );
 
             // Shopkeeper Dependent Components
 			if( function_exists('shopkeeper_theme_slug') ) {
