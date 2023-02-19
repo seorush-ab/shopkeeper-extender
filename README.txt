@@ -3,7 +3,7 @@ Contributors: getbowtied
 Tags: shopkeeper, wordpress, woocommerce, themes, gutenberg, blocks
 Requires at least: 6.0
 Tested up to: 6.1.1
-Stable tag: 2.1
+Stable tag: 2.2
 Requires PHP: 7.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -17,7 +17,6 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 **Features:**
 - Adds 'Social Media' section in Customizer for easy management of links to social media profiles
 - Adds header image option for WooCommerce product categories
-- Adds 'Additional JS' section in Customizer allowing for site customization with custom JavaScript code
 - Adds social sharing buttons for WooCommerce products
 - Adds 'Background URL' field for menu items
 
@@ -26,7 +25,7 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 
 == Changelog ==
 
-= 2.1 =
+= 2.2 =
 - Removed: WordPress Blocks are deprecated.
 
 = 2.0 =
