@@ -3,7 +3,7 @@ Contributors: getbowtied
 Tags: shopkeeper, wordpress, woocommerce, themes, gutenberg, blocks
 Requires at least: 6.0
 Tested up to: 6.1.1
-Stable tag: 2.0
+Stable tag: 2.1
 Requires PHP: 7.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -21,24 +21,13 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 - Adds social sharing buttons for WooCommerce products
 - Adds 'Background URL' field for menu items
 
-**Gutenberg Blocks:**
-- Image Slider
-- Banner
-- Posts Grid
-- Product Categories Grid
-- Social Media Profiles
-
 **Widgets:**
 - Social Media Profiles
 
-**WPBakery Page Builder Elements:**
-- Slider
-- Banner
-- Posts Slider
-- Product Categories Grid
-- Social Media Profiles
-
 == Changelog ==
+
+= 2.1 =
+- Removed: WordPress Blocks are deprecated.
 
 = 2.0 =
 - New: Since v2.0, The Plugin is hosted on WordPress Repository
