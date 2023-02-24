@@ -3,12 +3,12 @@ Contributors: getbowtied
 Tags: shopkeeper, wordpress, woocommerce, themes, gutenberg, blocks
 Requires at least: 6.0
 Tested up to: 6.1.1
-Stable tag: 2.2
+Stable tag: 2.3
 Requires PHP: 7.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Extends the functionality of the Shopkeeper theme by adding theme specific features.
+Extends the functionality of the [Shopkeeper Theme](https://getbowtied.net/shopkeeper-extender-to-shopkeeper-theme-demo) by adding theme specific features.
 
 == Description ==
 
@@ -24,6 +24,9 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 - Social Media Profiles
 
 == Changelog ==
+
+= 2.3 =
+- New: If the [Shopkeeper Theme](https://getbowtied.net/shopkeeper-extender-to-shopkeeper-theme-demo) is not activated, a notification is displayed in the dashboard.
 
 = 2.2 =
 - Removed: WordPress Blocks are deprecated.
@@ -45,7 +48,7 @@ Companion plugin for the **Shopkeeper** theme. Extends the functionality by addi
 - Fix Mega Menu Checkbox
 
 = 1.7.2 =
-- Preliminaries for removing "Additional JS" from Customizer. Read more here: https://www.getbowtied.com/documentation/shopkeeper/important-notice/
+- Preliminaries for removing "Additional JS" from Customizer. [Read more here](https://www.getbowtied.com/documentation/shopkeeper/important-notice/)
 
 = 1.7.1 =
 - WordPress 6.1.1 compatibility updates

@@ -4,7 +4,7 @@
  * Plugin Name:       		Shopkeeper Extender
  * Plugin URI:        		https://shopkeeper.wp-theme.design/
  * Description:       		Extends the functionality of Shopkeeper with theme specific features.
- * Version:           		2.2
+ * Version:           		2.3
  * Author:            		Get Bowtied
  * Author URI:				https://getbowtied.com
  * Text Domain:				shopkeeper-extender
@@ -49,29 +49,29 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 		*/
 		public function __construct() {
 
-			// Helpers
-			include_once( dirname( __FILE__ ) . '/includes/helpers/helpers.php' );
-
-			// Vendor
-			include_once( dirname( __FILE__ ) . '/includes/vendor/enqueue.php' );
-
-            // Customizer
-			include_once( dirname( __FILE__ ) . '/includes/customizer/repeater/class-sk-ext-repeater-control.php' );
-
-			// Shortcodes
-			include_once( dirname( __FILE__ ) . '/includes/shortcodes/index.php' );
-
-			// Social Media
-			include_once( dirname( __FILE__ ) . '/includes/social-media/class-social-media.php' );
-
-			// Widgets
-			include_once( 'includes/widgets/social-media.php' );
-
-			// Gutenberg Blocks
-			//include_once( dirname( __FILE__ ) . '/includes/gbt-blocks/index.php' );
-
-            // Shopkeeper Dependent Components
+			// Shopkeeper Dependent Components
 			if( function_exists('shopkeeper_theme_slug') ) {
+
+				// Helpers
+				include_once( dirname( __FILE__ ) . '/includes/helpers/helpers.php' );
+
+				// Vendor
+				include_once( dirname( __FILE__ ) . '/includes/vendor/enqueue.php' );
+
+	            // Customizer
+				include_once( dirname( __FILE__ ) . '/includes/customizer/repeater/class-sk-ext-repeater-control.php' );
+
+				// Shortcodes
+				include_once( dirname( __FILE__ ) . '/includes/shortcodes/index.php' );
+
+				// Social Media
+				include_once( dirname( __FILE__ ) . '/includes/social-media/class-social-media.php' );
+
+				// Widgets
+				include_once( 'includes/widgets/social-media.php' );
+
+				// Gutenberg Blocks
+				//include_once( dirname( __FILE__ ) . '/includes/gbt-blocks/index.php' );            
 
 				//Custom Menu
 				include_once( dirname( __FILE__ ) . '/includes/custom-menu/index.php' );
@@ -85,6 +85,11 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
     			if ( is_plugin_active( 'woocommerce/woocommerce.php') ) {
     				include_once( dirname( __FILE__ ) . '/includes/addons/class-wc-category-header-image.php' );
     			}
+
+			} else {
+
+				add_action( 'admin_notices', array( $this, 'shopkeeper_theme_not_activated_warning' ) );
+
 			}
 		}
 
@@ -99,6 +104,15 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 			}
 			return self::$_instance;
 		}
+
+		public function shopkeeper_theme_not_activated_warning() {
+		?>
+			<div class="message error shopkeeper-theme-inactive">
+				<p><?php echo wp_kses_post( '<strong>Shopkeeper Extender</strong> is enabled but not effective. It requires <strong>Shopkeeper Theme</strong> in order to work. <a href="https://getbowtied.net/shopkeeper-extender-to-shopkeeper-theme-demo" target="_blank"><strong>Get Shopkeeper Theme</strong></a>.' ); ?></p>
+			</div>
+		<?php
+		}
+
 	}
 endif;
 
