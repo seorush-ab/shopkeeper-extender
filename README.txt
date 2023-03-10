@@ -1,29 +1,120 @@
 === Shopkeeper Extender ===
 Contributors: getbowtied
-Tags: shopkeeper, wordpress, woocommerce, themes, gutenberg, blocks
+Tags: shopkeeper, wordpress, woocommerce, theme
 Requires at least: 6.0
 Tested up to: 6.1.1
-Stable tag: 2.3
+Stable tag: 2.4
 Requires PHP: 7.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Extends the functionality of the [Shopkeeper Theme](https://getbowtied.net/shopkeeper-extender-to-shopkeeper-theme-demo) by adding theme specific features.
+Extends the functionality of the Shopkeeper Theme by adding theme specific features.
 
 == Description ==
 
-Companion plugin for the **Shopkeeper** theme. Extends the functionality by adding theme specific features.
+Companion plugin for the [Shopkeeper Theme](https://getbowtied.net/shopkeeper-extender-to-shopkeeper-theme-demo). Extends the functionality by adding theme specific features.
 
-**Features:**
-- Adds 'Social Media' section in Customizer for easy management of links to social media profiles
-- Adds header image option for WooCommerce product categories
-- Adds social sharing buttons for WooCommerce products
-- Adds 'Background URL' field for menu items
+**What is Shopkeeper?**
+[Shopkeeper](https://getbowtied.net/shopkeeper-extender-to-shopkeeper-theme-demo) is a WordPress/WooCommerce Theme that helps you easily create a blazingly fast, professional and responsive website for eCommerce and beyond.
 
-**Widgets:**
-- Social Media Profiles
+== Features ==
+
+- Quick Start – Professionally designed eCommerce pages
+- Easy to Customize – Visual, drag-and-drop Page Builder
+- Incredibly Fast – Check now Shopkeeper’s Supersonic Speed with [GTMetrix](https://gtmetrix.com/reports/shopkeeper.wp-theme.design/wPcRc0HY/) or [Google Pagespeed](https://pagespeed.web.dev/report?url=https%3A%2F%2Fshopkeeper.wp-theme.design%2F)
+
+Are you ready to take your business to the next level and stand out from the competition?
+Shopkeeper Theme prioritizes efficiency, ease of use, speed, and a great user experience.
+It's time to unlock the potential of your online store and start experiencing the success you deserve.
+Keep reading to learn more about how Shopkeeper can elevate your online store to new heights.
+
+== Creating the Perfect Online Store Experience with Shopkeeper ==
+
+- Compatible with the latest versions of WordPress and WooCommerce
+- Clean layout and customizable widgets for a unique and visually appealing online store
+- Prioritizes efficiency and ease of use
+
+Shopkeeper is the ultimate theme for your WooCommerce store that prioritizes efficiency and ease of use.
+It is compatible with the latest versions of WordPress and WooCommerce, making it the perfect choice for both small and large inventory stores.
+The theme's clean layout and customizable sections provide a wealth of possibilities for creating a unique and visually appealing online store that stands out from the competition.
+
+== Ease of Use and Customization: The Key to Your Online Store's Success ==
+
+- Easy to use and customize for creating the online store of your dreams
+- No hassle of complicated themes
+- Customizable sections provide a wealth of possibilities
+
+Shopkeeper is designed to be easy to use and customize, giving you the freedom to create exactly what you have in mind.
+With Shopkeeper, you'll be able to create the online store of your dreams, without the hassle of complicated themes.
+
+== A Catalog that Showcases Your Products at their Best ==
+
+- Beautiful shop catalog that's easy to navigate, visually appealing and suitable for both small and large inventory online stores
+- Includes a mini cart for faster shopping
+- Convenient account login and registration screen
+
+One of the key features of Shopkeeper is its beautiful shop catalog.
+It's designed to be easy to navigate, visually appealing, and suitable for both small and large inventory online stores.
+With Shopkeeper, your customers will have an easy time discovering more of your products while browsing your store.
+In addition, the theme includes a mini cart for faster shopping and a convenient account login and registration screen.
+With these features, your customers will be able to easily find what they are looking for and checkout faster.
+
+== Your Products Deserve the Spotlight ==
+
+- Product page designed to put products first
+- Different options for Simple, Variable, External/Affiliate, Grouped, Downloadable, On Sale, Out of Stock, and Backorder products
+- Supports reviews and ratings for valuable feedback
+
+We know that your products are the heart and soul of your business, and that's why Shopkeeper's product page is designed to put them first.
+The theme features different options for Simple, Variable (Color, Size, etc.), External/Affiliate, Grouped, Downloadable, On Sale, Out of Stock, and Backorder products.
+Additionally, the theme also supports reviews and ratings, allowing customers to provide valuable feedback on your products.
+With Shopkeeper, your products will look their best and make a lasting impression on your customers.
+
+== Connecting with Your Customers on a Personal Level ==
+
+- Built-in blog for sharing your story and connecting with customers in a personal way
+- Variety of customizable elements for blog
+- Create deeper connection with customers and build a loyal customer base
+
+Shopkeeper's blog designs allows you to share your story and connect with your customers in a more personal way.
+The blog is easy to use and comes with a variety of customizable elements, such as the ability to turn various elements on and off, adjust font sizes, set different color schemes, and choose between different pagination styles.
+With Shopkeeper, you'll be able to create a deeper connection with your customers and build a loyal customer base.
+
+== Easy Setup and Support ==
+
+- Easy installation and intuitive setup
+- One-click demo import and easy-to-follow user guide
+- Friendly support team available to help with any issues
+
+Getting started with Shopkeeper is a breeze.
+The theme has an easy installation and intuitive setup process, with a one-click demo import and an easy-to-follow user guide.
+Plus, our friendly support team is always available to help you with any issues you may run into while setting up the theme.
+With Shopkeeper, you don't have to be a tech expert to create a professional and high-quality online store.
+
+== Regular Updates and Support ==
+
+- Under active development and regularly updated
+- Automatic updates and friendly support provided
+- Fully responsive, localization ready, and fully integrated with WooCommerce
+
+Shopkeeper is under active development and is regularly updated, ensuring that your online store stays up-to-date with the latest technology and design trends.
+Automatic updates and friendly support are also provided when needed.
+The theme is fully responsive, localization ready, and fully integrated with WooCommerce.
+With Shopkeeper, you'll be able to create a professional and high-quality online store without worrying about the technicalities of your website.
+
+== Upgrade Your Online Store with Shopkeeper ==
+
+It's time to take your online store to the next level and stand out from the competition.
+Don't wait any longer, upgrade to Shopkeeper today and start experiencing the success you deserve.
+Experience the difference that Shopkeeper can make for your online store and start building your dream store.
+Start your journey to success today and elevate your online store to the next level with Shopkeeper!
+
+[Shopkeeper Demo](https://getbowtied.net/shopkeeper-extender-to-shopkeeper-theme-demo)
 
 == Changelog ==
+
+= 2.4 =
+- Small maintenance updates
 
 = 2.3 =
 - New: If the [Shopkeeper Theme](https://getbowtied.net/shopkeeper-extender-to-shopkeeper-theme-demo) is not activated, a notification is displayed in the dashboard.
