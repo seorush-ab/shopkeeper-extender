@@ -4,7 +4,7 @@
  * Plugin Name:       		Shopkeeper Extender
  * Plugin URI:        		https://shopkeeper.wp-theme.design/
  * Description:       		Extends the functionality of Shopkeeper with theme specific features.
- * Version:           		2.4
+ * Version:           		2.5
  * Author:            		Get Bowtied
  * Author URI:				https://getbowtied.com
  * Text Domain:				shopkeeper-extender
@@ -108,7 +108,7 @@ if ( ! class_exists( 'ShopkeeperExtender' ) ) :
 		public function shopkeeper_theme_not_activated_warning() {
 		?>
 			<div class="message error shopkeeper-theme-inactive">
-				<p><?php echo wp_kses_post( '<strong>Shopkeeper Extender</strong> is enabled but not effective. It requires <strong>Shopkeeper Theme</strong> in order to work. <a href="https://getbowtied.net/shopkeeper-extender-to-shopkeeper-theme-demo" target="_blank"><strong>Get Shopkeeper Theme</strong></a>.' ); ?></p>
+				<p><?php echo wp_kses_post( '<strong>Shopkeeper Extender</strong> is enabled but not effective. It requires <strong>Shopkeeper Theme</strong> in order to work. <a href="https://1.envato.market/getbowtied-to-shopkeeper" target="_blank"><strong>Get Shopkeeper Theme</strong></a>.' ); ?></p>
 			</div>
 		<?php
 		}
