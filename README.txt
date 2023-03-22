@@ -3,7 +3,7 @@ Contributors: getbowtied
 Tags: shopkeeper, wordpress, woocommerce, theme
 Requires at least: 6.0
 Tested up to: 6.1.1
-Stable tag: 2.5
+Stable tag: 2.6
 Requires PHP: 7.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,10 +12,10 @@ Extends the functionality of the Shopkeeper Theme by adding theme specific featu
 
 == Description ==
 
-Companion plugin for the [Shopkeeper Theme](https://shopkeeper.wp-theme.design/). Extends the functionality by adding theme specific features.
+Companion plugin for the [Shopkeeper Theme](https://1.envato.market/getbowtied-to-shopkeeper). Extends the functionality by adding theme specific features.
 
 **What is Shopkeeper?**
-[Shopkeeper](https://shopkeeper.wp-theme.design/) is a WordPress/WooCommerce Theme that helps you easily create a blazingly fast, professional and responsive website for eCommerce and beyond.
+[Shopkeeper](https://1.envato.market/getbowtied-to-shopkeeper) is a WordPress/WooCommerce Theme that helps you easily create a blazingly fast, professional and responsive website for eCommerce and beyond.
 
 == Features ==
 
@@ -136,6 +136,9 @@ Start your journey to success today and elevate your online store to the next le
 [Shopkeeper Demo](https://shopkeeper.wp-theme.design/)
 
 == Changelog ==
+
+= 2.6 =
+- Recheck Compatibility with WordPress 6.1.1
 
 = 2.5 =
 - Recheck Compatibility with WooCommerce 7.5.0
